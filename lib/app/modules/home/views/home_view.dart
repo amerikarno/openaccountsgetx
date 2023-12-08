@@ -9,17 +9,17 @@ class HomeView extends StatelessWidget {
   const HomeView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    final width = Get.size.width;
+    final width = MediaQuery.of(context).size.width;
+    // final width = Get.size.width;
     // String? errorEmailMessage;
     // final email = false.obs;
 
     return Scaffold(
-      appBar: AppBar(
-        title: AutoSizeText(width * .3, 'กรุณากรอกข้อมูลเพื่อเปิดบัญชี'),
-        centerTitle: true,
-      ),
-      body: GetBuilder<HomeController>(
-        builder: (ctrl) {
+        appBar: AppBar(
+          title: AutoSizeText(width * .3, 'กรุณากรอกข้อมูลเพื่อเปิดบัญชี'),
+          centerTitle: true,
+        ),
+        body: GetBuilder<HomeController>(builder: (ctrl) {
           final thTitleDropDown = DropdownButtonFormField(
               decoration: InputDecoration(
                   label: FittedBox(
@@ -77,7 +77,7 @@ class HomeView extends StatelessWidget {
                   label: FittedBox(
                 child: RichText(
                     text: const TextSpan(
-                        text: 'คำนำหน้าชื่อ (ภาษาไทย)',
+                        text: 'คำนำหน้าชื่อ (ภาษาอังกฤษ)',
                         children: [
                       TextSpan(
                           text: '*', style: TextStyle(color: Colors.orange))
@@ -170,11 +170,11 @@ class HomeView extends StatelessWidget {
               onChanged: (value) => ctrl.checkAgreement(value));
 
           final policyAgreement = TextButton(
-            style: ButtonStyle(
-              textStyle: MaterialStateProperty.all(const TextStyle(color: Colors.grey)),
-              padding: MaterialStateProperty.all(EdgeInsets.zero),
-              overlayColor: MaterialStateProperty.all(Colors.transparent)
-            ),
+              style: ButtonStyle(
+                  textStyle: MaterialStateProperty.all(
+                      const TextStyle(color: Colors.grey)),
+                  padding: MaterialStateProperty.all(EdgeInsets.zero),
+                  overlayColor: MaterialStateProperty.all(Colors.transparent)),
               onPressed: () => showDialog(
                   context: context,
                   builder: (BuildContext context) => AlertDialog(
@@ -196,58 +196,57 @@ class HomeView extends StatelessWidget {
                               child: const Text('ตกลง'))
                         ],
                       )),
-              child: const Text('อ่านรายละเอียดเพิ่มเติม', maxLines: 1,));
+              child: const Text(
+                'อ่านรายละเอียดเพิ่มเติม',
+                maxLines: 1,
+              ));
 
-         final usernamePasswordSubject = FittedBox(
-                        child: RichText(
-                            text: const TextSpan(
-                                text:
-                                    'ข้อมูลสำหรับรับ Username, Password และเอกสารจากทางบริษัทฯ',
-                                style: TextStyle(
-                                    color: Colors.blue,
-                                    fontWeight: FontWeight.bold))),
-                      );
+          final usernamePasswordSubject = FittedBox(
+            child: RichText(
+                text: const TextSpan(
+                    text:
+                        'ข้อมูลสำหรับรับ Username, Password และเอกสารจากทางบริษัทฯ',
+                    style: TextStyle(
+                        color: Colors.blue, fontWeight: FontWeight.bold))),
+          );
 
           return Center(
-            child: SingleChildScrollView(
-              padding: EdgeInsets.fromLTRB(width * 0.2, 0, width * 0.2, 0),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  SizedBox(width: width * .2, child: thTitleDropDown),
-                  Row(
-                    children: [
-                      SizedBox(width: width * .2, child: thNameTextField),
-                      SizedBox(width: width * .01),
-                      SizedBox(width: width * .39, child: thSurnameTextField),
-                    ],
-                  ),
-                  SizedBox(width: width * .2, child: engTitleDropDown),
-                  Row(
-                    children: [
-                      SizedBox(width: width * .2, child: engNameTextField),
-                      SizedBox(width: width * .01),
-                      SizedBox(width: width * .39, child: engSurnameTextField),
-                    ],
-                  ),
-                  const SizedBox(height: 20),
-                  const SizedBox(height: 20),
-                  SizedBox(
-                      width: width*.6,
-                      child: usernamePasswordSubject),
-                  // const SizedBox(height: 20),
-                  SizedBox(width: width * .6, child: emailTextField),
-                  SizedBox(width: width * .6, child: mobileTextField),
-                  SizedBox(width: width * .6, child: agreement),
-                  SizedBox(width: width * .2, child: policyAgreement)
-                ],
-              ),
-            ),
-          );
-        },
-      ),
-    );
+              child: SingleChildScrollView(
+                  padding: EdgeInsets.fromLTRB(width * 0.1, 0, width * 0.1, 0),
+                  child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        SizedBox(width: width * .3, child: thTitleDropDown),
+                        Row(
+                          children: [
+                            SizedBox(width: width * .3, child: thNameTextField),
+                            SizedBox(width: width * .01),
+                            SizedBox(
+                                width: width * .49, child: thSurnameTextField),
+                          ],
+                        ),
+                        SizedBox(width: width * .3, child: engTitleDropDown),
+                        Row(
+                          children: [
+                            SizedBox(
+                                width: width * .3, child: engNameTextField),
+                            SizedBox(width: width * .01),
+                            SizedBox(
+                                width: width * .49, child: engSurnameTextField),
+                          ],
+                        ),
+                        const SizedBox(height: 20),
+                        const SizedBox(height: 20),
+                        SizedBox(
+                            width: width * .8, child: usernamePasswordSubject),
+                        // const SizedBox(height: 20),
+                        SizedBox(width: width * .8, child: emailTextField),
+                        SizedBox(width: width * .8, child: mobileTextField),
+                        SizedBox(width: width * .8, child: agreement),
+                        SizedBox(width: width * .3, child: policyAgreement)
+                      ])));
+        }));
   }
 }
 
