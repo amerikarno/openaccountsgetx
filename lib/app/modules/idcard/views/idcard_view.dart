@@ -6,19 +6,20 @@ import 'package:openaccountsgetx/app/data/idcard.dart';
 
 import '../controllers/idcard_controller.dart';
 
-class IdcardView extends GetView<IdcardController> {
+class IdcardView extends StatelessWidget {
   const IdcardView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
     final height = MediaQuery.of(context).size.height;
     final title = SizedBox(
-        width: width * .6,
+        width: width * .3,
         child: const FittedBox(child: Text('กรอกข้อมูลบัตรประชาชน')));
     return Scaffold(
         appBar: AppBar(
           title: title,
-          centerTitle: true,
+          titleSpacing: width*.1,
+          centerTitle: false,
         ),
         body: GetBuilder<IdcardController>(builder: (ctrl) {
           ctrl.createYearLists();
@@ -87,10 +88,10 @@ class IdcardView extends GetView<IdcardController> {
                   'โสด',
                 ),
               ),
-              leading: Radio<MarriageStatue>(
-                  value: MarriageStatue.single,
+              leading: Radio<MarriageStatueEnum>(
+                  value: MarriageStatueEnum.single,
                   groupValue: ctrl.marriageStatusGroupValue,
-                  onChanged: (MarriageStatue? value) =>
+                  onChanged: (MarriageStatueEnum? value) =>
                       ctrl.setMarriageStatus(value)));
           final marriedListTile = ListTile(
               contentPadding: EdgeInsets.zero,
@@ -99,10 +100,10 @@ class IdcardView extends GetView<IdcardController> {
                   'สมรส',
                 ),
               ),
-              leading: Radio<MarriageStatue>(
-                  value: MarriageStatue.married,
+              leading: Radio<MarriageStatueEnum>(
+                  value: MarriageStatueEnum.married,
                   groupValue: ctrl.marriageStatusGroupValue,
-                  onChanged: (MarriageStatue? value) =>
+                  onChanged: (MarriageStatueEnum? value) =>
                       ctrl.setMarriageStatus(value)));
           final disvorcedListTile = ListTile(
               contentPadding: EdgeInsets.zero,
@@ -111,10 +112,10 @@ class IdcardView extends GetView<IdcardController> {
                   'หย่า',
                 ),
               ),
-              leading: Radio<MarriageStatue>(
-                  value: MarriageStatue.disvorced,
+              leading: Radio<MarriageStatueEnum>(
+                  value: MarriageStatueEnum.disvorced,
                   groupValue: ctrl.marriageStatusGroupValue,
-                  onChanged: (MarriageStatue? value) =>
+                  onChanged: (MarriageStatueEnum? value) =>
                       ctrl.setMarriageStatus(value)));
 
           final citizenID = FittedBox(
@@ -151,13 +152,37 @@ class IdcardView extends GetView<IdcardController> {
                   ]),
             ),
           );
+          final laserCodeText = FittedBox(
+            child: RichText(
+              text: const TextSpan(
+                  text: 'เลขหลังบัตรประชาชน(Laser Code)',
+                  children: [
+                    TextSpan(text: '*', style: TextStyle(color: Colors.orange))
+                  ]),
+            ),
+          );
 
-          final laserTextField = TextField(
+          final laserPrefixTextField = TextField(
               decoration: InputDecoration(
                   label: FittedBox(
                       child: RichText(
                           text: const TextSpan(
-                              text: 'ตัวเลข 13 หลัก',
+                              text: 'ตัวอักษร 2 หลัก',
+                              children: [
+                        TextSpan(text: '*', style: TextStyle(color: Colors.red))
+                      ]))),
+                  errorText: ctrl.citizenIDErrorMassage),
+              onChanged: (value) => ctrl.setCitizenID(value),
+              inputFormatters: [
+                FilteringTextInputFormatter.allow(RegExp(r'[0-9]'))
+              ]);
+          const laserDashText = FittedBox(child: Text('-', textAlign: TextAlign.center,));
+          final laserSuffixTextField = TextField(
+              decoration: InputDecoration(
+                  label: FittedBox(
+                      child: RichText(
+                          text: const TextSpan(
+                              text: 'ตัวเลข 10 หลัก',
                               children: [
                         TextSpan(text: '*', style: TextStyle(color: Colors.red))
                       ]))),
@@ -239,7 +264,12 @@ class IdcardView extends GetView<IdcardController> {
                               SizedBox(width: width * .05),
                               Column(children: [
                                 SizedBox(
-                                    width: width * .4, child: laserTextField),
+                                    width: width * .4, child: laserCodeText),
+                                    Row(children: [
+                                      SizedBox(width: width*.11,child: laserPrefixTextField),
+                                      SizedBox(width: width*.01,child: laserDashText),
+                                      SizedBox(width: width*.28,child: laserSuffixTextField),
+                                    ],)
                               ])
                             ])),
                       ])));

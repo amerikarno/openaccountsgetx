@@ -14,26 +14,26 @@ part 'app_routes.dart';
 class AppPages {
   AppPages._();
 
-  static const INITIAL = Routes.IDCARD;
+  static const initial = Routes.information;
 
   static final routes = [
     GetPage(
-      name: _Paths.HOME,
+      name: _Paths.home,
       page: () => const HomeView(),
       binding: HomeBinding(),
     ),
     GetPage(
-      name: _Paths.IDCARD,
+      name: _Paths.idcard,
       page: () => const IdcardView(),
       binding: IdcardBinding(),
     ),
     GetPage(
-      name: _Paths.INFORMATION,
+      name: _Paths.information,
       page: () => const InformationView(),
       binding: InformationBinding(),
     ),
     GetPage(
-      name: _Paths.TEST,
+      name: _Paths.test,
       page: () => const TestView(),
       binding: TestBinding(),
     ),

@@ -16,7 +16,7 @@ class HomeView extends StatelessWidget {
 
     return Scaffold(
         appBar: AppBar(
-          title: AutoSizeText(width * .3, 'กรุณากรอกข้อมูลเพื่อเปิดบัญชี'),
+          title: autoSizeText(width * .3, 'กรุณากรอกข้อมูลเพื่อเปิดบัญชี'),
           centerTitle: true,
         ),
         body: GetBuilder<HomeController>(builder: (ctrl) {
@@ -250,6 +250,6 @@ class HomeView extends StatelessWidget {
   }
 }
 
-Widget AutoSizeText(double width, String text) {
+Widget autoSizeText(double width, String text) {
   return SizedBox(width: width, child: FittedBox(child: Text(text)));
 }

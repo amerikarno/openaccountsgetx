@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 
 import '../controllers/test_controller.dart';
 
-class TestView extends GetView<TestController> {
+class TestView extends StatelessWidget {
   const TestView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {

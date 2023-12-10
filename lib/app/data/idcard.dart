@@ -47,4 +47,5 @@ const List<String> monthLists = [
   'ธ.ค.',
 ];
 
-enum MarriageStatue { single, married, disvorced }
+enum MarriageStatueEnum { single, married, disvorced }
+enum CurrentAddressEnum { registered, current }

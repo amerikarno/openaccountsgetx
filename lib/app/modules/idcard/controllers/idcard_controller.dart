@@ -17,7 +17,7 @@ class IdcardController extends GetxController {
   String? citizenID;
   String? citizenIDErrorMassage;
 
-  MarriageStatue? marriageStatusGroupValue;
+  MarriageStatueEnum? marriageStatusGroupValue;
 
   void createYearLists() {
     int currentYear = DateTime.now().year + 543;
@@ -28,16 +28,6 @@ class IdcardController extends GetxController {
       list.add(i.toString());
     }
     yearItems = list;
-    // yearpicker = yearItems!.first;
-    // monthpicker = monthItems.first;
-    // datepicker = dateItems.first;
-    // print(yearLists);
-    // setState(() {
-    //   yearItems = list;
-    //   yearValue = yearItems.first;
-    //   dateValue = dateItems.first;
-    //   monthValue = monthItems.first;
-    // });
   }
 
 

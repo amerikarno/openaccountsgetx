@@ -4,8 +4,6 @@ import 'package:email_validator/email_validator.dart';
 import 'package:get/get.dart';
 
 class HomeController extends GetxController {
-  //TODO: Implement HomeController
-
   final count = 0.obs;
   String? thTitle;
   String? thTitleErrorMessage;
