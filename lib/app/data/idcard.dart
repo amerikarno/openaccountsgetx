@@ -49,3 +49,4 @@ const List<String> monthLists = [
 
 enum MarriageStatueEnum { single, married, disvorced }
 enum CurrentAddressEnum { registered, current }
+enum OfficeAddressEnum { registered, current, office }

@@ -65,10 +65,11 @@ class HomeController extends GetxController {
   }
 
   void setThName(value) {
-    if (value.isBlank) {
+    if (value == null) {
       thNameErrorMessage = 'กรุณาใส่ชื่อ (ภาษาไทย)';
     }
     thName = value;
+    log('$thName: $value');
     update();
   }
 

@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:openaccountsgetx/app/data/idcard.dart';
+import 'package:openaccountsgetx/app/data/information.dart';
 
 class InformationController extends GetxController {
   String? registeredHouseNumber;
@@ -88,31 +89,59 @@ class InformationController extends GetxController {
 
   CurrentAddressEnum? currentAddressEnumGroupValue;
 
+  String? sourceOfIncome;
+  String? sourceOfIncomeErrorMessage;
+  List<String> sourceOfIncomeItems = sourceOfIncomeLists;
+  
+  String? occupation;
+  String? occupationErrorMessage;
+  List<String> occupationItems = occupationLists;
+  
+  String? officeName;
+  String? officeNameErrorMessage;
+  
+  String? typeOfBusiness;
+  String? typeOfBusinessErrorMessage;
+  List<String> typeOfBusinessItems = typeOfBusinessLists;
+  
+  String? position;
+  String? positionErrorMessage;
+  
+  String? salary;
+  String? salaryErrorMessage;
+  List<String> salaryItems = salaryLists;
+
+  OfficeAddressEnum? officeAddressEnumGroupValue;
+
   void rhOnChange(value) {
     registeredHouseNumber = value;
-    registeredHouseNumberTextController = value;
     if (registeredHouseNumberTextController == null) {
       registeredHouseNumberErrorMessage = 'กรุณากรอกบ้านเลขที่';
     }
-    log('$registeredHouseNumber : $registeredHouseNumberTextController');
+    log('$registeredHouseNumber');
     update();
   }
+
   void rvOnChange(value) {
     registeredVillageNumber = value;
     update();
   }
+
   void rvnOnChange(value) {
     registeredVillageName = value;
     update();
   }
+
   void rssnOnChange(value) {
     registeredSubStreetName = value;
     update();
   }
+
   void rsnOnChange(value) {
     registeredStreetName = value;
     update();
   }
+
   void rsdnOnChange(value) {
     registeredSubDistrictName = value;
     if (registeredSubDistrictName == null) {
@@ -120,6 +149,7 @@ class InformationController extends GetxController {
     }
     update();
   }
+
   void rdnOnChange(value) {
     registeredDistrictName = value;
     if (registeredDistrictName == null) {
@@ -127,6 +157,7 @@ class InformationController extends GetxController {
     }
     update();
   }
+
   void rpnOnChange(value) {
     registeredProvinceName = value;
     if (registeredProvinceName == null) {
@@ -134,6 +165,7 @@ class InformationController extends GetxController {
     }
     update();
   }
+
   void rzcOnChange(value) {
     registeredZipCode = value;
     if (registeredZipCode == null) {
@@ -141,6 +173,7 @@ class InformationController extends GetxController {
     }
     update();
   }
+
   void rcnOnChange(value) {
     registeredCountry = value;
     if (registeredCountry == null) {
@@ -148,31 +181,37 @@ class InformationController extends GetxController {
     }
     update();
   }
+
   void rhOnTap() {
     if (registeredHouseNumber == null) {
       registeredHouseNumberErrorMessage = 'กรุณากรอกบ้านเลขที่';
     }
   }
+
   void rsdnOnTap() {
     if (registeredSubDistrictName == null) {
       registeredSubDistrictNameErrorMessage = 'กรุณากรอกแขวงตำบล';
     }
   }
+
   void rdnOnTap() {
     if (registeredDistrictName == null) {
       registeredDistrictNameErrorMessage = 'กรุณากรอกเขตอำเภอ';
     }
   }
+
   void rpnOnTap() {
     if (registeredProvinceName == null) {
       registeredProvinceNameErrorMessage = 'กรุณากรอกจังหวัด';
     }
   }
+
   void rzcOnTap() {
     if (registeredZipCode == null) {
       registeredZipCodeErrorMessage = 'กรุณากรอกรหัสไปรษณีย์';
     }
   }
+
   void rcnOnTap() {
     if (registeredCountry == null) {
       registeredCountryErrorMessage = 'กรุณากรอกประเทศ';
@@ -186,22 +225,27 @@ class InformationController extends GetxController {
     }
     update();
   }
+
   void cvOnChange(value) {
     currentVillageNumber = value;
     update();
   }
+
   void cvnOnChange(value) {
     currentVillageName = value;
     update();
   }
+
   void cssnOnChange(value) {
     currentSubStreetName = value;
     update();
   }
+
   void csnOnChange(value) {
     currentStreetName = value;
     update();
   }
+
   void csdnOnChange(value) {
     currentSubDistrictName = value;
     if (currentSubDistrictName == null) {
@@ -209,6 +253,7 @@ class InformationController extends GetxController {
     }
     update();
   }
+
   void cdnOnChange(value) {
     currentDistrictName = value;
     if (currentDistrictName == null) {
@@ -216,6 +261,7 @@ class InformationController extends GetxController {
     }
     update();
   }
+
   void cpnOnChange(value) {
     currentProvinceName = value;
     if (currentProvinceName == null) {
@@ -223,6 +269,7 @@ class InformationController extends GetxController {
     }
     update();
   }
+
   void czcOnChange(value) {
     currentZipCode = value;
     if (currentZipCode == null) {
@@ -230,6 +277,7 @@ class InformationController extends GetxController {
     }
     update();
   }
+
   void ccnOnChange(value) {
     currentCountry = value;
     if (currentCountry == null) {
@@ -237,31 +285,37 @@ class InformationController extends GetxController {
     }
     update();
   }
+
   void chOnTap() {
     if (currentHouseNumber == null) {
       currentHouseNumberErrorMessage = 'กรุณากรอกบ้านเลขที่';
     }
   }
+
   void csdnOnTap() {
     if (currentSubDistrictName == null) {
       currentSubDistrictNameErrorMessage = 'กรุณากรอกแขวงตำบล';
     }
   }
+
   void cdnOnTap() {
     if (currentDistrictName == null) {
       currentDistrictNameErrorMessage = 'กรุณากรอกเขตอำเภอ';
     }
   }
+
   void cpnOnTap() {
     if (currentProvinceName == null) {
       currentProvinceNameErrorMessage = 'กรุณากรอกจังหวัด';
     }
   }
+
   void czcOnTap() {
     if (currentZipCode == null) {
       currentZipCodeErrorMessage = 'กรุณากรอกรหัสไปรษณีย์';
     }
   }
+
   void ccnOnTap() {
     if (currentCountry == null) {
       currentCountryErrorMessage = 'กรุณากรอกประเทศ';
@@ -275,22 +329,27 @@ class InformationController extends GetxController {
     }
     update();
   }
+
   void ovOnChange(value) {
     officeVillageNumber = value;
     update();
   }
+
   void ovnOnChange(value) {
     officeVillageName = value;
     update();
   }
+
   void ossnOnChange(value) {
     officeSubStreetName = value;
     update();
   }
+
   void osnOnChange(value) {
     officeStreetName = value;
     update();
   }
+
   void osdnOnChange(value) {
     officeSubDistrictName = value;
     if (officeSubDistrictName == null) {
@@ -298,6 +357,7 @@ class InformationController extends GetxController {
     }
     update();
   }
+
   void odnOnChange(value) {
     officeDistrictName = value;
     if (officeDistrictName == null) {
@@ -305,6 +365,7 @@ class InformationController extends GetxController {
     }
     update();
   }
+
   void opnOnChange(value) {
     officeProvinceName = value;
     if (officeProvinceName == null) {
@@ -312,6 +373,7 @@ class InformationController extends GetxController {
     }
     update();
   }
+
   void ozcOnChange(value) {
     officeZipCode = value;
     if (officeZipCode == null) {
@@ -319,6 +381,7 @@ class InformationController extends GetxController {
     }
     update();
   }
+
   void ocnOnChange(value) {
     officeCountry = value;
     if (officeCountry == null) {
@@ -326,31 +389,37 @@ class InformationController extends GetxController {
     }
     update();
   }
+
   void ohOnTap() {
     if (officeHouseNumber == null) {
       officeHouseNumberErrorMessage = 'กรุณากรอกบ้านเลขที่';
     }
   }
+
   void osdnOnTap() {
     if (officeSubDistrictName == null) {
       officeSubDistrictNameErrorMessage = 'กรุณากรอกแขวงตำบล';
     }
   }
+
   void odnOnTap() {
     if (officeDistrictName == null) {
       officeDistrictNameErrorMessage = 'กรุณากรอกเขตอำเภอ';
     }
   }
+
   void opnOnTap() {
     if (officeProvinceName == null) {
       officeProvinceNameErrorMessage = 'กรุณากรอกจังหวัด';
     }
   }
+
   void ozcOnTap() {
     if (officeZipCode == null) {
       officeZipCodeErrorMessage = 'กรุณากรอกรหัสไปรษณีย์';
     }
   }
+
   void ocnOnTap() {
     if (officeCountry == null) {
       officeCountryErrorMessage = 'กรุณากรอกประเทศ';
@@ -360,6 +429,66 @@ class InformationController extends GetxController {
   void setCurrentAddress(value) {
     currentAddressEnumGroupValue = value;
     log('current address: $currentAddressEnumGroupValue');
+    update();
+  }
+
+  void setSourceOfIncome(value) {
+    if (value == null) {
+      sourceOfIncomeErrorMessage = 'กรุณาเลือกแหล่งที่มาของรายได้';
+    } else {
+      sourceOfIncome = value;
+    }
+    update();
+  }
+
+  void setoccupation(value) {
+    if (value == null) {
+      occupationErrorMessage = 'กรุณาเลือกอาชีพ';
+    } else {
+      occupation = value;
+    }
+    update();
+  }
+  
+  void setofficeName(value) {
+    if (value == null) {
+      officeNameErrorMessage = 'กรุณากรอกชื่อบริษัท';
+    } else {
+      officeName = value;
+    }
+    update();
+  }
+
+  void settypeOfBusiness(value) {
+    if (value == null) {
+      typeOfBusinessErrorMessage = 'กรุณาเลือกประเภทของธุรกิจ';
+    } else {
+      typeOfBusiness = value;
+    }
+    update();
+  }
+  
+  void setposition(value) {
+    if (value == null) {
+      positionErrorMessage = 'กรุณากรอกตำแหน่งงาน';
+    } else {
+      position = value;
+    }
+    update();
+  }
+
+  void setsalary(value) {
+    if (value == null) {
+      salaryErrorMessage = 'กรุณาเลือกเงินเดือน';
+    } else {
+      salary = value;
+    }
+    update();
+  }
+
+  void setOfficeAddress(value) {
+    officeAddressEnumGroupValue = value;
+    log('current address: $officeAddressEnumGroupValue');
     update();
   }
 }
