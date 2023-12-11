@@ -491,4 +491,5 @@ class InformationController extends GetxController {
     log('current address: $officeAddressEnumGroupValue');
     update();
   }
+
 }

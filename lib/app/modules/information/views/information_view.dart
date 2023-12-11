@@ -787,19 +787,11 @@ class InformationView extends StatelessWidget {
                                       ])
                                     : const Column(),
                                 (ctrl.officeAddressEnumGroupValue ==
-                                        OfficeAddressEnum.current && ctrl.currentHouseNumber== null)
+                                        OfficeAddressEnum.current)
                                     ? Column(children: [
                                         const SizedBox(height: 10),
                                         Text(
-                                            'บ้านเลขที่ ${ctrl.registeredHouseNumber}, หมู่ที่ ${ctrl.registeredVillageNumber}, หมู่บ้าน ${ctrl.registeredVillageName}, ซอย ${ctrl.registeredSubStreetName}, ถนน ${ctrl.registeredStreetName}, แขวงตำบล ${ctrl.registeredSubDistrictName}, เขตอำเภอ ${ctrl.registeredDistrictName}, จังหวัด ${ctrl.registeredProvinceName}, รหัสไปรษณีย์ ${ctrl.registeredZipCode}, ประเทศ ${ctrl.registeredCountry}')
-                                      ])
-                                    : const Column(),
-                                (ctrl.officeAddressEnumGroupValue ==
-                                        OfficeAddressEnum.current && ctrl.currentHouseNumber!.isNotEmpty)
-                                    ? Column(children: [
-                                        const SizedBox(height: 10),
-                                        Text(
-                                            'บ้านเลขที่ ${ctrl.currentHouseNumber}, หมู่ที่ ${ctrl.currentVillageNumber}, หมู่บ้าน ${ctrl.currentVillageName}, ซอย ${ctrl.currentSubStreetName}, ถนน ${ctrl.currentStreetName}, แขวงตำบล ${ctrl.currentSubDistrictName}, เขตอำเภอ ${ctrl.currentDistrictName}, จังหวัด ${ctrl.currentProvinceName}, รหัสไปรษณีย์ ${ctrl.currentZipCode}, ประเทศ ${ctrl.currentCountry}')
+                                            'บ้านเลขที่ ${ctrl.currentHouseNumber ?? ctrl.registeredHouseNumber}, หมู่ที่ ${ctrl.currentVillageNumber ?? ctrl.registeredVillageNumber}, หมู่บ้าน ${ctrl.currentVillageName ?? ctrl.registeredVillageName}, ซอย ${ctrl.currentSubStreetName ?? ctrl.registeredSubStreetName}, ถนน ${ctrl.currentStreetName??ctrl.registeredStreetName}, แขวงตำบล ${ctrl.currentSubDistrictName??ctrl.registeredSubDistrictName}, เขตอำเภอ ${ctrl.currentDistrictName??ctrl.registeredDistrictName}, จังหวัด ${ctrl.currentProvinceName??ctrl.registeredProvinceName}, รหัสไปรษณีย์ ${ctrl.currentZipCode??ctrl.registeredZipCode}, ประเทศ ${ctrl.currentCountry??ctrl.registeredCountry}')
                                       ])
                                     : const Column(),
                                 (ctrl.officeAddressEnumGroupValue ==
