@@ -92,26 +92,56 @@ class InformationController extends GetxController {
   String? sourceOfIncome;
   String? sourceOfIncomeErrorMessage;
   List<String> sourceOfIncomeItems = sourceOfIncomeLists;
-  
+
   String? occupation;
   String? occupationErrorMessage;
   List<String> occupationItems = occupationLists;
-  
+
   String? officeName;
   String? officeNameErrorMessage;
-  
+
   String? typeOfBusiness;
   String? typeOfBusinessErrorMessage;
   List<String> typeOfBusinessItems = typeOfBusinessLists;
-  
+
   String? position;
   String? positionErrorMessage;
-  
+
   String? salary;
   String? salaryErrorMessage;
   List<String> salaryItems = salaryLists;
 
   OfficeAddressEnum? officeAddressEnumGroupValue;
+
+  bool? shortTermInvestment = false;
+  bool? longTermInvestment = false;
+  bool? taxesReduceInvestment = false;
+  bool? retirementInvestment = false;
+
+  String? firstBankName;
+  String? firstBankNameErrorMessage;
+  List<String> firstBankNameItems = bankNameLists;
+
+  String? firstBankBranch;
+  String? firstBankBranchErrorMessage;
+  List<String> firstBankBranchItems = bankBranchLists;
+
+  String? firstBankAccount;
+  String? firstBankAccountErrorMessage;
+
+
+  SecondBookBankAddressEnum? secondBookBankAddressEnumGroupValue;
+
+String? secondBankName;
+  String? secondBankNameErrorMessage;
+  List<String> secondBankNameItems = bankNameLists;
+
+  String? secondBankBranch;
+  String? secondBankBranchErrorMessage;
+  List<String> secondBankBranchItems = bankBranchLists;
+
+  String? secondBankAccount;
+  String? secondBankAccountErrorMessage;
 
   void rhOnChange(value) {
     registeredHouseNumber = value;
@@ -449,7 +479,7 @@ class InformationController extends GetxController {
     }
     update();
   }
-  
+
   void setofficeName(value) {
     if (value == null) {
       officeNameErrorMessage = 'กรุณากรอกชื่อบริษัท';
@@ -467,7 +497,7 @@ class InformationController extends GetxController {
     }
     update();
   }
-  
+
   void setposition(value) {
     if (value == null) {
       positionErrorMessage = 'กรุณากรอกตำแหน่งงาน';
@@ -492,4 +522,101 @@ class InformationController extends GetxController {
     update();
   }
 
+  void checkshortTermInvestment(value) {
+    shortTermInvestment = value;
+    update();
+  }
+
+  void checklongTermInvestment(value) {
+    longTermInvestment = value;
+    update();
+  }
+
+  void checktaxesReduceInvestment(value) {
+    taxesReduceInvestment = value;
+    update();
+  }
+
+  void checkretirementInvestment(value) {
+    retirementInvestment = value;
+    update();
+  }
+
+  void setFirstBankName(value) {
+    if (value == null) {
+      firstBankNameErrorMessage = 'กรุณาเลือกธนาคาร';
+    } else {
+      firstBankName = value;
+      firstBankNameErrorMessage = null;
+    }
+    update();
+  }
+  void setFirstBankBranch(value) {
+    if (value == null) {
+      firstBankBranchErrorMessage = 'กรุณาเลือกสาขา';
+    } else {
+      firstBankBranch = value;
+      firstBankBranchErrorMessage = null;
+    }
+    update();
+  }
+  void firstBankAccountOnChange(value) {
+    firstBankAccount = value;
+    if (firstBankAccount == null) {
+      firstBankAccountErrorMessage = 'กรุณากรอกเลขบัญชี';
+    }
+    update();
+  }
+
+  void firstBankAccountOnTap() {
+    if (firstBankName == null) {
+      firstBankNameErrorMessage = 'กรุณาเลือกธนาคาร';
+    }
+    if (firstBankBranch == null) {
+      firstBankBranchErrorMessage = 'กรุณาเลือกสาขา';
+    }
+    update();
+  }
+
+  void setUseSecondBookBank(value) {
+    secondBookBankAddressEnumGroupValue = value;
+    log('current address: $secondBookBankAddressEnumGroupValue');
+    update();
+  }
+
+  void setsecondBankName(value) {
+    if (value == null) {
+      secondBankNameErrorMessage = 'กรุณาเลือกธนาคาร';
+    } else {
+      secondBankName = value;
+      secondBankNameErrorMessage = null;
+    }
+    update();
+  }
+  void setsecondBankBranch(value) {
+    if (value == null) {
+      secondBankBranchErrorMessage = 'กรุณาเลือกสาขา';
+    } else {
+      secondBankBranch = value;
+      secondBankBranchErrorMessage = null;
+    }
+    update();
+  }
+  void secondBankAccountOnChange(value) {
+    secondBankAccount = value;
+    if (secondBankAccount == null) {
+      secondBankAccountErrorMessage = 'กรุณากรอกเลขบัญชี';
+    }
+    update();
+  }
+
+  void secondBankAccountOnTap() {
+    if (secondBankName == null) {
+      secondBankNameErrorMessage = 'กรุณาเลือกธนาคาร';
+    }
+    if (secondBankBranch == null) {
+      secondBankBranchErrorMessage = 'กรุณาเลือกสาขา';
+    }
+    update();
+  }
 }

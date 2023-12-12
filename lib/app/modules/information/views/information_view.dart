@@ -1,8 +1,5 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
 import 'package:get/get.dart';
 import 'package:openaccountsgetx/app/data/idcard.dart';
 
@@ -205,6 +202,9 @@ class InformationView extends StatelessWidget {
                 ),
               ),
               leading: Radio<CurrentAddressEnum>(
+                  visualDensity:
+                      const VisualDensity(horizontal: -4, vertical: 0),
+                  materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                   value: CurrentAddressEnum.registered,
                   groupValue: ctrl.currentAddressEnumGroupValue,
                   onChanged: (CurrentAddressEnum? value) =>
@@ -217,6 +217,9 @@ class InformationView extends StatelessWidget {
                 ),
               ),
               leading: Radio<CurrentAddressEnum>(
+                  visualDensity:
+                      const VisualDensity(horizontal: -4, vertical: 0),
+                  materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                   value: CurrentAddressEnum.current,
                   groupValue: ctrl.currentAddressEnumGroupValue,
                   onChanged: (CurrentAddressEnum? value) =>
@@ -421,7 +424,8 @@ class InformationView extends StatelessWidget {
               onChanged: (value) => ctrl.settypeOfBusiness(value),
               items: [
                 for (var data in ctrl.typeOfBusinessItems)
-                  DropdownMenuItem(value: data, child: Text(data))
+                  DropdownMenuItem(
+                      value: data, child: FittedBox(child: Text(data)))
               ]);
           final position = TextField(
               decoration: InputDecoration(
@@ -466,6 +470,9 @@ class InformationView extends StatelessWidget {
                 ),
               ),
               leading: Radio<OfficeAddressEnum>(
+                  visualDensity:
+                      const VisualDensity(horizontal: -4, vertical: 0),
+                  materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                   value: OfficeAddressEnum.registered,
                   groupValue: ctrl.officeAddressEnumGroupValue,
                   onChanged: (OfficeAddressEnum? value) =>
@@ -478,6 +485,9 @@ class InformationView extends StatelessWidget {
                 ),
               ),
               leading: Radio<OfficeAddressEnum>(
+                  visualDensity:
+                      const VisualDensity(horizontal: -4, vertical: 0),
+                  materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                   value: OfficeAddressEnum.current,
                   groupValue: ctrl.officeAddressEnumGroupValue,
                   onChanged: (OfficeAddressEnum? value) =>
@@ -490,6 +500,9 @@ class InformationView extends StatelessWidget {
                 ),
               ),
               leading: Radio<OfficeAddressEnum>(
+                  visualDensity:
+                      const VisualDensity(horizontal: -4, vertical: 0),
+                  materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                   value: OfficeAddressEnum.office,
                   groupValue: ctrl.officeAddressEnumGroupValue,
                   onChanged: (OfficeAddressEnum? value) =>
@@ -627,6 +640,203 @@ class InformationView extends StatelessWidget {
               zipCodeWidget: officeZipcode,
               countryWidget: officeCountry);
 
+          final registeredAddressText = Text(
+              'บ้านเลขที่ ${ctrl.registeredHouseNumber}, หมู่ที่ ${ctrl.registeredVillageNumber}, หมู่บ้าน ${ctrl.registeredVillageName}, ซอย ${ctrl.registeredSubStreetName}, ถนน ${ctrl.registeredStreetName}, แขวงตำบล ${ctrl.registeredSubDistrictName}, เขตอำเภอ ${ctrl.registeredDistrictName}, จังหวัด ${ctrl.registeredProvinceName}, รหัสไปรษณีย์ ${ctrl.registeredZipCode}, ประเทศ ${ctrl.registeredCountry}');
+          final currentAddressText = Text(
+              'บ้านเลขที่ ${ctrl.currentHouseNumber}, หมู่ที่ ${ctrl.currentVillageNumber}, หมู่บ้าน ${ctrl.currentVillageName}, ซอย ${ctrl.currentSubStreetName}, ถนน ${ctrl.currentStreetName}, แขวงตำบล ${ctrl.currentSubDistrictName}, เขตอำเภอ ${ctrl.currentDistrictName}, จังหวัด ${ctrl.currentProvinceName}, รหัสไปรษณีย์ ${ctrl.currentZipCode}, ประเทศ ${ctrl.currentCountry}');
+
+          final objectiveOfInvestment = RichText(
+              text: const TextSpan(text: 'วัตถุประสงค์ของการลงทุน', children: [
+            TextSpan(
+                text: '*',
+                style: TextStyle(
+                  color: Colors.red,
+                ))
+          ]));
+          final shortTermInvestmentChecklist = CheckboxListTile(
+              visualDensity: const VisualDensity(horizontal: -4, vertical: -4),
+              materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+              overlayColor: MaterialStateProperty.all(Colors.transparent),
+              contentPadding: EdgeInsets.zero,
+              checkColor: Colors.white,
+              activeColor: Colors.green,
+              side: const BorderSide(color: Colors.grey),
+              title: const Text('เพื่อการลงทุนระยะสั้น'),
+              controlAffinity: ListTileControlAffinity.leading,
+              value: ctrl.shortTermInvestment,
+              onChanged: (value) => ctrl.checkshortTermInvestment(value));
+          final longTermInvestmentChecklist = CheckboxListTile(
+              visualDensity: const VisualDensity(horizontal: -4, vertical: -4),
+              materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+              overlayColor: MaterialStateProperty.all(Colors.transparent),
+              contentPadding: EdgeInsets.zero,
+              checkColor: Colors.white,
+              activeColor: Colors.green,
+              side: const BorderSide(color: Colors.grey),
+              title: const Text('เพื่อการลงทุนระยะยาว'),
+              controlAffinity: ListTileControlAffinity.leading,
+              value: ctrl.longTermInvestment,
+              onChanged: (value) => ctrl.checklongTermInvestment(value));
+          final taxesReduceInvestmentChecklist = CheckboxListTile(
+              visualDensity: const VisualDensity(horizontal: -4, vertical: -4),
+              materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+              overlayColor: MaterialStateProperty.all(Colors.transparent),
+              contentPadding: EdgeInsets.zero,
+              checkColor: Colors.white,
+              activeColor: Colors.green,
+              side: const BorderSide(color: Colors.grey),
+              title: const Text('เพื่อสิทธิประโยชน์ทางภาษี'),
+              controlAffinity: ListTileControlAffinity.leading,
+              value: ctrl.taxesReduceInvestment,
+              onChanged: (value) => ctrl.checktaxesReduceInvestment(value));
+          final retirementInvestmentChecklist = CheckboxListTile(
+              visualDensity: const VisualDensity(horizontal: -4, vertical: -4),
+              materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+              overlayColor: MaterialStateProperty.all(Colors.transparent),
+              contentPadding: EdgeInsets.zero,
+              checkColor: Colors.white,
+              activeColor: Colors.green,
+              side: const BorderSide(color: Colors.grey),
+              title: const Text('เพื่อการเกษียร'),
+              controlAffinity: ListTileControlAffinity.leading,
+              value: ctrl.retirementInvestment,
+              onChanged: (value) => ctrl.checkretirementInvestment(value));
+
+          final firstBookBankAccount = RichText(
+              text: const TextSpan(
+                  text:
+                      'บัญชีธนาคารของท่านเพื่อทำธุรกรรมกับบริษัทฯ(บัญชีที่ 1)',
+                  children: [
+                TextSpan(
+                    text: '*',
+                    style: TextStyle(
+                      color: Colors.red,
+                    ))
+              ]));
+          final firstBankNameDropDown = DropdownButtonFormField(
+              menuMaxHeight: height * .5,
+              decoration: InputDecoration(
+                  errorText: ctrl.firstBankNameErrorMessage,
+                  label: RichText(
+                      text: const TextSpan(text: 'ธนาคาร', children: [
+                    TextSpan(text: '*', style: TextStyle(color: Colors.red))
+                  ]))),
+              value: ctrl.firstBankName,
+              onChanged: (value) => ctrl.setFirstBankName(value),
+              items: [
+                for (var data in ctrl.firstBankNameItems)
+                  DropdownMenuItem(value: data, child: Text(data))
+              ]);
+          final firstBankBranchDropDown = DropdownButtonFormField(
+              menuMaxHeight: height * .5,
+              decoration: InputDecoration(
+                  errorText: ctrl.firstBankBranchErrorMessage,
+                  label: RichText(
+                      text: const TextSpan(text: 'สาขา', children: [
+                    TextSpan(text: '*', style: TextStyle(color: Colors.red))
+                  ]))),
+              value: ctrl.firstBankBranch,
+              onChanged: (value) => ctrl.setFirstBankBranch(value),
+              items: [
+                for (var data in ctrl.firstBankNameItems)
+                  DropdownMenuItem(value: data, child: Text(data))
+              ]);
+          final firstBankAccountTextField = TextField(
+              decoration: InputDecoration(
+                  contentPadding: const EdgeInsets.symmetric(vertical: 0),
+                  label: FittedBox(
+                      child: RichText(
+                          text: const TextSpan(text: 'เลขบัญชี', children: [
+                    TextSpan(text: '*', style: TextStyle(color: Colors.red))
+                  ]))),
+                  errorText: ctrl.firstBankAccountErrorMessage),
+              onChanged: (value) => ctrl.firstBankAccountOnChange(value),
+              onTap: () => ctrl.firstBankAccountOnTap(),
+              inputFormatters: [
+                FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z0-9ก-๛]'))
+              ]);
+
+          final secondBookBankAccount = RichText(
+              text: const TextSpan(
+                  text:
+                      'บัญชีธนาคารของท่านเพื่อทำธุรกรรมกับบริษัทฯ(บัญชีที่ 2)',
+                  children: [
+                TextSpan(
+                    text: '*',
+                    style: TextStyle(
+                      color: Colors.red,
+                    ))
+              ]));
+          final useSecondBankAccountListTile = ListTile(
+              contentPadding: EdgeInsets.zero,
+              title: const FittedBox(
+                child: Text(
+                  'ใช้',
+                ),
+              ),
+              leading: Radio<SecondBookBankAddressEnum>(
+                  visualDensity:
+                      const VisualDensity(horizontal: -4, vertical: 0),
+                  materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                  value: SecondBookBankAddressEnum.yes,
+                  groupValue: ctrl.secondBookBankAddressEnumGroupValue,
+                  onChanged: (SecondBookBankAddressEnum? value) =>
+                      ctrl.setUseSecondBookBank(value)));
+          final donotUseSecondBankAccountListTile = ListTile(
+              contentPadding: EdgeInsets.zero,
+              title: const FittedBox(child: Text('ไม่ใช้')),
+              leading: Radio<SecondBookBankAddressEnum>(
+                  visualDensity:
+                      const VisualDensity(horizontal: -4, vertical: 0),
+                  materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                  value: SecondBookBankAddressEnum.no,
+                  groupValue: ctrl.secondBookBankAddressEnumGroupValue,
+                  onChanged: (SecondBookBankAddressEnum? value) =>
+                      ctrl.setUseSecondBookBank(value)));
+final secondBankNameDropDown = DropdownButtonFormField(
+              menuMaxHeight: height * .5,
+              decoration: InputDecoration(
+                  errorText: ctrl.secondBankNameErrorMessage,
+                  label: RichText(
+                      text: const TextSpan(text: 'ธนาคาร', children: [
+                    TextSpan(text: '*', style: TextStyle(color: Colors.red))
+                  ]))),
+              value: ctrl.secondBankName,
+              onChanged: (value) => ctrl.setsecondBankName(value),
+              items: [
+                for (var data in ctrl.secondBankNameItems)
+                  DropdownMenuItem(value: data, child: Text(data))
+              ]);
+          final secondBankBranchDropDown = DropdownButtonFormField(
+              menuMaxHeight: height * .5,
+              decoration: InputDecoration(
+                  errorText: ctrl.secondBankBranchErrorMessage,
+                  label: RichText(
+                      text: const TextSpan(text: 'สาขา', children: [
+                    TextSpan(text: '*', style: TextStyle(color: Colors.red))
+                  ]))),
+              value: ctrl.secondBankBranch,
+              onChanged: (value) => ctrl.setsecondBankBranch(value),
+              items: [
+                for (var data in ctrl.secondBankNameItems)
+                  DropdownMenuItem(value: data, child: Text(data))
+              ]);
+          final secondBankAccountTextField = TextField(
+              decoration: InputDecoration(
+                  contentPadding: const EdgeInsets.symmetric(vertical: 0),
+                  label: FittedBox(
+                      child: RichText(
+                          text: const TextSpan(text: 'เลขบัญชี', children: [
+                    TextSpan(text: '*', style: TextStyle(color: Colors.red))
+                  ]))),
+                  errorText: ctrl.secondBankAccountErrorMessage),
+              onChanged: (value) => ctrl.secondBankAccountOnChange(value),
+              onTap: () => ctrl.secondBankAccountOnTap(),
+              inputFormatters: [
+                FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z0-9ก-๛]'))
+              ]);
+
+
           return Container(
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(5),
@@ -715,8 +925,7 @@ class InformationView extends StatelessWidget {
                                         CurrentAddressEnum.registered)
                                     ? Column(children: [
                                         const SizedBox(height: 10),
-                                        Text(
-                                            'บ้านเลขที่ ${ctrl.registeredHouseNumber}, หมู่ที่ ${ctrl.registeredVillageNumber}, หมู่บ้าน ${ctrl.registeredVillageName}, ซอย ${ctrl.registeredSubStreetName}, ถนน ${ctrl.registeredStreetName}, แขวงตำบล ${ctrl.registeredSubDistrictName}, เขตอำเภอ ${ctrl.registeredDistrictName}, จังหวัด ${ctrl.registeredProvinceName}, รหัสไปรษณีย์ ${ctrl.registeredZipCode}, ประเทศ ${ctrl.registeredCountry}')
+                                        registeredAddressText
                                       ])
                                     : const Column(),
                               ]),
@@ -740,33 +949,43 @@ class InformationView extends StatelessWidget {
                                 const SizedBox(height: 10),
                                 Row(children: [
                                   SizedBox(
-                                      width: width * .35,
-                                      child: sourceOfIncome),
-                                  SizedBox(width: width * .06),
+                                      width: width * .3, child: sourceOfIncome),
+                                  SizedBox(width: width * .03),
                                   SizedBox(
-                                      width: width * .35, child: occupation),
+                                      width: width * .43, child: occupation),
                                 ]),
                                 const SizedBox(height: 10),
                                 Row(children: [
                                   SizedBox(
-                                      width: width * .35, child: officeName),
-                                  SizedBox(width: width * .06),
+                                      width: width * .3, child: officeName),
+                                  SizedBox(width: width * .03),
                                   SizedBox(
-                                      width: width * .35,
+                                      width: width * .43,
                                       child: typeOfBusiness),
                                 ]),
                                 const SizedBox(height: 10),
                                 Row(children: [
-                                  SizedBox(width: width * .35, child: position),
-                                  SizedBox(width: width * .06),
-                                  SizedBox(width: width * .35, child: salary),
-                                ]),
-                                const SizedBox(height: 10),
+                                  SizedBox(width: width * .3, child: position),
+                                  SizedBox(width: width * .03),
+                                  SizedBox(width: width * .43, child: salary),
+                                ])
+                              ]),
+                        ),
+                        const SizedBox(height: 10),
+                        const SizedBox(height: 10),
+                        Container(
+                            padding: EdgeInsets.fromLTRB(
+                                width * .02, 15, width * .02, 15),
+                            decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(10)),
+                            child: Column(
+                              children: [
                                 Row(children: [
                                   SizedBox(
-                                      width: width * .1,
+                                      width: width * .115,
                                       child: FittedBox(child: officeLocation)),
-                                  SizedBox(width: width * .21),
+                                  SizedBox(width: width * .195),
                                   SizedBox(
                                       width: width * .18,
                                       child:
@@ -782,24 +1001,124 @@ class InformationView extends StatelessWidget {
                                         OfficeAddressEnum.registered)
                                     ? Column(children: [
                                         const SizedBox(height: 10),
-                                        Text(
-                                            'บ้านเลขที่ ${ctrl.registeredHouseNumber}, หมู่ที่ ${ctrl.registeredVillageNumber}, หมู่บ้าน ${ctrl.registeredVillageName}, ซอย ${ctrl.registeredSubStreetName}, ถนน ${ctrl.registeredStreetName}, แขวงตำบล ${ctrl.registeredSubDistrictName}, เขตอำเภอ ${ctrl.registeredDistrictName}, จังหวัด ${ctrl.registeredProvinceName}, รหัสไปรษณีย์ ${ctrl.registeredZipCode}, ประเทศ ${ctrl.registeredCountry}')
+                                        registeredAddressText
                                       ])
                                     : const Column(),
                                 (ctrl.officeAddressEnumGroupValue ==
-                                        OfficeAddressEnum.current)
+                                            OfficeAddressEnum.current &&
+                                        ctrl.currentHouseNumber == null)
                                     ? Column(children: [
                                         const SizedBox(height: 10),
-                                        Text(
-                                            'บ้านเลขที่ ${ctrl.currentHouseNumber ?? ctrl.registeredHouseNumber}, หมู่ที่ ${ctrl.currentVillageNumber ?? ctrl.registeredVillageNumber}, หมู่บ้าน ${ctrl.currentVillageName ?? ctrl.registeredVillageName}, ซอย ${ctrl.currentSubStreetName ?? ctrl.registeredSubStreetName}, ถนน ${ctrl.currentStreetName??ctrl.registeredStreetName}, แขวงตำบล ${ctrl.currentSubDistrictName??ctrl.registeredSubDistrictName}, เขตอำเภอ ${ctrl.currentDistrictName??ctrl.registeredDistrictName}, จังหวัด ${ctrl.currentProvinceName??ctrl.registeredProvinceName}, รหัสไปรษณีย์ ${ctrl.currentZipCode??ctrl.registeredZipCode}, ประเทศ ${ctrl.currentCountry??ctrl.registeredCountry}')
+                                        registeredAddressText
+                                      ])
+                                    : const Column(),
+                                (ctrl.officeAddressEnumGroupValue ==
+                                            OfficeAddressEnum.current &&
+                                        ctrl.currentHouseNumber != null)
+                                    ? Column(children: [
+                                        const SizedBox(height: 10),
+                                        currentAddressText
                                       ])
                                     : const Column(),
                                 (ctrl.officeAddressEnumGroupValue ==
                                         OfficeAddressEnum.office)
                                     ? officeAddress
                                     : const Column(),
-                              ]),
-                        ),
+                              ],
+                            )),
+                        const SizedBox(height: 10),
+                        const SizedBox(height: 10),
+                        Container(
+                            padding: EdgeInsets.fromLTRB(
+                                width * .02, 15, width * .02, 15),
+                            decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(10)),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                SizedBox(
+                                    width: width * .22,
+                                    child: FittedBox(
+                                        child: objectiveOfInvestment)),
+                                SizedBox(
+                                    height: 30,
+                                    child: shortTermInvestmentChecklist),
+                                SizedBox(
+                                    height: 30,
+                                    child: longTermInvestmentChecklist),
+                                SizedBox(
+                                    height: 30,
+                                    child: taxesReduceInvestmentChecklist),
+                                SizedBox(
+                                    height: 30,
+                                    child: retirementInvestmentChecklist),
+                              ],
+                            )),
+                        const SizedBox(height: 10),
+                        const SizedBox(height: 10),
+                        Container(
+                            padding: EdgeInsets.fromLTRB(
+                                width * .02, 15, width * .02, 15),
+                            decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(10)),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                SizedBox(
+                                    width: width * .45,
+                                    child:
+                                        FittedBox(child: firstBookBankAccount)),
+                                Row(
+                                  children: [
+                                    SizedBox(
+                                        width: width * .24,
+                                        child: firstBankNameDropDown),
+                                    SizedBox(width: width * .02),
+                                    SizedBox(
+                                        width: width * .24,
+                                        child: firstBankBranchDropDown),
+                                    SizedBox(width: width * .02),
+                                    SizedBox(
+                                        width: width * .24,
+                                        child: firstBankAccountTextField),
+                                  ],
+                                ),
+                                const SizedBox(height: 10),
+                                Row(
+                                  children: [
+                                    SizedBox(
+                                        width: width * .45,
+                                        child: FittedBox(
+                                            child: secondBookBankAccount)),
+                                            SizedBox(width: width*.1825,),
+                                    SizedBox(
+                                        width: width * .0555,
+                                        child: useSecondBankAccountListTile),
+                                    SizedBox(
+                                        width: width * .07,
+                                        child: donotUseSecondBankAccountListTile),
+                                  ],
+                                ),
+                                (ctrl.secondBookBankAddressEnumGroupValue == SecondBookBankAddressEnum.yes)
+                                ?Row(children: [
+                                    SizedBox(
+                                        width: width * .24,
+                                        child: secondBankNameDropDown),
+                                    SizedBox(width: width * .02),
+                                    SizedBox(
+                                        width: width * .24,
+                                        child: secondBankBranchDropDown),
+                                    SizedBox(width: width * .02),
+                                    SizedBox(
+                                        width: width * .24,
+                                        child: secondBankAccountTextField),
+                                  ]) : const Row()
+                              ],
+                            )),
                         const SizedBox(height: 10),
                         const SizedBox(height: 10),
                       ])));
