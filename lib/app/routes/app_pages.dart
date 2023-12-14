@@ -8,13 +8,15 @@ import '../modules/information/bindings/information_binding.dart';
 import '../modules/information/views/information_view.dart';
 import '../modules/test/bindings/test_binding.dart';
 import '../modules/test/views/test_view.dart';
+import '../modules/verifyEmailMobile/bindings/verify_email_mobile_binding.dart';
+import '../modules/verifyEmailMobile/views/verify_email_mobile_view.dart';
 
 part 'app_routes.dart';
 
 class AppPages {
   AppPages._();
 
-  static const initial = Routes.information;
+  static const initial = Routes.test;
 
   static final routes = [
     GetPage(
@@ -36,6 +38,11 @@ class AppPages {
       name: _Paths.test,
       page: () => const TestView(),
       binding: TestBinding(),
+    ),
+    GetPage(
+      name: _Paths.VERIFY_EMAIL_MOBILE,
+      page: () => const VerifyEmailMobileView(),
+      binding: VerifyEmailMobileBinding(),
     ),
   ];
 }

@@ -9,3 +9,6 @@ List<String> selectSuitableTestLists = [
   'เสี่ยงสูง',
   'เสี่ยงสูงมาก',
 ];
+
+enum fatcaEnum { yes, no }
+enum knowledgeTestEnum { yes, no }
