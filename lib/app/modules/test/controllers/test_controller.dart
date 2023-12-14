@@ -54,6 +54,22 @@ class TestController extends GetxController {
   knowledgeAnswerEnum? forteenthknowledgeAnswerEnumEnumGroupValue;
   knowledgeAnswerEnum? fifteenthknowledgeAnswerEnumEnumGroupValue;
 
+  bool dofirstknowledgeAnswerEnumEnumGroupValue = false;
+  bool dosecondknowledgeAnswerEnumEnumGroupValue = false;
+  bool dothirdknowledgeAnswerEnumEnumGroupValue = false;
+  bool doforthknowledgeAnswerEnumEnumGroupValue = false;
+  bool dofifthknowledgeAnswerEnumEnumGroupValue = false;
+  bool dosixthknowledgeAnswerEnumEnumGroupValue = false;
+  bool doseventhknowledgeAnswerEnumEnumGroupValue = false;
+  bool doeigththknowledgeAnswerEnumEnumGroupValue = false;
+  bool doninthknowledgeAnswerEnumEnumGroupValue = false;
+  bool dotenthknowledgeAnswerEnumEnumGroupValue = false;
+  bool doeleventhknowledgeAnswerEnumEnumGroupValue = false;
+  bool dotwelthknowledgeAnswerEnumEnumGroupValue = false;
+  bool dothirteenthknowledgeAnswerEnumEnumGroupValue = false;
+  bool doforteenthknowledgeAnswerEnumEnumGroupValue = false;
+  bool dofifteenthknowledgeAnswerEnumEnumGroupValue = false;
+
   bool hintFirstKnowledgeQuestion = false;
   bool hintSecondKnowledgeQuestion = false;
   bool hintThirdKnowledgeQuestion = false;
@@ -382,107 +398,134 @@ class TestController extends GetxController {
     update();
   }
 
-  void setdoKnowledgeTestNowListTile(
-      BuildContext context, List<Widget> contents) {
-    Get.defaultDialog(
-        title: 'Knowledge Test',
-        content: Flexible(
-          child: SingleChildScrollView(child: KnowledgeTestView(widgets: contents)),
-        ));
+  void setdoKnowledgeTestNowListTile() {
+    Get.dialog(const Dialog(
+      child: SingleChildScrollView(child: KnowledgeTestView()),
+    ));
     update();
   }
 
   void setfirstknowledgeAnswerEnumEnumGroupValue(value) {
     firstknowledgeAnswerEnumEnumGroupValue = value;
-    log("first knowledge answer enum group value = $firstknowledgeAnswerEnumEnumGroupValue");
+    dofirstknowledgeAnswerEnumEnumGroupValue = true;
+    log("first knowledge answer enum group value = $firstknowledgeAnswerEnumEnumGroupValue, (${firstknowledgeAnswerEnumEnumGroupValue.isBlank})");
     update();
   }
 
   void setsecondknowledgeAnswerEnumEnumGroupValue(value) {
     secondknowledgeAnswerEnumEnumGroupValue = value;
+    dosecondknowledgeAnswerEnumEnumGroupValue = true;
     log("second knowledge answer enum group value = $secondknowledgeAnswerEnumEnumGroupValue");
     update();
   }
 
   void setthirdknowledgeAnswerEnumEnumGroupValue(value) {
     thirdknowledgeAnswerEnumEnumGroupValue = value;
+    dothirdknowledgeAnswerEnumEnumGroupValue = true;
     log("third knowledge answer enum group value = $thirdknowledgeAnswerEnumEnumGroupValue");
     update();
   }
 
   void setforthknowledgeAnswerEnumEnumGroupValue(value) {
     forthknowledgeAnswerEnumEnumGroupValue = value;
+    doforthknowledgeAnswerEnumEnumGroupValue = true;
     log("forth knowledge answer enum group value = $forthknowledgeAnswerEnumEnumGroupValue");
     update();
   }
 
   void setfifthknowledgeAnswerEnumEnumGroupValue(value) {
     fifthknowledgeAnswerEnumEnumGroupValue = value;
+    dofifthknowledgeAnswerEnumEnumGroupValue = true;
     log("fifth knowledge answer enum group value = $fifthknowledgeAnswerEnumEnumGroupValue");
     update();
   }
 
   void setsixthknowledgeAnswerEnumEnumGroupValue(value) {
     sixthknowledgeAnswerEnumEnumGroupValue = value;
+    dosixthknowledgeAnswerEnumEnumGroupValue = true;
     log("sixth knowledge answer enum group value = $sixthknowledgeAnswerEnumEnumGroupValue");
     update();
   }
 
   void setseventhknowledgeAnswerEnumEnumGroupValue(value) {
     seventhknowledgeAnswerEnumEnumGroupValue = value;
+    doseventhknowledgeAnswerEnumEnumGroupValue = true;
     log("seventh knowledge answer enum group value = $seventhknowledgeAnswerEnumEnumGroupValue");
     update();
   }
 
   void seteigththknowledgeAnswerEnumEnumGroupValue(value) {
     eigththknowledgeAnswerEnumEnumGroupValue = value;
+    doeigththknowledgeAnswerEnumEnumGroupValue = true;
     log("eigthth knowledge answer enum group value = $eigththknowledgeAnswerEnumEnumGroupValue");
     update();
   }
 
   void setninthknowledgeAnswerEnumEnumGroupValue(value) {
     ninthknowledgeAnswerEnumEnumGroupValue = value;
+    doninthknowledgeAnswerEnumEnumGroupValue = true;
     log("ninth knowledge answer enum group value = $ninthknowledgeAnswerEnumEnumGroupValue");
     update();
   }
 
   void settenthknowledgeAnswerEnumEnumGroupValue(value) {
     tenthknowledgeAnswerEnumEnumGroupValue = value;
+    dotenthknowledgeAnswerEnumEnumGroupValue = true;
     log("tenth knowledge answer enum group value = $tenthknowledgeAnswerEnumEnumGroupValue");
     update();
   }
 
   void seteleventhknowledgeAnswerEnumEnumGroupValue(value) {
     eleventhknowledgeAnswerEnumEnumGroupValue = value;
+    doeleventhknowledgeAnswerEnumEnumGroupValue = true;
     log("eleventh knowledge answer enum group value = $eleventhknowledgeAnswerEnumEnumGroupValue");
     update();
   }
 
   void settwelthknowledgeAnswerEnumEnumGroupValue(value) {
     twelthknowledgeAnswerEnumEnumGroupValue = value;
+    dotwelthknowledgeAnswerEnumEnumGroupValue = true;
     log("twelth knowledge answer enum group value = $twelthknowledgeAnswerEnumEnumGroupValue");
     update();
   }
 
   void setthirteenthknowledgeAnswerEnumEnumGroupValue(value) {
     thirteenthknowledgeAnswerEnumEnumGroupValue = value;
+    dothirteenthknowledgeAnswerEnumEnumGroupValue = true;
     log("thirteenth knowledge answer enum group value = $thirteenthknowledgeAnswerEnumEnumGroupValue");
     update();
   }
 
   void setforteenthknowledgeAnswerEnumEnumGroupValue(value) {
     forteenthknowledgeAnswerEnumEnumGroupValue = value;
+    doforteenthknowledgeAnswerEnumEnumGroupValue = true;
     log("forteenth knowledge answer enum group value = $forteenthknowledgeAnswerEnumEnumGroupValue");
     update();
   }
 
   void setfifteenthknowledgeAnswerEnumEnumGroupValue(value) {
     fifteenthknowledgeAnswerEnumEnumGroupValue = value;
+    dofifteenthknowledgeAnswerEnumEnumGroupValue = true;
     log("fifteenth knowledge answer enum group value = $fifteenthknowledgeAnswerEnumEnumGroupValue");
     update();
   }
 
   void setknowledgeTestTextButtonOnPress(BuildContext context) {
+    log('''check: $firstknowledgeAnswerEnumEnumGroupValue,
+    $secondknowledgeAnswerEnumEnumGroupValue,
+    $thirdknowledgeAnswerEnumEnumGroupValue,
+$forthknowledgeAnswerEnumEnumGroupValue,
+$fifthknowledgeAnswerEnumEnumGroupValue,
+$sixthknowledgeAnswerEnumEnumGroupValue,
+$seventhknowledgeAnswerEnumEnumGroupValue,
+$eigththknowledgeAnswerEnumEnumGroupValue,
+$ninthknowledgeAnswerEnumEnumGroupValue,
+$tenthknowledgeAnswerEnumEnumGroupValue,
+$eleventhknowledgeAnswerEnumEnumGroupValue,
+$twelthknowledgeAnswerEnumEnumGroupValue,
+$thirteenthknowledgeAnswerEnumEnumGroupValue,
+$forteenthknowledgeAnswerEnumEnumGroupValue,
+    $fifteenthknowledgeAnswerEnumEnumGroupValue''');
     if (firstknowledgeAnswerEnumEnumGroupValue == null ||
         secondknowledgeAnswerEnumEnumGroupValue == null ||
         thirdknowledgeAnswerEnumEnumGroupValue == null ||
@@ -492,7 +535,7 @@ class TestController extends GetxController {
         seventhknowledgeAnswerEnumEnumGroupValue == null ||
         eigththknowledgeAnswerEnumEnumGroupValue == null ||
         ninthknowledgeAnswerEnumEnumGroupValue == null ||
-        tenthSuiteAnswerEnumEnumGroupValue == null ||
+        tenthknowledgeAnswerEnumEnumGroupValue == null ||
         eleventhknowledgeAnswerEnumEnumGroupValue == null ||
         twelthknowledgeAnswerEnumEnumGroupValue == null ||
         thirteenthknowledgeAnswerEnumEnumGroupValue == null ||
@@ -510,84 +553,99 @@ class TestController extends GetxController {
           });
     } else {
       if (firstknowledgeAnswerEnumEnumGroupValue == knowledgeAnswerEnum.no) {
-        hintFirstKnowledgeQuestion = true;
-      } else {
         hintFirstKnowledgeQuestion = false;
+      } else {
+        hintFirstKnowledgeQuestion = true;
       }
       if (secondknowledgeAnswerEnumEnumGroupValue == knowledgeAnswerEnum.yes) {
-        hintSecondKnowledgeQuestion = true;
-      } else {
         hintSecondKnowledgeQuestion = false;
+      } else {
+        hintSecondKnowledgeQuestion = true;
       }
       if (thirdknowledgeAnswerEnumEnumGroupValue == knowledgeAnswerEnum.yes) {
-        hintThirdKnowledgeQuestion = true;
+        hintSecondKnowledgeQuestion = false;
       } else {
-        hintThirdKnowledgeQuestion = false;
+        hintSecondKnowledgeQuestion = true;
       }
       if (forthknowledgeAnswerEnumEnumGroupValue == knowledgeAnswerEnum.yes) {
-        hintForthKnowledgeQuestion = true;
+        hintSecondKnowledgeQuestion = false;
       } else {
-        hintForthKnowledgeQuestion = false;
+        hintSecondKnowledgeQuestion = true;
       }
       if (fifthknowledgeAnswerEnumEnumGroupValue == knowledgeAnswerEnum.no) {
-        hintFifthKnowledgeQuestion = true;
+        hintSecondKnowledgeQuestion = false;
       } else {
-        hintFifthKnowledgeQuestion = false;
+        hintSecondKnowledgeQuestion = true;
       }
       if (sixthknowledgeAnswerEnumEnumGroupValue == knowledgeAnswerEnum.no) {
-        hintSixthKnowledgeQuestion = true;
+        hintSecondKnowledgeQuestion = false;
       } else {
-        hintSixthKnowledgeQuestion = false;
+        hintSecondKnowledgeQuestion = true;
       }
       if (seventhknowledgeAnswerEnumEnumGroupValue == knowledgeAnswerEnum.no) {
-        hintSeventhKnowledgeQuestion = true;
+        hintSecondKnowledgeQuestion = false;
       } else {
-        hintSeventhKnowledgeQuestion = false;
+        hintSecondKnowledgeQuestion = true;
       }
       if (eigththknowledgeAnswerEnumEnumGroupValue == knowledgeAnswerEnum.yes) {
-        hintEighthKnowledgeQuestion = true;
+        hintSecondKnowledgeQuestion = false;
       } else {
-        hintEighthKnowledgeQuestion = false;
+        hintSecondKnowledgeQuestion = true;
       }
       if (ninthknowledgeAnswerEnumEnumGroupValue == knowledgeAnswerEnum.yes) {
-        hintNinthKnowledgeQuestion = true;
+        hintSecondKnowledgeQuestion = false;
       } else {
-        hintNinthKnowledgeQuestion = false;
+        hintSecondKnowledgeQuestion = true;
       }
       if (tenthknowledgeAnswerEnumEnumGroupValue == knowledgeAnswerEnum.yes) {
-        hintTenthKnowledgeQuestion = true;
+        hintSecondKnowledgeQuestion = false;
       } else {
-        hintTenthKnowledgeQuestion = false;
+        hintSecondKnowledgeQuestion = true;
       }
       if (eleventhknowledgeAnswerEnumEnumGroupValue ==
           knowledgeAnswerEnum.yes) {
-        hintEleventhKnowledgeQuestion = true;
+        hintSecondKnowledgeQuestion = false;
       } else {
-        hintEleventhKnowledgeQuestion = false;
+        hintSecondKnowledgeQuestion = true;
       }
       if (twelthknowledgeAnswerEnumEnumGroupValue == knowledgeAnswerEnum.yes) {
-        hintTwelthKnowledgeQuestion = true;
+        hintSecondKnowledgeQuestion = false;
       } else {
-        hintTwelthKnowledgeQuestion = false;
+        hintSecondKnowledgeQuestion = true;
       }
       if (thirteenthknowledgeAnswerEnumEnumGroupValue ==
           knowledgeAnswerEnum.no) {
-        hintThirteenthKnowledgeQuestion = true;
+        hintSecondKnowledgeQuestion = false;
       } else {
-        hintThirteenthKnowledgeQuestion = false;
+        hintSecondKnowledgeQuestion = true;
       }
       if (forteenthknowledgeAnswerEnumEnumGroupValue ==
           knowledgeAnswerEnum.yes) {
-        hintForteenthKnowledgeQuestion = true;
+        hintSecondKnowledgeQuestion = false;
       } else {
-        hintForteenthKnowledgeQuestion = false;
+        hintSecondKnowledgeQuestion = true;
       }
       if (fifteenthknowledgeAnswerEnumEnumGroupValue ==
           knowledgeAnswerEnum.no) {
-        hintFifteenthKnowledgeQuestion = true;
+        hintSecondKnowledgeQuestion = false;
       } else {
-        hintFifteenthKnowledgeQuestion = false;
+        hintSecondKnowledgeQuestion = true;
       }
+      log('hint1: $hintFirstKnowledgeQuestion');
+      log('hint2: $hintSecondKnowledgeQuestion');
+      log('hint3: $hintThirdKnowledgeQuestion');
+      log('hint4: $hintForthKnowledgeQuestion');
+      log('hint5: $hintFifthKnowledgeQuestion');
+      log('hint6: $hintSixthKnowledgeQuestion');
+      log('hint7: $hintSeventhKnowledgeQuestion');
+      log('hint8: $hintEighthKnowledgeQuestion');
+      log('hint9: $hintNinthKnowledgeQuestion');
+      log('hint10: $hintTenthKnowledgeQuestion');
+      log('hint11: $hintEleventhKnowledgeQuestion');
+      log('hint12: $hintTwelthKnowledgeQuestion');
+      log('hint13: $hintThirteenthKnowledgeQuestion');
+      log('hint14: $hintForteenthKnowledgeQuestion');
+      log('hint15: $hintFifteenthKnowledgeQuestion');
     }
     update();
   }
