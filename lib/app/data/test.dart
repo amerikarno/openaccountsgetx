@@ -1,6 +1,6 @@
-enum suiteAnswerEnum { first, second, third, forth }
+enum SuiteAnswerEnum { first, second, third, forth }
 
-enum knowledgeAnswerEnum { yes, no }
+enum KnowledgeAnswerEnum { yes, no }
 
 List<String> selectSuitableTestLists = [
   'เสี่ยงต่ำ',
@@ -10,7 +10,7 @@ List<String> selectSuitableTestLists = [
   'เสี่ยงสูงมาก',
 ];
 
-enum fatcaEnum { yes, no }
-enum knowledgeTestEnum { yes, no }
+enum FatcaEnum { yes, no }
+enum KnowledgeTestEnum { yes, no }
 
 const buyAndSaleCheckboxDetail = 'ข้าพเจ้าไได้อ่านข้อกำหนดต่างๆในสัญญาแต่งตั้งตัวแทนนายหน้าซื้อขายหลักทรัพย์นี้แล้ว และตกลงยินยอมที่จะทำตามเงื่อนไขตามที่กำหนดไว้ทุกประการ ข้าพเจ้าเข้าใจความเสี่ยงที่เกี่ยวข้องกับการลงทุนในผลิตภัณฑ์ต่างๆ แล้ว ข้าพเจ้ายืนยันว่าข้าพเจ้าเป็นเจ้าของบัญชีซื้อขายหลักทรัพย์ที่แท้จริงและไม่ได้เปิดบัญชีแทนบุคคลอื่นแต่อย่างใด ข้อมูลที่ข้าพเจ้ากรอกทั้งหมดนี้ถูกต้องและเป็นความจริง เมื่อใดที่ข้อมูลข้าพเจ้าเปลี่ยนแปลง ข้าพเจ้าจะแจ้งบริษัทฯเป็นลายลักษณ์อักษรโดยพลัน';

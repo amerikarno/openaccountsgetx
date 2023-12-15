@@ -2,7 +2,6 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:openaccountsgetx/app/data/questions/knowledge_test.dart';
 import 'package:openaccountsgetx/app/data/questions/suite_test.dart';
 import 'package:openaccountsgetx/app/data/test.dart';
 import 'package:simple_circular_progress_bar/simple_circular_progress_bar.dart';
@@ -16,7 +15,6 @@ class TestView extends StatelessWidget {
     final width = MediaQuery.of(context).size.width;
     final height = MediaQuery.of(context).size.height;
     const suiteTestQuestions = suiteQuestions;
-    const knowledgeTestQuestions = knowledgeQuestions;
     return Scaffold(
         appBar: AppBar(
           title: const Text('แบบประเมินความเหมาะสมในการลงทุน'),
@@ -63,12 +61,12 @@ class TestView extends StatelessWidget {
                             suiteTestQuestions[0].answers[0],
                             style: const TextStyle(fontSize: 12),
                           ),
-                          leading: Radio<suiteAnswerEnum>(
+                          leading: Radio<SuiteAnswerEnum>(
                               visualDensity: const VisualDensity(
                                   horizontal: -4, vertical: 0),
                               materialTapTargetSize:
                                   MaterialTapTargetSize.shrinkWrap,
-                              value: suiteAnswerEnum.first,
+                              value: SuiteAnswerEnum.first,
                               groupValue:
                                   ctrl.firstSuiteAnswerEnumEnumGroupValue,
                               onChanged: (value) =>
@@ -82,12 +80,12 @@ class TestView extends StatelessWidget {
                             suiteTestQuestions[0].answers[1],
                             style: const TextStyle(fontSize: 12),
                           ),
-                          leading: Radio<suiteAnswerEnum>(
+                          leading: Radio<SuiteAnswerEnum>(
                               visualDensity: const VisualDensity(
                                   horizontal: -4, vertical: 0),
                               materialTapTargetSize:
                                   MaterialTapTargetSize.shrinkWrap,
-                              value: suiteAnswerEnum.second,
+                              value: SuiteAnswerEnum.second,
                               groupValue:
                                   ctrl.firstSuiteAnswerEnumEnumGroupValue,
                               onChanged: (value) =>
@@ -101,12 +99,12 @@ class TestView extends StatelessWidget {
                             suiteTestQuestions[0].answers[2],
                             style: const TextStyle(fontSize: 12),
                           ),
-                          leading: Radio<suiteAnswerEnum>(
+                          leading: Radio<SuiteAnswerEnum>(
                               visualDensity: const VisualDensity(
                                   horizontal: -4, vertical: 0),
                               materialTapTargetSize:
                                   MaterialTapTargetSize.shrinkWrap,
-                              value: suiteAnswerEnum.third,
+                              value: SuiteAnswerEnum.third,
                               groupValue:
                                   ctrl.firstSuiteAnswerEnumEnumGroupValue,
                               onChanged: (value) =>
@@ -120,12 +118,12 @@ class TestView extends StatelessWidget {
                             suiteTestQuestions[0].answers[3],
                             style: const TextStyle(fontSize: 12),
                           ),
-                          leading: Radio<suiteAnswerEnum>(
+                          leading: Radio<SuiteAnswerEnum>(
                               visualDensity: const VisualDensity(
                                   horizontal: -4, vertical: 0),
                               materialTapTargetSize:
                                   MaterialTapTargetSize.shrinkWrap,
-                              value: suiteAnswerEnum.forth,
+                              value: SuiteAnswerEnum.forth,
                               groupValue:
                                   ctrl.firstSuiteAnswerEnumEnumGroupValue,
                               onChanged: (value) =>
@@ -152,12 +150,12 @@ class TestView extends StatelessWidget {
                             suiteTestQuestions[1].answers[0],
                             style: const TextStyle(fontSize: 12),
                           ),
-                          leading: Radio<suiteAnswerEnum>(
+                          leading: Radio<SuiteAnswerEnum>(
                               visualDensity: const VisualDensity(
                                   horizontal: -4, vertical: 0),
                               materialTapTargetSize:
                                   MaterialTapTargetSize.shrinkWrap,
-                              value: suiteAnswerEnum.first,
+                              value: SuiteAnswerEnum.first,
                               groupValue:
                                   ctrl.secondSuiteAnswerEnumEnumGroupValue,
                               onChanged: (value) =>
@@ -171,12 +169,12 @@ class TestView extends StatelessWidget {
                             suiteTestQuestions[1].answers[1],
                             style: const TextStyle(fontSize: 12),
                           ),
-                          leading: Radio<suiteAnswerEnum>(
+                          leading: Radio<SuiteAnswerEnum>(
                               visualDensity: const VisualDensity(
                                   horizontal: -4, vertical: 0),
                               materialTapTargetSize:
                                   MaterialTapTargetSize.shrinkWrap,
-                              value: suiteAnswerEnum.second,
+                              value: SuiteAnswerEnum.second,
                               groupValue:
                                   ctrl.secondSuiteAnswerEnumEnumGroupValue,
                               onChanged: (value) =>
@@ -190,12 +188,12 @@ class TestView extends StatelessWidget {
                             suiteTestQuestions[1].answers[2],
                             style: const TextStyle(fontSize: 12),
                           ),
-                          leading: Radio<suiteAnswerEnum>(
+                          leading: Radio<SuiteAnswerEnum>(
                               visualDensity: const VisualDensity(
                                   horizontal: -4, vertical: 0),
                               materialTapTargetSize:
                                   MaterialTapTargetSize.shrinkWrap,
-                              value: suiteAnswerEnum.third,
+                              value: SuiteAnswerEnum.third,
                               groupValue:
                                   ctrl.secondSuiteAnswerEnumEnumGroupValue,
                               onChanged: (value) =>
@@ -209,12 +207,12 @@ class TestView extends StatelessWidget {
                             suiteTestQuestions[1].answers[3],
                             style: const TextStyle(fontSize: 12),
                           ),
-                          leading: Radio<suiteAnswerEnum>(
+                          leading: Radio<SuiteAnswerEnum>(
                               visualDensity: const VisualDensity(
                                   horizontal: -4, vertical: 0),
                               materialTapTargetSize:
                                   MaterialTapTargetSize.shrinkWrap,
-                              value: suiteAnswerEnum.forth,
+                              value: SuiteAnswerEnum.forth,
                               groupValue:
                                   ctrl.secondSuiteAnswerEnumEnumGroupValue,
                               onChanged: (value) =>
@@ -241,12 +239,12 @@ class TestView extends StatelessWidget {
                             suiteTestQuestions[2].answers[0],
                             style: const TextStyle(fontSize: 12),
                           ),
-                          leading: Radio<suiteAnswerEnum>(
+                          leading: Radio<SuiteAnswerEnum>(
                               visualDensity: const VisualDensity(
                                   horizontal: -4, vertical: 0),
                               materialTapTargetSize:
                                   MaterialTapTargetSize.shrinkWrap,
-                              value: suiteAnswerEnum.first,
+                              value: SuiteAnswerEnum.first,
                               groupValue:
                                   ctrl.thirdSuiteAnswerEnumEnumGroupValue,
                               onChanged: (value) =>
@@ -260,12 +258,12 @@ class TestView extends StatelessWidget {
                             suiteTestQuestions[2].answers[1],
                             style: const TextStyle(fontSize: 12),
                           ),
-                          leading: Radio<suiteAnswerEnum>(
+                          leading: Radio<SuiteAnswerEnum>(
                               visualDensity: const VisualDensity(
                                   horizontal: -4, vertical: 0),
                               materialTapTargetSize:
                                   MaterialTapTargetSize.shrinkWrap,
-                              value: suiteAnswerEnum.second,
+                              value: SuiteAnswerEnum.second,
                               groupValue:
                                   ctrl.thirdSuiteAnswerEnumEnumGroupValue,
                               onChanged: (value) =>
@@ -279,12 +277,12 @@ class TestView extends StatelessWidget {
                             suiteTestQuestions[2].answers[2],
                             style: const TextStyle(fontSize: 12),
                           ),
-                          leading: Radio<suiteAnswerEnum>(
+                          leading: Radio<SuiteAnswerEnum>(
                               visualDensity: const VisualDensity(
                                   horizontal: -4, vertical: 0),
                               materialTapTargetSize:
                                   MaterialTapTargetSize.shrinkWrap,
-                              value: suiteAnswerEnum.third,
+                              value: SuiteAnswerEnum.third,
                               groupValue:
                                   ctrl.thirdSuiteAnswerEnumEnumGroupValue,
                               onChanged: (value) =>
@@ -298,12 +296,12 @@ class TestView extends StatelessWidget {
                             suiteTestQuestions[2].answers[3],
                             style: const TextStyle(fontSize: 12),
                           ),
-                          leading: Radio<suiteAnswerEnum>(
+                          leading: Radio<SuiteAnswerEnum>(
                               visualDensity: const VisualDensity(
                                   horizontal: -4, vertical: 0),
                               materialTapTargetSize:
                                   MaterialTapTargetSize.shrinkWrap,
-                              value: suiteAnswerEnum.forth,
+                              value: SuiteAnswerEnum.forth,
                               groupValue:
                                   ctrl.thirdSuiteAnswerEnumEnumGroupValue,
                               onChanged: (value) =>
@@ -330,12 +328,12 @@ class TestView extends StatelessWidget {
                             suiteTestQuestions[3].answers[0],
                             style: const TextStyle(fontSize: 12),
                           ),
-                          leading: Radio<suiteAnswerEnum>(
+                          leading: Radio<SuiteAnswerEnum>(
                               visualDensity: const VisualDensity(
                                   horizontal: -4, vertical: 0),
                               materialTapTargetSize:
                                   MaterialTapTargetSize.shrinkWrap,
-                              value: suiteAnswerEnum.first,
+                              value: SuiteAnswerEnum.first,
                               groupValue:
                                   ctrl.forthSuiteAnswerEnumEnumGroupValue,
                               onChanged: (value) =>
@@ -349,12 +347,12 @@ class TestView extends StatelessWidget {
                             suiteTestQuestions[3].answers[1],
                             style: const TextStyle(fontSize: 12),
                           ),
-                          leading: Radio<suiteAnswerEnum>(
+                          leading: Radio<SuiteAnswerEnum>(
                               visualDensity: const VisualDensity(
                                   horizontal: -4, vertical: 0),
                               materialTapTargetSize:
                                   MaterialTapTargetSize.shrinkWrap,
-                              value: suiteAnswerEnum.second,
+                              value: SuiteAnswerEnum.second,
                               groupValue:
                                   ctrl.forthSuiteAnswerEnumEnumGroupValue,
                               onChanged: (value) =>
@@ -368,12 +366,12 @@ class TestView extends StatelessWidget {
                             suiteTestQuestions[3].answers[2],
                             style: const TextStyle(fontSize: 12),
                           ),
-                          leading: Radio<suiteAnswerEnum>(
+                          leading: Radio<SuiteAnswerEnum>(
                               visualDensity: const VisualDensity(
                                   horizontal: -4, vertical: 0),
                               materialTapTargetSize:
                                   MaterialTapTargetSize.shrinkWrap,
-                              value: suiteAnswerEnum.third,
+                              value: SuiteAnswerEnum.third,
                               groupValue:
                                   ctrl.forthSuiteAnswerEnumEnumGroupValue,
                               onChanged: (value) =>
@@ -387,12 +385,12 @@ class TestView extends StatelessWidget {
                             suiteTestQuestions[3].answers[3],
                             style: const TextStyle(fontSize: 12),
                           ),
-                          leading: Radio<suiteAnswerEnum>(
+                          leading: Radio<SuiteAnswerEnum>(
                               visualDensity: const VisualDensity(
                                   horizontal: -4, vertical: 0),
                               materialTapTargetSize:
                                   MaterialTapTargetSize.shrinkWrap,
-                              value: suiteAnswerEnum.forth,
+                              value: SuiteAnswerEnum.forth,
                               groupValue:
                                   ctrl.forthSuiteAnswerEnumEnumGroupValue,
                               onChanged: (value) =>
@@ -419,12 +417,12 @@ class TestView extends StatelessWidget {
                             suiteTestQuestions[4].answers[0],
                             style: const TextStyle(fontSize: 12),
                           ),
-                          leading: Radio<suiteAnswerEnum>(
+                          leading: Radio<SuiteAnswerEnum>(
                               visualDensity: const VisualDensity(
                                   horizontal: -4, vertical: 0),
                               materialTapTargetSize:
                                   MaterialTapTargetSize.shrinkWrap,
-                              value: suiteAnswerEnum.first,
+                              value: SuiteAnswerEnum.first,
                               groupValue:
                                   ctrl.fifthSuiteAnswerEnumEnumGroupValue,
                               onChanged: (value) =>
@@ -438,12 +436,12 @@ class TestView extends StatelessWidget {
                             suiteTestQuestions[4].answers[1],
                             style: const TextStyle(fontSize: 12),
                           ),
-                          leading: Radio<suiteAnswerEnum>(
+                          leading: Radio<SuiteAnswerEnum>(
                               visualDensity: const VisualDensity(
                                   horizontal: -4, vertical: 0),
                               materialTapTargetSize:
                                   MaterialTapTargetSize.shrinkWrap,
-                              value: suiteAnswerEnum.second,
+                              value: SuiteAnswerEnum.second,
                               groupValue:
                                   ctrl.fifthSuiteAnswerEnumEnumGroupValue,
                               onChanged: (value) =>
@@ -457,12 +455,12 @@ class TestView extends StatelessWidget {
                             suiteTestQuestions[4].answers[2],
                             style: const TextStyle(fontSize: 12),
                           ),
-                          leading: Radio<suiteAnswerEnum>(
+                          leading: Radio<SuiteAnswerEnum>(
                               visualDensity: const VisualDensity(
                                   horizontal: -4, vertical: 0),
                               materialTapTargetSize:
                                   MaterialTapTargetSize.shrinkWrap,
-                              value: suiteAnswerEnum.third,
+                              value: SuiteAnswerEnum.third,
                               groupValue:
                                   ctrl.fifthSuiteAnswerEnumEnumGroupValue,
                               onChanged: (value) =>
@@ -476,12 +474,12 @@ class TestView extends StatelessWidget {
                             suiteTestQuestions[4].answers[3],
                             style: const TextStyle(fontSize: 12),
                           ),
-                          leading: Radio<suiteAnswerEnum>(
+                          leading: Radio<SuiteAnswerEnum>(
                               visualDensity: const VisualDensity(
                                   horizontal: -4, vertical: 0),
                               materialTapTargetSize:
                                   MaterialTapTargetSize.shrinkWrap,
-                              value: suiteAnswerEnum.forth,
+                              value: SuiteAnswerEnum.forth,
                               groupValue:
                                   ctrl.fifthSuiteAnswerEnumEnumGroupValue,
                               onChanged: (value) =>
@@ -508,12 +506,12 @@ class TestView extends StatelessWidget {
                             suiteTestQuestions[5].answers[0],
                             style: const TextStyle(fontSize: 12),
                           ),
-                          leading: Radio<suiteAnswerEnum>(
+                          leading: Radio<SuiteAnswerEnum>(
                               visualDensity: const VisualDensity(
                                   horizontal: -4, vertical: 0),
                               materialTapTargetSize:
                                   MaterialTapTargetSize.shrinkWrap,
-                              value: suiteAnswerEnum.first,
+                              value: SuiteAnswerEnum.first,
                               groupValue:
                                   ctrl.sixthSuiteAnswerEnumEnumGroupValue,
                               onChanged: (value) =>
@@ -527,12 +525,12 @@ class TestView extends StatelessWidget {
                             suiteTestQuestions[5].answers[1],
                             style: const TextStyle(fontSize: 12),
                           ),
-                          leading: Radio<suiteAnswerEnum>(
+                          leading: Radio<SuiteAnswerEnum>(
                               visualDensity: const VisualDensity(
                                   horizontal: -4, vertical: 0),
                               materialTapTargetSize:
                                   MaterialTapTargetSize.shrinkWrap,
-                              value: suiteAnswerEnum.second,
+                              value: SuiteAnswerEnum.second,
                               groupValue:
                                   ctrl.sixthSuiteAnswerEnumEnumGroupValue,
                               onChanged: (value) =>
@@ -546,12 +544,12 @@ class TestView extends StatelessWidget {
                             suiteTestQuestions[5].answers[2],
                             style: const TextStyle(fontSize: 12),
                           ),
-                          leading: Radio<suiteAnswerEnum>(
+                          leading: Radio<SuiteAnswerEnum>(
                               visualDensity: const VisualDensity(
                                   horizontal: -4, vertical: 0),
                               materialTapTargetSize:
                                   MaterialTapTargetSize.shrinkWrap,
-                              value: suiteAnswerEnum.third,
+                              value: SuiteAnswerEnum.third,
                               groupValue:
                                   ctrl.sixthSuiteAnswerEnumEnumGroupValue,
                               onChanged: (value) =>
@@ -565,12 +563,12 @@ class TestView extends StatelessWidget {
                             suiteTestQuestions[5].answers[3],
                             style: const TextStyle(fontSize: 12),
                           ),
-                          leading: Radio<suiteAnswerEnum>(
+                          leading: Radio<SuiteAnswerEnum>(
                               visualDensity: const VisualDensity(
                                   horizontal: -4, vertical: 0),
                               materialTapTargetSize:
                                   MaterialTapTargetSize.shrinkWrap,
-                              value: suiteAnswerEnum.forth,
+                              value: SuiteAnswerEnum.forth,
                               groupValue:
                                   ctrl.sixthSuiteAnswerEnumEnumGroupValue,
                               onChanged: (value) =>
@@ -597,12 +595,12 @@ class TestView extends StatelessWidget {
                             suiteTestQuestions[6].answers[0],
                             style: const TextStyle(fontSize: 12),
                           ),
-                          leading: Radio<suiteAnswerEnum>(
+                          leading: Radio<SuiteAnswerEnum>(
                               visualDensity: const VisualDensity(
                                   horizontal: -4, vertical: 0),
                               materialTapTargetSize:
                                   MaterialTapTargetSize.shrinkWrap,
-                              value: suiteAnswerEnum.first,
+                              value: SuiteAnswerEnum.first,
                               groupValue:
                                   ctrl.seventhSuiteAnswerEnumEnumGroupValue,
                               onChanged: (value) =>
@@ -616,12 +614,12 @@ class TestView extends StatelessWidget {
                             suiteTestQuestions[6].answers[1],
                             style: const TextStyle(fontSize: 12),
                           ),
-                          leading: Radio<suiteAnswerEnum>(
+                          leading: Radio<SuiteAnswerEnum>(
                               visualDensity: const VisualDensity(
                                   horizontal: -4, vertical: 0),
                               materialTapTargetSize:
                                   MaterialTapTargetSize.shrinkWrap,
-                              value: suiteAnswerEnum.second,
+                              value: SuiteAnswerEnum.second,
                               groupValue:
                                   ctrl.seventhSuiteAnswerEnumEnumGroupValue,
                               onChanged: (value) =>
@@ -635,12 +633,12 @@ class TestView extends StatelessWidget {
                             suiteTestQuestions[6].answers[2],
                             style: const TextStyle(fontSize: 12),
                           ),
-                          leading: Radio<suiteAnswerEnum>(
+                          leading: Radio<SuiteAnswerEnum>(
                               visualDensity: const VisualDensity(
                                   horizontal: -4, vertical: 0),
                               materialTapTargetSize:
                                   MaterialTapTargetSize.shrinkWrap,
-                              value: suiteAnswerEnum.third,
+                              value: SuiteAnswerEnum.third,
                               groupValue:
                                   ctrl.seventhSuiteAnswerEnumEnumGroupValue,
                               onChanged: (value) =>
@@ -654,12 +652,12 @@ class TestView extends StatelessWidget {
                             suiteTestQuestions[6].answers[3],
                             style: const TextStyle(fontSize: 12),
                           ),
-                          leading: Radio<suiteAnswerEnum>(
+                          leading: Radio<SuiteAnswerEnum>(
                               visualDensity: const VisualDensity(
                                   horizontal: -4, vertical: 0),
                               materialTapTargetSize:
                                   MaterialTapTargetSize.shrinkWrap,
-                              value: suiteAnswerEnum.forth,
+                              value: SuiteAnswerEnum.forth,
                               groupValue:
                                   ctrl.seventhSuiteAnswerEnumEnumGroupValue,
                               onChanged: (value) =>
@@ -686,12 +684,12 @@ class TestView extends StatelessWidget {
                             suiteTestQuestions[0].answers[0],
                             style: const TextStyle(fontSize: 12),
                           ),
-                          leading: Radio<suiteAnswerEnum>(
+                          leading: Radio<SuiteAnswerEnum>(
                               visualDensity: const VisualDensity(
                                   horizontal: -4, vertical: 0),
                               materialTapTargetSize:
                                   MaterialTapTargetSize.shrinkWrap,
-                              value: suiteAnswerEnum.first,
+                              value: SuiteAnswerEnum.first,
                               groupValue:
                                   ctrl.eiththSuiteAnswerEnumEnumGroupValue,
                               onChanged: (value) =>
@@ -705,12 +703,12 @@ class TestView extends StatelessWidget {
                             suiteTestQuestions[0].answers[1],
                             style: const TextStyle(fontSize: 12),
                           ),
-                          leading: Radio<suiteAnswerEnum>(
+                          leading: Radio<SuiteAnswerEnum>(
                               visualDensity: const VisualDensity(
                                   horizontal: -4, vertical: 0),
                               materialTapTargetSize:
                                   MaterialTapTargetSize.shrinkWrap,
-                              value: suiteAnswerEnum.second,
+                              value: SuiteAnswerEnum.second,
                               groupValue:
                                   ctrl.eiththSuiteAnswerEnumEnumGroupValue,
                               onChanged: (value) =>
@@ -724,12 +722,12 @@ class TestView extends StatelessWidget {
                             suiteTestQuestions[0].answers[2],
                             style: const TextStyle(fontSize: 12),
                           ),
-                          leading: Radio<suiteAnswerEnum>(
+                          leading: Radio<SuiteAnswerEnum>(
                               visualDensity: const VisualDensity(
                                   horizontal: -4, vertical: 0),
                               materialTapTargetSize:
                                   MaterialTapTargetSize.shrinkWrap,
-                              value: suiteAnswerEnum.third,
+                              value: SuiteAnswerEnum.third,
                               groupValue:
                                   ctrl.eiththSuiteAnswerEnumEnumGroupValue,
                               onChanged: (value) =>
@@ -743,12 +741,12 @@ class TestView extends StatelessWidget {
                             suiteTestQuestions[0].answers[3],
                             style: const TextStyle(fontSize: 12),
                           ),
-                          leading: Radio<suiteAnswerEnum>(
+                          leading: Radio<SuiteAnswerEnum>(
                               visualDensity: const VisualDensity(
                                   horizontal: -4, vertical: 0),
                               materialTapTargetSize:
                                   MaterialTapTargetSize.shrinkWrap,
-                              value: suiteAnswerEnum.forth,
+                              value: SuiteAnswerEnum.forth,
                               groupValue:
                                   ctrl.eiththSuiteAnswerEnumEnumGroupValue,
                               onChanged: (value) =>
@@ -775,12 +773,12 @@ class TestView extends StatelessWidget {
                             suiteTestQuestions[8].answers[0],
                             style: const TextStyle(fontSize: 12),
                           ),
-                          leading: Radio<suiteAnswerEnum>(
+                          leading: Radio<SuiteAnswerEnum>(
                               visualDensity: const VisualDensity(
                                   horizontal: -4, vertical: 0),
                               materialTapTargetSize:
                                   MaterialTapTargetSize.shrinkWrap,
-                              value: suiteAnswerEnum.first,
+                              value: SuiteAnswerEnum.first,
                               groupValue:
                                   ctrl.ninthSuiteAnswerEnumEnumGroupValue,
                               onChanged: (value) =>
@@ -794,12 +792,12 @@ class TestView extends StatelessWidget {
                             suiteTestQuestions[8].answers[1],
                             style: const TextStyle(fontSize: 12),
                           ),
-                          leading: Radio<suiteAnswerEnum>(
+                          leading: Radio<SuiteAnswerEnum>(
                               visualDensity: const VisualDensity(
                                   horizontal: -4, vertical: 0),
                               materialTapTargetSize:
                                   MaterialTapTargetSize.shrinkWrap,
-                              value: suiteAnswerEnum.second,
+                              value: SuiteAnswerEnum.second,
                               groupValue:
                                   ctrl.ninthSuiteAnswerEnumEnumGroupValue,
                               onChanged: (value) =>
@@ -813,12 +811,12 @@ class TestView extends StatelessWidget {
                             suiteTestQuestions[8].answers[2],
                             style: const TextStyle(fontSize: 12),
                           ),
-                          leading: Radio<suiteAnswerEnum>(
+                          leading: Radio<SuiteAnswerEnum>(
                               visualDensity: const VisualDensity(
                                   horizontal: -4, vertical: 0),
                               materialTapTargetSize:
                                   MaterialTapTargetSize.shrinkWrap,
-                              value: suiteAnswerEnum.third,
+                              value: SuiteAnswerEnum.third,
                               groupValue:
                                   ctrl.ninthSuiteAnswerEnumEnumGroupValue,
                               onChanged: (value) =>
@@ -832,12 +830,12 @@ class TestView extends StatelessWidget {
                             suiteTestQuestions[8].answers[3],
                             style: const TextStyle(fontSize: 12),
                           ),
-                          leading: Radio<suiteAnswerEnum>(
+                          leading: Radio<SuiteAnswerEnum>(
                               visualDensity: const VisualDensity(
                                   horizontal: -4, vertical: 0),
                               materialTapTargetSize:
                                   MaterialTapTargetSize.shrinkWrap,
-                              value: suiteAnswerEnum.forth,
+                              value: SuiteAnswerEnum.forth,
                               groupValue:
                                   ctrl.ninthSuiteAnswerEnumEnumGroupValue,
                               onChanged: (value) =>
@@ -864,12 +862,12 @@ class TestView extends StatelessWidget {
                             suiteTestQuestions[9].answers[0],
                             style: const TextStyle(fontSize: 12),
                           ),
-                          leading: Radio<suiteAnswerEnum>(
+                          leading: Radio<SuiteAnswerEnum>(
                               visualDensity: const VisualDensity(
                                   horizontal: -4, vertical: 0),
                               materialTapTargetSize:
                                   MaterialTapTargetSize.shrinkWrap,
-                              value: suiteAnswerEnum.first,
+                              value: SuiteAnswerEnum.first,
                               groupValue:
                                   ctrl.tenthSuiteAnswerEnumEnumGroupValue,
                               onChanged: (value) =>
@@ -883,12 +881,12 @@ class TestView extends StatelessWidget {
                             suiteTestQuestions[9].answers[1],
                             style: const TextStyle(fontSize: 12),
                           ),
-                          leading: Radio<suiteAnswerEnum>(
+                          leading: Radio<SuiteAnswerEnum>(
                               visualDensity: const VisualDensity(
                                   horizontal: -4, vertical: 0),
                               materialTapTargetSize:
                                   MaterialTapTargetSize.shrinkWrap,
-                              value: suiteAnswerEnum.second,
+                              value: SuiteAnswerEnum.second,
                               groupValue:
                                   ctrl.tenthSuiteAnswerEnumEnumGroupValue,
                               onChanged: (value) =>
@@ -902,12 +900,12 @@ class TestView extends StatelessWidget {
                             suiteTestQuestions[9].answers[2],
                             style: const TextStyle(fontSize: 12),
                           ),
-                          leading: Radio<suiteAnswerEnum>(
+                          leading: Radio<SuiteAnswerEnum>(
                               visualDensity: const VisualDensity(
                                   horizontal: -4, vertical: 0),
                               materialTapTargetSize:
                                   MaterialTapTargetSize.shrinkWrap,
-                              value: suiteAnswerEnum.third,
+                              value: SuiteAnswerEnum.third,
                               groupValue:
                                   ctrl.tenthSuiteAnswerEnumEnumGroupValue,
                               onChanged: (value) =>
@@ -921,12 +919,12 @@ class TestView extends StatelessWidget {
                             suiteTestQuestions[9].answers[3],
                             style: const TextStyle(fontSize: 12),
                           ),
-                          leading: Radio<suiteAnswerEnum>(
+                          leading: Radio<SuiteAnswerEnum>(
                               visualDensity: const VisualDensity(
                                   horizontal: -4, vertical: 0),
                               materialTapTargetSize:
                                   MaterialTapTargetSize.shrinkWrap,
-                              value: suiteAnswerEnum.forth,
+                              value: SuiteAnswerEnum.forth,
                               groupValue:
                                   ctrl.tenthSuiteAnswerEnumEnumGroupValue,
                               onChanged: (value) =>
@@ -1006,13 +1004,13 @@ class TestView extends StatelessWidget {
                   'ใช่',
                 ),
               ),
-              leading: Radio<fatcaEnum>(
+              leading: Radio<FatcaEnum>(
                   visualDensity:
                       const VisualDensity(horizontal: -4, vertical: 0),
                   materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                  value: fatcaEnum.yes,
+                  value: FatcaEnum.yes,
                   groupValue: ctrl.fatcaEnumGroupValue,
-                  onChanged: (fatcaEnum? value) => ctrl.setfatca(value)));
+                  onChanged: (FatcaEnum? value) => ctrl.setfatca(value)));
           final fatcaNoListTile = ListTile(
               contentPadding: EdgeInsets.zero,
               title: const FittedBox(
@@ -1020,13 +1018,13 @@ class TestView extends StatelessWidget {
                   'ไม่ใช่',
                 ),
               ),
-              leading: Radio<fatcaEnum>(
+              leading: Radio<FatcaEnum>(
                   visualDensity:
                       const VisualDensity(horizontal: -4, vertical: 0),
                   materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                  value: fatcaEnum.no,
+                  value: FatcaEnum.no,
                   groupValue: ctrl.fatcaEnumGroupValue,
-                  onChanged: (fatcaEnum? value) => ctrl.setfatca(value)));
+                  onChanged: (FatcaEnum? value) => ctrl.setfatca(value)));
           final americanChecklist = CheckboxListTile(
               visualDensity: const VisualDensity(horizontal: -4, vertical: -4),
               materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
@@ -1152,13 +1150,13 @@ class TestView extends StatelessWidget {
                   'ภายหลัง',
                 ),
               ),
-              leading: Radio<knowledgeTestEnum>(
+              leading: Radio<KnowledgeTestEnum>(
                   visualDensity:
                       const VisualDensity(horizontal: -4, vertical: 0),
                   materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                  value: knowledgeTestEnum.no,
+                  value: KnowledgeTestEnum.no,
                   groupValue: ctrl.knowledgeTestEnumGroupValue,
-                  onChanged: (knowledgeTestEnum? value) =>
+                  onChanged: (KnowledgeTestEnum? value) =>
                       ctrl.setknowledgeTest(value)));
           final knowledgeTestYesListTile = ListTile(
               contentPadding: EdgeInsets.zero,
@@ -1167,13 +1165,13 @@ class TestView extends StatelessWidget {
                   'ทำตอนนี้',
                 ),
               ),
-              leading: Radio<knowledgeTestEnum>(
+              leading: Radio<KnowledgeTestEnum>(
                   visualDensity:
                       const VisualDensity(horizontal: -4, vertical: 0),
                   materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                  value: knowledgeTestEnum.yes,
+                  value: KnowledgeTestEnum.yes,
                   groupValue: ctrl.knowledgeTestEnumGroupValue,
-                  onChanged: (knowledgeTestEnum? value) {
+                  onChanged: (KnowledgeTestEnum? value) {
                     ctrl.setknowledgeTest(value);
                     ctrl.setdoKnowledgeTestNowListTile();
                   }));
@@ -1364,7 +1362,7 @@ class TestView extends StatelessWidget {
                                         child: fatcaNoListTile)
                                   ],
                                 ),
-                                (ctrl.fatcaEnumGroupValue == fatcaEnum.yes)
+                                (ctrl.fatcaEnumGroupValue == FatcaEnum.yes)
                                     ? Column(
                                         children: [
                                           SizedBox(

@@ -191,6 +191,36 @@ class IdcardView extends StatelessWidget {
               inputFormatters: [
                 FilteringTextInputFormatter.allow(RegExp(r'[0-9]'))
               ]);
+          final previousButton = ElevatedButton(
+            style: ButtonStyle(
+              overlayColor: MaterialStateProperty.all(Colors.transparent),
+              backgroundColor: MaterialStateProperty.all(Colors.transparent),
+              shadowColor: MaterialStateProperty.all(Colors.transparent),
+              surfaceTintColor: MaterialStateProperty.all(Colors.transparent),
+            ),
+            onPressed: () => ctrl.previousButtonOnPress(),
+            child: const Row(
+              children: [
+                Icon(Icons.keyboard_backspace, size: 30, color: Colors.black,),
+                Text('ย้อนกลับ', style: TextStyle(fontSize: 10, color: Colors.black))
+              ],
+            ),
+          );
+          final nextButton = ElevatedButton(
+            style: ButtonStyle(
+              overlayColor: MaterialStateProperty.all(Colors.transparent),
+              backgroundColor: MaterialStateProperty.all(Colors.transparent),
+              shadowColor: MaterialStateProperty.all(Colors.transparent),
+              surfaceTintColor: MaterialStateProperty.all(Colors.transparent),
+            ),
+            onPressed: () => ctrl.nextButtonOnPress(),
+            child: const Row(
+              children: [
+                Text('ถัดไป', style: TextStyle(fontSize: 10, color: Colors.black),),
+                Icon(Icons.arrow_circle_right, size: 45, color: Colors.orange ,)
+              ],
+            ),
+          );
 
           return Container(
               decoration: BoxDecoration(color: Colors.grey.withOpacity(0.5)),
@@ -272,7 +302,11 @@ class IdcardView extends StatelessWidget {
                                     ],)
                               ])
                             ])),
-                      ])));
+                            const SizedBox(height: 10),
+                            const SizedBox(height: 10),
+                        Row(children: [previousButton,SizedBox(width: width*.45,), nextButton],)
+                      ]))
+                      );
         }));
   }
 }

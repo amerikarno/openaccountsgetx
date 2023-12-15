@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:openaccountsgetx/app/data/questions/knowledge_test.dart';
 import 'package:openaccountsgetx/app/data/test.dart';
 
 import '../controllers/test_controller.dart';
-import 'package:openaccountsgetx/app/data/questions/knowledge_test.dart';
 
 class KnowledgeTestView extends StatelessWidget {
   const KnowledgeTestView({Key? key}) : super(key: key);
@@ -34,12 +34,12 @@ class KnowledgeTestView extends StatelessWidget {
                             knowledgeTestQuestions[0].answers[0],
                             style: const TextStyle(fontSize: 12),
                           ),
-                          leading: Radio<knowledgeAnswerEnum>(
+                          leading: Radio<KnowledgeAnswerEnum>(
                               visualDensity: const VisualDensity(
                                   horizontal: -4, vertical: 0),
                               materialTapTargetSize:
                                   MaterialTapTargetSize.shrinkWrap,
-                              value: knowledgeAnswerEnum.yes,
+                              value: KnowledgeAnswerEnum.yes,
                               groupValue:
                                   ctrl.firstknowledgeAnswerEnumEnumGroupValue,
                               onChanged: (value) => ctrl
@@ -53,12 +53,12 @@ class KnowledgeTestView extends StatelessWidget {
                             knowledgeTestQuestions[0].answers[1],
                             style: const TextStyle(fontSize: 12),
                           ),
-                          leading: Radio<knowledgeAnswerEnum>(
+                          leading: Radio<KnowledgeAnswerEnum>(
                               visualDensity: const VisualDensity(
                                   horizontal: -4, vertical: 0),
                               materialTapTargetSize:
                                   MaterialTapTargetSize.shrinkWrap,
-                              value: knowledgeAnswerEnum.no,
+                              value: KnowledgeAnswerEnum.no,
                               groupValue:
                                   ctrl.firstknowledgeAnswerEnumEnumGroupValue,
                               onChanged: (value) => ctrl
@@ -90,12 +90,12 @@ class KnowledgeTestView extends StatelessWidget {
                             knowledgeTestQuestions[1].answers[0],
                             style: const TextStyle(fontSize: 12),
                           ),
-                          leading: Radio<knowledgeAnswerEnum>(
+                          leading: Radio<KnowledgeAnswerEnum>(
                               visualDensity: const VisualDensity(
                                   horizontal: -4, vertical: 0),
                               materialTapTargetSize:
                                   MaterialTapTargetSize.shrinkWrap,
-                              value: knowledgeAnswerEnum.yes,
+                              value: KnowledgeAnswerEnum.yes,
                               groupValue:
                                   ctrl.secondknowledgeAnswerEnumEnumGroupValue,
                               onChanged: (value) => ctrl
@@ -109,12 +109,12 @@ class KnowledgeTestView extends StatelessWidget {
                             knowledgeTestQuestions[1].answers[1],
                             style: const TextStyle(fontSize: 12),
                           ),
-                          leading: Radio<knowledgeAnswerEnum>(
+                          leading: Radio<KnowledgeAnswerEnum>(
                               visualDensity: const VisualDensity(
                                   horizontal: -4, vertical: 0),
                               materialTapTargetSize:
                                   MaterialTapTargetSize.shrinkWrap,
-                              value: knowledgeAnswerEnum.no,
+                              value: KnowledgeAnswerEnum.no,
                               groupValue:
                                   ctrl.secondknowledgeAnswerEnumEnumGroupValue,
                               onChanged: (value) => ctrl
@@ -146,12 +146,12 @@ class KnowledgeTestView extends StatelessWidget {
                             knowledgeTestQuestions[2].answers[0],
                             style: const TextStyle(fontSize: 12),
                           ),
-                          leading: Radio<knowledgeAnswerEnum>(
+                          leading: Radio<KnowledgeAnswerEnum>(
                               visualDensity: const VisualDensity(
                                   horizontal: -4, vertical: 0),
                               materialTapTargetSize:
                                   MaterialTapTargetSize.shrinkWrap,
-                              value: knowledgeAnswerEnum.yes,
+                              value: KnowledgeAnswerEnum.yes,
                               groupValue:
                                   ctrl.thirdknowledgeAnswerEnumEnumGroupValue,
                               onChanged: (value) => ctrl
@@ -165,12 +165,12 @@ class KnowledgeTestView extends StatelessWidget {
                             knowledgeTestQuestions[2].answers[1],
                             style: const TextStyle(fontSize: 12),
                           ),
-                          leading: Radio<knowledgeAnswerEnum>(
+                          leading: Radio<KnowledgeAnswerEnum>(
                               visualDensity: const VisualDensity(
                                   horizontal: -4, vertical: 0),
                               materialTapTargetSize:
                                   MaterialTapTargetSize.shrinkWrap,
-                              value: knowledgeAnswerEnum.no,
+                              value: KnowledgeAnswerEnum.no,
                               groupValue:
                                   ctrl.thirdknowledgeAnswerEnumEnumGroupValue,
                               onChanged: (value) => ctrl
@@ -202,12 +202,12 @@ class KnowledgeTestView extends StatelessWidget {
                             knowledgeTestQuestions[3].answers[0],
                             style: const TextStyle(fontSize: 12),
                           ),
-                          leading: Radio<knowledgeAnswerEnum>(
+                          leading: Radio<KnowledgeAnswerEnum>(
                               visualDensity: const VisualDensity(
                                   horizontal: -4, vertical: 0),
                               materialTapTargetSize:
                                   MaterialTapTargetSize.shrinkWrap,
-                              value: knowledgeAnswerEnum.yes,
+                              value: KnowledgeAnswerEnum.yes,
                               groupValue:
                                   ctrl.forthknowledgeAnswerEnumEnumGroupValue,
                               onChanged: (value) => ctrl
@@ -221,12 +221,12 @@ class KnowledgeTestView extends StatelessWidget {
                             knowledgeTestQuestions[3].answers[1],
                             style: const TextStyle(fontSize: 12),
                           ),
-                          leading: Radio<knowledgeAnswerEnum>(
+                          leading: Radio<KnowledgeAnswerEnum>(
                               visualDensity: const VisualDensity(
                                   horizontal: -4, vertical: 0),
                               materialTapTargetSize:
                                   MaterialTapTargetSize.shrinkWrap,
-                              value: knowledgeAnswerEnum.no,
+                              value: KnowledgeAnswerEnum.no,
                               groupValue:
                                   ctrl.forthknowledgeAnswerEnumEnumGroupValue,
                               onChanged: (value) => ctrl
@@ -258,12 +258,12 @@ class KnowledgeTestView extends StatelessWidget {
                             knowledgeTestQuestions[4].answers[0],
                             style: const TextStyle(fontSize: 12),
                           ),
-                          leading: Radio<knowledgeAnswerEnum>(
+                          leading: Radio<KnowledgeAnswerEnum>(
                               visualDensity: const VisualDensity(
                                   horizontal: -4, vertical: 0),
                               materialTapTargetSize:
                                   MaterialTapTargetSize.shrinkWrap,
-                              value: knowledgeAnswerEnum.yes,
+                              value: KnowledgeAnswerEnum.yes,
                               groupValue:
                                   ctrl.fifthknowledgeAnswerEnumEnumGroupValue,
                               onChanged: (value) => ctrl
@@ -277,12 +277,12 @@ class KnowledgeTestView extends StatelessWidget {
                             knowledgeTestQuestions[4].answers[1],
                             style: const TextStyle(fontSize: 12),
                           ),
-                          leading: Radio<knowledgeAnswerEnum>(
+                          leading: Radio<KnowledgeAnswerEnum>(
                               visualDensity: const VisualDensity(
                                   horizontal: -4, vertical: 0),
                               materialTapTargetSize:
                                   MaterialTapTargetSize.shrinkWrap,
-                              value: knowledgeAnswerEnum.no,
+                              value: KnowledgeAnswerEnum.no,
                               groupValue:
                                   ctrl.fifthknowledgeAnswerEnumEnumGroupValue,
                               onChanged: (value) => ctrl
@@ -314,12 +314,12 @@ class KnowledgeTestView extends StatelessWidget {
                             knowledgeTestQuestions[5].answers[0],
                             style: const TextStyle(fontSize: 12),
                           ),
-                          leading: Radio<knowledgeAnswerEnum>(
+                          leading: Radio<KnowledgeAnswerEnum>(
                               visualDensity: const VisualDensity(
                                   horizontal: -4, vertical: 0),
                               materialTapTargetSize:
                                   MaterialTapTargetSize.shrinkWrap,
-                              value: knowledgeAnswerEnum.yes,
+                              value: KnowledgeAnswerEnum.yes,
                               groupValue:
                                   ctrl.sixthknowledgeAnswerEnumEnumGroupValue,
                               onChanged: (value) => ctrl
@@ -333,12 +333,12 @@ class KnowledgeTestView extends StatelessWidget {
                             knowledgeTestQuestions[5].answers[1],
                             style: const TextStyle(fontSize: 12),
                           ),
-                          leading: Radio<knowledgeAnswerEnum>(
+                          leading: Radio<KnowledgeAnswerEnum>(
                               visualDensity: const VisualDensity(
                                   horizontal: -4, vertical: 0),
                               materialTapTargetSize:
                                   MaterialTapTargetSize.shrinkWrap,
-                              value: knowledgeAnswerEnum.no,
+                              value: KnowledgeAnswerEnum.no,
                               groupValue:
                                   ctrl.sixthknowledgeAnswerEnumEnumGroupValue,
                               onChanged: (value) => ctrl
@@ -370,12 +370,12 @@ class KnowledgeTestView extends StatelessWidget {
                             knowledgeTestQuestions[6].answers[0],
                             style: const TextStyle(fontSize: 12),
                           ),
-                          leading: Radio<knowledgeAnswerEnum>(
+                          leading: Radio<KnowledgeAnswerEnum>(
                               visualDensity: const VisualDensity(
                                   horizontal: -4, vertical: 0),
                               materialTapTargetSize:
                                   MaterialTapTargetSize.shrinkWrap,
-                              value: knowledgeAnswerEnum.yes,
+                              value: KnowledgeAnswerEnum.yes,
                               groupValue:
                                   ctrl.seventhknowledgeAnswerEnumEnumGroupValue,
                               onChanged: (value) => ctrl
@@ -389,12 +389,12 @@ class KnowledgeTestView extends StatelessWidget {
                             knowledgeTestQuestions[6].answers[1],
                             style: const TextStyle(fontSize: 12),
                           ),
-                          leading: Radio<knowledgeAnswerEnum>(
+                          leading: Radio<KnowledgeAnswerEnum>(
                               visualDensity: const VisualDensity(
                                   horizontal: -4, vertical: 0),
                               materialTapTargetSize:
                                   MaterialTapTargetSize.shrinkWrap,
-                              value: knowledgeAnswerEnum.no,
+                              value: KnowledgeAnswerEnum.no,
                               groupValue:
                                   ctrl.seventhknowledgeAnswerEnumEnumGroupValue,
                               onChanged: (value) => ctrl
@@ -426,12 +426,12 @@ class KnowledgeTestView extends StatelessWidget {
                             knowledgeTestQuestions[7].answers[0],
                             style: const TextStyle(fontSize: 12),
                           ),
-                          leading: Radio<knowledgeAnswerEnum>(
+                          leading: Radio<KnowledgeAnswerEnum>(
                               visualDensity: const VisualDensity(
                                   horizontal: -4, vertical: 0),
                               materialTapTargetSize:
                                   MaterialTapTargetSize.shrinkWrap,
-                              value: knowledgeAnswerEnum.yes,
+                              value: KnowledgeAnswerEnum.yes,
                               groupValue:
                                   ctrl.eigththknowledgeAnswerEnumEnumGroupValue,
                               onChanged: (value) => ctrl
@@ -445,12 +445,12 @@ class KnowledgeTestView extends StatelessWidget {
                             knowledgeTestQuestions[7].answers[1],
                             style: const TextStyle(fontSize: 12),
                           ),
-                          leading: Radio<knowledgeAnswerEnum>(
+                          leading: Radio<KnowledgeAnswerEnum>(
                               visualDensity: const VisualDensity(
                                   horizontal: -4, vertical: 0),
                               materialTapTargetSize:
                                   MaterialTapTargetSize.shrinkWrap,
-                              value: knowledgeAnswerEnum.no,
+                              value: KnowledgeAnswerEnum.no,
                               groupValue:
                                   ctrl.eigththknowledgeAnswerEnumEnumGroupValue,
                               onChanged: (value) => ctrl
@@ -482,12 +482,12 @@ class KnowledgeTestView extends StatelessWidget {
                             knowledgeTestQuestions[8].answers[0],
                             style: const TextStyle(fontSize: 12),
                           ),
-                          leading: Radio<knowledgeAnswerEnum>(
+                          leading: Radio<KnowledgeAnswerEnum>(
                               visualDensity: const VisualDensity(
                                   horizontal: -4, vertical: 0),
                               materialTapTargetSize:
                                   MaterialTapTargetSize.shrinkWrap,
-                              value: knowledgeAnswerEnum.yes,
+                              value: KnowledgeAnswerEnum.yes,
                               groupValue:
                                   ctrl.ninthknowledgeAnswerEnumEnumGroupValue,
                               onChanged: (value) => ctrl
@@ -501,12 +501,12 @@ class KnowledgeTestView extends StatelessWidget {
                             knowledgeTestQuestions[8].answers[1],
                             style: const TextStyle(fontSize: 12),
                           ),
-                          leading: Radio<knowledgeAnswerEnum>(
+                          leading: Radio<KnowledgeAnswerEnum>(
                               visualDensity: const VisualDensity(
                                   horizontal: -4, vertical: 0),
                               materialTapTargetSize:
                                   MaterialTapTargetSize.shrinkWrap,
-                              value: knowledgeAnswerEnum.no,
+                              value: KnowledgeAnswerEnum.no,
                               groupValue:
                                   ctrl.ninthknowledgeAnswerEnumEnumGroupValue,
                               onChanged: (value) => ctrl
@@ -538,12 +538,12 @@ class KnowledgeTestView extends StatelessWidget {
                             knowledgeTestQuestions[9].answers[0],
                             style: const TextStyle(fontSize: 12),
                           ),
-                          leading: Radio<knowledgeAnswerEnum>(
+                          leading: Radio<KnowledgeAnswerEnum>(
                               visualDensity: const VisualDensity(
                                   horizontal: -4, vertical: 0),
                               materialTapTargetSize:
                                   MaterialTapTargetSize.shrinkWrap,
-                              value: knowledgeAnswerEnum.yes,
+                              value: KnowledgeAnswerEnum.yes,
                               groupValue:
                                   ctrl.tenthknowledgeAnswerEnumEnumGroupValue,
                               onChanged: (value) => ctrl
@@ -557,12 +557,12 @@ class KnowledgeTestView extends StatelessWidget {
                             knowledgeTestQuestions[9].answers[1],
                             style: const TextStyle(fontSize: 12),
                           ),
-                          leading: Radio<knowledgeAnswerEnum>(
+                          leading: Radio<KnowledgeAnswerEnum>(
                               visualDensity: const VisualDensity(
                                   horizontal: -4, vertical: 0),
                               materialTapTargetSize:
                                   MaterialTapTargetSize.shrinkWrap,
-                              value: knowledgeAnswerEnum.no,
+                              value: KnowledgeAnswerEnum.no,
                               groupValue:
                                   ctrl.tenthknowledgeAnswerEnumEnumGroupValue,
                               onChanged: (value) => ctrl
@@ -594,12 +594,12 @@ class KnowledgeTestView extends StatelessWidget {
                             knowledgeTestQuestions[10].answers[0],
                             style: const TextStyle(fontSize: 12),
                           ),
-                          leading: Radio<knowledgeAnswerEnum>(
+                          leading: Radio<KnowledgeAnswerEnum>(
                               visualDensity: const VisualDensity(
                                   horizontal: -4, vertical: 0),
                               materialTapTargetSize:
                                   MaterialTapTargetSize.shrinkWrap,
-                              value: knowledgeAnswerEnum.yes,
+                              value: KnowledgeAnswerEnum.yes,
                               groupValue: ctrl
                                   .eleventhknowledgeAnswerEnumEnumGroupValue,
                               onChanged: (value) => ctrl
@@ -613,12 +613,12 @@ class KnowledgeTestView extends StatelessWidget {
                             knowledgeTestQuestions[10].answers[1],
                             style: const TextStyle(fontSize: 12),
                           ),
-                          leading: Radio<knowledgeAnswerEnum>(
+                          leading: Radio<KnowledgeAnswerEnum>(
                               visualDensity: const VisualDensity(
                                   horizontal: -4, vertical: 0),
                               materialTapTargetSize:
                                   MaterialTapTargetSize.shrinkWrap,
-                              value: knowledgeAnswerEnum.no,
+                              value: KnowledgeAnswerEnum.no,
                               groupValue: ctrl
                                   .eleventhknowledgeAnswerEnumEnumGroupValue,
                               onChanged: (value) => ctrl
@@ -650,12 +650,12 @@ class KnowledgeTestView extends StatelessWidget {
                             knowledgeTestQuestions[11].answers[0],
                             style: const TextStyle(fontSize: 12),
                           ),
-                          leading: Radio<knowledgeAnswerEnum>(
+                          leading: Radio<KnowledgeAnswerEnum>(
                               visualDensity: const VisualDensity(
                                   horizontal: -4, vertical: 0),
                               materialTapTargetSize:
                                   MaterialTapTargetSize.shrinkWrap,
-                              value: knowledgeAnswerEnum.yes,
+                              value: KnowledgeAnswerEnum.yes,
                               groupValue:
                                   ctrl.twelthknowledgeAnswerEnumEnumGroupValue,
                               onChanged: (value) => ctrl
@@ -669,12 +669,12 @@ class KnowledgeTestView extends StatelessWidget {
                             knowledgeTestQuestions[11].answers[1],
                             style: const TextStyle(fontSize: 12),
                           ),
-                          leading: Radio<knowledgeAnswerEnum>(
+                          leading: Radio<KnowledgeAnswerEnum>(
                               visualDensity: const VisualDensity(
                                   horizontal: -4, vertical: 0),
                               materialTapTargetSize:
                                   MaterialTapTargetSize.shrinkWrap,
-                              value: knowledgeAnswerEnum.no,
+                              value: KnowledgeAnswerEnum.no,
                               groupValue:
                                   ctrl.twelthknowledgeAnswerEnumEnumGroupValue,
                               onChanged: (value) => ctrl
@@ -706,12 +706,12 @@ class KnowledgeTestView extends StatelessWidget {
                             knowledgeTestQuestions[12].answers[0],
                             style: const TextStyle(fontSize: 12),
                           ),
-                          leading: Radio<knowledgeAnswerEnum>(
+                          leading: Radio<KnowledgeAnswerEnum>(
                               visualDensity: const VisualDensity(
                                   horizontal: -4, vertical: 0),
                               materialTapTargetSize:
                                   MaterialTapTargetSize.shrinkWrap,
-                              value: knowledgeAnswerEnum.yes,
+                              value: KnowledgeAnswerEnum.yes,
                               groupValue: ctrl
                                   .thirteenthknowledgeAnswerEnumEnumGroupValue,
                               onChanged: (value) => ctrl
@@ -725,12 +725,12 @@ class KnowledgeTestView extends StatelessWidget {
                             knowledgeTestQuestions[12].answers[1],
                             style: const TextStyle(fontSize: 12),
                           ),
-                          leading: Radio<knowledgeAnswerEnum>(
+                          leading: Radio<KnowledgeAnswerEnum>(
                               visualDensity: const VisualDensity(
                                   horizontal: -4, vertical: 0),
                               materialTapTargetSize:
                                   MaterialTapTargetSize.shrinkWrap,
-                              value: knowledgeAnswerEnum.no,
+                              value: KnowledgeAnswerEnum.no,
                               groupValue: ctrl
                                   .thirteenthknowledgeAnswerEnumEnumGroupValue,
                               onChanged: (value) => ctrl
@@ -762,12 +762,12 @@ class KnowledgeTestView extends StatelessWidget {
                             knowledgeTestQuestions[13].answers[0],
                             style: const TextStyle(fontSize: 12),
                           ),
-                          leading: Radio<knowledgeAnswerEnum>(
+                          leading: Radio<KnowledgeAnswerEnum>(
                               visualDensity: const VisualDensity(
                                   horizontal: -4, vertical: 0),
                               materialTapTargetSize:
                                   MaterialTapTargetSize.shrinkWrap,
-                              value: knowledgeAnswerEnum.yes,
+                              value: KnowledgeAnswerEnum.yes,
                               groupValue: ctrl
                                   .forteenthknowledgeAnswerEnumEnumGroupValue,
                               onChanged: (value) => ctrl
@@ -781,12 +781,12 @@ class KnowledgeTestView extends StatelessWidget {
                             knowledgeTestQuestions[13].answers[1],
                             style: const TextStyle(fontSize: 12),
                           ),
-                          leading: Radio<knowledgeAnswerEnum>(
+                          leading: Radio<KnowledgeAnswerEnum>(
                               visualDensity: const VisualDensity(
                                   horizontal: -4, vertical: 0),
                               materialTapTargetSize:
                                   MaterialTapTargetSize.shrinkWrap,
-                              value: knowledgeAnswerEnum.no,
+                              value: KnowledgeAnswerEnum.no,
                               groupValue: ctrl
                                   .forteenthknowledgeAnswerEnumEnumGroupValue,
                               onChanged: (value) => ctrl
@@ -818,12 +818,12 @@ class KnowledgeTestView extends StatelessWidget {
                             knowledgeTestQuestions[14].answers[0],
                             style: const TextStyle(fontSize: 12),
                           ),
-                          leading: Radio<knowledgeAnswerEnum>(
+                          leading: Radio<KnowledgeAnswerEnum>(
                               visualDensity: const VisualDensity(
                                   horizontal: -4, vertical: 0),
                               materialTapTargetSize:
                                   MaterialTapTargetSize.shrinkWrap,
-                              value: knowledgeAnswerEnum.yes,
+                              value: KnowledgeAnswerEnum.yes,
                               groupValue: ctrl
                                   .fifteenthknowledgeAnswerEnumEnumGroupValue,
                               onChanged: (value) => ctrl
@@ -837,12 +837,12 @@ class KnowledgeTestView extends StatelessWidget {
                             knowledgeTestQuestions[14].answers[1],
                             style: const TextStyle(fontSize: 12),
                           ),
-                          leading: Radio<knowledgeAnswerEnum>(
+                          leading: Radio<KnowledgeAnswerEnum>(
                               visualDensity: const VisualDensity(
                                   horizontal: -4, vertical: 0),
                               materialTapTargetSize:
                                   MaterialTapTargetSize.shrinkWrap,
-                              value: knowledgeAnswerEnum.no,
+                              value: KnowledgeAnswerEnum.no,
                               groupValue: ctrl
                                   .fifteenthknowledgeAnswerEnumEnumGroupValue,
                               onChanged: (value) => ctrl

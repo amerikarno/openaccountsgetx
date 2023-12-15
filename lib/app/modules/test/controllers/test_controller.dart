@@ -15,18 +15,18 @@ class TestController extends GetxController {
   String? investerType;
   String? digitatAssetInvestmentRatios;
 
-  suiteAnswerEnum? firstSuiteAnswerEnumEnumGroupValue;
-  suiteAnswerEnum? secondSuiteAnswerEnumEnumGroupValue;
-  suiteAnswerEnum? thirdSuiteAnswerEnumEnumGroupValue;
-  suiteAnswerEnum? forthSuiteAnswerEnumEnumGroupValue;
-  suiteAnswerEnum? fifthSuiteAnswerEnumEnumGroupValue;
-  suiteAnswerEnum? sixthSuiteAnswerEnumEnumGroupValue;
-  suiteAnswerEnum? seventhSuiteAnswerEnumEnumGroupValue;
-  suiteAnswerEnum? eiththSuiteAnswerEnumEnumGroupValue;
-  suiteAnswerEnum? ninthSuiteAnswerEnumEnumGroupValue;
-  suiteAnswerEnum? tenthSuiteAnswerEnumEnumGroupValue;
+  SuiteAnswerEnum? firstSuiteAnswerEnumEnumGroupValue;
+  SuiteAnswerEnum? secondSuiteAnswerEnumEnumGroupValue;
+  SuiteAnswerEnum? thirdSuiteAnswerEnumEnumGroupValue;
+  SuiteAnswerEnum? forthSuiteAnswerEnumEnumGroupValue;
+  SuiteAnswerEnum? fifthSuiteAnswerEnumEnumGroupValue;
+  SuiteAnswerEnum? sixthSuiteAnswerEnumEnumGroupValue;
+  SuiteAnswerEnum? seventhSuiteAnswerEnumEnumGroupValue;
+  SuiteAnswerEnum? eiththSuiteAnswerEnumEnumGroupValue;
+  SuiteAnswerEnum? ninthSuiteAnswerEnumEnumGroupValue;
+  SuiteAnswerEnum? tenthSuiteAnswerEnumEnumGroupValue;
 
-  fatcaEnum? fatcaEnumGroupValue;
+  FatcaEnum? fatcaEnumGroupValue;
   bool? americanChecklist = false;
   bool? greenCardCheckList = false;
   bool? addressInAmericaCheckList = false;
@@ -36,23 +36,23 @@ class TestController extends GetxController {
   bool? americaBankAccountCheckList = false;
   bool? authorityInAmericaCheckList = false;
 
-  knowledgeTestEnum? knowledgeTestEnumGroupValue;
+  KnowledgeTestEnum? knowledgeTestEnumGroupValue;
 
-  knowledgeAnswerEnum? firstknowledgeAnswerEnumEnumGroupValue;
-  knowledgeAnswerEnum? secondknowledgeAnswerEnumEnumGroupValue;
-  knowledgeAnswerEnum? thirdknowledgeAnswerEnumEnumGroupValue;
-  knowledgeAnswerEnum? forthknowledgeAnswerEnumEnumGroupValue;
-  knowledgeAnswerEnum? fifthknowledgeAnswerEnumEnumGroupValue;
-  knowledgeAnswerEnum? sixthknowledgeAnswerEnumEnumGroupValue;
-  knowledgeAnswerEnum? seventhknowledgeAnswerEnumEnumGroupValue;
-  knowledgeAnswerEnum? eigththknowledgeAnswerEnumEnumGroupValue;
-  knowledgeAnswerEnum? ninthknowledgeAnswerEnumEnumGroupValue;
-  knowledgeAnswerEnum? tenthknowledgeAnswerEnumEnumGroupValue;
-  knowledgeAnswerEnum? eleventhknowledgeAnswerEnumEnumGroupValue;
-  knowledgeAnswerEnum? twelthknowledgeAnswerEnumEnumGroupValue;
-  knowledgeAnswerEnum? thirteenthknowledgeAnswerEnumEnumGroupValue;
-  knowledgeAnswerEnum? forteenthknowledgeAnswerEnumEnumGroupValue;
-  knowledgeAnswerEnum? fifteenthknowledgeAnswerEnumEnumGroupValue;
+  KnowledgeAnswerEnum? firstknowledgeAnswerEnumEnumGroupValue;
+  KnowledgeAnswerEnum? secondknowledgeAnswerEnumEnumGroupValue;
+  KnowledgeAnswerEnum? thirdknowledgeAnswerEnumEnumGroupValue;
+  KnowledgeAnswerEnum? forthknowledgeAnswerEnumEnumGroupValue;
+  KnowledgeAnswerEnum? fifthknowledgeAnswerEnumEnumGroupValue;
+  KnowledgeAnswerEnum? sixthknowledgeAnswerEnumEnumGroupValue;
+  KnowledgeAnswerEnum? seventhknowledgeAnswerEnumEnumGroupValue;
+  KnowledgeAnswerEnum? eigththknowledgeAnswerEnumEnumGroupValue;
+  KnowledgeAnswerEnum? ninthknowledgeAnswerEnumEnumGroupValue;
+  KnowledgeAnswerEnum? tenthknowledgeAnswerEnumEnumGroupValue;
+  KnowledgeAnswerEnum? eleventhknowledgeAnswerEnumEnumGroupValue;
+  KnowledgeAnswerEnum? twelthknowledgeAnswerEnumEnumGroupValue;
+  KnowledgeAnswerEnum? thirteenthknowledgeAnswerEnumEnumGroupValue;
+  KnowledgeAnswerEnum? forteenthknowledgeAnswerEnumEnumGroupValue;
+  KnowledgeAnswerEnum? fifteenthknowledgeAnswerEnumEnumGroupValue;
 
   bool dofirstknowledgeAnswerEnumEnumGroupValue = false;
   bool dosecondknowledgeAnswerEnumEnumGroupValue = false;
@@ -91,76 +91,76 @@ class TestController extends GetxController {
   void setselectSuitableTestLists(value) {
     selectSuitableTest = value;
     if (selectSuitableTest == selectSuitableTestItems[0]) {
-      firstSuiteAnswerEnumEnumGroupValue = suiteAnswerEnum.first;
-      secondSuiteAnswerEnumEnumGroupValue = suiteAnswerEnum.first;
-      thirdSuiteAnswerEnumEnumGroupValue = suiteAnswerEnum.first;
-      forthSuiteAnswerEnumEnumGroupValue = suiteAnswerEnum.first;
-      fifthSuiteAnswerEnumEnumGroupValue = suiteAnswerEnum.first;
-      sixthSuiteAnswerEnumEnumGroupValue = suiteAnswerEnum.first;
-      seventhSuiteAnswerEnumEnumGroupValue = suiteAnswerEnum.first;
-      eiththSuiteAnswerEnumEnumGroupValue = suiteAnswerEnum.first;
-      ninthSuiteAnswerEnumEnumGroupValue = suiteAnswerEnum.first;
-      tenthSuiteAnswerEnumEnumGroupValue = suiteAnswerEnum.first;
+      firstSuiteAnswerEnumEnumGroupValue = SuiteAnswerEnum.first;
+      secondSuiteAnswerEnumEnumGroupValue = SuiteAnswerEnum.first;
+      thirdSuiteAnswerEnumEnumGroupValue = SuiteAnswerEnum.first;
+      forthSuiteAnswerEnumEnumGroupValue = SuiteAnswerEnum.first;
+      fifthSuiteAnswerEnumEnumGroupValue = SuiteAnswerEnum.first;
+      sixthSuiteAnswerEnumEnumGroupValue = SuiteAnswerEnum.first;
+      seventhSuiteAnswerEnumEnumGroupValue = SuiteAnswerEnum.first;
+      eiththSuiteAnswerEnumEnumGroupValue = SuiteAnswerEnum.first;
+      ninthSuiteAnswerEnumEnumGroupValue = SuiteAnswerEnum.first;
+      tenthSuiteAnswerEnumEnumGroupValue = SuiteAnswerEnum.first;
       suiteSumPoints = 10;
       investerType = selectSuitableTestLists[0];
       digitatAssetInvestmentRatios = '<5%';
     }
     if (selectSuitableTest == selectSuitableTestItems[1]) {
-      firstSuiteAnswerEnumEnumGroupValue = suiteAnswerEnum.second;
-      secondSuiteAnswerEnumEnumGroupValue = suiteAnswerEnum.second;
-      thirdSuiteAnswerEnumEnumGroupValue = suiteAnswerEnum.second;
-      forthSuiteAnswerEnumEnumGroupValue = suiteAnswerEnum.second;
-      fifthSuiteAnswerEnumEnumGroupValue = suiteAnswerEnum.second;
-      sixthSuiteAnswerEnumEnumGroupValue = suiteAnswerEnum.second;
-      seventhSuiteAnswerEnumEnumGroupValue = suiteAnswerEnum.second;
-      eiththSuiteAnswerEnumEnumGroupValue = suiteAnswerEnum.second;
-      ninthSuiteAnswerEnumEnumGroupValue = suiteAnswerEnum.second;
-      tenthSuiteAnswerEnumEnumGroupValue = suiteAnswerEnum.second;
+      firstSuiteAnswerEnumEnumGroupValue = SuiteAnswerEnum.second;
+      secondSuiteAnswerEnumEnumGroupValue = SuiteAnswerEnum.second;
+      thirdSuiteAnswerEnumEnumGroupValue = SuiteAnswerEnum.second;
+      forthSuiteAnswerEnumEnumGroupValue = SuiteAnswerEnum.second;
+      fifthSuiteAnswerEnumEnumGroupValue = SuiteAnswerEnum.second;
+      sixthSuiteAnswerEnumEnumGroupValue = SuiteAnswerEnum.second;
+      seventhSuiteAnswerEnumEnumGroupValue = SuiteAnswerEnum.second;
+      eiththSuiteAnswerEnumEnumGroupValue = SuiteAnswerEnum.second;
+      ninthSuiteAnswerEnumEnumGroupValue = SuiteAnswerEnum.second;
+      tenthSuiteAnswerEnumEnumGroupValue = SuiteAnswerEnum.second;
       suiteSumPoints = 20;
       investerType = selectSuitableTestLists[1];
       digitatAssetInvestmentRatios = '<10%';
     }
     if (selectSuitableTest == selectSuitableTestItems[2]) {
-      firstSuiteAnswerEnumEnumGroupValue = suiteAnswerEnum.third;
-      secondSuiteAnswerEnumEnumGroupValue = suiteAnswerEnum.third;
-      thirdSuiteAnswerEnumEnumGroupValue = suiteAnswerEnum.third;
-      forthSuiteAnswerEnumEnumGroupValue = suiteAnswerEnum.third;
-      fifthSuiteAnswerEnumEnumGroupValue = suiteAnswerEnum.third;
-      sixthSuiteAnswerEnumEnumGroupValue = suiteAnswerEnum.third;
-      seventhSuiteAnswerEnumEnumGroupValue = suiteAnswerEnum.third;
-      eiththSuiteAnswerEnumEnumGroupValue = suiteAnswerEnum.third;
-      ninthSuiteAnswerEnumEnumGroupValue = suiteAnswerEnum.third;
-      tenthSuiteAnswerEnumEnumGroupValue = suiteAnswerEnum.first;
+      firstSuiteAnswerEnumEnumGroupValue = SuiteAnswerEnum.third;
+      secondSuiteAnswerEnumEnumGroupValue = SuiteAnswerEnum.third;
+      thirdSuiteAnswerEnumEnumGroupValue = SuiteAnswerEnum.third;
+      forthSuiteAnswerEnumEnumGroupValue = SuiteAnswerEnum.third;
+      fifthSuiteAnswerEnumEnumGroupValue = SuiteAnswerEnum.third;
+      sixthSuiteAnswerEnumEnumGroupValue = SuiteAnswerEnum.third;
+      seventhSuiteAnswerEnumEnumGroupValue = SuiteAnswerEnum.third;
+      eiththSuiteAnswerEnumEnumGroupValue = SuiteAnswerEnum.third;
+      ninthSuiteAnswerEnumEnumGroupValue = SuiteAnswerEnum.third;
+      tenthSuiteAnswerEnumEnumGroupValue = SuiteAnswerEnum.first;
       suiteSumPoints = 28;
       investerType = selectSuitableTestLists[2];
       digitatAssetInvestmentRatios = '<10%';
     }
     if (selectSuitableTest == selectSuitableTestItems[3]) {
-      firstSuiteAnswerEnumEnumGroupValue = suiteAnswerEnum.third;
-      secondSuiteAnswerEnumEnumGroupValue = suiteAnswerEnum.third;
-      thirdSuiteAnswerEnumEnumGroupValue = suiteAnswerEnum.third;
-      forthSuiteAnswerEnumEnumGroupValue = suiteAnswerEnum.third;
-      fifthSuiteAnswerEnumEnumGroupValue = suiteAnswerEnum.third;
-      sixthSuiteAnswerEnumEnumGroupValue = suiteAnswerEnum.third;
-      seventhSuiteAnswerEnumEnumGroupValue = suiteAnswerEnum.third;
-      eiththSuiteAnswerEnumEnumGroupValue = suiteAnswerEnum.third;
-      ninthSuiteAnswerEnumEnumGroupValue = suiteAnswerEnum.third;
-      tenthSuiteAnswerEnumEnumGroupValue = suiteAnswerEnum.third;
+      firstSuiteAnswerEnumEnumGroupValue = SuiteAnswerEnum.third;
+      secondSuiteAnswerEnumEnumGroupValue = SuiteAnswerEnum.third;
+      thirdSuiteAnswerEnumEnumGroupValue = SuiteAnswerEnum.third;
+      forthSuiteAnswerEnumEnumGroupValue = SuiteAnswerEnum.third;
+      fifthSuiteAnswerEnumEnumGroupValue = SuiteAnswerEnum.third;
+      sixthSuiteAnswerEnumEnumGroupValue = SuiteAnswerEnum.third;
+      seventhSuiteAnswerEnumEnumGroupValue = SuiteAnswerEnum.third;
+      eiththSuiteAnswerEnumEnumGroupValue = SuiteAnswerEnum.third;
+      ninthSuiteAnswerEnumEnumGroupValue = SuiteAnswerEnum.third;
+      tenthSuiteAnswerEnumEnumGroupValue = SuiteAnswerEnum.third;
       suiteSumPoints = 30;
       investerType = selectSuitableTestLists[3];
       digitatAssetInvestmentRatios = '<20%';
     }
     if (selectSuitableTest == selectSuitableTestItems[4]) {
-      firstSuiteAnswerEnumEnumGroupValue = suiteAnswerEnum.forth;
-      secondSuiteAnswerEnumEnumGroupValue = suiteAnswerEnum.forth;
-      thirdSuiteAnswerEnumEnumGroupValue = suiteAnswerEnum.forth;
-      forthSuiteAnswerEnumEnumGroupValue = suiteAnswerEnum.forth;
-      fifthSuiteAnswerEnumEnumGroupValue = suiteAnswerEnum.forth;
-      sixthSuiteAnswerEnumEnumGroupValue = suiteAnswerEnum.forth;
-      seventhSuiteAnswerEnumEnumGroupValue = suiteAnswerEnum.forth;
-      eiththSuiteAnswerEnumEnumGroupValue = suiteAnswerEnum.forth;
-      ninthSuiteAnswerEnumEnumGroupValue = suiteAnswerEnum.forth;
-      tenthSuiteAnswerEnumEnumGroupValue = suiteAnswerEnum.forth;
+      firstSuiteAnswerEnumEnumGroupValue = SuiteAnswerEnum.forth;
+      secondSuiteAnswerEnumEnumGroupValue = SuiteAnswerEnum.forth;
+      thirdSuiteAnswerEnumEnumGroupValue = SuiteAnswerEnum.forth;
+      forthSuiteAnswerEnumEnumGroupValue = SuiteAnswerEnum.forth;
+      fifthSuiteAnswerEnumEnumGroupValue = SuiteAnswerEnum.forth;
+      sixthSuiteAnswerEnumEnumGroupValue = SuiteAnswerEnum.forth;
+      seventhSuiteAnswerEnumEnumGroupValue = SuiteAnswerEnum.forth;
+      eiththSuiteAnswerEnumEnumGroupValue = SuiteAnswerEnum.forth;
+      ninthSuiteAnswerEnumEnumGroupValue = SuiteAnswerEnum.forth;
+      tenthSuiteAnswerEnumEnumGroupValue = SuiteAnswerEnum.forth;
       suiteSumPoints = 40;
       investerType = selectSuitableTestLists[4];
       digitatAssetInvestmentRatios = '<30%';
@@ -263,18 +263,18 @@ class TestController extends GetxController {
     update();
   }
 
-  double convertAnserEnumToInt(suiteAnswerEnum? enumPoint) {
+  double convertAnserEnumToInt(SuiteAnswerEnum? enumPoint) {
     if (enumPoint != null) {
-      if (enumPoint == suiteAnswerEnum.first) {
+      if (enumPoint == SuiteAnswerEnum.first) {
         return 1;
       }
-      if (enumPoint == suiteAnswerEnum.second) {
+      if (enumPoint == SuiteAnswerEnum.second) {
         return 2;
       }
-      if (enumPoint == suiteAnswerEnum.third) {
+      if (enumPoint == SuiteAnswerEnum.third) {
         return 3;
       }
-      if (enumPoint == suiteAnswerEnum.forth) {
+      if (enumPoint == SuiteAnswerEnum.forth) {
         return 4;
       }
     }
@@ -554,81 +554,81 @@ $forteenthknowledgeAnswerEnumEnumGroupValue,
             );
           });
     } else {
-      if (firstknowledgeAnswerEnumEnumGroupValue == knowledgeAnswerEnum.no) {
+      if (firstknowledgeAnswerEnumEnumGroupValue == KnowledgeAnswerEnum.no) {
         hintFirstKnowledgeQuestion = false;
       } else {
         hintFirstKnowledgeQuestion = true;
       }
-      if (secondknowledgeAnswerEnumEnumGroupValue == knowledgeAnswerEnum.yes) {
+      if (secondknowledgeAnswerEnumEnumGroupValue == KnowledgeAnswerEnum.yes) {
         hintSecondKnowledgeQuestion = false;
       } else {
         hintSecondKnowledgeQuestion = true;
       }
-      if (thirdknowledgeAnswerEnumEnumGroupValue == knowledgeAnswerEnum.yes) {
+      if (thirdknowledgeAnswerEnumEnumGroupValue == KnowledgeAnswerEnum.yes) {
         hintSecondKnowledgeQuestion = false;
       } else {
         hintSecondKnowledgeQuestion = true;
       }
-      if (forthknowledgeAnswerEnumEnumGroupValue == knowledgeAnswerEnum.yes) {
+      if (forthknowledgeAnswerEnumEnumGroupValue == KnowledgeAnswerEnum.yes) {
         hintSecondKnowledgeQuestion = false;
       } else {
         hintSecondKnowledgeQuestion = true;
       }
-      if (fifthknowledgeAnswerEnumEnumGroupValue == knowledgeAnswerEnum.no) {
+      if (fifthknowledgeAnswerEnumEnumGroupValue == KnowledgeAnswerEnum.no) {
         hintSecondKnowledgeQuestion = false;
       } else {
         hintSecondKnowledgeQuestion = true;
       }
-      if (sixthknowledgeAnswerEnumEnumGroupValue == knowledgeAnswerEnum.no) {
+      if (sixthknowledgeAnswerEnumEnumGroupValue == KnowledgeAnswerEnum.no) {
         hintSecondKnowledgeQuestion = false;
       } else {
         hintSecondKnowledgeQuestion = true;
       }
-      if (seventhknowledgeAnswerEnumEnumGroupValue == knowledgeAnswerEnum.no) {
+      if (seventhknowledgeAnswerEnumEnumGroupValue == KnowledgeAnswerEnum.no) {
         hintSecondKnowledgeQuestion = false;
       } else {
         hintSecondKnowledgeQuestion = true;
       }
-      if (eigththknowledgeAnswerEnumEnumGroupValue == knowledgeAnswerEnum.yes) {
+      if (eigththknowledgeAnswerEnumEnumGroupValue == KnowledgeAnswerEnum.yes) {
         hintSecondKnowledgeQuestion = false;
       } else {
         hintSecondKnowledgeQuestion = true;
       }
-      if (ninthknowledgeAnswerEnumEnumGroupValue == knowledgeAnswerEnum.yes) {
+      if (ninthknowledgeAnswerEnumEnumGroupValue == KnowledgeAnswerEnum.yes) {
         hintSecondKnowledgeQuestion = false;
       } else {
         hintSecondKnowledgeQuestion = true;
       }
-      if (tenthknowledgeAnswerEnumEnumGroupValue == knowledgeAnswerEnum.yes) {
+      if (tenthknowledgeAnswerEnumEnumGroupValue == KnowledgeAnswerEnum.yes) {
         hintSecondKnowledgeQuestion = false;
       } else {
         hintSecondKnowledgeQuestion = true;
       }
       if (eleventhknowledgeAnswerEnumEnumGroupValue ==
-          knowledgeAnswerEnum.yes) {
+          KnowledgeAnswerEnum.yes) {
         hintSecondKnowledgeQuestion = false;
       } else {
         hintSecondKnowledgeQuestion = true;
       }
-      if (twelthknowledgeAnswerEnumEnumGroupValue == knowledgeAnswerEnum.yes) {
+      if (twelthknowledgeAnswerEnumEnumGroupValue == KnowledgeAnswerEnum.yes) {
         hintSecondKnowledgeQuestion = false;
       } else {
         hintSecondKnowledgeQuestion = true;
       }
       if (thirteenthknowledgeAnswerEnumEnumGroupValue ==
-          knowledgeAnswerEnum.no) {
+          KnowledgeAnswerEnum.no) {
         hintSecondKnowledgeQuestion = false;
       } else {
         hintSecondKnowledgeQuestion = true;
       }
       if (forteenthknowledgeAnswerEnumEnumGroupValue ==
-          knowledgeAnswerEnum.yes) {
+          KnowledgeAnswerEnum.yes) {
         hintSecondKnowledgeQuestion = false;
       } else {
         hintSecondKnowledgeQuestion = true;
       }
       if (fifteenthknowledgeAnswerEnumEnumGroupValue ==
-          knowledgeAnswerEnum.no) {
+          KnowledgeAnswerEnum.no) {
         hintSecondKnowledgeQuestion = false;
       } else {
         hintSecondKnowledgeQuestion = true;

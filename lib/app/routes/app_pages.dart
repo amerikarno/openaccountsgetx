@@ -16,7 +16,7 @@ part 'app_routes.dart';
 class AppPages {
   AppPages._();
 
-  static const initial = Routes.test;
+  static const initial = Routes.home;
 
   static final routes = [
     GetPage(
@@ -40,7 +40,7 @@ class AppPages {
       binding: TestBinding(),
     ),
     GetPage(
-      name: _Paths.VERIFY_EMAIL_MOBILE,
+      name: _Paths.verifyEmailMobile,
       page: () => const VerifyEmailMobileView(),
       binding: VerifyEmailMobileBinding(),
     ),

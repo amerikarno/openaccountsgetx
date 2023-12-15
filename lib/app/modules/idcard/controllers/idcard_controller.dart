@@ -124,4 +124,13 @@ class IdcardController extends GetxController {
     citizenID = value;
     update();
   }
+
+  void previousButtonOnPress(){
+    Get.toNamed("/home");
+    update();
+  }
+  void nextButtonOnPress(){
+    Get.toNamed("/information");
+    update();
+  }
 }

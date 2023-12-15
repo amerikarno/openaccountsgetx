@@ -619,4 +619,12 @@ String? secondBankName;
     }
     update();
   }
+   void previousButtonOnPress(){
+    Get.toNamed("/idcard");
+    update();
+  }
+  void nextButtonOnPress(){
+    Get.toNamed("/test");
+    update();
+  }
 }

@@ -793,7 +793,7 @@ class InformationView extends StatelessWidget {
                   groupValue: ctrl.secondBookBankAddressEnumGroupValue,
                   onChanged: (SecondBookBankAddressEnum? value) =>
                       ctrl.setUseSecondBookBank(value)));
-final secondBankNameDropDown = DropdownButtonFormField(
+          final secondBankNameDropDown = DropdownButtonFormField(
               menuMaxHeight: height * .5,
               decoration: InputDecoration(
                   errorText: ctrl.secondBankNameErrorMessage,
@@ -835,7 +835,48 @@ final secondBankNameDropDown = DropdownButtonFormField(
               inputFormatters: [
                 FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z0-9ก-๛]'))
               ]);
-
+          final previousButton = ElevatedButton(
+            style: ButtonStyle(
+              overlayColor: MaterialStateProperty.all(Colors.transparent),
+              backgroundColor: MaterialStateProperty.all(Colors.transparent),
+              shadowColor: MaterialStateProperty.all(Colors.transparent),
+              surfaceTintColor: MaterialStateProperty.all(Colors.transparent),
+            ),
+            onPressed: () => ctrl.previousButtonOnPress(),
+            child: const Row(
+              children: [
+                Icon(
+                  Icons.keyboard_backspace,
+                  size: 30,
+                  color: Colors.black,
+                ),
+                Text('ย้อนกลับ',
+                    style: TextStyle(fontSize: 10, color: Colors.black))
+              ],
+            ),
+          );
+          final nextButton = ElevatedButton(
+            style: ButtonStyle(
+              overlayColor: MaterialStateProperty.all(Colors.transparent),
+              backgroundColor: MaterialStateProperty.all(Colors.transparent),
+              shadowColor: MaterialStateProperty.all(Colors.transparent),
+              surfaceTintColor: MaterialStateProperty.all(Colors.transparent),
+            ),
+            onPressed: () => ctrl.nextButtonOnPress(),
+            child: const Row(
+              children: [
+                Text(
+                  'ถัดไป',
+                  style: TextStyle(fontSize: 10, color: Colors.black),
+                ),
+                Icon(
+                  Icons.arrow_circle_right,
+                  size: 45,
+                  color: Colors.orange,
+                )
+              ],
+            ),
+          );
 
           return Container(
               decoration: BoxDecoration(
@@ -1094,31 +1135,43 @@ final secondBankNameDropDown = DropdownButtonFormField(
                                         width: width * .45,
                                         child: FittedBox(
                                             child: secondBookBankAccount)),
-                                            SizedBox(width: width*.1825,),
+                                    SizedBox(
+                                      width: width * .1825,
+                                    ),
                                     SizedBox(
                                         width: width * .0555,
                                         child: useSecondBankAccountListTile),
                                     SizedBox(
                                         width: width * .07,
-                                        child: donotUseSecondBankAccountListTile),
+                                        child:
+                                            donotUseSecondBankAccountListTile),
                                   ],
                                 ),
-                                (ctrl.secondBookBankAddressEnumGroupValue == SecondBookBankAddressEnum.yes)
-                                ?Row(children: [
-                                    SizedBox(
-                                        width: width * .24,
-                                        child: secondBankNameDropDown),
-                                    SizedBox(width: width * .02),
-                                    SizedBox(
-                                        width: width * .24,
-                                        child: secondBankBranchDropDown),
-                                    SizedBox(width: width * .02),
-                                    SizedBox(
-                                        width: width * .24,
-                                        child: secondBankAccountTextField),
-                                  ]) : const Row()
+                                (ctrl.secondBookBankAddressEnumGroupValue ==
+                                        SecondBookBankAddressEnum.yes)
+                                    ? Row(children: [
+                                        SizedBox(
+                                            width: width * .24,
+                                            child: secondBankNameDropDown),
+                                        SizedBox(width: width * .02),
+                                        SizedBox(
+                                            width: width * .24,
+                                            child: secondBankBranchDropDown),
+                                        SizedBox(width: width * .02),
+                                        SizedBox(
+                                            width: width * .24,
+                                            child: secondBankAccountTextField),
+                                      ])
+                                    : const Row()
                               ],
                             )),
+                        const SizedBox(height: 10),
+                        const SizedBox(height: 10),
+                        Row(children: [
+                          previousButton,
+                          SizedBox(width: width * .5),
+                          nextButton
+                        ]),
                         const SizedBox(height: 10),
                         const SizedBox(height: 10),
                       ])));
