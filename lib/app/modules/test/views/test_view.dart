@@ -1159,7 +1159,8 @@ class TestView extends StatelessWidget {
                   value: knowledgeTestEnum.no,
                   groupValue: ctrl.knowledgeTestEnumGroupValue,
                   onChanged: (knowledgeTestEnum? value) =>
-                      ctrl.setknowledgeTest(value)));   final knowledgeTestYesListTile = ListTile(
+                      ctrl.setknowledgeTest(value)));
+          final knowledgeTestYesListTile = ListTile(
               contentPadding: EdgeInsets.zero,
               title: const FittedBox(
                 child: Text(
@@ -1176,6 +1177,27 @@ class TestView extends StatelessWidget {
                     ctrl.setknowledgeTest(value);
                     ctrl.setdoKnowledgeTestNowListTile();
                   }));
+          final buyAndSaleAgreement = FittedBox(
+              child: RichText(
+            text: const TextSpan(
+                text: 'กรุณาอ่านและทำเครื่องหมายในช่องสี่เหลี่ยม',
+                children: [
+                  TextSpan(text: '*', style: TextStyle(color: Colors.red))
+                ]),
+          ));
+          final buyAndSaleCheckbox = CheckboxListTile(
+              visualDensity: const VisualDensity(horizontal: 0, vertical: -4),
+              materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+              overlayColor: MaterialStateProperty.all(Colors.transparent),
+              contentPadding: EdgeInsets.zero,
+              checkColor: Colors.white,
+              activeColor: Colors.orange,
+              side: const BorderSide(color: Colors.grey),
+              subtitle: const Text(buyAndSaleCheckboxDetail, maxLines: 5, style: TextStyle(fontSize: 12)),
+              controlAffinity: ListTileControlAffinity.leading,
+              value: ctrl.buyAndSaleChecklist,
+              onChanged: (value) => ctrl.checkbuyAndSaleCheckList(value));
+
           return Container(
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(5),
@@ -1414,6 +1436,20 @@ class TestView extends StatelessWidget {
                             ],
                           ),
                         ),
+                        const SizedBox(height: 10),
+                        const SizedBox(height: 10),
+                        Container(
+                            padding: EdgeInsets.fromLTRB(
+                                width * .02, 15, width * .02, 15),
+                            decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(10)),
+                            child: Column(
+                              children: [
+                                buyAndSaleAgreement,
+                                buyAndSaleCheckbox,
+                              ],
+                            )),
                         const SizedBox(height: 10),
                         const SizedBox(height: 10),
                       ])));

@@ -86,6 +86,8 @@ class TestController extends GetxController {
   bool hintForteenthKnowledgeQuestion = false;
   bool hintFifteenthKnowledgeQuestion = false;
 
+  bool? buyAndSaleChecklist = false;
+
   void setselectSuitableTestLists(value) {
     selectSuitableTest = value;
     if (selectSuitableTest == selectSuitableTestItems[0]) {
@@ -647,6 +649,43 @@ $forteenthknowledgeAnswerEnumEnumGroupValue,
       log('hint14: $hintForteenthKnowledgeQuestion');
       log('hint15: $hintFifteenthKnowledgeQuestion');
     }
+    update();
+  }
+
+  void checkbuyAndSaleCheckList(value) {
+    buyAndSaleChecklist = value;
+
+    Get.dialog(Dialog(
+      // titlePadding: const EdgeInsets.fromLTRB(0, 15, 0, 15),
+      // titleStyle: const TextStyle(fontSize: 15),
+      child: Container(
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10), color: Colors.white),
+        padding: const EdgeInsets.fromLTRB(10, 15, 10, 15),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Text(
+              'ข้อตกลงและเงื่อนไขสัญญาแต่งตั้งตัวแทนนายหน้าซื้อขายหลักทรัพย์',
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(height: 10),
+            const Text(
+                'เนื้อหาของข้อตกลงและเงื่อนไขสัญญาแต่งตั้งตัวแทนนายหน้าซื้อขายหลักทรัพย์'),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                ElevatedButton(
+                    onPressed: () => Get.back(), child: const Text('ตกลง')),
+              ],
+            )
+          ],
+        ),
+      ),
+    ));
+
     update();
   }
 }
