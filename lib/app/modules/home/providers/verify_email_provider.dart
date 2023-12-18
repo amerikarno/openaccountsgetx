@@ -1,21 +1,16 @@
-import 'package:get/get.dart';
+import 'dart:io';
+import 'dart:developer';
 
 import '../verify_email_model.dart';
+
+import 'package:get/get.dart';
+
 
 class VerifyEmailProvider extends GetConnect {
   @override
   void onInit() {
-    httpClient.defaultDecoder = (map) {
-      if (map is Map<String, dynamic>) return VerifyEmail.fromJson(map);
-      if (map is List) {
-        return map.map((item) => VerifyEmail.fromJson(item)).toList();
-      }
-    };
-    httpClient.baseUrl = '3.1.42.96:1323';
+    httpClient.defaultDecoder = VerifyEmailModel.dataFromJson;
   }
 
-  Future<VerifyEmail?> getVerifyEmail(String id) async {
-    final response = await get('verify/email/$id');
-    return response.body;
-  }
+  Future<Response<VerifyEmailProvider>> getVerifyEmail(String email) => get<VerifyEmailProvider>('http://3.1.42.96:1323/verify/email/$email');
 }

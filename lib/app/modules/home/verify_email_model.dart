@@ -1,28 +1,21 @@
-class VerifyEmail {
+class VerifyEmailModel {
   bool? isRegisteredEmail;
   bool? isInvalidEmailFormat;
   String? registeredEmail;
   String? registeredPage;
 
-  VerifyEmail(
+  VerifyEmailModel(
       {this.isRegisteredEmail,
       this.isInvalidEmailFormat,
       this.registeredEmail,
       this.registeredPage});
 
-  VerifyEmail.fromJson(Map<String, dynamic> json) {
-    isRegisteredEmail = json['isRegisteredEmail'];
-    isInvalidEmailFormat = json['isInvalidEmailFormat'];
-    registeredEmail = json['registeredEmail'];
-    registeredPage = json['registeredPage'];
-  }
+  factory VerifyEmailModel.fromJson(Map<String, dynamic> json) =>
+      VerifyEmailModel(
+          isRegisteredEmail: json['isRegisteredEmail'] ?? false,
+          isInvalidEmailFormat: json['isInvalidEmailFormat'] ?? false,
+          registeredEmail: json['registeredEmail'] ?? '',
+          registeredPage: json['registeredPage'] ?? '');
 
-  Map<String, dynamic> toJson() {
-    final data = <String, dynamic>{};
-    data['isRegisteredEmail'] = isRegisteredEmail;
-    data['isInvalidEmailFormat'] = isInvalidEmailFormat;
-    data['registeredEmail'] = registeredEmail;
-    data['registeredPage'] = registeredPage;
-    return data;
-  }
+          static VerifyEmailModel dataFromJson(data) => VerifyEmailModel.fromJson(data);
 }

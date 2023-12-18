@@ -1,7 +1,9 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:openaccountsgetx/app/data/preinfo_data.dart';
+import 'package:openaccountsgetx/app/modules/home/controllers/verify_email_controller.dart';
 
 import '../controllers/home_controller.dart';
 
@@ -10,14 +12,12 @@ class HomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
-    // final width = Get.size.width;
-    // String? errorEmailMessage;
-    // final email = false.obs;
 
     return Scaffold(
         backgroundColor: const Color.fromARGB(255, 233, 225, 225),
         appBar: AppBar(
-          title: autoSizeText(width * .3, 'กรุณากรอกข้อมูลเพื่อเปิดบัญชี'),
+          // title: autoSizeText(width * .3, 'กรุณากรอกข้อมูลเพื่อเปิดบัญชี'),
+          title: const AutoSizeText('กรุณากรอกข้อมูลเพื่อเปิดบัญชี', minFontSize: 15,maxFontSize: 25, style: TextStyle(fontSize: 20)),
           centerTitle: true,
         ),
         body: GetBuilder<HomeController>(builder: (ctrl) {
@@ -167,14 +167,13 @@ class HomeView extends StatelessWidget {
           );
 
           final agreement = CheckboxListTile(
-              fillColor: MaterialStateProperty.all(Colors.transparent),
               hoverColor: Colors.transparent,
               overlayColor: MaterialStateProperty.all(Colors.transparent),
               contentPadding: EdgeInsets.zero,
               checkColor: Colors.white,
               activeColor: Colors.green,
               side: const BorderSide(color: Colors.grey),
-              title: const Text(
+              title: const AutoSizeText(
                   'ข้าพเจ้าได้อ่านและตกลงตามข้อมกำหนดและเงื่อนไขและรับทราบนโยบายความเป็นส่วนตัว ซึ่งระบุวิธีการที่บริษัท ฟินันเซีย ดิจิตทัล แอสแซท จำกัด("บริษัท")',
                   maxLines: 2,
                   style: TextStyle(fontSize: 12)),
@@ -191,7 +190,7 @@ class HomeView extends StatelessWidget {
               onPressed: () => showDialog(
                   context: context,
                   builder: (BuildContext context) => AlertDialog(
-                        title: const Text('นโยบายความเป็นส่วนตัว'),
+                        title: const AutoSizeText('นโยบายความเป็นส่วนตัว'),
                         content: SizedBox(
                           width: (MediaQuery.of(context).size.width * 0.6),
                           child: SingleChildScrollView(
@@ -214,14 +213,12 @@ class HomeView extends StatelessWidget {
                 maxLines: 1,
               ));
 
-          final usernamePasswordSubject = FittedBox(
-            child: RichText(
-                text: const TextSpan(
-                    text:
-                        'ข้อมูลสำหรับรับ Username, Password และเอกสารจากทางบริษัทฯ',
-                    style: TextStyle(
-                        color: Colors.blue, fontWeight: FontWeight.bold))),
-          );
+          final usernamePasswordSubject = RichText(
+              text: const TextSpan(
+                  text:
+                      'ข้อมูลสำหรับรับ Username, Password และเอกสารจากทางบริษัทฯ',
+                  style: TextStyle(
+                      color: Colors.blue, fontWeight: FontWeight.bold, fontSize: 20)));
           final nextButton = ElevatedButton(
             style: ButtonStyle(
               overlayColor: MaterialStateProperty.all(Colors.transparent),
@@ -287,7 +284,7 @@ class HomeView extends StatelessWidget {
                               width: width * .8,
                               child: usernamePasswordSubject),
                           // const SizedBox(height: 20),
-                          SizedBox(width: width * .8, child: emailTextField),
+                          SizedBox(width: width * .8, child: const VerifyEmail()),
                           SizedBox(width: width * .8, child: mobileTextField),
                           SizedBox(width: width * .8, child: agreement),
                           (ctrl.agreementError!) ? Text(ctrl.agreementErrorMessage!, style: const TextStyle(color: Colors.red, fontSize: 12),) : const Row(),
@@ -302,6 +299,25 @@ class HomeView extends StatelessWidget {
   }
 }
 
-Widget autoSizeText(double width, String text) {
-  return SizedBox(width: width, child: FittedBox(child: Text(text)));
+class VerifyEmail extends GetView<VerifyEmailController> {
+  const VerifyEmail({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return TextField(
+            decoration: InputDecoration(
+                prefix: const Icon(Icons.email),
+                label: FittedBox(
+                    child: RichText(
+                        text: const TextSpan(text: 'อีเมล', children: [
+                  TextSpan(text: '*', style: TextStyle(color: Colors.red))
+                ]))),
+                errorText: controller.emailErrorMessage),
+            onChanged: null,
+            onTap: null,
+            inputFormatters: [
+              FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z0-9@.]'))
+            ],
+          );
+  }
 }
