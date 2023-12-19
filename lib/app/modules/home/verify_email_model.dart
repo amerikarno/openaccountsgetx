@@ -1,8 +1,13 @@
+import 'dart:convert';
+
 class VerifyEmailModel {
   bool? isRegisteredEmail;
   bool? isInvalidEmailFormat;
   String? registeredEmail;
   String? registeredPage;
+
+  VerifyEmailModel verifyFromJson(String str) => VerifyEmailModel.fromJson(jsonDecode(str));
+  String verifyToJson(VerifyEmailModel data) => json.encode(data.toString());
 
   VerifyEmailModel(
       {this.isRegisteredEmail,

@@ -1,13 +1,17 @@
+import 'dart:convert';
 import 'dart:developer';
+import 'dart:io';
 
 import 'package:email_validator/email_validator.dart';
 import 'package:get/get.dart';
+import 'package:http/http.dart' as http;
 import 'package:openaccountsgetx/app/modules/home/providers/verify_email_provider.dart';
+import 'package:openaccountsgetx/app/modules/home/verify_email_model.dart';
 
 class HomeController extends GetxController {
-  VerifyEmailProvider? verifyEmailProvider;
   HomeController();
 
+  final verifyEmailProvider = VerifyEmailProvider;
   final count = 0.obs;
   String? thTitle;
   String? thTitleErrorMessage;
@@ -39,7 +43,7 @@ class HomeController extends GetxController {
   String? agreementErrorMessage;
   bool? agreement = false;
   bool? agreementError = false;
-  bool? isRegisteredEmail = false;
+  bool isRegisteredEmail = false;
   bool? isRegisteredMobile = false;
 
   String? engToTh(String? eng) {
@@ -251,50 +255,70 @@ class HomeController extends GetxController {
   }
 
   void nextButtonOnPress() {
-    if (thTitle == null) {
-      thTitleErrorMessage = 'กรุณาใส่คำนำหน้าชื่อ (ภาษาไทย)';
-    }
-    if (thName == null) {
-      thNameErrorMessage = 'กรุณาใส่ชื่อ (ภาษาไทย)';
-    }
-    if (thSurname == null) {
-      thSurnameErrorMessage = 'กรุณาใส่ชื่อสกุล (ภาษาไทย)';
-    }
-    if (engTitle == null) {
-      engTitleErrorMessage = 'กรุณาใส่คำนำหน้าชื่อ (ภาษาอังกฤษ)';
-    }
-    if (engName == null) {
-      engNameErrorMessage = 'กรุณาใส่ชื่อ (ภาษาอังกฤษ)';
-    }
-    if (engSurname == null) {
-      engSurnameErrorMessage = 'กรุณาใส่ชื่อสกุล (ภาษาอังกฤษ)';
-    }
+    // if (thTitle == null) {
+    //   thTitleErrorMessage = 'กรุณาใส่คำนำหน้าชื่อ (ภาษาไทย)';
+    // }
+    // if (thName == null) {
+    //   thNameErrorMessage = 'กรุณาใส่ชื่อ (ภาษาไทย)';
+    // }
+    // if (thSurname == null) {
+    //   thSurnameErrorMessage = 'กรุณาใส่ชื่อสกุล (ภาษาไทย)';
+    // }
+    // if (engTitle == null) {
+    //   engTitleErrorMessage = 'กรุณาใส่คำนำหน้าชื่อ (ภาษาอังกฤษ)';
+    // }
+    // if (engName == null) {
+    //   engNameErrorMessage = 'กรุณาใส่ชื่อ (ภาษาอังกฤษ)';
+    // }
+    // if (engSurname == null) {
+    //   engSurnameErrorMessage = 'กรุณาใส่ชื่อสกุล (ภาษาอังกฤษ)';
+    // }
+    log('email: $email');
     if (email == null) {
       emailErrorMessage = 'กรุณาใส่อีเมล์ (ภาษาไทย)';
     }
-    if (mobile == null) {
-      mobileErrorMessage = 'กรุณาใส่เบอร์โทรศัพท์ (ภาษาไทย)';
-    }
-    if (agreement == false) {
-      agreementErrorMessage = 'กรุณายอมรับ (ภาษาไทย)';
-      agreementError = true;
-    }
-
-    if (thTitleErrorMessage == null ||
-        thNameErrorMessage == null ||
-        thSurnameErrorMessage == null ||
-        engTitleErrorMessage == null ||
-        engNameErrorMessage == null ||
-        engSurnameErrorMessage == null ||
-        emailErrorMessage == null ||
-        mobileErrorMessage == null ||
-        agreementErrorMessage == null) {
-      Get.toNamed("/idcard");
-    }
+    // if (mobile == null) {
+    //   mobileErrorMessage = 'กรุณาใส่เบอร์โทรศัพท์ (ภาษาไทย)';
+    // }
+    // if (agreement == false) {
+    //   agreementErrorMessage = 'กรุณายอมรับ (ภาษาไทย)';
+    //   agreementError = true;
+    // }
+    log('pressed next button');
+    // getEmail(email);
+    getEmailByHttp(email);
+    // verifyEmailProvider.getVerifyEmail(email);
+    // if (thTitleErrorMessage == null ||
+    //     thNameErrorMessage == null ||
+    //     thSurnameErrorMessage == null ||
+    //     engTitleErrorMessage == null ||
+    //     engNameErrorMessage == null ||
+    //     engSurnameErrorMessage == null ||
+    //     emailErrorMessage == null ||
+    //     mobileErrorMessage == null ||
+    //     agreementErrorMessage == null) {
+    //   Get.toNamed("/idcard");
+    // }
     update();
   }
 
-  void getEmail(String email) {
-    verifyEmailProvider?.getVerifyEmail(email);
+  void getEmail(String? email) async {
+    log('get email running');
+    var r = await Get.find<VerifyEmailProvider>().getVerifyEmail(email);
+    var regis = r.isRegisteredEmail;
+    isRegisteredEmail = regis ?? false;
+    log('get email ending');
+  }
+
+  void getEmailByHttp(String? email) async {
+    log('get email running');
+    final res =
+        await http.get(Uri.parse('http://10.2.3.175/verify/email/$email'));
+    log('response: $res');
+    if (res.statusCode == HttpStatus.ok) {
+      final json = jsonDecode(res.body);
+      final email0 = VerifyEmailModel.fromJson(json);
+      isRegisteredEmail = email0.isRegisteredEmail!;
+    }
   }
 }

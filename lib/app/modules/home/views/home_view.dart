@@ -17,7 +17,8 @@ class HomeView extends StatelessWidget {
         backgroundColor: const Color.fromARGB(255, 233, 225, 225),
         appBar: AppBar(
           // title: autoSizeText(width * .3, 'กรุณากรอกข้อมูลเพื่อเปิดบัญชี'),
-          title: const AutoSizeText('กรุณากรอกข้อมูลเพื่อเปิดบัญชี', minFontSize: 15,maxFontSize: 25, style: TextStyle(fontSize: 20)),
+          title: const AutoSizeText('กรุณากรอกข้อมูลเพื่อเปิดบัญชี',
+              minFontSize: 15, maxFontSize: 25, style: TextStyle(fontSize: 20)),
           centerTitle: true,
         ),
         body: GetBuilder<HomeController>(builder: (ctrl) {
@@ -78,16 +79,16 @@ class HomeView extends StatelessWidget {
 
           final engTitleDropDown = DropdownButtonFormField(
               decoration: InputDecoration(
-                errorText: ctrl.engTitleErrorMessage,
+                  errorText: ctrl.engTitleErrorMessage,
                   label: FittedBox(
-                child: RichText(
-                    text: const TextSpan(
-                        text: 'คำนำหน้าชื่อ (ภาษาอังกฤษ)',
-                        children: [
-                      TextSpan(
-                          text: '*', style: TextStyle(color: Colors.orange))
-                    ])),
-              )),
+                    child: RichText(
+                        text: const TextSpan(
+                            text: 'คำนำหน้าชื่อ (ภาษาอังกฤษ)',
+                            children: [
+                          TextSpan(
+                              text: '*', style: TextStyle(color: Colors.orange))
+                        ])),
+                  )),
               value: ctrl.engTitle,
               onChanged: (value) => ctrl.setEngTitleName(value),
               onTap: () => ctrl.doThSurnameIsNull(),
@@ -218,7 +219,9 @@ class HomeView extends StatelessWidget {
                   text:
                       'ข้อมูลสำหรับรับ Username, Password และเอกสารจากทางบริษัทฯ',
                   style: TextStyle(
-                      color: Colors.blue, fontWeight: FontWeight.bold, fontSize: 20)));
+                      color: Colors.blue,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 20)));
           final nextButton = ElevatedButton(
             style: ButtonStyle(
               overlayColor: MaterialStateProperty.all(Colors.transparent),
@@ -284,10 +287,16 @@ class HomeView extends StatelessWidget {
                               width: width * .8,
                               child: usernamePasswordSubject),
                           // const SizedBox(height: 20),
-                          SizedBox(width: width * .8, child: const VerifyEmail()),
+                          SizedBox(width: width * .8, child: emailTextField),
                           SizedBox(width: width * .8, child: mobileTextField),
                           SizedBox(width: width * .8, child: agreement),
-                          (ctrl.agreementError!) ? Text(ctrl.agreementErrorMessage!, style: const TextStyle(color: Colors.red, fontSize: 12),) : const Row(),
+                          (ctrl.agreementError!)
+                              ? Text(
+                                  ctrl.agreementErrorMessage!,
+                                  style: const TextStyle(
+                                      color: Colors.red, fontSize: 12),
+                                )
+                              : const Row(),
                           SizedBox(width: width * .3, child: policyAgreement),
                           Row(
                               mainAxisAlignment: MainAxisAlignment.end,
@@ -305,19 +314,28 @@ class VerifyEmail extends GetView<VerifyEmailController> {
   @override
   Widget build(BuildContext context) {
     return TextField(
-            decoration: InputDecoration(
-                prefix: const Icon(Icons.email),
-                label: FittedBox(
-                    child: RichText(
-                        text: const TextSpan(text: 'อีเมล', children: [
-                  TextSpan(text: '*', style: TextStyle(color: Colors.red))
-                ]))),
-                errorText: controller.emailErrorMessage),
-            onChanged: null,
-            onTap: null,
-            inputFormatters: [
-              FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z0-9@.]'))
-            ],
-          );
+      decoration: InputDecoration(
+          prefix: const Icon(Icons.email),
+          label: FittedBox(
+              child: RichText(
+                  text: const TextSpan(text: 'อีเมล', children: [
+            TextSpan(text: '*', style: TextStyle(color: Colors.red))
+          ]))),
+          errorText: controller.emailErrorMessage),
+      onChanged: (value) => controller.verifyEmailOnChanged(value),
+      onTap: null,
+      // onSubmitted: (value) => controller.verifyEmailByHttpGet(value),
+      inputFormatters: [
+        FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z0-9@.]'))
+      ],
+    );
+    // onEmpty: const Text('empty'),
+    // onError: (error) => Text('error: $error'));
+    // onLoading: const SizedBox(
+    //     width: 30,
+    //     height: 30,
+    //     child: FittedBox(
+    //         alignment: Alignment.centerLeft,
+    //         child: CircularProgressIndicator())));
   }
 }
