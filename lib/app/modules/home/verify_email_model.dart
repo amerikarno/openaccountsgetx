@@ -6,7 +6,8 @@ class VerifyEmailModel {
   String? registeredEmail;
   String? registeredPage;
 
-  VerifyEmailModel verifyFromJson(String str) => VerifyEmailModel.fromJson(jsonDecode(str));
+  VerifyEmailModel verifyFromJson(String str) =>
+      VerifyEmailModel.fromJson(jsonDecode(str));
   String verifyToJson(VerifyEmailModel data) => json.encode(data.toString());
 
   VerifyEmailModel(
@@ -22,5 +23,5 @@ class VerifyEmailModel {
           registeredEmail: json['registeredEmail'] ?? '',
           registeredPage: json['registeredPage'] ?? '');
 
-          static VerifyEmailModel dataFromJson(data) => VerifyEmailModel.fromJson(data);
+  static VerifyEmailModel dataFromJson(data) => VerifyEmailModel.fromJson(data);
 }

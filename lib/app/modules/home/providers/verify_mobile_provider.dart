@@ -11,11 +11,11 @@ class VerifyMobileProvider extends GetConnect {
         return map.map((item) => VerifyMobile.fromJson(item)).toList();
       }
     };
-    httpClient.baseUrl = 'http://3.1.42.96:1323';
+    httpClient.baseUrl = 'http://127.0.0.1:1323/';
   }
 
-  Future<VerifyMobile?> getVerifyMobile(int id) async {
-    final response = await get('verify/mobile/$id');
+  Future<VerifyMobile?> getVerifyMobile(String? mobile) async {
+    final response = await get('verify/mobile/$mobile');
     return response.body;
   }
 }

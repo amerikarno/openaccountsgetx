@@ -18,7 +18,7 @@ class IdcardView extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(
           title: title,
-          titleSpacing: width*.1,
+          titleSpacing: width * .1,
           centerTitle: false,
         ),
         body: GetBuilder<IdcardController>(builder: (ctrl) {
@@ -54,6 +54,7 @@ class IdcardView extends StatelessWidget {
                       style: TextStyle(color: Colors.black))),
               value: ctrl.monthpicker,
               onChanged: (value) => ctrl.setMonthPicker(value),
+              onTap: () => ctrl.isDateOfBirthIsNull(),
               items: [
                 for (var data in ctrl.monthItems)
                   DropdownMenuItem(value: data, child: Text(data))
@@ -68,6 +69,7 @@ class IdcardView extends StatelessWidget {
                       style: TextStyle(color: Colors.black))),
               value: ctrl.yearpicker,
               onChanged: (value) => ctrl.setYearPicker(value),
+              onTap: () => ctrl.isMonthOfBirthIsNull(),
               items: [
                 for (var data in ctrl.yearItems!)
                   DropdownMenuItem(value: data, child: Text(data))
@@ -130,6 +132,9 @@ class IdcardView extends StatelessWidget {
 
           final cidTextField = TextField(
               decoration: InputDecoration(
+                  suffix: (ctrl.citizenIDValidate)
+                      ? const Icon(Icons.check_circle, color: Colors.green)
+                      : null,
                   label: FittedBox(
                       child: RichText(
                           text: const TextSpan(
@@ -139,6 +144,7 @@ class IdcardView extends StatelessWidget {
                       ]))),
                   errorText: ctrl.citizenIDErrorMassage),
               onChanged: (value) => ctrl.setCitizenID(value),
+              onTap: () => ctrl.isMarriageStatusIsNull(),
               inputFormatters: [
                 FilteringTextInputFormatter.allow(RegExp(r'[0-9]'))
               ]);
@@ -171,12 +177,17 @@ class IdcardView extends StatelessWidget {
                               children: [
                         TextSpan(text: '*', style: TextStyle(color: Colors.red))
                       ]))),
-                  errorText: ctrl.citizenIDErrorMassage),
-              onChanged: (value) => ctrl.setCitizenID(value),
+                  errorText: ctrl.laserPrefixErrorMassage),
+              onChanged: (value) => ctrl.setLaserPrefix(value),
+              onTap: () => ctrl.isCitizendIDIsNull(),
               inputFormatters: [
-                FilteringTextInputFormatter.allow(RegExp(r'[0-9]'))
+                FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z]'))
               ]);
-          const laserDashText = FittedBox(child: Text('-', textAlign: TextAlign.center,));
+          const laserDashText = FittedBox(
+              child: Text(
+            '-',
+            textAlign: TextAlign.center,
+          ));
           final laserSuffixTextField = TextField(
               decoration: InputDecoration(
                   label: FittedBox(
@@ -186,8 +197,9 @@ class IdcardView extends StatelessWidget {
                               children: [
                         TextSpan(text: '*', style: TextStyle(color: Colors.red))
                       ]))),
-                  errorText: ctrl.citizenIDErrorMassage),
-              onChanged: (value) => ctrl.setCitizenID(value),
+                  errorText: ctrl.laserSuffixErrorMassage),
+              onChanged: (value) => ctrl.setLaserSuffix(value),
+              onTap: () => ctrl.islaserPrefixIsNull(),
               inputFormatters: [
                 FilteringTextInputFormatter.allow(RegExp(r'[0-9]'))
               ]);
@@ -201,8 +213,13 @@ class IdcardView extends StatelessWidget {
             onPressed: () => ctrl.previousButtonOnPress(),
             child: const Row(
               children: [
-                Icon(Icons.keyboard_backspace, size: 30, color: Colors.black,),
-                Text('ย้อนกลับ', style: TextStyle(fontSize: 10, color: Colors.black))
+                Icon(
+                  Icons.keyboard_backspace,
+                  size: 30,
+                  color: Colors.black,
+                ),
+                Text('ย้อนกลับ',
+                    style: TextStyle(fontSize: 10, color: Colors.black))
               ],
             ),
           );
@@ -216,8 +233,15 @@ class IdcardView extends StatelessWidget {
             onPressed: () => ctrl.nextButtonOnPress(),
             child: const Row(
               children: [
-                Text('ถัดไป', style: TextStyle(fontSize: 10, color: Colors.black),),
-                Icon(Icons.arrow_circle_right, size: 45, color: Colors.orange ,)
+                Text(
+                  'ถัดไป',
+                  style: TextStyle(fontSize: 10, color: Colors.black),
+                ),
+                Icon(
+                  Icons.arrow_circle_right,
+                  size: 45,
+                  color: Colors.orange,
+                )
               ],
             ),
           );
@@ -255,18 +279,31 @@ class IdcardView extends StatelessWidget {
                                 color: Colors.white,
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(5))),
-                            child: Row(children: [
-                              SizedBox(width: width * .1, child: statusText),
-                              SizedBox(width: width * .3),
-                              SizedBox(
-                                  width: width * .115, child: singleListTile),
-                              SizedBox(width: width * .02),
-                              SizedBox(
-                                  width: width * .13, child: marriedListTile),
-                              SizedBox(width: width * .02),
-                              SizedBox(
-                                  width: width * .115,
-                                  child: disvorcedListTile),
+                            child: Column(children: [
+                              Row(children: [
+                                SizedBox(width: width * .1, child: statusText),
+                                SizedBox(width: width * .3),
+                                SizedBox(
+                                    width: width * .115, child: singleListTile),
+                                SizedBox(width: width * .02),
+                                SizedBox(
+                                    width: width * .13, child: marriedListTile),
+                                SizedBox(width: width * .02),
+                                SizedBox(
+                                    width: width * .115,
+                                    child: disvorcedListTile),
+                              ]),
+                              (ctrl.merriageStatusErrorMessage != null)
+                                  ? Row(
+                                      mainAxisAlignment: MainAxisAlignment.end,
+                                      children: [
+                                          Text(
+                                              ctrl.merriageStatusErrorMessage ??
+                                                  '',
+                                              style: const TextStyle(
+                                                  color: Colors.red))
+                                        ])
+                                  : const Row(),
                             ])),
                         const SizedBox(height: 20),
                         Container(
@@ -295,18 +332,33 @@ class IdcardView extends StatelessWidget {
                               Column(children: [
                                 SizedBox(
                                     width: width * .4, child: laserCodeText),
-                                    Row(children: [
-                                      SizedBox(width: width*.11,child: laserPrefixTextField),
-                                      SizedBox(width: width*.01,child: laserDashText),
-                                      SizedBox(width: width*.28,child: laserSuffixTextField),
-                                    ],)
+                                Row(
+                                  children: [
+                                    SizedBox(
+                                        width: width * .11,
+                                        child: laserPrefixTextField),
+                                    SizedBox(
+                                        width: width * .01,
+                                        child: laserDashText),
+                                    SizedBox(
+                                        width: width * .28,
+                                        child: laserSuffixTextField),
+                                  ],
+                                )
                               ])
                             ])),
-                            const SizedBox(height: 10),
-                            const SizedBox(height: 10),
-                        Row(children: [previousButton,SizedBox(width: width*.45,), nextButton],)
-                      ]))
-                      );
+                        const SizedBox(height: 10),
+                        const SizedBox(height: 10),
+                        Row(
+                          children: [
+                            previousButton,
+                            SizedBox(
+                              width: width * .45,
+                            ),
+                            nextButton
+                          ],
+                        )
+                      ])));
         }));
   }
 }
