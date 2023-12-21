@@ -251,7 +251,7 @@ class IdcardController extends GetxController {
     islaserSuffixIsNull();
 
     var id =
-        await Get.find<VerifyIdcardProvider>().getVerifyIdcard(citizenID ?? '');
+        await Get.find<VerifyIdcardProvider>().getVerifyIdcard(citizenID);
     isRegisteredID = id?.isRegisteredIDCard ?? false;
 
     if (isRegisteredID) {

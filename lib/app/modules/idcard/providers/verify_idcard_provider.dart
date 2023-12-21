@@ -14,14 +14,14 @@ class VerifyIdcardProvider extends GetConnect {
     httpClient.baseUrl = 'http://localhost:1323/';
   }
 
-  Future<VerifyIdcard?> getVerifyIdcard(String id) async {
-    final response = await get('verifyidcard/$id');
+  Future<VerifyIdcard?> getVerifyIdcard(String? id) async {
+    final response = await get('verify/idcard/$id');
     return response.body;
   }
 
   Future<Response<VerifyIdcard>> postVerifyIdcard(
           VerifyIdcard verifyidcard) async =>
-      await post('verifyidcard', verifyidcard);
-  Future<Response> deleteVerifyIdcard(String id) async =>
-      await delete('verifyidcard/$id');
+      await post('verify/idcard', verifyidcard);
+  Future<Response> deleteVerifyIdcard(String? id) async =>
+      await delete('verify/idcard/$id');
 }
