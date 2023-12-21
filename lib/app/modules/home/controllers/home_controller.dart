@@ -246,6 +246,7 @@ class HomeController extends GetxController with StateMixin {
     } else {
       agreement = value;
       agreementError = false;
+      agreementErrorMessage = null;
     }
     update();
   }
@@ -253,6 +254,7 @@ class HomeController extends GetxController with StateMixin {
   void popupAgreement() {
     agreement = true;
     agreementError = false;
+    agreementErrorMessage = null;
     update();
   }
 
@@ -270,7 +272,19 @@ class HomeController extends GetxController with StateMixin {
     update();
   }
 
+  bool nextButtonLoading = false;
+  void startLoading() {
+    nextButtonLoading = true;
+    update();
+  }
+
+  void endLoading() {
+    nextButtonLoading = false;
+    update();
+  }
+
   void nextButtonOnPress() async {
+    startLoading();
     if (thTitle == null) {
       thTitleErrorMessage = 'กรุณาใส่คำนำหน้าชื่อ (ภาษาไทย)';
     }
@@ -307,20 +321,32 @@ class HomeController extends GetxController with StateMixin {
     isRegisteredMobile = m?.isRegisteredMobileNo ?? false;
     if (isRegisteredEmail || isRegisteredMobile) {
       Get.toNamed('/verify-email-mobile');
+      endLoading();
       return;
     }
-    if (thTitleErrorMessage == null ||
-        thNameErrorMessage == null ||
-        thSurnameErrorMessage == null ||
-        engTitleErrorMessage == null ||
-        engNameErrorMessage == null ||
-        engSurnameErrorMessage == null ||
-        emailErrorMessage == null ||
-        mobileErrorMessage == null ||
+    // log('thtitle: $thTitleErrorMessage');
+    // log('thname: $thNameErrorMessage');
+    // log('thsurname: $thSurnameErrorMessage');
+    // log('entitle: $engTitleErrorMessage');
+    // log('enname: $engNameErrorMessage');
+    // log('ensurname: $engSurnameErrorMessage'); //
+    // log('email: $emailErrorMessage');
+    // log('mobile: $mobileErrorMessage');
+    // log('agreement: $agreementErrorMessage');
+    if (thTitleErrorMessage == null &&
+        thNameErrorMessage == null &&
+        thSurnameErrorMessage == null &&
+        engTitleErrorMessage == null &&
+        engNameErrorMessage == null &&
+        engSurnameErrorMessage == null &&
+        emailErrorMessage == null &&
+        mobileErrorMessage == null &&
         agreementErrorMessage == null) {
       Get.toNamed("/idcard");
+      endLoading();
       return;
     }
+    endLoading();
     // update();
   }
 }

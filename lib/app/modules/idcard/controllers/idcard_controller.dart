@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:get/get.dart';
 import 'package:openaccountsgetx/app/data/idcard.dart';
+import 'package:openaccountsgetx/app/modules/idcard/providers/verify_idcard_provider.dart';
 import 'package:openaccountsgetx/app/modules/idcard/scripts/citizen_id_checker.dart';
 import 'package:time_machine/time_machine.dart';
 
@@ -238,7 +239,9 @@ class IdcardController extends GetxController {
     update();
   }
 
-  void nextButtonOnPress() {
+  bool isRegisteredID = false;
+
+  void nextButtonOnPress() async {
     isDateOfBirthIsNull();
     isMonthOfBirthIsNull();
     isYearOfBirthIsNull();
@@ -246,6 +249,17 @@ class IdcardController extends GetxController {
     isCitizendIDIsNull();
     islaserPrefixIsNull();
     islaserSuffixIsNull();
+
+    var id =
+        await Get.find<VerifyIdcardProvider>().getVerifyIdcard(citizenID ?? '');
+    isRegisteredID = id?.isRegisteredIDCard ?? false;
+
+    if (isRegisteredID) {
+      Get.toNamed('/verify-email-mobile');
+      // endLoading();
+      return;
+    }
+
     if (datepickerErrorMassage == null &&
         monthpickerErrorMassage == null &&
         yearpickerErrorMassage == null &&
@@ -254,7 +268,9 @@ class IdcardController extends GetxController {
         laserPrefixErrorMassage == null &&
         laserSuffixErrorMassage == null) {
       Get.toNamed("/information");
+      return;
     }
-    update();
+    return;
+    // update();
   }
 }

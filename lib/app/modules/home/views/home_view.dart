@@ -215,29 +215,31 @@ class HomeView extends StatelessWidget {
                 fontSize: 20)));
   }
 
-  ElevatedButton nextElevatedButton(HomeController ctrl) {
-    return ElevatedButton(
-      style: ButtonStyle(
-        overlayColor: MaterialStateProperty.all(Colors.transparent),
-        backgroundColor: MaterialStateProperty.all(Colors.transparent),
-        shadowColor: MaterialStateProperty.all(Colors.transparent),
-        surfaceTintColor: MaterialStateProperty.all(Colors.transparent),
-      ),
-      onPressed: () => ctrl.nextButtonOnPress(),
-      child: const Row(
-        children: [
-          Text(
-            'ถัดไป',
-            style: TextStyle(fontSize: 10),
-          ),
-          Icon(
-            Icons.arrow_circle_right,
-            size: 40,
-            color: Colors.orange,
-          )
-        ],
-      ),
-    );
+  Widget nextElevatedButton(HomeController ctrl) {
+    return (ctrl.nextButtonLoading)
+        ? const Text('loading...')
+        : ElevatedButton(
+            style: ButtonStyle(
+              overlayColor: MaterialStateProperty.all(Colors.transparent),
+              backgroundColor: MaterialStateProperty.all(Colors.transparent),
+              shadowColor: MaterialStateProperty.all(Colors.transparent),
+              surfaceTintColor: MaterialStateProperty.all(Colors.transparent),
+            ),
+            onPressed: () => ctrl.nextButtonOnPress(),
+            child: const Row(
+              children: [
+                Text(
+                  'ถัดไป',
+                  style: TextStyle(fontSize: 10),
+                ),
+                Icon(
+                  Icons.arrow_circle_right,
+                  size: 40,
+                  color: Colors.orange,
+                )
+              ],
+            ),
+          );
   }
 
   TextButton policyAgreementTextButton(
