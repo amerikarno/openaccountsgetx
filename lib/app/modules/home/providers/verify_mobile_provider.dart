@@ -15,7 +15,13 @@ class VerifyMobileProvider extends GetConnect {
   }
 
   Future<VerifyMobile?> getVerifyMobile(String? mobile) async {
-    final response = await get('verify/mobile/$mobile');
+    const token = 'fda-authen-key';
+    final response = await get('verify/mobile/$mobile', headers: {
+      'Content-Type': 'application/json; charset=utf-8',
+      'Authorization': 'Bearer $token',
+      'Accept': '*/*',
+      'Accept-Encoding': 'gzip, deflate, br',
+    });
     return response.body;
   }
 }

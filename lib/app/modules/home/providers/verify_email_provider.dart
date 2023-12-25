@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:get/get.dart';
 import 'package:openaccountsgetx/app/modules/home/verify_email_model.dart';
 
@@ -13,10 +11,17 @@ class VerifyEmailProvider extends GetConnect {
       }
     };
     httpClient.baseUrl = 'http://127.0.0.1:1323/';
+    httpClient.maxAuthRetries = 3;
   }
 
   Future<VerifyEmailModel> getVerifyEmail(String? email) async {
-    final resp = await get('verify/email/$email');
+    const token = 'fda-authen-key';
+    final resp = await get('verify/email/$email', headers: {
+      'Content-Type': 'application/json; charset=utf-8',
+      'Authorization': 'Bearer $token',
+      'Accept': '*/*',
+      'Accept-Encoding': 'gzip, deflate, br',
+    });
     return resp.body;
   }
 }
