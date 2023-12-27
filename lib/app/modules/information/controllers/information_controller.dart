@@ -641,6 +641,8 @@ class InformationController extends GetxController {
     firstBankAccount = value;
     if (firstBankAccount == null) {
       firstBankAccountErrorMessage = 'กรุณากรอกเลขบัญชี';
+    } else {
+      firstBankAccountErrorMessage = null;
     }
     update();
   }
@@ -690,6 +692,8 @@ class InformationController extends GetxController {
     secondBankAccount = value;
     if (secondBankAccount == null) {
       secondBankAccountErrorMessage = 'กรุณากรอกเลขบัญชี';
+    } else {
+      secondBankAccountErrorMessage = null;
     }
     update();
   }
@@ -837,35 +841,30 @@ class InformationController extends GetxController {
         registeredProvinceNameErrorMessage == null &&
         registeredCountryErrorMessage == null &&
         registeredZipCodeErrorMessage == null &&
-        
         currentHouseNumberErrorMessage == null &&
         currentSubDistrictNameErrorMessage == null &&
         currentDistrictNameErrorMessage == null &&
         currentProvinceNameErrorMessage == null &&
         currentCountryErrorMessage == null &&
         currentZipCodeErrorMessage == null &&
-
         officeHouseNumberErrorMessage == null &&
         officeSubDistrictNameErrorMessage == null &&
         officeDistrictNameErrorMessage == null &&
         officeProvinceNameErrorMessage == null &&
         officeCountryErrorMessage == null &&
         officeZipCodeErrorMessage == null &&
-
         sourceOfIncomeErrorMessage == null &&
         occupationErrorMessage == null &&
         officeNameErrorMessage == null &&
         typeOfBusinessErrorMessage == null &&
         positionErrorMessage == null &&
         salaryErrorMessage == null &&
-        
         firstBankNameErrorMessage == null &&
         firstBankBranchErrorMessage == null &&
         firstBankAccountErrorMessage == null &&
         secondBankNameErrorMessage == null &&
         secondBankBranchErrorMessage == null &&
         secondBankAccountErrorMessage == null &&
-
         (shortTermInvestment ||
             longTermInvestment ||
             taxesReduceInvestment ||

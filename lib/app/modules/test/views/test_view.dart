@@ -955,11 +955,11 @@ class TestView extends StatelessWidget {
             backStrokeWidth: 10,
             backColor: Colors.grey,
             maxValue: 46,
-            // valueNotifier: ValueNotifier(10),
+            // valueNotifier: ValueNotifier(notifier),
             mergeMode: true,
             onGetText: (value) {
-              log('on get text: $value, ${ctrl.suiteSumPoints}');
               value = ctrl.suiteSumPoints;
+              log('on get text: $value, ${ctrl.suiteSumPoints}');
               return Text(
                 '${value.toInt()}',
                 style: const TextStyle(
@@ -1191,11 +1191,32 @@ class TestView extends StatelessWidget {
               checkColor: Colors.white,
               activeColor: Colors.orange,
               side: const BorderSide(color: Colors.grey),
-              subtitle: const Text(buyAndSaleCheckboxDetail, maxLines: 5, style: TextStyle(fontSize: 12)),
+              subtitle: const Text(buyAndSaleCheckboxDetail,
+                  maxLines: 5, style: TextStyle(fontSize: 12)),
               controlAffinity: ListTileControlAffinity.leading,
               value: ctrl.buyAndSaleChecklist,
               onChanged: (value) => ctrl.checkbuyAndSaleCheckList(value));
-
+          final previousButton = ElevatedButton(
+            style: ButtonStyle(
+              overlayColor: MaterialStateProperty.all(Colors.transparent),
+              backgroundColor: MaterialStateProperty.all(Colors.transparent),
+              shadowColor: MaterialStateProperty.all(Colors.transparent),
+              surfaceTintColor: MaterialStateProperty.all(Colors.transparent),
+            ),
+            onPressed: () => ctrl.previousButtonOnPress(),
+            child: const Row(
+              children: [
+                Icon(
+                  Icons.keyboard_backspace,
+                  size: 30,
+                  color: Colors.black,
+                ),
+                Text('ย้อนกลับ',
+                    style: TextStyle(fontSize: 10, color: Colors.black))
+              ],
+            ),
+          );
+          final nextButton = nextButtonInformation(ctrl);
           return Container(
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(5),
@@ -1214,17 +1235,30 @@ class TestView extends StatelessWidget {
                           decoration: BoxDecoration(
                               color: Colors.white,
                               borderRadius: BorderRadius.circular(10)),
-                          child: Row(
+                          child: Column(
                             children: [
-                              SizedBox(
-                                  width: width * .3,
-                                  child: selectSuitableTestDropDown),
-                              SizedBox(
-                                width: width * .02,
+                              Row(
+                                children: [
+                                  SizedBox(
+                                      width: width * .3,
+                                      child: selectSuitableTestDropDown),
+                                  SizedBox(
+                                    width: width * .02,
+                                  ),
+                                  SizedBox(
+                                      width: width * .3,
+                                      child: selectSuitableTestTextButton)
+                                ],
                               ),
-                              SizedBox(
-                                  width: width * .3,
-                                  child: selectSuitableTestTextButton)
+                              // (ctrl.suiteSumPoints == 0.0)
+                              //     ? Row(
+                              //         children: [
+                              //           Text(
+                              //               ctrl.selectSuitableTestErrorMessage ??
+                              //                   '')
+                              //         ],
+                              //       )
+                              //     : const SizedBox.shrink(),
                             ],
                           ),
                         ),
@@ -1362,6 +1396,14 @@ class TestView extends StatelessWidget {
                                         child: fatcaNoListTile)
                                   ],
                                 ),
+                                (ctrl.fatcaEnumGroupValueErrorMessage == null)
+                                    ? const SizedBox.shrink()
+                                    : Text(
+                                        ctrl.fatcaEnumGroupValueErrorMessage ??
+                                            '',
+                                        style: const TextStyle(
+                                            color: Colors.redAccent),
+                                      ),
                                 (ctrl.fatcaEnumGroupValue == FatcaEnum.yes)
                                     ? Column(
                                         children: [
@@ -1400,7 +1442,7 @@ class TestView extends StatelessWidget {
                                           const SizedBox(height: 10),
                                         ],
                                       )
-                                    : const Column(),
+                                    : const SizedBox.shrink(),
                                 const SizedBox(height: 10),
                                 fatcaPostfixText,
                               ]),
@@ -1414,23 +1456,40 @@ class TestView extends StatelessWidget {
                           decoration: BoxDecoration(
                               color: Colors.white,
                               borderRadius: BorderRadius.circular(10)),
-                          child: Row(
+                          child: Column(
                             children: [
-                              SizedBox(
-                                  width: width * .4,
-                                  child: knowledgeTestSubjectText),
-                              SizedBox(
-                                width: width * .11,
+                              Row(
+                                children: [
+                                  SizedBox(
+                                      width: width * .4,
+                                      child: knowledgeTestSubjectText),
+                                  SizedBox(
+                                    width: width * .11,
+                                  ),
+                                  SizedBox(
+                                      width: width * .11,
+                                      child: knowledgeTestYesListTile),
+                                  SizedBox(
+                                    width: width * .03,
+                                  ),
+                                  SizedBox(
+                                      width: width * .1,
+                                      child: knowledgeTestNoListTile)
+                                ],
                               ),
-                              SizedBox(
-                                  width: width * .11,
-                                  child: knowledgeTestYesListTile),
-                              SizedBox(
-                                width: width * .03,
-                              ),
-                              SizedBox(
-                                  width: width * .1,
-                                  child: knowledgeTestNoListTile)
+                              (ctrl.knowledgeTestEnumGroupValueErrorMessage ==
+                                      null)
+                                  ? const SizedBox.shrink()
+                                  : Row(
+                                      children: [
+                                        Text(
+                                          ctrl.knowledgeTestEnumGroupValueErrorMessage ??
+                                              '',
+                                          style: const TextStyle(
+                                              color: Colors.redAccent),
+                                        )
+                                      ],
+                                    ),
                             ],
                           ),
                         ),
@@ -1446,11 +1505,51 @@ class TestView extends StatelessWidget {
                               children: [
                                 buyAndSaleAgreement,
                                 buyAndSaleCheckbox,
+                                (ctrl.buyAndSaleChecklistErrorMessage == null)
+                                    ? const SizedBox.shrink()
+                                    : Text(
+                                        ctrl.buyAndSaleChecklistErrorMessage ??
+                                            '',
+                                        style: const TextStyle(
+                                            color: Colors.redAccent),
+                                      ),
                               ],
                             )),
                         const SizedBox(height: 10),
                         const SizedBox(height: 10),
+                        Row(children: [
+                          previousButton,
+                          SizedBox(width: width * .5),
+                          nextButton
+                        ]),
+                        const SizedBox(height: 10),
+                        const SizedBox(height: 10),
                       ])));
         }));
+  }
+
+  ElevatedButton nextButtonInformation(TestController ctrl) {
+    return ElevatedButton(
+      style: ButtonStyle(
+        overlayColor: MaterialStateProperty.all(Colors.transparent),
+        backgroundColor: MaterialStateProperty.all(Colors.transparent),
+        shadowColor: MaterialStateProperty.all(Colors.transparent),
+        surfaceTintColor: MaterialStateProperty.all(Colors.transparent),
+      ),
+      onPressed: () => ctrl.nextButtonOnPress(),
+      child: const Row(
+        children: [
+          Text(
+            'ถัดไป',
+            style: TextStyle(fontSize: 10, color: Colors.black),
+          ),
+          Icon(
+            Icons.arrow_circle_right,
+            size: 45,
+            color: Colors.orange,
+          )
+        ],
+      ),
+    );
   }
 }

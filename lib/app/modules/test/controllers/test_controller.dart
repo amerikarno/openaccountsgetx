@@ -27,6 +27,7 @@ class TestController extends GetxController {
   SuiteAnswerEnum? tenthSuiteAnswerEnumEnumGroupValue;
 
   FatcaEnum? fatcaEnumGroupValue;
+  String? fatcaEnumGroupValueErrorMessage;
   bool? americanChecklist = false;
   bool? greenCardCheckList = false;
   bool? addressInAmericaCheckList = false;
@@ -37,6 +38,7 @@ class TestController extends GetxController {
   bool? authorityInAmericaCheckList = false;
 
   KnowledgeTestEnum? knowledgeTestEnumGroupValue;
+  String? knowledgeTestEnumGroupValueErrorMessage;
 
   KnowledgeAnswerEnum? firstknowledgeAnswerEnumEnumGroupValue;
   KnowledgeAnswerEnum? secondknowledgeAnswerEnumEnumGroupValue;
@@ -86,7 +88,8 @@ class TestController extends GetxController {
   bool hintForteenthKnowledgeQuestion = false;
   bool hintFifteenthKnowledgeQuestion = false;
 
-  bool? buyAndSaleChecklist = false;
+  bool buyAndSaleChecklist = false;
+  String? buyAndSaleChecklistErrorMessage;
 
   void setselectSuitableTestLists(value) {
     selectSuitableTest = value;
@@ -164,6 +167,9 @@ class TestController extends GetxController {
       suiteSumPoints = 40;
       investerType = selectSuitableTestLists[4];
       digitatAssetInvestmentRatios = '<30%';
+    }
+    if (suiteSumPoints > 0) {
+      selectSuitableTestErrorMessage = null;
     }
     log('sum points: $suiteSumPoints');
     update();
@@ -258,6 +264,7 @@ class TestController extends GetxController {
               convertAnserEnumToInt(ninthSuiteAnswerEnumEnumGroupValue) +
               convertAnserEnumToInt(tenthSuiteAnswerEnumEnumGroupValue);
       isSelectSuitableTest = false;
+      selectSuitableTestErrorMessage = null;
       log('Suitable Test Total: $suiteSumPoints');
     }
     update();
@@ -315,6 +322,11 @@ class TestController extends GetxController {
 
   void setfatca(value) {
     fatcaEnumGroupValue = value;
+    if (value == null) {
+      fatcaEnumGroupValueErrorMessage = 'กรุณาเลือก';
+    } else {
+      fatcaEnumGroupValueErrorMessage = null;
+    }
     update();
   }
 
@@ -397,6 +409,11 @@ class TestController extends GetxController {
 
   void setknowledgeTest(value) {
     knowledgeTestEnumGroupValue = value;
+    if (value == null) {
+      knowledgeTestEnumGroupValueErrorMessage = 'กรุณาเลือก';
+    } else {
+      knowledgeTestEnumGroupValueErrorMessage = null;
+    }
     update();
   }
 
@@ -654,38 +671,72 @@ $forteenthknowledgeAnswerEnumEnumGroupValue,
 
   void checkbuyAndSaleCheckList(value) {
     buyAndSaleChecklist = value;
-
-    Get.dialog(Dialog(
-      // titlePadding: const EdgeInsets.fromLTRB(0, 15, 0, 15),
-      // titleStyle: const TextStyle(fontSize: 15),
-      child: Container(
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10), color: Colors.white),
-        padding: const EdgeInsets.fromLTRB(10, 15, 10, 15),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const Text(
-              'ข้อตกลงและเงื่อนไขสัญญาแต่งตั้งตัวแทนนายหน้าซื้อขายหลักทรัพย์',
-              style: TextStyle(fontWeight: FontWeight.bold),
-            ),
-            const SizedBox(height: 10),
-            const Text(
-                'เนื้อหาของข้อตกลงและเงื่อนไขสัญญาแต่งตั้งตัวแทนนายหน้าซื้อขายหลักทรัพย์'),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              crossAxisAlignment: CrossAxisAlignment.end,
+    if (value == null) {
+      buyAndSaleChecklistErrorMessage = 'กรุณาเลือก';
+    } else {
+      buyAndSaleChecklistErrorMessage = null;
+      if (buyAndSaleChecklist) {
+        Get.dialog(Dialog(
+          // titlePadding: const EdgeInsets.fromLTRB(0, 15, 0, 15),
+          // titleStyle: const TextStyle(fontSize: 15),
+          child: Container(
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10), color: Colors.white),
+            padding: const EdgeInsets.fromLTRB(10, 15, 10, 15),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                ElevatedButton(
-                    onPressed: () => Get.back(), child: const Text('ตกลง')),
+                const Text(
+                  'ข้อตกลงและเงื่อนไขสัญญาแต่งตั้งตัวแทนนายหน้าซื้อขายหลักทรัพย์',
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
+                const SizedBox(height: 10),
+                const Text(
+                    'เนื้อหาของข้อตกลงและเงื่อนไขสัญญาแต่งตั้งตัวแทนนายหน้าซื้อขายหลักทรัพย์'),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    ElevatedButton(
+                        onPressed: () => Get.back(), child: const Text('ตกลง')),
+                  ],
+                )
               ],
-            )
-          ],
-        ),
-      ),
-    ));
+            ),
+          ),
+        ));
+      } else {
+        buyAndSaleChecklistErrorMessage = 'กรุณากดยอมรับ';
+      }
+    }
+    update();
+  }
 
+  void previousButtonOnPress() {
+    Get.toNamed("/information");
+    update();
+  }
+
+  void nextButtonOnPress() {
+    if (suiteSumPoints == 0) {
+      selectSuitableTestErrorMessage = 'กรุณาเลือกระดับความเสี่ยง';
+    }
+    if (fatcaEnumGroupValue == null) {
+      fatcaEnumGroupValueErrorMessage = 'กรุณาเลือก';
+    }
+    if (knowledgeTestEnumGroupValue == null) {
+      knowledgeTestEnumGroupValueErrorMessage = 'กรุณาเลือก';
+    }
+    if (!buyAndSaleChecklist) {
+      buyAndSaleChecklistErrorMessage = 'กรุณากดยอมรับ';
+    }
+    if (selectSuitableTestErrorMessage == null &&
+        fatcaEnumGroupValueErrorMessage == null &&
+        knowledgeTestEnumGroupValueErrorMessage == null &&
+        buyAndSaleChecklistErrorMessage == null) {
+      Get.toNamed("/verify-email-mobile");
+    }
     update();
   }
 }
