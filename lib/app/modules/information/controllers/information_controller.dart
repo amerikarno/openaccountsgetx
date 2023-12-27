@@ -87,7 +87,11 @@ class InformationController extends GetxController {
   String? officeZipCodeErrorMessage;
   String? officeCountryErrorMessage;
 
+  bool isSelectedCurrentAddress = false;
+  bool isSelectedOfficeAddress = false;
+
   CurrentAddressEnum? currentAddressEnumGroupValue;
+  String? currentAddressEnumGroupValueErrorMessage;
 
   String? sourceOfIncome;
   String? sourceOfIncomeErrorMessage;
@@ -111,12 +115,15 @@ class InformationController extends GetxController {
   String? salaryErrorMessage;
   List<String> salaryItems = salaryLists;
 
-  OfficeAddressEnum? officeAddressEnumGroupValue;
+  String? investmentErrorMessage;
 
-  bool? shortTermInvestment = false;
-  bool? longTermInvestment = false;
-  bool? taxesReduceInvestment = false;
-  bool? retirementInvestment = false;
+  OfficeAddressEnum? officeAddressEnumGroupValue;
+  String? officeAddressEnumGroupValueErrorMessage;
+
+  bool shortTermInvestment = false;
+  bool longTermInvestment = false;
+  bool taxesReduceInvestment = false;
+  bool retirementInvestment = false;
 
   String? firstBankName;
   String? firstBankNameErrorMessage;
@@ -129,10 +136,10 @@ class InformationController extends GetxController {
   String? firstBankAccount;
   String? firstBankAccountErrorMessage;
 
-
   SecondBookBankAddressEnum? secondBookBankAddressEnumGroupValue;
+  String? secondBookBankAddressEnumGroupValueErrorMessage;
 
-String? secondBankName;
+  String? secondBankName;
   String? secondBankNameErrorMessage;
   List<String> secondBankNameItems = bankNameLists;
 
@@ -145,8 +152,10 @@ String? secondBankName;
 
   void rhOnChange(value) {
     registeredHouseNumber = value;
-    if (registeredHouseNumberTextController == null) {
+    if (registeredHouseNumber == null || registeredHouseNumber == '') {
       registeredHouseNumberErrorMessage = 'กรุณากรอกบ้านเลขที่';
+    } else {
+      registeredHouseNumberErrorMessage = null;
     }
     log('$registeredHouseNumber');
     update();
@@ -174,40 +183,50 @@ String? secondBankName;
 
   void rsdnOnChange(value) {
     registeredSubDistrictName = value;
-    if (registeredSubDistrictName == null) {
+    if (registeredSubDistrictName == null || registeredSubDistrictName == '') {
       registeredSubDistrictNameErrorMessage = 'กรุณากรอกแขวงตำบล';
+    } else {
+      registeredSubDistrictNameErrorMessage = null;
     }
     update();
   }
 
   void rdnOnChange(value) {
     registeredDistrictName = value;
-    if (registeredDistrictName == null) {
+    if (registeredDistrictName == null || registeredDistrictName == '') {
       registeredDistrictNameErrorMessage = 'กรุณากรอกเขตอำเภอ';
+    } else {
+      registeredDistrictNameErrorMessage = null;
     }
     update();
   }
 
   void rpnOnChange(value) {
     registeredProvinceName = value;
-    if (registeredProvinceName == null) {
+    if (registeredProvinceName == null || registeredProvinceName == '') {
       registeredProvinceNameErrorMessage = 'กรุณากรอกจังหวัด';
+    } else {
+      registeredProvinceNameErrorMessage = null;
     }
     update();
   }
 
   void rzcOnChange(value) {
     registeredZipCode = value;
-    if (registeredZipCode == null) {
+    if (registeredZipCode == null || registeredZipCode == '') {
       registeredZipCodeErrorMessage = 'กรุณากรอกรหัสไปรษณีย์';
+    } else {
+      registeredZipCodeErrorMessage = null;
     }
     update();
   }
 
   void rcnOnChange(value) {
     registeredCountry = value;
-    if (registeredCountry == null) {
+    if (registeredCountry == null || registeredCountry == '') {
       registeredCountryErrorMessage = 'กรุณากรอกประเทศ';
+    } else {
+      registeredCountryErrorMessage = null;
     }
     update();
   }
@@ -250,8 +269,10 @@ String? secondBankName;
 
   void chOnChange(value) {
     currentHouseNumber = value;
-    if (currentHouseNumber == null) {
+    if (currentHouseNumber == null || currentHouseNumber == '') {
       currentHouseNumberErrorMessage = 'กรุณากรอกบ้านเลขที่';
+    } else {
+      currentHouseNumberErrorMessage = null;
     }
     update();
   }
@@ -278,40 +299,50 @@ String? secondBankName;
 
   void csdnOnChange(value) {
     currentSubDistrictName = value;
-    if (currentSubDistrictName == null) {
+    if (currentSubDistrictName == null || currentSubDistrictName == '') {
       currentSubDistrictNameErrorMessage = 'กรุณากรอกแขวงตำบล';
+    } else {
+      currentSubDistrictNameErrorMessage = null;
     }
     update();
   }
 
   void cdnOnChange(value) {
     currentDistrictName = value;
-    if (currentDistrictName == null) {
+    if (currentDistrictName == null || currentDistrictName == "") {
       currentDistrictNameErrorMessage = 'กรุณากรอกเขตอำเภอ';
+    } else {
+      currentDistrictNameErrorMessage = null;
     }
     update();
   }
 
   void cpnOnChange(value) {
     currentProvinceName = value;
-    if (currentProvinceName == null) {
+    if (currentProvinceName == null || currentProvinceName == '') {
       currentProvinceNameErrorMessage = 'กรุณากรอกจังหวัด';
+    } else {
+      currentProvinceNameErrorMessage = null;
     }
     update();
   }
 
   void czcOnChange(value) {
     currentZipCode = value;
-    if (currentZipCode == null) {
+    if (currentZipCode == null || currentZipCode == '') {
       currentZipCodeErrorMessage = 'กรุณากรอกรหัสไปรษณีย์';
+    } else {
+      currentZipCodeErrorMessage = null;
     }
     update();
   }
 
   void ccnOnChange(value) {
     currentCountry = value;
-    if (currentCountry == null) {
+    if (currentCountry == null || currentCountry == '') {
       currentCountryErrorMessage = 'กรุณากรอกประเทศ';
+    } else {
+      currentCountryErrorMessage = null;
     }
     update();
   }
@@ -354,8 +385,10 @@ String? secondBankName;
 
   void ohOnChange(value) {
     officeHouseNumber = value;
-    if (officeHouseNumber == null) {
+    if (officeHouseNumber == null || officeHouseNumber == '') {
       officeHouseNumberErrorMessage = 'กรุณากรอกบ้านเลขที่';
+    } else {
+      officeHouseNumberErrorMessage = null;
     }
     update();
   }
@@ -382,40 +415,50 @@ String? secondBankName;
 
   void osdnOnChange(value) {
     officeSubDistrictName = value;
-    if (officeSubDistrictName == null) {
+    if (officeSubDistrictName == null || officeSubDistrictName == '') {
       officeSubDistrictNameErrorMessage = 'กรุณากรอกแขวงตำบล';
+    } else {
+      officeSubDistrictNameErrorMessage = null;
     }
     update();
   }
 
   void odnOnChange(value) {
     officeDistrictName = value;
-    if (officeDistrictName == null) {
+    if (officeDistrictName == null || officeDistrictName == '') {
       officeDistrictNameErrorMessage = 'กรุณากรอกเขตอำเภอ';
+    } else {
+      officeDistrictNameErrorMessage = null;
     }
     update();
   }
 
   void opnOnChange(value) {
     officeProvinceName = value;
-    if (officeProvinceName == null) {
+    if (officeProvinceName == null || officeProvinceName == '') {
       officeProvinceNameErrorMessage = 'กรุณากรอกจังหวัด';
+    } else {
+      officeProvinceNameErrorMessage = null;
     }
     update();
   }
 
   void ozcOnChange(value) {
     officeZipCode = value;
-    if (officeZipCode == null) {
+    if (officeZipCode == null || officeZipCode == '') {
       officeZipCodeErrorMessage = 'กรุณากรอกรหัสไปรษณีย์';
+    } else {
+      officeZipCodeErrorMessage = null;
     }
     update();
   }
 
   void ocnOnChange(value) {
     officeCountry = value;
-    if (officeCountry == null) {
+    if (officeCountry == null || officeCountry == '') {
       officeCountryErrorMessage = 'กรุณากรอกประเทศ';
+    } else {
+      officeCountryErrorMessage = null;
     }
     update();
   }
@@ -458,6 +501,7 @@ String? secondBankName;
 
   void setCurrentAddress(value) {
     currentAddressEnumGroupValue = value;
+    isSelectedCurrentAddress = true;
     log('current address: $currentAddressEnumGroupValue');
     update();
   }
@@ -467,6 +511,7 @@ String? secondBankName;
       sourceOfIncomeErrorMessage = 'กรุณาเลือกแหล่งที่มาของรายได้';
     } else {
       sourceOfIncome = value;
+      sourceOfIncomeErrorMessage = null;
     }
     update();
   }
@@ -476,6 +521,7 @@ String? secondBankName;
       occupationErrorMessage = 'กรุณาเลือกอาชีพ';
     } else {
       occupation = value;
+      occupationErrorMessage = null;
     }
     update();
   }
@@ -485,6 +531,7 @@ String? secondBankName;
       officeNameErrorMessage = 'กรุณากรอกชื่อบริษัท';
     } else {
       officeName = value;
+      officeNameErrorMessage = null;
     }
     update();
   }
@@ -494,6 +541,7 @@ String? secondBankName;
       typeOfBusinessErrorMessage = 'กรุณาเลือกประเภทของธุรกิจ';
     } else {
       typeOfBusiness = value;
+      typeOfBusinessErrorMessage = null;
     }
     update();
   }
@@ -502,6 +550,7 @@ String? secondBankName;
     if (value == null) {
       positionErrorMessage = 'กรุณากรอกตำแหน่งงาน';
     } else {
+      positionErrorMessage = null;
       position = value;
     }
     update();
@@ -511,6 +560,7 @@ String? secondBankName;
     if (value == null) {
       salaryErrorMessage = 'กรุณาเลือกเงินเดือน';
     } else {
+      salaryErrorMessage = null;
       salary = value;
     }
     update();
@@ -518,27 +568,52 @@ String? secondBankName;
 
   void setOfficeAddress(value) {
     officeAddressEnumGroupValue = value;
+    if (officeAddressEnumGroupValue == null) {
+      officeAddressEnumGroupValueErrorMessage = 'กรุณาเลือกที่ตั้งที่ทำงาน';
+    } else {
+      officeAddressEnumGroupValueErrorMessage = null;
+    }
     log('current address: $officeAddressEnumGroupValue');
     update();
   }
 
   void checkshortTermInvestment(value) {
-    shortTermInvestment = value;
+    if (value == null) {
+      investmentErrorMessage = 'กรุณาเลือกวัตถุประสงค์ของการลงทุน';
+    } else {
+      investmentErrorMessage = null;
+      shortTermInvestment = value;
+    }
     update();
   }
 
   void checklongTermInvestment(value) {
-    longTermInvestment = value;
+    if (value == null) {
+      investmentErrorMessage = 'กรุณาเลือกวัตถุประสงค์ของการลงทุน';
+    } else {
+      investmentErrorMessage = null;
+      longTermInvestment = value;
+    }
     update();
   }
 
   void checktaxesReduceInvestment(value) {
-    taxesReduceInvestment = value;
+    if (value == null) {
+      investmentErrorMessage = 'กรุณาเลือกวัตถุประสงค์ของการลงทุน';
+    } else {
+      investmentErrorMessage = null;
+      taxesReduceInvestment = value;
+    }
     update();
   }
 
   void checkretirementInvestment(value) {
-    retirementInvestment = value;
+    if (value == null) {
+      investmentErrorMessage = 'กรุณาเลือกวัตถุประสงค์ของการลงทุน';
+    } else {
+      investmentErrorMessage = null;
+      retirementInvestment = value;
+    }
     update();
   }
 
@@ -551,6 +626,7 @@ String? secondBankName;
     }
     update();
   }
+
   void setFirstBankBranch(value) {
     if (value == null) {
       firstBankBranchErrorMessage = 'กรุณาเลือกสาขา';
@@ -560,6 +636,7 @@ String? secondBankName;
     }
     update();
   }
+
   void firstBankAccountOnChange(value) {
     firstBankAccount = value;
     if (firstBankAccount == null) {
@@ -579,7 +656,12 @@ String? secondBankName;
   }
 
   void setUseSecondBookBank(value) {
-    secondBookBankAddressEnumGroupValue = value;
+    if (value == null) {
+      secondBookBankAddressEnumGroupValueErrorMessage = 'กรุณาเลือก';
+    } else {
+      secondBookBankAddressEnumGroupValueErrorMessage = null;
+      secondBookBankAddressEnumGroupValue = value;
+    }
     log('current address: $secondBookBankAddressEnumGroupValue');
     update();
   }
@@ -593,6 +675,7 @@ String? secondBankName;
     }
     update();
   }
+
   void setsecondBankBranch(value) {
     if (value == null) {
       secondBankBranchErrorMessage = 'กรุณาเลือกสาขา';
@@ -602,6 +685,7 @@ String? secondBankName;
     }
     update();
   }
+
   void secondBankAccountOnChange(value) {
     secondBankAccount = value;
     if (secondBankAccount == null) {
@@ -619,12 +703,175 @@ String? secondBankName;
     }
     update();
   }
-   void previousButtonOnPress(){
+
+  void previousButtonOnPress() {
     Get.toNamed("/idcard");
     update();
   }
-  void nextButtonOnPress(){
-    Get.toNamed("/test");
+
+  void nextButtonOnPress() {
+    if (registeredHouseNumber == null) {
+      registeredHouseNumberErrorMessage = 'กรุณากรอกบ้านเลขที่';
+    }
+    if (registeredSubDistrictName == null) {
+      registeredSubDistrictNameErrorMessage = 'กรุณากรอกแขวงตำบล';
+    }
+    if (registeredDistrictName == null) {
+      registeredDistrictNameErrorMessage = 'กรุณากรอกเขตอำเภอ';
+    }
+    if (registeredProvinceName == null) {
+      registeredProvinceNameErrorMessage = 'กรุณากรอกจังหวัด';
+    }
+    if (registeredZipCode == null) {
+      registeredZipCodeErrorMessage = 'กรุณากรอกรหัสไปรษณีย์';
+    }
+    if (registeredCountry == null) {
+      registeredCountryErrorMessage = 'กรุณากรอกประเทศ';
+    }
+    if (!isSelectedCurrentAddress) {
+      currentAddressEnumGroupValueErrorMessage = 'กรุณาเลือกที่อยู่';
+    }
+
+    // validate current address
+    if (currentAddressEnumGroupValue == CurrentAddressEnum.current) {
+      if (currentHouseNumber == null) {
+        currentHouseNumberErrorMessage = 'กรุณากรอกบ้านเลขที่';
+      }
+      if (currentSubDistrictName == null) {
+        currentSubDistrictNameErrorMessage = 'กรุณากรอกแขวงตำบล';
+      }
+      if (currentDistrictName == null) {
+        currentDistrictNameErrorMessage = 'กรุณากรอกเขตอำเภอ';
+      }
+      if (currentProvinceName == null) {
+        currentProvinceNameErrorMessage = 'กรุณากรอกจังหวัด';
+      }
+      if (currentZipCode == null) {
+        currentZipCodeErrorMessage = 'กรุณากรอกรหัสไปรษณีย์';
+      }
+      if (currentCountry == null) {
+        currentCountryErrorMessage = 'กรุณากรอกประเทศ';
+      }
+    }
+
+    // validate office address
+    if (!isSelectedOfficeAddress) {
+      officeAddressEnumGroupValueErrorMessage = 'กรุณาเลือกที่อยู่';
+    }
+    if (officeAddressEnumGroupValue == OfficeAddressEnum.office) {
+      if (officeHouseNumber == null) {
+        officeHouseNumberErrorMessage = 'กรุณากรอกบ้านเลขที่';
+      }
+      if (officeSubDistrictName == null) {
+        officeSubDistrictNameErrorMessage = 'กรุณากรอกแขวงตำบล';
+      }
+      if (officeDistrictName == null) {
+        officeDistrictNameErrorMessage = 'กรุณากรอกเขตอำเภอ';
+      }
+      if (officeProvinceName == null) {
+        officeProvinceNameErrorMessage = 'กรุณากรอกจังหวัด';
+      }
+      if (officeZipCode == null) {
+        officeZipCodeErrorMessage = 'กรุณากรอกรหัสไปรษณีย์';
+      }
+      if (officeCountry == null) {
+        officeCountryErrorMessage = 'กรุณากรอกประเทศ';
+      }
+    }
+
+    if (sourceOfIncome == null) {
+      sourceOfIncomeErrorMessage = 'กรุณาเลือกแหล่งที่มาของเงินลงทุน';
+    }
+    if (occupation == null) {
+      occupationErrorMessage = 'กรุณาเลือกอาชีพ';
+    }
+    if (officeName == null) {
+      officeNameErrorMessage = 'กรุณากรอกที่อยู่สถานที่ทำงาน';
+    }
+    if (typeOfBusiness == null) {
+      typeOfBusinessErrorMessage = 'กรุณาเลือกประเภทธุรกิจ';
+    }
+    if (position == null) {
+      positionErrorMessage = 'กรุณากรอกตำแหน่ง';
+    }
+    if (salary == null) {
+      salaryErrorMessage = 'กรุณาเลือกรายได้';
+    }
+
+    if (!shortTermInvestment &&
+        !longTermInvestment &&
+        !taxesReduceInvestment &&
+        !retirementInvestment) {
+      investmentErrorMessage = 'กรุณาเลือกวัตถุประสงค์ของการลงทุน';
+    }
+
+    if (firstBankName == null) {
+      firstBankNameErrorMessage = 'กรุณาเลือกธนาคาร';
+    }
+    if (firstBankBranch == null) {
+      firstBankBranchErrorMessage = 'กรุณาเลือกสาขา';
+    }
+    if (firstBankAccount == null) {
+      firstBankAccountErrorMessage = 'กรุณาเลือกสาขา';
+    }
+
+    if (secondBookBankAddressEnumGroupValue == null) {
+      secondBookBankAddressEnumGroupValueErrorMessage = 'กรุณาเลือก';
+    }
+
+    if (secondBookBankAddressEnumGroupValue == SecondBookBankAddressEnum.yes) {
+      if (secondBankName == null) {
+        secondBankNameErrorMessage = 'กรุณาเลือกธนาคาร';
+      }
+      if (secondBankBranch == null) {
+        secondBankBranchErrorMessage = 'กรุณาเลือกสาขา';
+      }
+      if (secondBankAccount == null) {
+        secondBankAccountErrorMessage = 'กรุณาเลือกสาขา';
+      }
+    }
+
+    if (registeredHouseNumberErrorMessage == null &&
+        registeredSubDistrictNameErrorMessage == null &&
+        registeredDistrictNameErrorMessage == null &&
+        registeredProvinceNameErrorMessage == null &&
+        registeredCountryErrorMessage == null &&
+        registeredZipCodeErrorMessage == null &&
+        
+        currentHouseNumberErrorMessage == null &&
+        currentSubDistrictNameErrorMessage == null &&
+        currentDistrictNameErrorMessage == null &&
+        currentProvinceNameErrorMessage == null &&
+        currentCountryErrorMessage == null &&
+        currentZipCodeErrorMessage == null &&
+
+        officeHouseNumberErrorMessage == null &&
+        officeSubDistrictNameErrorMessage == null &&
+        officeDistrictNameErrorMessage == null &&
+        officeProvinceNameErrorMessage == null &&
+        officeCountryErrorMessage == null &&
+        officeZipCodeErrorMessage == null &&
+
+        sourceOfIncomeErrorMessage == null &&
+        occupationErrorMessage == null &&
+        officeNameErrorMessage == null &&
+        typeOfBusinessErrorMessage == null &&
+        positionErrorMessage == null &&
+        salaryErrorMessage == null &&
+        
+        firstBankNameErrorMessage == null &&
+        firstBankBranchErrorMessage == null &&
+        firstBankAccountErrorMessage == null &&
+        secondBankNameErrorMessage == null &&
+        secondBankBranchErrorMessage == null &&
+        secondBankAccountErrorMessage == null &&
+
+        (shortTermInvestment ||
+            longTermInvestment ||
+            taxesReduceInvestment ||
+            retirementInvestment)) {
+      Get.toNamed("/test");
+    }
     update();
   }
 }

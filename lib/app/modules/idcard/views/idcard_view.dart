@@ -223,28 +223,7 @@ class IdcardView extends StatelessWidget {
               ],
             ),
           );
-          final nextButton = ElevatedButton(
-            style: ButtonStyle(
-              overlayColor: MaterialStateProperty.all(Colors.transparent),
-              backgroundColor: MaterialStateProperty.all(Colors.transparent),
-              shadowColor: MaterialStateProperty.all(Colors.transparent),
-              surfaceTintColor: MaterialStateProperty.all(Colors.transparent),
-            ),
-            onPressed: () => ctrl.nextButtonOnPress(),
-            child: const Row(
-              children: [
-                Text(
-                  'ถัดไป',
-                  style: TextStyle(fontSize: 10, color: Colors.black),
-                ),
-                Icon(
-                  Icons.arrow_circle_right,
-                  size: 45,
-                  color: Colors.orange,
-                )
-              ],
-            ),
-          );
+          final nextButton = nextButtonIDCard(ctrl);
 
           return Container(
               decoration: BoxDecoration(color: Colors.grey.withOpacity(0.5)),
@@ -360,5 +339,30 @@ class IdcardView extends StatelessWidget {
                         )
                       ])));
         }));
+  }
+
+  ElevatedButton nextButtonIDCard(IdcardController ctrl) {
+    return ElevatedButton(
+          style: ButtonStyle(
+            overlayColor: MaterialStateProperty.all(Colors.transparent),
+            backgroundColor: MaterialStateProperty.all(Colors.transparent),
+            shadowColor: MaterialStateProperty.all(Colors.transparent),
+            surfaceTintColor: MaterialStateProperty.all(Colors.transparent),
+          ),
+          onPressed: () => ctrl.nextButtonOnPress(),
+          child: const Row(
+            children: [
+              Text(
+                'ถัดไป',
+                style: TextStyle(fontSize: 10, color: Colors.black),
+              ),
+              Icon(
+                Icons.arrow_circle_right,
+                size: 45,
+                color: Colors.orange,
+              )
+            ],
+          ),
+        );
   }
 }

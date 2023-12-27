@@ -70,7 +70,7 @@ class InformationView extends StatelessWidget {
                           text: const TextSpan(text: 'บ้านเลขที่', children: [
                     TextSpan(text: '*', style: TextStyle(color: Colors.red))
                   ]))),
-                  errorText: ctrl.registeredCountryErrorMessage),
+                  errorText: ctrl.registeredHouseNumberErrorMessage),
               onChanged: (value) => ctrl.rhOnChange(value),
               inputFormatters: [
                 FilteringTextInputFormatter.allow(RegExp(r'[0-9]'))
@@ -233,7 +233,7 @@ class InformationView extends StatelessWidget {
                           text: const TextSpan(text: 'บ้านเลขที่', children: [
                     TextSpan(text: '*', style: TextStyle(color: Colors.red))
                   ]))),
-                  errorText: ctrl.currentCountryErrorMessage),
+                  errorText: ctrl.currentHouseNumberErrorMessage),
               onChanged: (value) => ctrl.chOnChange(value),
               inputFormatters: [
                 FilteringTextInputFormatter.allow(RegExp(r'[0-9]'))
@@ -410,7 +410,7 @@ class InformationView extends StatelessWidget {
                   errorText: ctrl.officeNameErrorMessage),
               onChanged: (value) => ctrl.setofficeName(value),
               inputFormatters: [
-                FilteringTextInputFormatter.allow(RegExp(r'[0-9]'))
+                FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z0-9ก-๛]'))
               ]);
           final typeOfBusiness = DropdownButtonFormField(
               menuMaxHeight: height * .5,
@@ -437,7 +437,7 @@ class InformationView extends StatelessWidget {
                   errorText: ctrl.positionErrorMessage),
               onChanged: (value) => ctrl.setposition(value),
               inputFormatters: [
-                FilteringTextInputFormatter.allow(RegExp(r'[0-9]'))
+                FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z0-9ก-๛]'))
               ]);
           final salary = DropdownButtonFormField(
               menuMaxHeight: height * .5,
@@ -855,28 +855,7 @@ class InformationView extends StatelessWidget {
               ],
             ),
           );
-          final nextButton = ElevatedButton(
-            style: ButtonStyle(
-              overlayColor: MaterialStateProperty.all(Colors.transparent),
-              backgroundColor: MaterialStateProperty.all(Colors.transparent),
-              shadowColor: MaterialStateProperty.all(Colors.transparent),
-              surfaceTintColor: MaterialStateProperty.all(Colors.transparent),
-            ),
-            onPressed: () => ctrl.nextButtonOnPress(),
-            child: const Row(
-              children: [
-                Text(
-                  'ถัดไป',
-                  style: TextStyle(fontSize: 10, color: Colors.black),
-                ),
-                Icon(
-                  Icons.arrow_circle_right,
-                  size: 45,
-                  color: Colors.orange,
-                )
-              ],
-            ),
-          );
+          final nextButton = nextButtonInformation(ctrl);
 
           return Container(
               decoration: BoxDecoration(
@@ -953,6 +932,18 @@ class InformationView extends StatelessWidget {
                                         child: currentAddressListTile),
                                   ],
                                 ),
+                                (ctrl.isSelectedCurrentAddress)
+                                    ? const SizedBox.shrink()
+                                    : Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.end,
+                                        children: [
+                                            Text(
+                                                ctrl.currentAddressEnumGroupValueErrorMessage ??
+                                                    '',
+                                                style: const TextStyle(
+                                                    color: Colors.redAccent))
+                                          ]),
                                 (ctrl.currentAddressEnumGroupValue ==
                                         CurrentAddressEnum.current)
                                     ? Column(
@@ -961,14 +952,14 @@ class InformationView extends StatelessWidget {
                                           currentAddress
                                         ],
                                       )
-                                    : const Column(),
+                                    : const SizedBox.shrink(),
                                 (ctrl.currentAddressEnumGroupValue ==
                                         CurrentAddressEnum.registered)
                                     ? Column(children: [
                                         const SizedBox(height: 10),
                                         registeredAddressText
                                       ])
-                                    : const Column(),
+                                    : const SizedBox.shrink(),
                               ]),
                         ),
                         const SizedBox(height: 10),
@@ -1038,13 +1029,25 @@ class InformationView extends StatelessWidget {
                                       width: width * .15,
                                       child: occupationOfficeAddressListTile),
                                 ]),
+                                (ctrl.isSelectedOfficeAddress)
+                                    ? const SizedBox.shrink()
+                                    : Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.end,
+                                        children: [
+                                            Text(
+                                                ctrl.officeAddressEnumGroupValueErrorMessage ??
+                                                    '',
+                                                style: const TextStyle(
+                                                    color: Colors.redAccent))
+                                          ]),
                                 (ctrl.officeAddressEnumGroupValue ==
                                         OfficeAddressEnum.registered)
                                     ? Column(children: [
                                         const SizedBox(height: 10),
                                         registeredAddressText
                                       ])
-                                    : const Column(),
+                                    : const SizedBox.shrink(),
                                 (ctrl.officeAddressEnumGroupValue ==
                                             OfficeAddressEnum.current &&
                                         ctrl.currentHouseNumber == null)
@@ -1052,7 +1055,7 @@ class InformationView extends StatelessWidget {
                                         const SizedBox(height: 10),
                                         registeredAddressText
                                       ])
-                                    : const Column(),
+                                    : const SizedBox.shrink(),
                                 (ctrl.officeAddressEnumGroupValue ==
                                             OfficeAddressEnum.current &&
                                         ctrl.currentHouseNumber != null)
@@ -1060,11 +1063,11 @@ class InformationView extends StatelessWidget {
                                         const SizedBox(height: 10),
                                         currentAddressText
                                       ])
-                                    : const Column(),
+                                    : const SizedBox.shrink(),
                                 (ctrl.officeAddressEnumGroupValue ==
                                         OfficeAddressEnum.office)
                                     ? officeAddress
-                                    : const Column(),
+                                    : const SizedBox.shrink(),
                               ],
                             )),
                         const SizedBox(height: 10),
@@ -1095,6 +1098,13 @@ class InformationView extends StatelessWidget {
                                 SizedBox(
                                     height: 30,
                                     child: retirementInvestmentChecklist),
+                                (ctrl.investmentErrorMessage == null)
+                                    ? const SizedBox.shrink()
+                                    : Text(
+                                        ctrl.investmentErrorMessage ?? '',
+                                        style: const TextStyle(
+                                            color: Colors.redAccent),
+                                      ),
                               ],
                             )),
                         const SizedBox(height: 10),
@@ -1147,6 +1157,20 @@ class InformationView extends StatelessWidget {
                                             donotUseSecondBankAccountListTile),
                                   ],
                                 ),
+                                (ctrl.secondBookBankAddressEnumGroupValueErrorMessage ==
+                                        null)
+                                    ? const SizedBox.shrink()
+                                    : Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.end,
+                                        children: [
+                                          Text(
+                                              ctrl.secondBookBankAddressEnumGroupValueErrorMessage ??
+                                                  '',
+                                              style: const TextStyle(
+                                                  color: Colors.redAccent)),
+                                        ],
+                                      ),
                                 (ctrl.secondBookBankAddressEnumGroupValue ==
                                         SecondBookBankAddressEnum.yes)
                                     ? Row(children: [
@@ -1162,7 +1186,7 @@ class InformationView extends StatelessWidget {
                                             width: width * .24,
                                             child: secondBankAccountTextField),
                                       ])
-                                    : const Row()
+                                    : const SizedBox.shrink()
                               ],
                             )),
                         const SizedBox(height: 10),
@@ -1176,5 +1200,30 @@ class InformationView extends StatelessWidget {
                         const SizedBox(height: 10),
                       ])));
         }));
+  }
+
+  ElevatedButton nextButtonInformation(InformationController ctrl) {
+    return ElevatedButton(
+      style: ButtonStyle(
+        overlayColor: MaterialStateProperty.all(Colors.transparent),
+        backgroundColor: MaterialStateProperty.all(Colors.transparent),
+        shadowColor: MaterialStateProperty.all(Colors.transparent),
+        surfaceTintColor: MaterialStateProperty.all(Colors.transparent),
+      ),
+      onPressed: () => ctrl.nextButtonOnPress(),
+      child: const Row(
+        children: [
+          Text(
+            'ถัดไป',
+            style: TextStyle(fontSize: 10, color: Colors.black),
+          ),
+          Icon(
+            Icons.arrow_circle_right,
+            size: 45,
+            color: Colors.orange,
+          )
+        ],
+      ),
+    );
   }
 }
