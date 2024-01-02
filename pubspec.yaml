@@ -17,6 +17,7 @@ dependencies:
   auto_size_text: ^3.0.0
   http: ^1.1.0
   thai_idcard_reader_flutter: ^0.0.7
+  get_storage:
 
 dev_dependencies: 
   flutter_lints: ^2.0.0

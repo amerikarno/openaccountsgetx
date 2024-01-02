@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:email_validator/email_validator.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:openaccountsgetx/app/modules/home/providers/verify_email_provider.dart';
 import 'package:openaccountsgetx/app/modules/home/providers/verify_mobile_provider.dart';
 
@@ -65,7 +66,7 @@ class HomeController extends GetxController with StateMixin {
     return null;
   }
 
-  void setThTitleName(value) {
+  void setThTitleName(value) async {
     if (thTitle == null) {
       thTitleErrorMessage = 'กรุณาใส่คำนำหน้าชื่อ (ภาษาไทย)';
     }
@@ -75,10 +76,12 @@ class HomeController extends GetxController with StateMixin {
     }
     thTitle = value;
     engTitle = thToEng(value)!;
+    await GetStorage().write('thTitle', thTitle);
+    await GetStorage().write('engTitle', thTitle);
     update();
   }
 
-  void setThName(value) {
+  void setThName(value) async {
     if (value == null) {
       thNameErrorMessage = 'กรุณาใส่ชื่อ (ภาษาไทย)';
     }
@@ -86,7 +89,7 @@ class HomeController extends GetxController with StateMixin {
       thNameErrorMessage = null;
     }
     thName = value;
-    log('$thName: $value');
+    await GetStorage().write('thName', thName);
     update();
   }
 
@@ -149,7 +152,7 @@ class HomeController extends GetxController with StateMixin {
     update();
   }
 
-  void setThSurname(value) {
+  void setThSurname(value) async {
     if (value == null) {
       thSurnameErrorMessage = 'กรุณาใส่นามสกุล (ภาษาไทย)';
     }
@@ -157,10 +160,11 @@ class HomeController extends GetxController with StateMixin {
       thSurnameErrorMessage = null;
     }
     thSurname = value;
+    await GetStorage().write('thSurname', thSurname);
     update();
   }
 
-  void setEngName(value) {
+  void setEngName(value) async {
     if (value == null) {
       engNameErrorMessage = 'กรุณาใส่ชื่อ (ภาษาอังกฤษ)';
     }
@@ -168,10 +172,11 @@ class HomeController extends GetxController with StateMixin {
       engNameErrorMessage = null;
     }
     engName = value;
+    await GetStorage().write('engName', engName);
     update();
   }
 
-  void setEngSurname(value) {
+  void setEngSurname(value) async {
     if (value == null) {
       engSurnameErrorMessage = 'กรุณาใส่นามสกุล (ภาษาอังกฤษ)';
     }
@@ -179,10 +184,11 @@ class HomeController extends GetxController with StateMixin {
       engSurnameErrorMessage = null;
     }
     engSurname = value;
+    await GetStorage().write('engSurname', engSurname);
     update();
   }
 
-  void setEngTitleName(value) {
+  void setEngTitleName(value) async {
     if (value == null) {
       engTitleErrorMessage = 'กรุณาใส่คำนำหน้าชื่อ (ภาษาอังกฤษ)';
     }
@@ -192,10 +198,12 @@ class HomeController extends GetxController with StateMixin {
     }
     engTitle = value;
     thTitle = engToTh(value)!;
+    await GetStorage().write('engTitle', engTitle);
+    await GetStorage().write('thTitle', thTitle);
     update();
   }
 
-  void verifyEmailFormat(value) {
+  void verifyEmailFormat(value) async {
     if (value == null) {
       emailErrorMessage = 'กรุณาใส่อีเมล';
     }
@@ -209,10 +217,11 @@ class HomeController extends GetxController with StateMixin {
       emailErrorMessage = null;
     }
     email = value;
+    await GetStorage().write('email', email);
     update();
   }
 
-  void verifyMobileFormat(value) {
+  void verifyMobileFormat(value) async {
     if (value == null) {
       mobileErrorMessage = 'กรุณาใส่หมายเลขโทรศัพท์มือถือ';
     }
@@ -237,6 +246,7 @@ class HomeController extends GetxController with StateMixin {
       }
     }
     mobile = value;
+    await GetStorage().write('mobile', mobile);
     update();
   }
 
