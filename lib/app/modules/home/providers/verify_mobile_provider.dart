@@ -14,14 +14,18 @@ class VerifyMobileProvider extends GetConnect {
     httpClient.baseUrl = 'http://127.0.0.1:1323/';
   }
 
-  Future<VerifyMobile?> getVerifyMobile(String? mobile) async {
+  Future<dynamic> getVerifyMobile(String? mobile) async {
     const token = 'fda-authen-key';
-    final response = await get('verify/mobile/$mobile', headers: {
-      'Content-Type': 'application/json; charset=utf-8',
-      'Authorization': 'Bearer $token',
-      'Accept': '*/*',
-      'Accept-Encoding': 'gzip, deflate, br',
-    });
-    return response.body;
+    try {
+      final response = await get('verify/mobile/$mobile', headers: {
+        'Content-Type': 'application/json; charset=utf-8',
+        'Authorization': 'Bearer $token',
+        'Accept': '*/*',
+        'Accept-Encoding': 'gzip, deflate, br',
+      });
+      return response.body;
+    } on Exception catch (err) {
+      return Response(statusCode: 1, statusText: err.toString());
+    }
   }
 }
