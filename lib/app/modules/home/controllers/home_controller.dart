@@ -270,8 +270,10 @@ class HomeController extends GetxController with StateMixin {
 
   void getEmail(String? email) async {
     var r = await Get.find<VerifyEmailProvider>().getVerifyEmail(email);
-    var regis = r.isRegisteredEmail;
-    isRegisteredEmail = regis ?? false;
+    if (r != null) {
+      var regis = r.isRegisteredEmail;
+      isRegisteredEmail = regis ?? false;
+    }
   }
 
   void getMobile(String? mobile) async {

@@ -1,3 +1,6 @@
+import 'dart:developer';
+import 'dart:io';
+
 import 'package:get/get.dart';
 import 'package:openaccountsgetx/app/modules/home/verify_email_model.dart';
 
@@ -14,14 +17,19 @@ class VerifyEmailProvider extends GetConnect {
     httpClient.maxAuthRetries = 3;
   }
 
-  Future<VerifyEmailModel> getVerifyEmail(String? email) async {
+  Future<dynamic> getVerifyEmail(String? email) async {
     const token = 'fda-authen-key';
-    final resp = await get('verify/email/$email', headers: {
-      'Content-Type': 'application/json; charset=utf-8',
-      'Authorization': 'Bearer $token',
-      'Accept': '*/*',
-      'Accept-Encoding': 'gzip, deflate, br',
-    });
-    return resp.body;
+    try {
+      final resp = await get('verify/email/$email', headers: {
+        'Content-Type': 'application/json; charset=utf-8',
+        'Authorization': 'Bearer $token',
+        'Accept': '*/*',
+        'Accept-Encoding': 'gzip, deflate, br',
+      });
+      return resp.body;
+    } on Exception catch (err) {
+      log('error: $err');
+      return Response(statusCode: HttpStatus.badGateway, statusText: err.toString());
+    }
   }
 }
