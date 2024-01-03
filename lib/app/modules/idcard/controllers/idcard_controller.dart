@@ -1,7 +1,10 @@
 import 'dart:developer';
 
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:openaccountsgetx/app/data/idcard.dart';
+import 'package:openaccountsgetx/app/modules/idcard/customer_information_model.dart';
+import 'package:openaccountsgetx/app/modules/idcard/providers/customer_information_provider.dart';
 import 'package:openaccountsgetx/app/modules/idcard/providers/verify_idcard_provider.dart';
 import 'package:openaccountsgetx/app/modules/idcard/scripts/citizen_id_checker.dart';
 import 'package:time_machine/time_machine.dart';
@@ -250,8 +253,7 @@ class IdcardController extends GetxController {
     islaserPrefixIsNull();
     islaserSuffixIsNull();
 
-    var id =
-        await Get.find<VerifyIdcardProvider>().getVerifyIdcard(citizenID);
+    var id = await Get.find<VerifyIdcardProvider>().getVerifyIdcard(citizenID);
     isRegisteredID = id?.isRegisteredIDCard ?? false;
 
     if (isRegisteredID) {
@@ -267,7 +269,32 @@ class IdcardController extends GetxController {
         citizenIDErrorMassage == null &&
         laserPrefixErrorMassage == null &&
         laserSuffixErrorMassage == null) {
-      Get.toNamed("/information");
+      try {
+        var gett = GetStorage();
+        final birthDate = '$datepicker $monthpicker $yearpicker';
+        final laserCode = '$laserPrefix-$laserSuffix';
+        final customerInformation = CustomerInformation(
+            thtitle: gett.read('thTitle'),
+            thname: gett.read('thName'),
+            thsurname: gett.read('thSurname'),
+            engtitle: gett.read('engTitle'),
+            engname: gett.read('engName'),
+            engsurname: gett.read('engSurname'),
+            email: gett.read('email'),
+            mobile: gett.read('mobile'),
+            agreement: true,
+            birthdate: birthDate,
+            status: marriageStatusGroupValue.toString(),
+            idcard: citizenID ?? '',
+            laserCode: laserCode);
+        var id = await Get.find<CustomerInformationProvider>()
+            .postCustomerInformation(customerInformation);
+        log('return id: ${id.body}');
+        GetStorage().write('id', id.body);
+        Get.toNamed("/information");
+      } on Exception catch (err) {
+        log("post customer information error: $err");
+      }
       return;
     }
     return;

@@ -14,9 +14,19 @@ class VerifyIdcardProvider extends GetConnect {
     httpClient.baseUrl = 'http://localhost:1323/';
   }
 
-  Future<VerifyIdcard?> getVerifyIdcard(String? id) async {
-    final response = await get('verify/idcard/$id');
-    return response.body;
+  Future<dynamic> getVerifyIdcard(String? id) async {
+    const token = 'fda-authen-key';
+    try {
+      final response = await get('verify/idcard/$id', headers: {
+        'Content-Type': 'application/json; charset=utf-8',
+        'Authorization': 'Bearer $token',
+        'Accept': '*/*',
+        'Accept-Encoding': 'gzip, deflate, br',
+      });
+      return response.body;
+    } on Exception catch (err) {
+      return Response(statusCode: 1, statusText: err.toString());
+    }
   }
 
   Future<Response<VerifyIdcard>> postVerifyIdcard(
