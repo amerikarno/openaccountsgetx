@@ -2,8 +2,11 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:openaccountsgetx/app/data/idcard.dart';
 import 'package:openaccountsgetx/app/data/information.dart';
+import 'package:openaccountsgetx/app/modules/information/information_model.dart';
+import 'package:openaccountsgetx/app/modules/information/providers/information_provider.dart';
 
 class InformationController extends GetxController {
   String? registeredHouseNumber;
@@ -713,7 +716,7 @@ class InformationController extends GetxController {
     update();
   }
 
-  void nextButtonOnPress() {
+  void nextButtonOnPress() async {
     if (registeredHouseNumber == null) {
       registeredHouseNumberErrorMessage = 'กรุณากรอกบ้านเลขที่';
     }
@@ -869,6 +872,91 @@ class InformationController extends GetxController {
             longTermInvestment ||
             taxesReduceInvestment ||
             retirementInvestment)) {
+      GetStorage()
+          .write('id', '8f3d0afe-4ef2-4c78-9379-1d541c18b887'); // for testing
+      final id = GetStorage().read('id');
+      final registeredAddress = AddressModel(
+          homeNumber: registeredHouseNumber ?? '',
+          villageNumber: registeredVillageNumber,
+          villageName: registeredVillageName,
+          subStreetName: registeredSubStreetName,
+          streetName: registeredStreetName,
+          subDistrictName: registeredSubDistrictName ?? '',
+          districtName: registeredDistrictName ?? '',
+          provinceName: registeredProvinceName ?? '',
+          zipCode: registeredZipCode ?? '',
+          countryName: registeredCountry ?? '',
+          typeOfAddress: 'registered');
+      AddressModel? currentAddress;
+      if (currentAddressEnumGroupValue == CurrentAddressEnum.current) {
+        currentAddress = AddressModel(
+            homeNumber: currentHouseNumber ?? '',
+            villageNumber: currentVillageNumber,
+            villageName: currentVillageName,
+            subStreetName: currentSubStreetName,
+            streetName: currentStreetName,
+            subDistrictName: currentSubDistrictName ?? '',
+            districtName: currentDistrictName ?? '',
+            provinceName: currentProvinceName ?? '',
+            zipCode: currentZipCode ?? '',
+            countryName: currentCountry ?? '',
+            typeOfAddress: 'current');
+      }
+      AddressModel? officeAddress;
+      if (officeAddressEnumGroupValue == OfficeAddressEnum.office) {
+        officeAddress = AddressModel(
+            homeNumber: officeHouseNumber ?? '',
+            villageNumber: officeVillageNumber,
+            villageName: officeVillageName,
+            subStreetName: officeSubStreetName,
+            streetName: officeStreetName,
+            subDistrictName: officeSubDistrictName ?? '',
+            districtName: officeDistrictName ?? '',
+            provinceName: officeProvinceName ?? '',
+            zipCode: officeZipCode ?? '',
+            countryName: officeCountry ?? '',
+            typeOfAddress: 'office');
+      }
+      final firstBookBank = BookBankModel(
+          bankName: firstBankName ?? '',
+          bankBranchName: firstBankBranch ?? '',
+          bankAccountNumber: firstBankAccount ?? '',
+          isDefalut: true,
+          accountType: 'first');
+      BookBankModel? secondBookBank;
+      if (secondBookBankAddressEnumGroupValue ==
+          SecondBookBankAddressEnum.yes) {
+        secondBookBank = BookBankModel(
+            bankName: secondBankName ?? '',
+            bankBranchName: secondBankBranch ?? '',
+            bankAccountNumber: secondBankAccount ?? '',
+            isDefalut: false,
+            accountType: 'second');
+      }
+      final occupations = OccupationModel(
+          sourceOfIncome: sourceOfIncome ?? '',
+          currentOccupation: occupation ?? '',
+          officeName: officeName ?? '',
+          typeOfBusiness: typeOfBusiness ?? '',
+          positionName: position ?? '',
+          salaryRange: salary ?? '');
+      final investment = InvestmentModel(
+          shortTermInvestment: shortTermInvestment,
+          longTermInvestment: longTermInvestment,
+          taxesInvestment: taxesReduceInvestment,
+          retireInvestment: retirementInvestment);
+      final infoModel = InformationModel(
+          id: id,
+          registeredAddress: registeredAddress,
+          currentAddress: currentAddress,
+          officeAddress: officeAddress,
+          firstBookBank: firstBookBank,
+          secondBookBank: secondBookBank,
+          occupation: occupations,
+          investment: investment);
+      final resp =
+          await Get.find<InformationProvider>().postAddresses(infoModel);
+      log('information data: $resp');
       Get.toNamed("/test");
     }
     update();

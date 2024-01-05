@@ -2,7 +2,10 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:openaccountsgetx/app/data/test.dart';
+import 'package:openaccountsgetx/app/modules/test/providers/test_provider.dart';
+import 'package:openaccountsgetx/app/modules/test/test_model.dart';
 import 'package:openaccountsgetx/app/modules/test/views/knowledge_test_view.dart';
 
 class TestController extends GetxController {
@@ -11,6 +14,7 @@ class TestController extends GetxController {
   List<String> selectSuitableTestItems = selectSuitableTestLists;
   bool isSelectSuitableTest = false;
   double suiteSumPoints = 0;
+  List<double> suiteSumSets = [];
   bool isCompleteTestSuiteWhenPressButton = false;
   String? investerType;
   String? digitatAssetInvestmentRatios;
@@ -105,6 +109,7 @@ class TestController extends GetxController {
       ninthSuiteAnswerEnumEnumGroupValue = SuiteAnswerEnum.first;
       tenthSuiteAnswerEnumEnumGroupValue = SuiteAnswerEnum.first;
       suiteSumPoints = 10;
+      suiteSumSets = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
       investerType = selectSuitableTestLists[0];
       digitatAssetInvestmentRatios = '<5%';
     }
@@ -120,6 +125,8 @@ class TestController extends GetxController {
       ninthSuiteAnswerEnumEnumGroupValue = SuiteAnswerEnum.second;
       tenthSuiteAnswerEnumEnumGroupValue = SuiteAnswerEnum.second;
       suiteSumPoints = 20;
+
+      suiteSumSets = [2, 2, 2, 2, 2, 2, 2, 2, 2, 2];
       investerType = selectSuitableTestLists[1];
       digitatAssetInvestmentRatios = '<10%';
     }
@@ -135,6 +142,8 @@ class TestController extends GetxController {
       ninthSuiteAnswerEnumEnumGroupValue = SuiteAnswerEnum.third;
       tenthSuiteAnswerEnumEnumGroupValue = SuiteAnswerEnum.first;
       suiteSumPoints = 28;
+
+      suiteSumSets = [3, 3, 3, 3, 3, 3, 3, 3, 3, 1];
       investerType = selectSuitableTestLists[2];
       digitatAssetInvestmentRatios = '<10%';
     }
@@ -150,6 +159,7 @@ class TestController extends GetxController {
       ninthSuiteAnswerEnumEnumGroupValue = SuiteAnswerEnum.third;
       tenthSuiteAnswerEnumEnumGroupValue = SuiteAnswerEnum.third;
       suiteSumPoints = 30;
+      suiteSumSets = [3, 3, 3, 3, 3, 3, 3, 3, 3, 3];
       investerType = selectSuitableTestLists[3];
       digitatAssetInvestmentRatios = '<20%';
     }
@@ -165,6 +175,7 @@ class TestController extends GetxController {
       ninthSuiteAnswerEnumEnumGroupValue = SuiteAnswerEnum.forth;
       tenthSuiteAnswerEnumEnumGroupValue = SuiteAnswerEnum.forth;
       suiteSumPoints = 40;
+      suiteSumSets = [4, 4, 4, 4, 4, 4, 4, 4, 4, 4];
       investerType = selectSuitableTestLists[4];
       digitatAssetInvestmentRatios = '<30%';
     }
@@ -252,17 +263,18 @@ class TestController extends GetxController {
             );
           });
     } else {
-      suiteSumPoints =
-          convertAnserEnumToInt(firstSuiteAnswerEnumEnumGroupValue) +
-              convertAnserEnumToInt(secondSuiteAnswerEnumEnumGroupValue) +
-              convertAnserEnumToInt(thirdSuiteAnswerEnumEnumGroupValue) +
-              convertAnserEnumToInt(forthSuiteAnswerEnumEnumGroupValue) +
-              convertAnserEnumToInt(fifthSuiteAnswerEnumEnumGroupValue) +
-              convertAnserEnumToInt(sixthSuiteAnswerEnumEnumGroupValue) +
-              convertAnserEnumToInt(seventhSuiteAnswerEnumEnumGroupValue) +
-              convertAnserEnumToInt(eiththSuiteAnswerEnumEnumGroupValue) +
-              convertAnserEnumToInt(ninthSuiteAnswerEnumEnumGroupValue) +
-              convertAnserEnumToInt(tenthSuiteAnswerEnumEnumGroupValue);
+      final q1 = convertAnserEnumToInt(firstSuiteAnswerEnumEnumGroupValue);
+      final q2 = convertAnserEnumToInt(secondSuiteAnswerEnumEnumGroupValue);
+      final q3 = convertAnserEnumToInt(thirdSuiteAnswerEnumEnumGroupValue);
+      final q4 = convertAnserEnumToInt(forthSuiteAnswerEnumEnumGroupValue);
+      final q5 = convertAnserEnumToInt(fifthSuiteAnswerEnumEnumGroupValue);
+      final q6 = convertAnserEnumToInt(sixthSuiteAnswerEnumEnumGroupValue);
+      final q7 = convertAnserEnumToInt(seventhSuiteAnswerEnumEnumGroupValue);
+      final q8 = convertAnserEnumToInt(eiththSuiteAnswerEnumEnumGroupValue);
+      final q9 = convertAnserEnumToInt(ninthSuiteAnswerEnumEnumGroupValue);
+      final q10 = convertAnserEnumToInt(tenthSuiteAnswerEnumEnumGroupValue);
+      suiteSumPoints = q1 + q2 + q3 + q4 + q5 + q6 + q7 + q8 + q9 + q10;
+      suiteSumSets = [q1, q2, q3, q4, q5, q6, q7, q8, q9, q10];
       isSelectSuitableTest = false;
       selectSuitableTestErrorMessage = null;
       log('Suitable Test Total: $suiteSumPoints');
@@ -718,7 +730,7 @@ $forteenthknowledgeAnswerEnumEnumGroupValue,
     update();
   }
 
-  void nextButtonOnPress() {
+  void nextButtonOnPress() async {
     if (suiteSumPoints == 0) {
       selectSuitableTestErrorMessage = 'กรุณาเลือกระดับความเสี่ยง';
     }
@@ -735,6 +747,42 @@ $forteenthknowledgeAnswerEnumEnumGroupValue,
         fatcaEnumGroupValueErrorMessage == null &&
         knowledgeTestEnumGroupValueErrorMessage == null &&
         buyAndSaleChecklistErrorMessage == null) {
+      GetStorage()
+          .write('id', '8f3d0afe-4ef2-4c78-9379-1d541c18b887'); // for testing
+      final id = GetStorage().read('id');
+      String? knowledgeTestResult;
+      String? fatcaInfo;
+
+      String getFatCa() {
+        String result;
+        result = '$americanChecklist|$greenCardCheckList|$addressInAmericaCheckList|$bornInAmericaCheckList|$addressInAmericaOpenAccountCheckList|$americaMobileNumberCheckList|$americaBankAccountCheckList|$authorityInAmericaCheckList';
+        return result;
+      }
+
+      bool isFatca() {
+        if (fatcaEnumGroupValue == FatcaEnum.yes) {
+          fatcaInfo = getFatCa();
+          return true;
+        }
+        return false;
+      }
+
+      bool isKnowledgeDone() {
+        if (knowledgeTestEnumGroupValue == KnowledgeTestEnum.yes) {
+          return true;
+        }
+        return false;
+      }
+
+      final testModel = TestModel(
+          id: id,
+          suiteTestResult: suiteSumSets.join('|'),
+          isFatca: isFatca(),
+          fatcaInfo: fatcaInfo,
+          isKnowledgeDone: isKnowledgeDone(),
+          knowledgeTestResult: knowledgeTestResult);
+      final resp = await Get.find<TestProvider>().postExams(testModel);
+      log('test response: $resp');
       Get.toNamed("/verify-email-mobile");
     }
     update();

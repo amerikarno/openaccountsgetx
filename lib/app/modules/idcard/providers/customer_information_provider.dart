@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:get/get.dart';
 import 'package:openaccountsgetx/app/modules/idcard/customer_information_model.dart';
 

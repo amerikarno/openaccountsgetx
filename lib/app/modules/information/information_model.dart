@@ -119,3 +119,38 @@ class InvestmentModel {
     return data;
   }
 }
+
+class InformationModel {
+  String id;
+  AddressModel registeredAddress;
+  AddressModel? currentAddress;
+  AddressModel? officeAddress;
+  BookBankModel firstBookBank;
+  BookBankModel? secondBookBank;
+  OccupationModel occupation;
+  InvestmentModel investment;
+
+  InformationModel({
+    required this.id,
+    required this.registeredAddress,
+    this.currentAddress,
+    this.officeAddress,
+    required this.firstBookBank,
+    this.secondBookBank,
+    required this.occupation,
+    required this.investment,
+  });
+
+  Map<String, dynamic> toJson() {
+    final data = <String, dynamic>{};
+    data['cid'] = id;
+    data['registeredAddress'] = registeredAddress;
+    data['currentAddress'] = currentAddress;
+    data['officeAddress'] = officeAddress;
+    data['firstBankAccount'] = firstBookBank;
+    data['secondBankAccount'] = secondBookBank;
+    data['occupation'] = occupation;
+    data['investment'] = investment;
+    return data;
+  }
+}
