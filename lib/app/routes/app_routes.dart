@@ -8,6 +8,7 @@ abstract class Routes {
   static const information = _Paths.information;
   static const test = _Paths.test;
   static const verifyEmailMobile = _Paths.verifyEmailMobile;
+  static const LOGIN = _Paths.LOGIN;
 }
 
 abstract class _Paths {
@@ -17,4 +18,5 @@ abstract class _Paths {
   static const information = '/information';
   static const test = '/test';
   static const verifyEmailMobile = '/verify-email-mobile';
+  static const LOGIN = '/login';
 }
