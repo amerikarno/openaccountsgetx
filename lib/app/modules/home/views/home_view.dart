@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:openaccountsgetx/app/data/preinfo_data.dart';
 import 'package:openaccountsgetx/app/modules/home/controllers/verify_email_controller.dart';
+import 'package:openaccountsgetx/widget/widgets.dart';
 
 import '../controllers/home_controller.dart';
 
@@ -16,7 +17,7 @@ class HomeView extends StatelessWidget {
     return Scaffold(
         backgroundColor: const Color.fromARGB(255, 233, 225, 225),
         appBar: AppBar(
-            title: autoSizeSubjectText('กรุณากรอกข้อมูลเพื่อเปิดบัญชี'),
+            title: FWidgets().subject(data: 'กรุณากรอกข้อมูลเพื่อเปิดบัญชี'),
             centerTitle: true),
         body: GetBuilder<HomeController>(builder: (ctrl) {
           final thTitleDropDown = thDropDownButton(ctrl);
@@ -95,15 +96,10 @@ class HomeView extends StatelessWidget {
   DropdownButtonFormField<String> thDropDownButton(HomeController ctrl) {
     return DropdownButtonFormField(
         decoration: InputDecoration(
-            errorText: ctrl.thTitleErrorMessage,
-            label: FittedBox(
-              child: RichText(
-                  text: const TextSpan(
-                      text: 'คำนำหน้าชื่อ (ภาษาไทย)',
-                      children: [
-                    TextSpan(text: '*', style: TextStyle(color: Colors.orange))
-                  ])),
-            )),
+          errorText: ctrl.thTitleErrorMessage,
+          label:
+              FWidgets().richText(data1: 'คำนำหน้าชื่อ (ภาษาไทย)', data2: '*'),
+        ),
         value: ctrl.thTitle,
         onChanged: (value) => ctrl.setThTitleName(value),
         items: [
@@ -118,12 +114,7 @@ class HomeView extends StatelessWidget {
   TextField thNameTextFormField(HomeController ctrl) {
     return TextField(
       decoration: InputDecoration(
-          label: FittedBox(
-            child: RichText(
-                text: const TextSpan(text: 'ชื่อ (ภาษาไทย)', children: [
-              TextSpan(text: '*', style: TextStyle(color: Colors.red))
-            ])),
-          ),
+          label: FWidgets().richText(data1: 'ชื่อ (ภาษาไทย)', data2: '*'),
           errorText: ctrl.thNameErrorMessage),
       onChanged: (value) => ctrl.setThName(value),
       onTap: () => ctrl.doThTitleIsNull(),
@@ -134,11 +125,7 @@ class HomeView extends StatelessWidget {
   TextField thSurnameTextFormField(HomeController ctrl) {
     return TextField(
       decoration: InputDecoration(
-          label: FittedBox(
-              child: RichText(
-                  text: const TextSpan(text: 'นามสกุล (ภาษาไทย)', children: [
-            TextSpan(text: '*', style: TextStyle(color: Colors.red))
-          ]))),
+          label: FWidgets().richText(data1: 'นามสกุล (ภาษาไทย)', data2: '*'),
           errorText: ctrl.thSurnameErrorMessage),
       onChanged: (value) => ctrl.setThSurname(value),
       onTap: () => ctrl.doThNameIsNull(),
@@ -149,15 +136,10 @@ class HomeView extends StatelessWidget {
   DropdownButtonFormField<String> engTitleDropDownButton(HomeController ctrl) {
     return DropdownButtonFormField(
         decoration: InputDecoration(
-            errorText: ctrl.engTitleErrorMessage,
-            label: FittedBox(
-              child: RichText(
-                  text: const TextSpan(
-                      text: 'คำนำหน้าชื่อ (ภาษาอังกฤษ)',
-                      children: [
-                    TextSpan(text: '*', style: TextStyle(color: Colors.orange))
-                  ])),
-            )),
+          errorText: ctrl.engTitleErrorMessage,
+          label: FWidgets()
+              .richText(data1: 'คำนำหน้าชื่อ (ภาษาอังกฤษ)', data2: '*'),
+        ),
         value: ctrl.engTitle,
         onChanged: (value) => ctrl.setEngTitleName(value),
         onTap: () => ctrl.doThSurnameIsNull(),
@@ -173,13 +155,9 @@ class HomeView extends StatelessWidget {
   TextField engNameTextFormField(HomeController ctrl) {
     return TextField(
       decoration: InputDecoration(
-          label: FittedBox(
-            child: RichText(
-                text: const TextSpan(text: 'ชื่อ (ภาษาอังกฤษ)', children: [
-              TextSpan(text: '*', style: TextStyle(color: Colors.red))
-            ])),
-          ),
-          errorText: ctrl.engNameErrorMessage),
+        label: FWidgets().richText(data1: 'ชื่อ (ภาษาอังกฤษ)', data2: '*'),
+        errorText: ctrl.engNameErrorMessage,
+      ),
       onChanged: (value) => ctrl.setEngName(value),
       onTap: () => ctrl.doengTitleIsNull(),
       inputFormatters: [
@@ -191,11 +169,7 @@ class HomeView extends StatelessWidget {
   TextField engSurnameTextFormField(HomeController ctrl) {
     return TextField(
       decoration: InputDecoration(
-          label: FittedBox(
-              child: RichText(
-                  text: const TextSpan(text: 'นามสกุล (ภาษาอังกฤษ)', children: [
-            TextSpan(text: '*', style: TextStyle(color: Colors.red))
-          ]))),
+          label: FWidgets().richText(data1: 'นามสกุล (ภาษาอังกฤษ)', data2: '*'),
           errorText: ctrl.engSurnameErrorMessage),
       onChanged: (value) => ctrl.setEngSurname(value),
       onTap: () => ctrl.doengNameIsNull(),
@@ -205,14 +179,10 @@ class HomeView extends StatelessWidget {
     );
   }
 
-  RichText usernamePasswordRichText() {
-    return RichText(
-        text: const TextSpan(
-            text: 'ข้อมูลสำหรับรับ Username, Password และเอกสารจากทางบริษัทฯ',
-            style: TextStyle(
-                color: Colors.blue,
-                fontWeight: FontWeight.bold,
-                fontSize: 20)));
+  Widget usernamePasswordRichText() {
+    return FWidgets().subject(
+        data: 'ข้อมูลสำหรับรับ Username, Password และเอกสารจากทางบริษัทฯ',
+        color: Colors.blue);
   }
 
   Widget nextElevatedButton(HomeController ctrl) {
@@ -226,18 +196,8 @@ class HomeView extends StatelessWidget {
               surfaceTintColor: MaterialStateProperty.all(Colors.transparent),
             ),
             onPressed: () => ctrl.nextButtonOnPress(),
-            child: const Row(
-              children: [
-                Text(
-                  'ถัดไป',
-                  style: TextStyle(fontSize: 10),
-                ),
-                Icon(
-                  Icons.arrow_circle_right,
-                  size: 40,
-                  color: Colors.orange,
-                )
-              ],
+            child: Row(
+              children: [FWidgets().text(data: 'ถัดไป'), FWidgets().nextIcon()],
             ),
           );
   }
@@ -253,7 +213,7 @@ class HomeView extends StatelessWidget {
         onPressed: () => showDialog(
             context: context,
             builder: (BuildContext context) => AlertDialog(
-                  title: const AutoSizeText('นโยบายความเป็นส่วนตัว'),
+                  title: FWidgets().subject(data: 'นโยบายความเป็นส่วนตัว'),
                   content: SizedBox(
                     width: (MediaQuery.of(context).size.width * 0.6),
                     child: SingleChildScrollView(
@@ -274,6 +234,7 @@ class HomeView extends StatelessWidget {
         child: const Text(
           'อ่านรายละเอียดเพิ่มเติม',
           maxLines: 1,
+          textAlign: TextAlign.start,
         ));
   }
 
@@ -285,10 +246,10 @@ class HomeView extends StatelessWidget {
         checkColor: Colors.white,
         activeColor: Colors.green,
         side: const BorderSide(color: Colors.grey),
-        title: const AutoSizeText(
-            'ข้าพเจ้าได้อ่านและตกลงตามข้อมกำหนดและเงื่อนไขและรับทราบนโยบายความเป็นส่วนตัว ซึ่งระบุวิธีการที่บริษัท ฟินันเซีย ดิจิตทัล แอสแซท จำกัด("บริษัท")',
-            maxLines: 2,
-            style: TextStyle(fontSize: 12)),
+        title: FWidgets().text(
+            data:
+                'ข้าพเจ้าได้อ่านและตกลงตามข้อมกำหนดและเงื่อนไขและรับทราบนโยบายความเป็นส่วนตัว ซึ่งระบุวิธีการที่บริษัท ฟินันเซีย ดิจิตทัล แอสแซท จำกัด("บริษัท")',
+            maxLines: 2),
         controlAffinity: ListTileControlAffinity.leading,
         value: ctrl.agreement,
         onChanged: (value) => ctrl.checkAgreement(value));
@@ -301,13 +262,8 @@ class HomeView extends StatelessWidget {
                 ? const Icon(Icons.check_circle, color: Colors.green)
                 : null,
             prefixIcon: const Icon(Icons.phone_iphone),
-            label: FittedBox(
-                child: RichText(
-                    text: const TextSpan(
-                        text: 'หมายเลขโทรศัพท์มือถือ',
-                        children: [
-                  TextSpan(text: '*', style: TextStyle(color: Colors.red))
-                ]))),
+            label:
+                FWidgets().richText(data1: 'หมายเลขโทรศัพท์มือถือ', data2: '*'),
             errorText: ctrl.mobileErrorMessage),
         onChanged: (value) => ctrl.verifyMobileFormat(value),
         onTap: () => ctrl.doemailIsNull(),
@@ -323,11 +279,7 @@ class HomeView extends StatelessWidget {
               ? const Icon(Icons.check_circle, color: Colors.green)
               : null,
           prefixIcon: const Icon(Icons.email),
-          label: FittedBox(
-              child: RichText(
-                  text: const TextSpan(text: 'อีเมล', children: [
-            TextSpan(text: '*', style: TextStyle(color: Colors.red))
-          ]))),
+          label: FWidgets().richText(data1: 'อีเมล', data2: '*'),
           errorText: ctrl.emailErrorMessage),
       onChanged: (value) => ctrl.verifyEmailFormat(value),
       onTap: () => ctrl.doengSurnameIsNull(),
