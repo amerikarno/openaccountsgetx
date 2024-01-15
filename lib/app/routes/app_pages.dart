@@ -47,7 +47,7 @@ class AppPages {
       binding: VerifyEmailMobileBinding(),
     ),
     GetPage(
-      name: _Paths.LOGIN,
+      name: _Paths.login,
       page: () => const LoginView(),
       binding: LoginBinding(),
     ),

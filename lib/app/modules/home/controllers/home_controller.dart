@@ -139,7 +139,8 @@ class HomeController extends GetxController with StateMixin {
     if (email == null) {
       emailErrorMessage = 'กรุณาใส่อีเมล';
     } else {
-      getEmail(email ?? '');
+      emailErrorMessage = null;
+      // getEmail(email ?? '');
     }
     log('is email regis: $isRegisteredEmail');
     update();
@@ -223,15 +224,18 @@ class HomeController extends GetxController with StateMixin {
 
   void verifyMobileFormat(value) async {
     if (value == null) {
+      mobileValidate = false;
       mobileErrorMessage = 'กรุณาใส่หมายเลขโทรศัพท์มือถือ';
     }
     if (mobileErrorMessage != null) {
+      mobileValidate = true;
       emailErrorMessage = null;
     }
     if (value.startsWith('06') ||
         value.startsWith('08') ||
         value.startsWith('09')) {
       if (value.length != 10) {
+        mobileValidate = false;
         mobileErrorMessage = 'กรุณาใส่หมายเลขโทรศัพท์มือถือให้ถูกต้อง';
       } else {
         mobileValidate = true;
@@ -239,6 +243,7 @@ class HomeController extends GetxController with StateMixin {
       }
     } else {
       if (value.length != 9) {
+        mobileValidate = false;
         mobileErrorMessage = 'กรุณาใส่หมายเลขโทรศัพท์มือถือให้ถูกต้อง';
       } else {
         mobileValidate = true;
@@ -252,6 +257,7 @@ class HomeController extends GetxController with StateMixin {
 
   void checkAgreement(value) {
     if (mobile == null) {
+      agreementError = true;
       mobileErrorMessage = 'กรุณากรอกหมายเลยโทรศัพท์';
     } else {
       agreement = value;

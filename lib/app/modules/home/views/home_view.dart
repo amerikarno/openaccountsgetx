@@ -205,36 +205,59 @@ class HomeView extends StatelessWidget {
   TextButton policyAgreementTextButton(
       BuildContext context, HomeController ctrl) {
     return TextButton(
+        onPressed: () {
+          Get.dialog(
+            Column(
+              children: [
+                Container(
+                  color: Colors.white,
+                  alignment: Alignment.center,
+                  width: MediaQuery.of(context).size.width,
+                  padding: const EdgeInsets.fromLTRB(10, 10, 10, 5),
+                  child: const Text(
+                    'นโยบายความเป็นส่วนตัว',
+                    style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 15,
+                        fontWeight: FontWeight.bold,
+                        decoration: TextDecoration.underline,
+                        decorationColor: Colors.red),
+                  ),
+                ),
+                Container(
+                  color: Colors.white,
+                  padding: const EdgeInsets.fromLTRB(10, 5, 10, 5),
+                  height: MediaQuery.of(context).size.height * .9,
+                  child: SingleChildScrollView(
+                      child: Text(
+                    policyAgreementText,
+                    style: const TextStyle(
+                        fontSize: 10,
+                        color: Colors.black,
+                        decoration: TextDecoration.none),
+                  )),
+                ),
+                ElevatedButton(
+                    onPressed: () {
+                      ctrl.popupAgreement();
+                      Navigator.of(context).pop();
+                    },
+                    child: const Text(
+                      'ตกลง',
+                      style: TextStyle(color: Colors.black),
+                    ))
+              ],
+            ),
+            barrierDismissible: false,
+          );
+        },
         style: ButtonStyle(
             textStyle:
                 MaterialStateProperty.all(const TextStyle(color: Colors.grey)),
             padding: MaterialStateProperty.all(EdgeInsets.zero),
             overlayColor: MaterialStateProperty.all(Colors.transparent)),
-        onPressed: () => showDialog(
-            context: context,
-            builder: (BuildContext context) => AlertDialog(
-                  title: FWidgets().subject(data: 'นโยบายความเป็นส่วนตัว'),
-                  content: SizedBox(
-                    width: (MediaQuery.of(context).size.width * 0.6),
-                    child: SingleChildScrollView(
-                      padding: const EdgeInsetsDirectional.all(15),
-                      child: Text(policyAgreementText),
-                    ),
-                  ),
-                  actionsAlignment: MainAxisAlignment.center,
-                  actions: [
-                    TextButton(
-                        onPressed: () {
-                          ctrl.popupAgreement();
-                          Navigator.pop(context, 'OK');
-                        },
-                        child: const Text('ตกลง'))
-                  ],
-                )),
-        child: const Text(
-          'อ่านรายละเอียดเพิ่มเติม',
-          maxLines: 1,
-          textAlign: TextAlign.start,
+        child: FWidgets().text(
+          data: 'อ่านรายละเอียดเพิ่มเติม',
         ));
   }
 

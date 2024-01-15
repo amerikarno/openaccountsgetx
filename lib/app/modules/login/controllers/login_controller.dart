@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:openaccountsgetx/app/modules/login/login_model.dart';
@@ -16,8 +18,8 @@ class LoginController extends GetxController {
     updateUser(username, password);
 
     // For demonstration purposes, we'll just print the credentials.
-    print('Username: $username');
-    print('Password: $password');
+    log('Username: $username');
+    log('Password: $password');
   }
 
   void updateUser(String username, String password) {
