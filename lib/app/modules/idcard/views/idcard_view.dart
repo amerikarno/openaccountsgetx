@@ -3,18 +3,21 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:openaccountsgetx/app/data/idcard.dart';
+import 'package:openaccountsgetx/widget/widgets.dart';
 
 import '../controllers/idcard_controller.dart';
 
 class IdcardView extends StatelessWidget {
-  const IdcardView({Key? key}) : super(key: key);
+  const IdcardView({super.key});
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
     final height = MediaQuery.of(context).size.height;
     final title = SizedBox(
         width: width * .3,
-        child: const FittedBox(child: Text('กรอกข้อมูลบัตรประชาชน')));
+        child: FWidgets().subject(
+          data: 'id_card_subject'.tr,
+        ));
     return Scaffold(
         appBar: AppBar(
           title: title,
@@ -23,21 +26,14 @@ class IdcardView extends StatelessWidget {
         ),
         body: GetBuilder<IdcardController>(builder: (ctrl) {
           ctrl.createYearLists();
-          final birthDateText = FittedBox(
-            child: RichText(
-              text: const TextSpan(text: 'วัน/เดือน/ปี เกิด', children: [
-                TextSpan(text: '*', style: TextStyle(color: Colors.orange))
-              ]),
-            ),
-          );
+          final birthDateText =
+              FWidgets().richText(data1: 'birth_date'.tr, data2: '*');
 
           final dateFeild = DropdownButtonFormField(
               menuMaxHeight: height * .5,
               decoration: InputDecoration(
                   errorText: ctrl.datepickerErrorMassage,
-                  label: const Text('วันที่',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(color: Colors.black))),
+                  label: FWidgets().richText(data1: 'date'.tr, data2: '*')),
               value: ctrl.datepicker,
               onChanged: (value) => ctrl.setDatePicker(value),
               items: [
@@ -49,9 +45,7 @@ class IdcardView extends StatelessWidget {
               menuMaxHeight: height * .5,
               decoration: InputDecoration(
                   errorText: ctrl.monthpickerErrorMassage,
-                  label: const Text('เดือน',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(color: Colors.black))),
+                  label: FWidgets().richText(data1: 'month'.tr, data2: '*')),
               value: ctrl.monthpicker,
               onChanged: (value) => ctrl.setMonthPicker(value),
               onTap: () => ctrl.isDateOfBirthIsNull(),
@@ -64,9 +58,7 @@ class IdcardView extends StatelessWidget {
               menuMaxHeight: height * .5,
               decoration: InputDecoration(
                   errorText: ctrl.yearpickerErrorMassage,
-                  label: const Text('ปี(พ.ศ.)',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(color: Colors.black))),
+                  label: FWidgets().richText(data1: 'year'.tr, data2: '*')),
               value: ctrl.yearpicker,
               onChanged: (value) => ctrl.setYearPicker(value),
               onTap: () => ctrl.isMonthOfBirthIsNull(),
@@ -75,21 +67,12 @@ class IdcardView extends StatelessWidget {
                   DropdownMenuItem(value: data, child: Text(data))
               ]);
 
-          final statusText = FittedBox(
-            child: RichText(
-              text: const TextSpan(text: 'สถานะ', children: [
-                TextSpan(text: '*', style: TextStyle(color: Colors.orange))
-              ]),
-            ),
-          );
+          final statusText =
+              FWidgets().richText(data1: 'status'.tr, data2: '*');
 
           final singleListTile = ListTile(
               contentPadding: EdgeInsets.zero,
-              title: const FittedBox(
-                child: Text(
-                  'โสด',
-                ),
-              ),
+              title: FWidgets().text(data: 'single_status'.tr),
               leading: Radio<MarriageStatueEnum>(
                   value: MarriageStatueEnum.single,
                   groupValue: ctrl.marriageStatusGroupValue,
@@ -97,11 +80,7 @@ class IdcardView extends StatelessWidget {
                       ctrl.setMarriageStatus(value)));
           final marriedListTile = ListTile(
               contentPadding: EdgeInsets.zero,
-              title: const FittedBox(
-                child: Text(
-                  'สมรส',
-                ),
-              ),
+              title: FWidgets().text(data: 'married_status'.tr),
               leading: Radio<MarriageStatueEnum>(
                   value: MarriageStatueEnum.married,
                   groupValue: ctrl.marriageStatusGroupValue,
@@ -109,39 +88,23 @@ class IdcardView extends StatelessWidget {
                       ctrl.setMarriageStatus(value)));
           final disvorcedListTile = ListTile(
               contentPadding: EdgeInsets.zero,
-              title: const FittedBox(
-                child: Text(
-                  'หย่า',
-                ),
-              ),
+              title: FWidgets().text(data: 'disvorced_status'.tr),
               leading: Radio<MarriageStatueEnum>(
                   value: MarriageStatueEnum.disvorced,
                   groupValue: ctrl.marriageStatusGroupValue,
                   onChanged: (MarriageStatueEnum? value) =>
                       ctrl.setMarriageStatus(value)));
 
-          final citizenID = FittedBox(
-            child: RichText(
-              text: const TextSpan(
-                  text: 'หมายเลขบัตรประจำตัวประชาชน',
-                  children: [
-                    TextSpan(text: '*', style: TextStyle(color: Colors.orange))
-                  ]),
-            ),
-          );
+          final citizenID =
+              FWidgets().richText(data1: 'citizen_id'.tr, data2: '*');
 
           final cidTextField = TextField(
               decoration: InputDecoration(
                   suffix: (ctrl.citizenIDValidate)
                       ? const Icon(Icons.check_circle, color: Colors.green)
                       : null,
-                  label: FittedBox(
-                      child: RichText(
-                          text: const TextSpan(
-                              text: 'ตัวเลข 13 หลัก',
-                              children: [
-                        TextSpan(text: '*', style: TextStyle(color: Colors.red))
-                      ]))),
+                  label: FWidgets()
+                      .richText(data1: 'citizen_digits'.tr, data2: '*'),
                   errorText: ctrl.citizenIDErrorMassage),
               onChanged: (value) => ctrl.setCitizenID(value),
               onTap: () => ctrl.isMarriageStatusIsNull(),
@@ -149,34 +112,15 @@ class IdcardView extends StatelessWidget {
                 FilteringTextInputFormatter.allow(RegExp(r'[0-9]'))
               ]);
 
-          final laserCode = FittedBox(
-            child: RichText(
-              text: const TextSpan(
-                  text: 'เลขหลังบัตรประชาชน(Laser Code)',
-                  children: [
-                    TextSpan(text: '*', style: TextStyle(color: Colors.orange))
-                  ]),
-            ),
-          );
-          final laserCodeText = FittedBox(
-            child: RichText(
-              text: const TextSpan(
-                  text: 'เลขหลังบัตรประชาชน(Laser Code)',
-                  children: [
-                    TextSpan(text: '*', style: TextStyle(color: Colors.orange))
-                  ]),
-            ),
-          );
+          final laserCode =
+              FWidgets().richText(data1: 'laser_code'.tr, data2: '*');
+          final laserCodeText =
+              FWidgets().richText(data1: 'laser_code'.tr, data2: '*');
 
           final laserPrefixTextField = TextField(
               decoration: InputDecoration(
-                  label: FittedBox(
-                      child: RichText(
-                          text: const TextSpan(
-                              text: 'ตัวอักษร 2 หลัก',
-                              children: [
-                        TextSpan(text: '*', style: TextStyle(color: Colors.red))
-                      ]))),
+                  label: FWidgets().richText(
+                      data1: 'laser_code_prefix_digits'.tr, data2: '*'),
                   errorText: ctrl.laserPrefixErrorMassage),
               onChanged: (value) => ctrl.setLaserPrefix(value),
               onTap: () => ctrl.isCitizendIDIsNull(),
@@ -190,13 +134,8 @@ class IdcardView extends StatelessWidget {
           ));
           final laserSuffixTextField = TextField(
               decoration: InputDecoration(
-                  label: FittedBox(
-                      child: RichText(
-                          text: const TextSpan(
-                              text: 'ตัวเลข 10 หลัก',
-                              children: [
-                        TextSpan(text: '*', style: TextStyle(color: Colors.red))
-                      ]))),
+                  label: FWidgets().richText(
+                      data1: 'laser_code_suffix_digits'.tr, data2: '*'),
                   errorText: ctrl.laserSuffixErrorMassage),
               onChanged: (value) => ctrl.setLaserSuffix(value),
               onTap: () => ctrl.islaserPrefixIsNull(),
@@ -211,15 +150,14 @@ class IdcardView extends StatelessWidget {
               surfaceTintColor: MaterialStateProperty.all(Colors.transparent),
             ),
             onPressed: () => ctrl.previousButtonOnPress(),
-            child: const Row(
+            child: Row(
               children: [
-                Icon(
+                const Icon(
                   Icons.keyboard_backspace,
                   size: 30,
                   color: Colors.black,
                 ),
-                Text('ย้อนกลับ',
-                    style: TextStyle(fontSize: 10, color: Colors.black))
+                FWidgets().text(data: 'previus'.tr),
               ],
             ),
           );
@@ -343,26 +281,23 @@ class IdcardView extends StatelessWidget {
 
   ElevatedButton nextButtonIDCard(IdcardController ctrl) {
     return ElevatedButton(
-          style: ButtonStyle(
-            overlayColor: MaterialStateProperty.all(Colors.transparent),
-            backgroundColor: MaterialStateProperty.all(Colors.transparent),
-            shadowColor: MaterialStateProperty.all(Colors.transparent),
-            surfaceTintColor: MaterialStateProperty.all(Colors.transparent),
-          ),
-          onPressed: () => ctrl.nextButtonOnPress(),
-          child: const Row(
-            children: [
-              Text(
-                'ถัดไป',
-                style: TextStyle(fontSize: 10, color: Colors.black),
-              ),
-              Icon(
-                Icons.arrow_circle_right,
-                size: 45,
-                color: Colors.orange,
-              )
-            ],
-          ),
-        );
+      style: ButtonStyle(
+        overlayColor: MaterialStateProperty.all(Colors.transparent),
+        backgroundColor: MaterialStateProperty.all(Colors.transparent),
+        shadowColor: MaterialStateProperty.all(Colors.transparent),
+        surfaceTintColor: MaterialStateProperty.all(Colors.transparent),
+      ),
+      onPressed: () => ctrl.nextButtonOnPress(),
+      child: Row(
+        children: [
+          FWidgets().text(data: 'next'.tr),
+          const Icon(
+            Icons.arrow_circle_right,
+            size: 45,
+            color: Colors.orange,
+          )
+        ],
+      ),
+    );
   }
 }

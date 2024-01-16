@@ -1,0 +1,35 @@
+class TH {
+   static const thTH = {
+    'year': 'ปี(พ.ศ.)',
+    'month': 'เดือน',
+    'date': 'วันที่',
+    'birth_date': 'วัน/เดือน/ปี เกิด',
+    'domes_title': 'คำนำหน้าชื่อ (ภาษาไทย)',
+    'domes_name': 'ชื่อ (ภาษาไทย)',
+    'domes_surname': 'นามสกุล (ภาษาไทย)',
+    'inter_title': 'คำนำหน้าชื่อ (ภาษาอังกฤษ)',
+    'inter_name': 'ชื่อ (ภาษาอังกฤษ)',
+    'inter_surname': 'นามสกุล (ภาษาอังกฤษ)',
+    'email': 'อีเมล',
+    'mobile_number': 'หมายเลขโทรศัพท์มือถือ',
+    'agreement_details':
+        'ข้าพเจ้าได้อ่านและตกลงตามข้อมกำหนดและเงื่อนไขและรับทราบนโยบายความเป็นส่วนตัว ซึ่งระบุวิธีการที่บริษัท ฟินันเซีย ดิจิตทัล แอสแซท จำกัด("บริษัท")',
+    'more_details': 'อ่านรายละเอียดเพิ่มเติม',
+    'next': 'ถัดไป',
+    'previos': 'ย้อนกลับ',
+    'subject_policy': 'นโยบายความเป็นส่วนตัว',
+    'username_password_document':
+        'ข้อมูลสำหรับรับ Username, Password และเอกสารจากทางบริษัทฯ',
+    'open_account_info_subject': 'กรุณากรอกข้อมูลเพื่อเปิดบัญชี',
+    'id_card_subject': 'กรอกข้อมูลบัตรประชาชน',
+    'status': 'สถานะ',
+    'single_status': 'โสด',
+    'married_status': 'สมรส',
+    'disvorced_status': 'หย่า',
+    'citizen_id': 'หมายเลขบัตรประจำตัวประชาชน',
+    'citizen_digits': 'ตัวเลข 13 หลัก',
+    'laser_code': 'เลขหลังบัตรประชาชน(Laser Code)',
+    'laser_code_prefix_digits': 'ตัวอักษร 2 หลัก',
+    'laser_code_suffix_digits': 'ตัวเลข 10 หลัก',
+  };
+}

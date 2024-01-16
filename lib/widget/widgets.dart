@@ -1,5 +1,9 @@
+import 'dart:developer';
+
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:flag/flag.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class FWidgets {
   List<double> presetFontTexts = [14, 12, 10, 8, 6];
@@ -78,6 +82,44 @@ class FWidgets {
       Icons.arrow_circle_right,
       size: 40,
       color: Colors.orange,
+    );
+  }
+
+  Widget switchLanguages() {
+    return IconButton(
+      icon: const Icon(Icons.language),
+      onPressed: () {
+        var locale = const Locale('th', 'TH');
+        if (Get.locale == locale) {
+          locale = const Locale('en', 'US');
+        }
+        Get.updateLocale(locale);
+      },
+    );
+  }
+
+  Widget dropdownLanguages() {
+    return DropdownButton(
+      value: Get.locale?.languageCode,
+      items: [
+        DropdownMenuItem(
+            value: 'en',
+            child: ClipOval(
+                child: Flag.fromCode(FlagsCode.GB, height: 30, width: 30))),
+        DropdownMenuItem(
+            value: 'th',
+            child: ClipOval(
+                child: Flag.fromCode(FlagsCode.TH, height: 30, width: 30))),
+        DropdownMenuItem(
+            value: 'cn',
+            child: ClipOval(
+                child: Flag.fromCode(FlagsCode.CN, height: 30, width: 30))),
+      ],
+      onChanged: (String? newLang) {
+        var newLocale = Locale(newLang!, 'US'); // US is just a placeholder
+        log(newLocale.toString());
+        Get.updateLocale(newLocale);
+      },
     );
   }
 }

@@ -9,7 +9,7 @@ import 'package:openaccountsgetx/widget/widgets.dart';
 import '../controllers/home_controller.dart';
 
 class HomeView extends StatelessWidget {
-  const HomeView({Key? key}) : super(key: key);
+  const HomeView({super.key});
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
@@ -17,14 +17,17 @@ class HomeView extends StatelessWidget {
     return Scaffold(
         backgroundColor: const Color.fromARGB(255, 233, 225, 225),
         appBar: AppBar(
-            title: FWidgets().subject(data: 'กรุณากรอกข้อมูลเพื่อเปิดบัญชี'),
-            centerTitle: true),
+          title: FWidgets().subject(data: 'open_account_info_subject'.tr),
+          centerTitle: true,
+          actions: [FWidgets().dropdownLanguages()],
+        ),
         body: GetBuilder<HomeController>(builder: (ctrl) {
           final thTitleDropDown = thDropDownButton(ctrl);
           final thNameTextField = thNameTextFormField(ctrl);
           final thSurnameTextField = thSurnameTextFormField(ctrl);
           final engTitleDropDown = engTitleDropDownButton(ctrl);
           final engNameTextField = engNameTextFormField(ctrl);
+          final engMiddleNameTextField = engMiddleNameTextFormField(ctrl);
           final engSurnameTextField = engSurnameTextFormField(ctrl);
           final emailTextField = emailTextFormField(ctrl);
           final mobileTextField = mobileTextFormField(ctrl);
@@ -33,51 +36,98 @@ class HomeView extends StatelessWidget {
           final usernamePasswordSubject = usernamePasswordRichText();
           final nextButton = nextElevatedButton(ctrl);
 
-          return Center(
-              child: SingleChildScrollView(
-                  padding:
-                      EdgeInsets.fromLTRB(width * 0.07, 0, width * 0.07, 0),
-                  child: Container(
-                    padding:
-                        EdgeInsets.fromLTRB(width * 0.03, 15, width * 0.03, 15),
-                    decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(10)),
-                    child: columnStart([
-                      SizedBox(width: width * .3, child: thTitleDropDown),
-                      Row(children: [
-                        SizedBox(width: width * .3, child: thNameTextField),
-                        SizedBox(width: width * .01),
-                        SizedBox(width: width * .49, child: thSurnameTextField)
-                      ]),
-                      SizedBox(width: width * .3, child: engTitleDropDown),
-                      Row(children: [
-                        SizedBox(width: width * .3, child: engNameTextField),
-                        SizedBox(width: width * .01),
-                        SizedBox(width: width * .49, child: engSurnameTextField)
-                      ]),
-                      const SizedBox(height: 20),
-                      const SizedBox(height: 20),
-                      SizedBox(
-                          width: width * .8, child: usernamePasswordSubject),
-                      // const SizedBox(height: 20),
-                      SizedBox(width: width * .8, child: emailTextField),
-                      SizedBox(width: width * .8, child: mobileTextField),
-                      SizedBox(width: width * .8, child: agreement),
-                      (ctrl.agreementError!)
-                          ? Text(
-                              ctrl.agreementErrorMessage!,
-                              style: const TextStyle(
-                                  color: Colors.red, fontSize: 12),
-                            )
-                          : const Row(),
-                      SizedBox(width: width * .3, child: policyAgreement),
-                      Row(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          crossAxisAlignment: CrossAxisAlignment.end,
-                          children: [nextButton]),
-                    ]),
-                  )));
+          return SingleChildScrollView(
+              padding: EdgeInsets.fromLTRB(width * 0.07, 10, width * 0.07, 10),
+              child: Container(
+                padding:
+                    EdgeInsets.fromLTRB(width * 0.03, 15, width * 0.03, 15),
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(10)),
+                child: columnStart([
+                  (Get.locale == const Locale('cn', 'US')) ||
+                          (Get.locale == const Locale('en', 'US'))
+                      ? const SizedBox.shrink()
+                      : Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Row(
+                              children: [
+                                SizedBox(
+                                    width: width * .3, child: thTitleDropDown),
+                              ],
+                            ),
+                            Row(children: [
+                              SizedBox(
+                                  width: width * .3, child: thNameTextField),
+                              SizedBox(width: width * .01),
+                              SizedBox(
+                                  width: width * .49, child: thSurnameTextField)
+                            ]),
+                          ],
+                        ),
+                  (Get.locale == const Locale('en', 'US'))
+                      ? Column(
+                          children: [
+                            Row(
+                              children: [
+                                SizedBox(
+                                    width: width * .24,
+                                    child: engTitleDropDown),
+                              ],
+                            ),
+                            Row(children: [
+                              SizedBox(
+                                  width: width * .24, child: engNameTextField),
+                              SizedBox(width: width * .01),
+                              SizedBox(
+                                  width: width * .24,
+                                  child: engMiddleNameTextField),
+                              SizedBox(width: width * .01),
+                              SizedBox(
+                                  width: width * .3, child: engSurnameTextField)
+                            ]),
+                          ],
+                        )
+                      : Column(
+                          children: [
+                            Row(
+                              children: [
+                                SizedBox(
+                                    width: width * .3, child: engTitleDropDown),
+                              ],
+                            ),
+                            Row(children: [
+                              SizedBox(
+                                  width: width * .3, child: engNameTextField),
+                              SizedBox(width: width * .01),
+                              SizedBox(
+                                  width: width * .49,
+                                  child: engSurnameTextField)
+                            ]),
+                          ],
+                        ),
+                  const SizedBox(height: 20),
+                  const SizedBox(height: 20),
+                  SizedBox(width: width * .8, child: usernamePasswordSubject),
+                  // const SizedBox(height: 20),
+                  SizedBox(width: width * .8, child: emailTextField),
+                  SizedBox(width: width * .8, child: mobileTextField),
+                  SizedBox(width: width * .8, child: agreement),
+                  (ctrl.agreementError!)
+                      ? Text(
+                          ctrl.agreementErrorMessage!,
+                          style:
+                              const TextStyle(color: Colors.red, fontSize: 12),
+                        )
+                      : const Row(),
+                  SizedBox(width: width * .3, child: policyAgreement),
+                  Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: [nextButton]),
+                ]),
+              ));
         }));
   }
 
@@ -97,8 +147,7 @@ class HomeView extends StatelessWidget {
     return DropdownButtonFormField(
         decoration: InputDecoration(
           errorText: ctrl.thTitleErrorMessage,
-          label:
-              FWidgets().richText(data1: 'คำนำหน้าชื่อ (ภาษาไทย)', data2: '*'),
+          label: FWidgets().richText(data1: 'domes_title'.tr, data2: '*'),
         ),
         value: ctrl.thTitle,
         onChanged: (value) => ctrl.setThTitleName(value),
@@ -114,7 +163,7 @@ class HomeView extends StatelessWidget {
   TextField thNameTextFormField(HomeController ctrl) {
     return TextField(
       decoration: InputDecoration(
-          label: FWidgets().richText(data1: 'ชื่อ (ภาษาไทย)', data2: '*'),
+          label: FWidgets().richText(data1: 'domes_name'.tr, data2: '*'),
           errorText: ctrl.thNameErrorMessage),
       onChanged: (value) => ctrl.setThName(value),
       onTap: () => ctrl.doThTitleIsNull(),
@@ -125,7 +174,7 @@ class HomeView extends StatelessWidget {
   TextField thSurnameTextFormField(HomeController ctrl) {
     return TextField(
       decoration: InputDecoration(
-          label: FWidgets().richText(data1: 'นามสกุล (ภาษาไทย)', data2: '*'),
+          label: FWidgets().richText(data1: 'domes_surname'.tr, data2: '*'),
           errorText: ctrl.thSurnameErrorMessage),
       onChanged: (value) => ctrl.setThSurname(value),
       onTap: () => ctrl.doThNameIsNull(),
@@ -137,8 +186,7 @@ class HomeView extends StatelessWidget {
     return DropdownButtonFormField(
         decoration: InputDecoration(
           errorText: ctrl.engTitleErrorMessage,
-          label: FWidgets()
-              .richText(data1: 'คำนำหน้าชื่อ (ภาษาอังกฤษ)', data2: '*'),
+          label: FWidgets().richText(data1: 'inter_title'.tr, data2: '*'),
         ),
         value: ctrl.engTitle,
         onChanged: (value) => ctrl.setEngTitleName(value),
@@ -155,7 +203,7 @@ class HomeView extends StatelessWidget {
   TextField engNameTextFormField(HomeController ctrl) {
     return TextField(
       decoration: InputDecoration(
-        label: FWidgets().richText(data1: 'ชื่อ (ภาษาอังกฤษ)', data2: '*'),
+        label: FWidgets().richText(data1: 'inter_name'.tr, data2: '*'),
         errorText: ctrl.engNameErrorMessage,
       ),
       onChanged: (value) => ctrl.setEngName(value),
@@ -166,10 +214,22 @@ class HomeView extends StatelessWidget {
     );
   }
 
+  TextField engMiddleNameTextFormField(HomeController ctrl) {
+    return TextField(
+      decoration: InputDecoration(
+        label: FWidgets().text(data: 'Middle Name'),
+      ),
+      onChanged: (value) => ctrl.setEngMiddleName(value),
+      inputFormatters: [
+        FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z ]'))
+      ],
+    );
+  }
+
   TextField engSurnameTextFormField(HomeController ctrl) {
     return TextField(
       decoration: InputDecoration(
-          label: FWidgets().richText(data1: 'นามสกุล (ภาษาอังกฤษ)', data2: '*'),
+          label: FWidgets().richText(data1: 'inter_surname'.tr, data2: '*'),
           errorText: ctrl.engSurnameErrorMessage),
       onChanged: (value) => ctrl.setEngSurname(value),
       onTap: () => ctrl.doengNameIsNull(),
@@ -180,9 +240,8 @@ class HomeView extends StatelessWidget {
   }
 
   Widget usernamePasswordRichText() {
-    return FWidgets().subject(
-        data: 'ข้อมูลสำหรับรับ Username, Password และเอกสารจากทางบริษัทฯ',
-        color: Colors.blue);
+    return FWidgets()
+        .subject(data: 'username_password_document'.tr, color: Colors.blue);
   }
 
   Widget nextElevatedButton(HomeController ctrl) {
@@ -197,7 +256,10 @@ class HomeView extends StatelessWidget {
             ),
             onPressed: () => ctrl.nextButtonOnPress(),
             child: Row(
-              children: [FWidgets().text(data: 'ถัดไป'), FWidgets().nextIcon()],
+              children: [
+                FWidgets().text(data: 'next'.tr),
+                FWidgets().nextIcon()
+              ],
             ),
           );
   }
@@ -214,9 +276,9 @@ class HomeView extends StatelessWidget {
                   alignment: Alignment.center,
                   width: MediaQuery.of(context).size.width,
                   padding: const EdgeInsets.fromLTRB(10, 10, 10, 5),
-                  child: const Text(
-                    'นโยบายความเป็นส่วนตัว',
-                    style: TextStyle(
+                  child: Text(
+                    'subject_policy'.tr,
+                    style: const TextStyle(
                         color: Colors.black,
                         fontSize: 15,
                         fontWeight: FontWeight.bold,
@@ -242,9 +304,9 @@ class HomeView extends StatelessWidget {
                       ctrl.popupAgreement();
                       Navigator.of(context).pop();
                     },
-                    child: const Text(
-                      'ตกลง',
-                      style: TextStyle(color: Colors.black),
+                    child: Text(
+                      'agree'.tr,
+                      style: const TextStyle(color: Colors.black),
                     ))
               ],
             ),
@@ -257,7 +319,7 @@ class HomeView extends StatelessWidget {
             padding: MaterialStateProperty.all(EdgeInsets.zero),
             overlayColor: MaterialStateProperty.all(Colors.transparent)),
         child: FWidgets().text(
-          data: 'อ่านรายละเอียดเพิ่มเติม',
+          data: 'more_details'.tr,
         ));
   }
 
@@ -269,10 +331,7 @@ class HomeView extends StatelessWidget {
         checkColor: Colors.white,
         activeColor: Colors.green,
         side: const BorderSide(color: Colors.grey),
-        title: FWidgets().text(
-            data:
-                'ข้าพเจ้าได้อ่านและตกลงตามข้อมกำหนดและเงื่อนไขและรับทราบนโยบายความเป็นส่วนตัว ซึ่งระบุวิธีการที่บริษัท ฟินันเซีย ดิจิตทัล แอสแซท จำกัด("บริษัท")',
-            maxLines: 2),
+        title: FWidgets().text(data: 'agreement_details'.tr, maxLines: 2),
         controlAffinity: ListTileControlAffinity.leading,
         value: ctrl.agreement,
         onChanged: (value) => ctrl.checkAgreement(value));
@@ -285,8 +344,7 @@ class HomeView extends StatelessWidget {
                 ? const Icon(Icons.check_circle, color: Colors.green)
                 : null,
             prefixIcon: const Icon(Icons.phone_iphone),
-            label:
-                FWidgets().richText(data1: 'หมายเลขโทรศัพท์มือถือ', data2: '*'),
+            label: FWidgets().richText(data1: 'mobile_number'.tr, data2: '*'),
             errorText: ctrl.mobileErrorMessage),
         onChanged: (value) => ctrl.verifyMobileFormat(value),
         onTap: () => ctrl.doemailIsNull(),
@@ -302,7 +360,7 @@ class HomeView extends StatelessWidget {
               ? const Icon(Icons.check_circle, color: Colors.green)
               : null,
           prefixIcon: const Icon(Icons.email),
-          label: FWidgets().richText(data1: 'อีเมล', data2: '*'),
+          label: FWidgets().richText(data1: 'email'.tr, data2: '*'),
           errorText: ctrl.emailErrorMessage),
       onChanged: (value) => ctrl.verifyEmailFormat(value),
       onTap: () => ctrl.doengSurnameIsNull(),

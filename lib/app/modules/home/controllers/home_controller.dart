@@ -31,6 +31,7 @@ class HomeController extends GetxController with StateMixin {
   String? thSurnameErrorMessage;
   String? thSurname;
   String? engName;
+  String? engMiddleName;
   String? engSurname;
   String? engNameErrorMessage;
   String? engSurnameErrorMessage;
@@ -174,6 +175,12 @@ class HomeController extends GetxController with StateMixin {
     }
     engName = value;
     await GetStorage().write('engName', engName);
+    update();
+  }
+
+  void setEngMiddleName(value) async {
+    engMiddleName = value;
+    await GetStorage().write('engMiddleName', engMiddleName);
     update();
   }
 
