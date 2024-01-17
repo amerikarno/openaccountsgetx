@@ -35,9 +35,10 @@ class FWidgets {
   Widget richText(
       {required data1,
       Color? color1,
-      required String data2,
+      String? data2,
       Color? color2,
       int? maxLines}) {
+    data2 ??= '*';
     color1 ??= Colors.black;
     color2 ??= Colors.red;
     maxLines ??= 1;
@@ -56,9 +57,10 @@ class FWidgets {
   Widget richSubject(
       {required data1,
       Color? color1,
-      required String data2,
+      String? data2,
       Color? color2,
       int? maxLines}) {
+    data2 ??= '*';
     color1 ??= Colors.black;
     color2 ??= Colors.red;
     maxLines ??= 1;
@@ -99,6 +101,7 @@ class FWidgets {
   }
 
   Widget dropdownLanguages() {
+    var country = {'en': 'US', 'cn': 'CN', 'th': 'TH'};
     return DropdownButton(
       value: Get.locale?.languageCode,
       items: [
@@ -116,7 +119,8 @@ class FWidgets {
                 child: Flag.fromCode(FlagsCode.CN, height: 30, width: 30))),
       ],
       onChanged: (String? newLang) {
-        var newLocale = Locale(newLang!, 'US'); // US is just a placeholder
+        var newLocale =
+            Locale(newLang!, country[newLang]); // US is just a placeholder
         log(newLocale.toString());
         Get.updateLocale(newLocale);
       },

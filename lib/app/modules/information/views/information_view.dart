@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:openaccountsgetx/app/data/idcard.dart';
+import 'package:openaccountsgetx/widget/widgets.dart';
 
 import '../controllers/information_controller.dart';
 
 class InformationView extends StatelessWidget {
-  const InformationView({Key? key}) : super(key: key);
+  const InformationView({super.key});
 
   Widget addressWidget(
       {required double width,
@@ -55,9 +56,7 @@ class InformationView extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(
           toolbarHeight: 150,
-          title: SizedBox(
-              width: width * .3,
-              child: const FittedBox(child: Text('กรอกข้อมูลส่วนตัว'))),
+          title: FWidgets().subject(data: 'personal_info_subject'.tr),
           titleSpacing: width * .1,
           centerTitle: false,
         ),
@@ -65,47 +64,44 @@ class InformationView extends StatelessWidget {
           final regisHouse = TextField(
               decoration: InputDecoration(
                   contentPadding: const EdgeInsets.symmetric(vertical: 0),
-                  label: FittedBox(
-                      child: RichText(
-                          text: const TextSpan(text: 'บ้านเลขที่', children: [
-                    TextSpan(text: '*', style: TextStyle(color: Colors.red))
-                  ]))),
+                  label:
+                      FWidgets().richText(data1: 'house_number'.tr, data2: '*'),
                   errorText: ctrl.registeredHouseNumberErrorMessage),
               onChanged: (value) => ctrl.rhOnChange(value),
               inputFormatters: [
                 FilteringTextInputFormatter.allow(RegExp(r'[0-9]'))
               ]);
           final regisVillage = TextField(
-              decoration: const InputDecoration(
-                  contentPadding: EdgeInsets.symmetric(vertical: 0),
-                  label: FittedBox(child: Text('หมู่ที่'))),
+              decoration: InputDecoration(
+                  contentPadding: const EdgeInsets.symmetric(vertical: 0),
+                  label: FWidgets().text(data: 'village_number'.tr)),
               onChanged: (value) => ctrl.rvOnChange(value),
               onTap: () => ctrl.rhOnTap(),
               inputFormatters: [
                 FilteringTextInputFormatter.allow(RegExp(r'[0-9]'))
               ]);
           final regisVilName = TextField(
-              decoration: const InputDecoration(
-                  contentPadding: EdgeInsets.symmetric(vertical: 0),
-                  label: FittedBox(child: Text('หมู่บ้าน'))),
+              decoration: InputDecoration(
+                  contentPadding: const EdgeInsets.symmetric(vertical: 0),
+                  label: FWidgets().text(data: 'village_name'.tr)),
               onChanged: (value) => ctrl.rvnOnChange(value),
               onTap: () => ctrl.rhOnTap(),
               inputFormatters: [
                 FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z0-9ก-๛]'))
               ]);
           final regisSubStreet = TextField(
-              decoration: const InputDecoration(
-                  contentPadding: EdgeInsets.symmetric(vertical: 0),
-                  label: FittedBox(child: Text('ซอย'))),
+              decoration: InputDecoration(
+                  contentPadding: const EdgeInsets.symmetric(vertical: 0),
+                  label: FWidgets().text(data: 'sub_street'.tr)),
               onChanged: (value) => ctrl.rssnOnChange(value),
               onTap: () => ctrl.rhOnTap(),
               inputFormatters: [
                 FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z0-9ก-๛]'))
               ]);
           final regisStreet = TextField(
-              decoration: const InputDecoration(
-                  contentPadding: EdgeInsets.symmetric(vertical: 0),
-                  label: FittedBox(child: Text('ถนน'))),
+              decoration: InputDecoration(
+                  contentPadding: const EdgeInsets.symmetric(vertical: 0),
+                  label: FWidgets().text(data: 'street'.tr)),
               onChanged: (value) => ctrl.rsnOnChange(value),
               onTap: () => ctrl.rhOnTap(),
               inputFormatters: [
@@ -114,11 +110,8 @@ class InformationView extends StatelessWidget {
           final regisSubDistrict = TextField(
               decoration: InputDecoration(
                   contentPadding: const EdgeInsets.symmetric(vertical: 0),
-                  label: FittedBox(
-                      child: RichText(
-                          text: const TextSpan(text: 'แขวงตำบล', children: [
-                    TextSpan(text: '*', style: TextStyle(color: Colors.red))
-                  ]))),
+                  label:
+                      FWidgets().richText(data1: 'sub_district'.tr, data2: '*'),
                   errorText: ctrl.registeredSubDistrictNameErrorMessage),
               onChanged: (value) => ctrl.rsdnOnChange(value),
               onTap: () => ctrl.rhOnTap(),
@@ -128,11 +121,7 @@ class InformationView extends StatelessWidget {
           final regisDistrict = TextField(
               decoration: InputDecoration(
                   contentPadding: const EdgeInsets.symmetric(vertical: 0),
-                  label: FittedBox(
-                      child: RichText(
-                          text: const TextSpan(text: 'เขตอำเภอ', children: [
-                    TextSpan(text: '*', style: TextStyle(color: Colors.red))
-                  ]))),
+                  label: FWidgets().richText(data1: 'district'.tr, data2: '*'),
                   errorText: ctrl.registeredDistrictNameErrorMessage),
               onChanged: (value) => ctrl.rdnOnChange(value),
               onTap: () => ctrl.rsdnOnTap(),
@@ -142,11 +131,7 @@ class InformationView extends StatelessWidget {
           final regisProvince = TextField(
               decoration: InputDecoration(
                   contentPadding: const EdgeInsets.symmetric(vertical: 0),
-                  label: FittedBox(
-                      child: RichText(
-                          text: const TextSpan(text: 'จังหวัด', children: [
-                    TextSpan(text: '*', style: TextStyle(color: Colors.red))
-                  ]))),
+                  label: FWidgets().richText(data1: 'province'.tr, data2: '*'),
                   errorText: ctrl.registeredProvinceNameErrorMessage),
               onChanged: (value) => ctrl.rpnOnChange(value),
               onTap: () => ctrl.rdnOnTap(),
@@ -156,11 +141,7 @@ class InformationView extends StatelessWidget {
           final regisZipcode = TextField(
               decoration: InputDecoration(
                   contentPadding: const EdgeInsets.symmetric(vertical: 0),
-                  label: FittedBox(
-                      child: RichText(
-                          text: const TextSpan(text: 'รหัสไปรษณีย์', children: [
-                    TextSpan(text: '*', style: TextStyle(color: Colors.red))
-                  ]))),
+                  label: FWidgets().richText(data1: 'zipcode'.tr, data2: '*'),
                   errorText: ctrl.registeredZipCodeErrorMessage),
               onChanged: (value) => ctrl.rzcOnChange(value),
               onTap: () => ctrl.rpnOnTap(),
@@ -170,11 +151,7 @@ class InformationView extends StatelessWidget {
           final regisCountry = TextField(
               decoration: InputDecoration(
                   contentPadding: const EdgeInsets.symmetric(vertical: 0),
-                  label: FittedBox(
-                      child: RichText(
-                          text: const TextSpan(text: 'ประเทศ', children: [
-                    TextSpan(text: '*', style: TextStyle(color: Colors.red))
-                  ]))),
+                  label: FWidgets().richText(data1: 'country'.tr, data2: '*'),
                   errorText: ctrl.registeredCountryErrorMessage),
               onChanged: (value) => ctrl.rcnOnChange(value),
               onTap: () => ctrl.rzcOnTap(),
@@ -196,11 +173,7 @@ class InformationView extends StatelessWidget {
               countryWidget: regisCountry);
           final registeredAddressListTile = ListTile(
               contentPadding: EdgeInsets.zero,
-              title: const FittedBox(
-                child: Text(
-                  'ที่อยู่ตามบัตรประชาชน',
-                ),
-              ),
+              title: FWidgets().text(data: 'registered_address'.tr),
               leading: Radio<CurrentAddressEnum>(
                   visualDensity:
                       const VisualDensity(horizontal: -4, vertical: 0),
@@ -211,11 +184,7 @@ class InformationView extends StatelessWidget {
                       ctrl.setCurrentAddress(value)));
           final currentAddressListTile = ListTile(
               contentPadding: EdgeInsets.zero,
-              title: const FittedBox(
-                child: Text(
-                  'ที่อยู่อื่น (โปรดระบุ)',
-                ),
-              ),
+              title: FWidgets().text(data: 'others_address'.tr),
               leading: Radio<CurrentAddressEnum>(
                   visualDensity:
                       const VisualDensity(horizontal: -4, vertical: 0),
@@ -228,47 +197,44 @@ class InformationView extends StatelessWidget {
           final currentHouse = TextField(
               decoration: InputDecoration(
                   contentPadding: const EdgeInsets.symmetric(vertical: 0),
-                  label: FittedBox(
-                      child: RichText(
-                          text: const TextSpan(text: 'บ้านเลขที่', children: [
-                    TextSpan(text: '*', style: TextStyle(color: Colors.red))
-                  ]))),
+                  label:
+                      FWidgets().richText(data1: 'house_number'.tr, data2: '*'),
                   errorText: ctrl.currentHouseNumberErrorMessage),
               onChanged: (value) => ctrl.chOnChange(value),
               inputFormatters: [
                 FilteringTextInputFormatter.allow(RegExp(r'[0-9]'))
               ]);
           final currentVillage = TextField(
-              decoration: const InputDecoration(
-                  contentPadding: EdgeInsets.symmetric(vertical: 0),
-                  label: FittedBox(child: Text('หมู่ที่'))),
+              decoration: InputDecoration(
+                  contentPadding: const EdgeInsets.symmetric(vertical: 0),
+                  label: FWidgets().text(data: 'village_number'.tr)),
               onChanged: (value) => ctrl.cvOnChange(value),
               onTap: () => ctrl.chOnTap(),
               inputFormatters: [
                 FilteringTextInputFormatter.allow(RegExp(r'[0-9]'))
               ]);
           final currentVilName = TextField(
-              decoration: const InputDecoration(
-                  contentPadding: EdgeInsets.symmetric(vertical: 0),
-                  label: FittedBox(child: Text('หมู่บ้าน'))),
+              decoration: InputDecoration(
+                  contentPadding: const EdgeInsets.symmetric(vertical: 0),
+                  label: FWidgets().text(data: 'village_name'.tr)),
               onChanged: (value) => ctrl.cvnOnChange(value),
               onTap: () => ctrl.chOnTap(),
               inputFormatters: [
                 FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z0-9ก-๛]'))
               ]);
           final currentSubStreet = TextField(
-              decoration: const InputDecoration(
-                  contentPadding: EdgeInsets.symmetric(vertical: 0),
-                  label: FittedBox(child: Text('ซอย'))),
+              decoration: InputDecoration(
+                  contentPadding: const EdgeInsets.symmetric(vertical: 0),
+                  label: FWidgets().text(data: 'sub_street'.tr)),
               onChanged: (value) => ctrl.cssnOnChange(value),
               onTap: () => ctrl.chOnTap(),
               inputFormatters: [
                 FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z0-9ก-๛]'))
               ]);
           final currentStreet = TextField(
-              decoration: const InputDecoration(
-                  contentPadding: EdgeInsets.symmetric(vertical: 0),
-                  label: FittedBox(child: Text('ถนน'))),
+              decoration: InputDecoration(
+                  contentPadding: const EdgeInsets.symmetric(vertical: 0),
+                  label: FWidgets().text(data: 'street'.tr)),
               onChanged: (value) => ctrl.csnOnChange(value),
               onTap: () => ctrl.chOnTap(),
               inputFormatters: [
@@ -277,11 +243,8 @@ class InformationView extends StatelessWidget {
           final currentSubDistrict = TextField(
               decoration: InputDecoration(
                   contentPadding: const EdgeInsets.symmetric(vertical: 0),
-                  label: FittedBox(
-                      child: RichText(
-                          text: const TextSpan(text: 'แขวงตำบล', children: [
-                    TextSpan(text: '*', style: TextStyle(color: Colors.red))
-                  ]))),
+                  label:
+                      FWidgets().richText(data1: 'sub_district'.tr, data2: '*'),
                   errorText: ctrl.currentSubDistrictNameErrorMessage),
               onChanged: (value) => ctrl.csdnOnChange(value),
               onTap: () => ctrl.chOnTap(),
@@ -291,11 +254,7 @@ class InformationView extends StatelessWidget {
           final currentDistrict = TextField(
               decoration: InputDecoration(
                   contentPadding: const EdgeInsets.symmetric(vertical: 0),
-                  label: FittedBox(
-                      child: RichText(
-                          text: const TextSpan(text: 'เขตอำเภอ', children: [
-                    TextSpan(text: '*', style: TextStyle(color: Colors.red))
-                  ]))),
+                  label: FWidgets().richText(data1: 'district'.tr, data2: '*'),
                   errorText: ctrl.currentDistrictNameErrorMessage),
               onChanged: (value) => ctrl.cdnOnChange(value),
               onTap: () => ctrl.csdnOnTap(),
@@ -305,11 +264,7 @@ class InformationView extends StatelessWidget {
           final currentProvince = TextField(
               decoration: InputDecoration(
                   contentPadding: const EdgeInsets.symmetric(vertical: 0),
-                  label: FittedBox(
-                      child: RichText(
-                          text: const TextSpan(text: 'จังหวัด', children: [
-                    TextSpan(text: '*', style: TextStyle(color: Colors.red))
-                  ]))),
+                  label: FWidgets().richText(data1: 'province'.tr, data2: '*'),
                   errorText: ctrl.currentProvinceNameErrorMessage),
               onChanged: (value) => ctrl.cpnOnChange(value),
               onTap: () => ctrl.cdnOnTap(),
@@ -319,11 +274,7 @@ class InformationView extends StatelessWidget {
           final currentZipcode = TextField(
               decoration: InputDecoration(
                   contentPadding: const EdgeInsets.symmetric(vertical: 0),
-                  label: FittedBox(
-                      child: RichText(
-                          text: const TextSpan(text: 'รหัสไปรษณีย์', children: [
-                    TextSpan(text: '*', style: TextStyle(color: Colors.red))
-                  ]))),
+                  label: FWidgets().richText(data1: 'zipcode'.tr, data2: '*'),
                   errorText: ctrl.currentZipCodeErrorMessage),
               onChanged: (value) => ctrl.czcOnChange(value),
               onTap: () => ctrl.cpnOnTap(),
@@ -333,11 +284,7 @@ class InformationView extends StatelessWidget {
           final currentCountry = TextField(
               decoration: InputDecoration(
                   contentPadding: const EdgeInsets.symmetric(vertical: 0),
-                  label: FittedBox(
-                      child: RichText(
-                          text: const TextSpan(text: 'ประเทศ', children: [
-                    TextSpan(text: '*', style: TextStyle(color: Colors.red))
-                  ]))),
+                  label: FWidgets().richText(data1: 'country'.tr, data2: '*'),
                   errorText: ctrl.currentCountryErrorMessage),
               onChanged: (value) => ctrl.ccnOnChange(value),
               onTap: () => ctrl.czcOnTap(),
@@ -357,27 +304,15 @@ class InformationView extends StatelessWidget {
               zipCodeWidget: currentZipcode,
               countryWidget: currentCountry);
 
-          final occupationAndSourceOfIncome = RichText(
-              text: const TextSpan(
-                  text: 'อาชีพปัจจุบันและแหล่งที่มาของเงินลงทุน',
-                  children: [
-                TextSpan(
-                    text: '*',
-                    style: TextStyle(
-                      color: Colors.red,
-                    ))
-              ]));
+          final occupationAndSourceOfIncome =
+              FWidgets().richText(data1: 'occupation_subject'.tr, data2: '*');
 
           final sourceOfIncome = DropdownButtonFormField(
               menuMaxHeight: height * .5,
               decoration: InputDecoration(
                   errorText: ctrl.sourceOfIncomeErrorMessage,
-                  label: RichText(
-                      text: const TextSpan(
-                          text: 'แหล่งที่มาของเงินลงทุน',
-                          children: [
-                        TextSpan(text: '*', style: TextStyle(color: Colors.red))
-                      ]))),
+                  label: FWidgets()
+                      .richText(data1: 'source_of_income'.tr, data2: '*')),
               value: ctrl.sourceOfIncome,
               onChanged: (value) => ctrl.setSourceOfIncome(value),
               items: [
@@ -388,10 +323,8 @@ class InformationView extends StatelessWidget {
               menuMaxHeight: height * .5,
               decoration: InputDecoration(
                   errorText: ctrl.occupationErrorMessage,
-                  label: RichText(
-                      text: const TextSpan(text: 'อาชีพ', children: [
-                    TextSpan(text: '*', style: TextStyle(color: Colors.red))
-                  ]))),
+                  label:
+                      FWidgets().richText(data1: 'occupation'.tr, data2: '*')),
               value: ctrl.occupation,
               onChanged: (value) => ctrl.setoccupation(value),
               items: [
@@ -400,13 +333,8 @@ class InformationView extends StatelessWidget {
               ]);
           final officeName = TextField(
               decoration: InputDecoration(
-                  label: FittedBox(
-                      child: RichText(
-                          text: const TextSpan(
-                              text: 'ที่อยู่สถานที่ทำงาน',
-                              children: [
-                        TextSpan(text: '*', style: TextStyle(color: Colors.red))
-                      ]))),
+                  label:
+                      FWidgets().richText(data1: 'office_name'.tr, data2: '*'),
                   errorText: ctrl.officeNameErrorMessage),
               onChanged: (value) => ctrl.setofficeName(value),
               inputFormatters: [
@@ -416,10 +344,8 @@ class InformationView extends StatelessWidget {
               menuMaxHeight: height * .5,
               decoration: InputDecoration(
                   errorText: ctrl.typeOfBusinessErrorMessage,
-                  label: RichText(
-                      text: const TextSpan(text: 'ประเภทธุรกิจ', children: [
-                    TextSpan(text: '*', style: TextStyle(color: Colors.red))
-                  ]))),
+                  label: FWidgets()
+                      .richText(data1: 'type_of_business', data2: '*')),
               value: ctrl.typeOfBusiness,
               onChanged: (value) => ctrl.settypeOfBusiness(value),
               items: [
@@ -429,11 +355,7 @@ class InformationView extends StatelessWidget {
               ]);
           final position = TextField(
               decoration: InputDecoration(
-                  label: FittedBox(
-                      child: RichText(
-                          text: const TextSpan(text: 'ตำแหน่ง', children: [
-                    TextSpan(text: '*', style: TextStyle(color: Colors.red))
-                  ]))),
+                  label: FWidgets().richText(data1: 'position'.tr, data2: '*'),
                   errorText: ctrl.positionErrorMessage),
               onChanged: (value) => ctrl.setposition(value),
               inputFormatters: [
@@ -443,10 +365,7 @@ class InformationView extends StatelessWidget {
               menuMaxHeight: height * .5,
               decoration: InputDecoration(
                   errorText: ctrl.salaryErrorMessage,
-                  label: RichText(
-                      text: const TextSpan(text: 'รายได้', children: [
-                    TextSpan(text: '*', style: TextStyle(color: Colors.red))
-                  ]))),
+                  label: FWidgets().richText(data1: 'salary'.tr, data2: '*')),
               value: ctrl.salary,
               onChanged: (value) => ctrl.setsalary(value),
               items: [
@@ -454,21 +373,11 @@ class InformationView extends StatelessWidget {
                   DropdownMenuItem(value: data, child: Text(data))
               ]);
 
-          final officeLocation = RichText(
-              text: const TextSpan(text: 'ที่ตั้งที่ทำงาน', children: [
-            TextSpan(
-                text: '*',
-                style: TextStyle(
-                  color: Colors.red,
-                ))
-          ]));
+          final officeLocation =
+              FWidgets().richText(data1: 'office_address'.tr, data2: '*');
           final occupationRegisteredAddressListTile = ListTile(
               contentPadding: EdgeInsets.zero,
-              title: const FittedBox(
-                child: Text(
-                  'ที่อยู่ตามบัตรประชาชน',
-                ),
-              ),
+              title: FWidgets().text(data: 'registered_address'.tr),
               leading: Radio<OfficeAddressEnum>(
                   visualDensity:
                       const VisualDensity(horizontal: -4, vertical: 0),
@@ -479,11 +388,7 @@ class InformationView extends StatelessWidget {
                       ctrl.setOfficeAddress(value)));
           final occupationCurrentAddressListTile = ListTile(
               contentPadding: EdgeInsets.zero,
-              title: const FittedBox(
-                child: Text(
-                  'ที่อยู่ปัจจุบัน',
-                ),
-              ),
+              title: FWidgets().text(data: 'current_address'.tr),
               leading: Radio<OfficeAddressEnum>(
                   visualDensity:
                       const VisualDensity(horizontal: -4, vertical: 0),
@@ -494,11 +399,7 @@ class InformationView extends StatelessWidget {
                       ctrl.setOfficeAddress(value)));
           final occupationOfficeAddressListTile = ListTile(
               contentPadding: EdgeInsets.zero,
-              title: const FittedBox(
-                child: Text(
-                  'ที่อยู่อื่น (โปรดระบุ)',
-                ),
-              ),
+              title: FWidgets().text(data: 'others_address'.tr),
               leading: Radio<OfficeAddressEnum>(
                   visualDensity:
                       const VisualDensity(horizontal: -4, vertical: 0),
@@ -511,47 +412,44 @@ class InformationView extends StatelessWidget {
           final officeHouse = TextField(
               decoration: InputDecoration(
                   contentPadding: const EdgeInsets.symmetric(vertical: 0),
-                  label: FittedBox(
-                      child: RichText(
-                          text: const TextSpan(text: 'บ้านเลขที่', children: [
-                    TextSpan(text: '*', style: TextStyle(color: Colors.red))
-                  ]))),
+                  label:
+                      FWidgets().richText(data1: 'house_number'.tr, data2: '*'),
                   errorText: ctrl.officeCountryErrorMessage),
               onChanged: (value) => ctrl.ohOnChange(value),
               inputFormatters: [
                 FilteringTextInputFormatter.allow(RegExp(r'[0-9]'))
               ]);
           final officeVillage = TextField(
-              decoration: const InputDecoration(
-                  contentPadding: EdgeInsets.symmetric(vertical: 0),
-                  label: FittedBox(child: Text('หมู่ที่'))),
+              decoration: InputDecoration(
+                  contentPadding: const EdgeInsets.symmetric(vertical: 0),
+                  label: FWidgets().text(data: 'village_number'.tr)),
               onChanged: (value) => ctrl.ovOnChange(value),
               onTap: () => ctrl.ohOnTap(),
               inputFormatters: [
                 FilteringTextInputFormatter.allow(RegExp(r'[0-9]'))
               ]);
           final officeVilName = TextField(
-              decoration: const InputDecoration(
-                  contentPadding: EdgeInsets.symmetric(vertical: 0),
-                  label: FittedBox(child: Text('หมู่บ้าน'))),
+              decoration: InputDecoration(
+                  contentPadding: const EdgeInsets.symmetric(vertical: 0),
+                  label: FWidgets().text(data: 'village_name'.tr)),
               onChanged: (value) => ctrl.ovnOnChange(value),
               onTap: () => ctrl.ohOnTap(),
               inputFormatters: [
                 FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z0-9ก-๛]'))
               ]);
           final officeSubStreet = TextField(
-              decoration: const InputDecoration(
-                  contentPadding: EdgeInsets.symmetric(vertical: 0),
-                  label: FittedBox(child: Text('ซอย'))),
+              decoration: InputDecoration(
+                  contentPadding: const EdgeInsets.symmetric(vertical: 0),
+                  label: FWidgets().text(data: 'sub_street'.tr)),
               onChanged: (value) => ctrl.ossnOnChange(value),
               onTap: () => ctrl.ohOnTap(),
               inputFormatters: [
                 FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z0-9ก-๛]'))
               ]);
           final officeStreet = TextField(
-              decoration: const InputDecoration(
-                  contentPadding: EdgeInsets.symmetric(vertical: 0),
-                  label: FittedBox(child: Text('ถนน'))),
+              decoration: InputDecoration(
+                  contentPadding: const EdgeInsets.symmetric(vertical: 0),
+                  label: FWidgets().text(data: 'street'.tr)),
               onChanged: (value) => ctrl.osnOnChange(value),
               onTap: () => ctrl.ohOnTap(),
               inputFormatters: [
@@ -560,11 +458,8 @@ class InformationView extends StatelessWidget {
           final officeSubDistrict = TextField(
               decoration: InputDecoration(
                   contentPadding: const EdgeInsets.symmetric(vertical: 0),
-                  label: FittedBox(
-                      child: RichText(
-                          text: const TextSpan(text: 'แขวงตำบล', children: [
-                    TextSpan(text: '*', style: TextStyle(color: Colors.red))
-                  ]))),
+                  label:
+                      FWidgets().richText(data1: 'sub_district'.tr, data2: '*'),
                   errorText: ctrl.officeSubDistrictNameErrorMessage),
               onChanged: (value) => ctrl.osdnOnChange(value),
               onTap: () => ctrl.ohOnTap(),
@@ -574,11 +469,7 @@ class InformationView extends StatelessWidget {
           final officeDistrict = TextField(
               decoration: InputDecoration(
                   contentPadding: const EdgeInsets.symmetric(vertical: 0),
-                  label: FittedBox(
-                      child: RichText(
-                          text: const TextSpan(text: 'เขตอำเภอ', children: [
-                    TextSpan(text: '*', style: TextStyle(color: Colors.red))
-                  ]))),
+                  label: FWidgets().richText(data1: 'district'.tr, data2: '*'),
                   errorText: ctrl.officeDistrictNameErrorMessage),
               onChanged: (value) => ctrl.odnOnChange(value),
               onTap: () => ctrl.osdnOnTap(),
@@ -588,11 +479,7 @@ class InformationView extends StatelessWidget {
           final officeProvince = TextField(
               decoration: InputDecoration(
                   contentPadding: const EdgeInsets.symmetric(vertical: 0),
-                  label: FittedBox(
-                      child: RichText(
-                          text: const TextSpan(text: 'จังหวัด', children: [
-                    TextSpan(text: '*', style: TextStyle(color: Colors.red))
-                  ]))),
+                  label: FWidgets().richText(data1: 'province'.tr, data2: '*'),
                   errorText: ctrl.officeProvinceNameErrorMessage),
               onChanged: (value) => ctrl.opnOnChange(value),
               onTap: () => ctrl.odnOnTap(),
@@ -602,11 +489,7 @@ class InformationView extends StatelessWidget {
           final officeZipcode = TextField(
               decoration: InputDecoration(
                   contentPadding: const EdgeInsets.symmetric(vertical: 0),
-                  label: FittedBox(
-                      child: RichText(
-                          text: const TextSpan(text: 'รหัสไปรษณีย์', children: [
-                    TextSpan(text: '*', style: TextStyle(color: Colors.red))
-                  ]))),
+                  label: FWidgets().richText(data1: 'zipcode'.tr, data2: '*'),
                   errorText: ctrl.officeZipCodeErrorMessage),
               onChanged: (value) => ctrl.ozcOnChange(value),
               onTap: () => ctrl.opnOnTap(),
@@ -616,11 +499,7 @@ class InformationView extends StatelessWidget {
           final officeCountry = TextField(
               decoration: InputDecoration(
                   contentPadding: const EdgeInsets.symmetric(vertical: 0),
-                  label: FittedBox(
-                      child: RichText(
-                          text: const TextSpan(text: 'ประเทศ', children: [
-                    TextSpan(text: '*', style: TextStyle(color: Colors.red))
-                  ]))),
+                  label: FWidgets().richText(data1: 'country'.tr, data2: '*'),
                   errorText: ctrl.officeCountryErrorMessage),
               onChanged: (value) => ctrl.ocnOnChange(value),
               onTap: () => ctrl.ozcOnTap(),
@@ -645,14 +524,8 @@ class InformationView extends StatelessWidget {
           final currentAddressText = Text(
               'บ้านเลขที่ ${ctrl.currentHouseNumber}, หมู่ที่ ${ctrl.currentVillageNumber}, หมู่บ้าน ${ctrl.currentVillageName}, ซอย ${ctrl.currentSubStreetName}, ถนน ${ctrl.currentStreetName}, แขวงตำบล ${ctrl.currentSubDistrictName}, เขตอำเภอ ${ctrl.currentDistrictName}, จังหวัด ${ctrl.currentProvinceName}, รหัสไปรษณีย์ ${ctrl.currentZipCode}, ประเทศ ${ctrl.currentCountry}');
 
-          final objectiveOfInvestment = RichText(
-              text: const TextSpan(text: 'วัตถุประสงค์ของการลงทุน', children: [
-            TextSpan(
-                text: '*',
-                style: TextStyle(
-                  color: Colors.red,
-                ))
-          ]));
+          final objectiveOfInvestment =
+              FWidgets().richSubject(data1: 'investment_objective'.tr);
           final shortTermInvestmentChecklist = CheckboxListTile(
               visualDensity: const VisualDensity(horizontal: -4, vertical: -4),
               materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
@@ -661,7 +534,7 @@ class InformationView extends StatelessWidget {
               checkColor: Colors.white,
               activeColor: Colors.green,
               side: const BorderSide(color: Colors.grey),
-              title: const Text('เพื่อการลงทุนระยะสั้น'),
+              title: FWidgets().text(data: 'short_term_investment'.tr),
               controlAffinity: ListTileControlAffinity.leading,
               value: ctrl.shortTermInvestment,
               onChanged: (value) => ctrl.checkshortTermInvestment(value));
@@ -673,7 +546,7 @@ class InformationView extends StatelessWidget {
               checkColor: Colors.white,
               activeColor: Colors.green,
               side: const BorderSide(color: Colors.grey),
-              title: const Text('เพื่อการลงทุนระยะยาว'),
+              title: FWidgets().text(data: 'long_term_investment'.tr),
               controlAffinity: ListTileControlAffinity.leading,
               value: ctrl.longTermInvestment,
               onChanged: (value) => ctrl.checklongTermInvestment(value));
@@ -685,7 +558,7 @@ class InformationView extends StatelessWidget {
               checkColor: Colors.white,
               activeColor: Colors.green,
               side: const BorderSide(color: Colors.grey),
-              title: const Text('เพื่อสิทธิประโยชน์ทางภาษี'),
+              title: FWidgets().text(data: 'taxes_investment'.tr),
               controlAffinity: ListTileControlAffinity.leading,
               value: ctrl.taxesReduceInvestment,
               onChanged: (value) => ctrl.checktaxesReduceInvestment(value));
@@ -697,30 +570,18 @@ class InformationView extends StatelessWidget {
               checkColor: Colors.white,
               activeColor: Colors.green,
               side: const BorderSide(color: Colors.grey),
-              title: const Text('เพื่อการเกษียร'),
+              title: FWidgets().text(data: 'retirement_investment'.tr),
               controlAffinity: ListTileControlAffinity.leading,
               value: ctrl.retirementInvestment,
               onChanged: (value) => ctrl.checkretirementInvestment(value));
 
-          final firstBookBankAccount = RichText(
-              text: const TextSpan(
-                  text:
-                      'บัญชีธนาคารของท่านเพื่อทำธุรกรรมกับบริษัทฯ(บัญชีที่ 1)',
-                  children: [
-                TextSpan(
-                    text: '*',
-                    style: TextStyle(
-                      color: Colors.red,
-                    ))
-              ]));
+          final firstBookBankAccount =
+              FWidgets().richText(data1: 'first_bank_account'.tr);
           final firstBankNameDropDown = DropdownButtonFormField(
               menuMaxHeight: height * .5,
               decoration: InputDecoration(
                   errorText: ctrl.firstBankNameErrorMessage,
-                  label: RichText(
-                      text: const TextSpan(text: 'ธนาคาร', children: [
-                    TextSpan(text: '*', style: TextStyle(color: Colors.red))
-                  ]))),
+                  label: FWidgets().richText(data1: 'bank_name'.tr)),
               value: ctrl.firstBankName,
               onChanged: (value) => ctrl.setFirstBankName(value),
               items: [
@@ -731,10 +592,7 @@ class InformationView extends StatelessWidget {
               menuMaxHeight: height * .5,
               decoration: InputDecoration(
                   errorText: ctrl.firstBankBranchErrorMessage,
-                  label: RichText(
-                      text: const TextSpan(text: 'สาขา', children: [
-                    TextSpan(text: '*', style: TextStyle(color: Colors.red))
-                  ]))),
+                  label: FWidgets().richText(data1: 'bank_branch'.tr)),
               value: ctrl.firstBankBranch,
               onChanged: (value) => ctrl.setFirstBankBranch(value),
               items: [
@@ -744,36 +602,19 @@ class InformationView extends StatelessWidget {
           final firstBankAccountTextField = TextField(
               decoration: InputDecoration(
                   contentPadding: const EdgeInsets.symmetric(vertical: 0),
-                  label: FittedBox(
-                      child: RichText(
-                          text: const TextSpan(text: 'เลขบัญชี', children: [
-                    TextSpan(text: '*', style: TextStyle(color: Colors.red))
-                  ]))),
-                  errorText: ctrl.firstBankAccountErrorMessage),
+                  errorText: ctrl.firstBankAccountErrorMessage,
+                  label: FWidgets().richText(data1: 'account_no'.tr)),
               onChanged: (value) => ctrl.firstBankAccountOnChange(value),
               onTap: () => ctrl.firstBankAccountOnTap(),
               inputFormatters: [
                 FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z0-9ก-๛]'))
               ]);
 
-          final secondBookBankAccount = RichText(
-              text: const TextSpan(
-                  text:
-                      'บัญชีธนาคารของท่านเพื่อทำธุรกรรมกับบริษัทฯ(บัญชีที่ 2)',
-                  children: [
-                TextSpan(
-                    text: '*',
-                    style: TextStyle(
-                      color: Colors.red,
-                    ))
-              ]));
+          final secondBookBankAccount =
+              FWidgets().richText(data1: 'second_bank_account'.tr);
           final useSecondBankAccountListTile = ListTile(
               contentPadding: EdgeInsets.zero,
-              title: const FittedBox(
-                child: Text(
-                  'ใช้',
-                ),
-              ),
+              title: FWidgets().text(data: 'yes'.tr),
               leading: Radio<SecondBookBankAddressEnum>(
                   visualDensity:
                       const VisualDensity(horizontal: -4, vertical: 0),
@@ -784,7 +625,7 @@ class InformationView extends StatelessWidget {
                       ctrl.setUseSecondBookBank(value)));
           final donotUseSecondBankAccountListTile = ListTile(
               contentPadding: EdgeInsets.zero,
-              title: const FittedBox(child: Text('ไม่ใช้')),
+              title: FWidgets().text(data: 'no'.tr),
               leading: Radio<SecondBookBankAddressEnum>(
                   visualDensity:
                       const VisualDensity(horizontal: -4, vertical: 0),
@@ -797,10 +638,7 @@ class InformationView extends StatelessWidget {
               menuMaxHeight: height * .5,
               decoration: InputDecoration(
                   errorText: ctrl.secondBankNameErrorMessage,
-                  label: RichText(
-                      text: const TextSpan(text: 'ธนาคาร', children: [
-                    TextSpan(text: '*', style: TextStyle(color: Colors.red))
-                  ]))),
+                  label: FWidgets().richText(data1: 'bank_name'.tr)),
               value: ctrl.secondBankName,
               onChanged: (value) => ctrl.setsecondBankName(value),
               items: [
@@ -811,10 +649,7 @@ class InformationView extends StatelessWidget {
               menuMaxHeight: height * .5,
               decoration: InputDecoration(
                   errorText: ctrl.secondBankBranchErrorMessage,
-                  label: RichText(
-                      text: const TextSpan(text: 'สาขา', children: [
-                    TextSpan(text: '*', style: TextStyle(color: Colors.red))
-                  ]))),
+                  label: FWidgets().richText(data1: 'bank_branch'.tr)),
               value: ctrl.secondBankBranch,
               onChanged: (value) => ctrl.setsecondBankBranch(value),
               items: [
@@ -824,12 +659,8 @@ class InformationView extends StatelessWidget {
           final secondBankAccountTextField = TextField(
               decoration: InputDecoration(
                   contentPadding: const EdgeInsets.symmetric(vertical: 0),
-                  label: FittedBox(
-                      child: RichText(
-                          text: const TextSpan(text: 'เลขบัญชี', children: [
-                    TextSpan(text: '*', style: TextStyle(color: Colors.red))
-                  ]))),
-                  errorText: ctrl.secondBankAccountErrorMessage),
+                  errorText: ctrl.secondBankAccountErrorMessage,
+                  label: FWidgets().richText(data1: 'account_no'.tr)),
               onChanged: (value) => ctrl.secondBankAccountOnChange(value),
               onTap: () => ctrl.secondBankAccountOnTap(),
               inputFormatters: [
@@ -843,15 +674,14 @@ class InformationView extends StatelessWidget {
               surfaceTintColor: MaterialStateProperty.all(Colors.transparent),
             ),
             onPressed: () => ctrl.previousButtonOnPress(),
-            child: const Row(
+            child: Row(
               children: [
-                Icon(
+                const Icon(
                   Icons.keyboard_backspace,
                   size: 30,
                   color: Colors.black,
                 ),
-                Text('ย้อนกลับ',
-                    style: TextStyle(fontSize: 10, color: Colors.black))
+                FWidgets().text(data: 'previous'.tr)
               ],
             ),
           );
@@ -881,16 +711,7 @@ class InformationView extends StatelessWidget {
                               children: [
                                 SizedBox(
                                     width: width * .2,
-                                    child: FittedBox(
-                                        child: RichText(
-                                            text: const TextSpan(
-                                                text: 'ที่อยู่ตามบัตรประชาชน',
-                                                children: [
-                                          TextSpan(
-                                              text: '*',
-                                              style:
-                                                  TextStyle(color: Colors.red))
-                                        ])))),
+                                    child: FWidgets().richText(data1: 'registered_address'.tr)),
                                 const SizedBox(height: 10),
                                 regisAddress,
                               ]),
@@ -911,16 +732,7 @@ class InformationView extends StatelessWidget {
                                   children: [
                                     SizedBox(
                                         width: width * .1,
-                                        child: FittedBox(
-                                            child: RichText(
-                                                text: const TextSpan(
-                                                    text: 'ที่อยู่ปัจจุบัน',
-                                                    children: [
-                                              TextSpan(
-                                                  text: '*',
-                                                  style: TextStyle(
-                                                      color: Colors.red))
-                                            ])))),
+                                        child: FWidgets().richText(data1: 'current_address'.tr)),
                                     SizedBox(
                                       width: width * .33,
                                     ),
@@ -1211,13 +1023,13 @@ class InformationView extends StatelessWidget {
         surfaceTintColor: MaterialStateProperty.all(Colors.transparent),
       ),
       onPressed: () => ctrl.nextButtonOnPress(),
-      child: const Row(
+      child: Row(
         children: [
           Text(
-            'ถัดไป',
-            style: TextStyle(fontSize: 10, color: Colors.black),
+            'next'.tr,
+            style: const TextStyle(fontSize: 10, color: Colors.black),
           ),
-          Icon(
+          const Icon(
             Icons.arrow_circle_right,
             size: 45,
             color: Colors.orange,

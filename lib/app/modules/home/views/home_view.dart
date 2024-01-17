@@ -45,7 +45,7 @@ class HomeView extends StatelessWidget {
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(10)),
                 child: columnStart([
-                  (Get.locale == const Locale('cn', 'US')) ||
+                  (Get.locale == const Locale('cn', 'CN')) ||
                           (Get.locale == const Locale('en', 'US'))
                       ? const SizedBox.shrink()
                       : Column(

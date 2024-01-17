@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:email_validator/email_validator.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:openaccountsgetx/app/modules/home/providers/verify_email_provider.dart';
@@ -310,14 +311,20 @@ class HomeController extends GetxController with StateMixin {
 
   void nextButtonOnPress() async {
     startLoading();
-    if (thTitle == null) {
-      thTitleErrorMessage = 'กรุณาใส่คำนำหน้าชื่อ (ภาษาไทย)';
-    }
-    if (thName == null) {
-      thNameErrorMessage = 'กรุณาใส่ชื่อ (ภาษาไทย)';
-    }
-    if (thSurname == null) {
-      thSurnameErrorMessage = 'กรุณาใส่ชื่อสกุล (ภาษาไทย)';
+    if (Get.locale == const Locale('th', 'TH')) {
+      if (thTitle == null) {
+        thTitleErrorMessage = 'กรุณาใส่คำนำหน้าชื่อ (ภาษาไทย)';
+      }
+      if (thName == null) {
+        thNameErrorMessage = 'กรุณาใส่ชื่อ (ภาษาไทย)';
+      }
+      if (thSurname == null) {
+        thSurnameErrorMessage = 'กรุณาใส่ชื่อสกุล (ภาษาไทย)';
+      }
+    } else {
+      thTitleErrorMessage = null;
+      thNameErrorMessage = null;
+      thSurnameErrorMessage = null;
     }
     if (engTitle == null) {
       engTitleErrorMessage = 'กรุณาใส่คำนำหน้าชื่อ (ภาษาอังกฤษ)';
@@ -349,15 +356,15 @@ class HomeController extends GetxController with StateMixin {
       endLoading();
       return;
     }
-    // log('thtitle: $thTitleErrorMessage');
-    // log('thname: $thNameErrorMessage');
-    // log('thsurname: $thSurnameErrorMessage');
-    // log('entitle: $engTitleErrorMessage');
-    // log('enname: $engNameErrorMessage');
-    // log('ensurname: $engSurnameErrorMessage'); //
-    // log('email: $emailErrorMessage');
-    // log('mobile: $mobileErrorMessage');
-    // log('agreement: $agreementErrorMessage');
+    log('thtitle: $thTitleErrorMessage');
+    log('thname: $thNameErrorMessage');
+    log('thsurname: $thSurnameErrorMessage');
+    log('entitle: $engTitleErrorMessage');
+    log('enname: $engNameErrorMessage');
+    log('ensurname: $engSurnameErrorMessage'); //
+    log('email: $emailErrorMessage');
+    log('mobile: $mobileErrorMessage');
+    log('agreement: $agreementErrorMessage');
     if (thTitleErrorMessage == null &&
         thNameErrorMessage == null &&
         thSurnameErrorMessage == null &&
