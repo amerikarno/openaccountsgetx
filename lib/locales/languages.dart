@@ -15,17 +15,17 @@ class AppTranslation {
   };
 }
 
-class LocaleKeys {
-  LocaleKeys._();
-  static const domes_title = 'domes_title';
-  static const domes_name = 'domes_name';
-  static const domes_surname = 'domes_surname';
-  static const inter_title = 'inter_title';
-  static const inter_name = 'inter_name';
-  static const inter_surname = 'inter_surname';
-  static const email = 'email';
-  static const mobile_number = 'mobile_number';
-}
+// class LocaleKeys {
+//   LocaleKeys._();
+//   static const domes_title = 'domes_title';
+//   static const domes_name = 'domes_name';
+//   static const domes_surname = 'domes_surname';
+//   static const inter_title = 'inter_title';
+//   static const inter_name = 'inter_name';
+//   static const inter_surname = 'inter_surname';
+//   static const email = 'email';
+//   static const mobile_number = 'mobile_number';
+// }
 
 class Locales {
   static const enUS = US.enUS;

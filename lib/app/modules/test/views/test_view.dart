@@ -4,12 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:openaccountsgetx/app/data/questions/suite_test.dart';
 import 'package:openaccountsgetx/app/data/test.dart';
+import 'package:openaccountsgetx/widget/widgets.dart';
 import 'package:simple_circular_progress_bar/simple_circular_progress_bar.dart';
 
 import '../controllers/test_controller.dart';
 
 class TestView extends StatelessWidget {
-  const TestView({Key? key}) : super(key: key);
+  const TestView({super.key});
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
@@ -939,15 +940,10 @@ class TestView extends StatelessWidget {
                   foregroundColor: Colors.green,
                   side: const BorderSide(color: Colors.grey, width: 1),
                   disabledForegroundColor: Colors.transparent),
-              child: const Text(
-                'ตกลง',
-                style: TextStyle(color: Colors.orange),
-              ));
+              child: FWidgets().text(data: 'ok'.tr, color: Colors.orange));
 
-          const suiteTestEvaluateResultText =
-              FittedBox(child: Text('ผลการประเมินความเหมาะสมในการลงทุน'));
-          const suiteTestResultText =
-              FittedBox(child: Text('ผลคะแนนที่ท่านได้'));
+          final suiteTestEvaluateResultText = FWidgets().text(data: 'suiteTestEvaluateResult'.tr);
+          final suiteTestResultText = FWidgets().text(data: 'suiteTestResult'.tr);
           final suiteTestProgressBar = SimpleCircularProgressBar(
             // notifier = ctrl.suiteSumPoinst;
             progressStrokeWidth: 10,
@@ -971,39 +967,37 @@ class TestView extends StatelessWidget {
             },
             valueNotifier: ValueNotifier(ctrl.suiteSumPoints),
           );
-          const investmentAnalysisResult =
-              FittedBox(child: Text('การวิเคราะห์ผล'));
-          const typeOfInvestmentAnalysis =
-              FittedBox(child: Text('ท่านเป็นนักลงทุนประเภท'));
+          final investmentAnalysisResult =
+              FWidgets().text(data: 'investmentAnalysisResult'.tr);
+          final typeOfInvestmentAnalysis =
+              FWidgets().text(data: 'typeOfInvestmentAnalysis'.tr);
           final typeOfInvestmentAnalysisResult =
-              FittedBox(child: Text(ctrl.investerType ?? '  '));
-          const assetInvestmentType =
-              FittedBox(child: Text('ประเภทสินทรัพย์ที่สามารถลงทุนได้'));
-          const bondInvestment = FittedBox(child: Text('ตราสารหนี้'));
-          const equityInvestment = FittedBox(child: Text('ตราสารทุน'));
-          const derivativeInvestment =
-              FittedBox(child: Text('ตราสารอนุพันธ์เล็กน้อย'));
-          const riskLevelInvestment =
-              FittedBox(child: Text('หน่วยลงทุนที่มีระดับความเสี่ยง 1-5'));
-          final digitalAssetRatio = FittedBox(
-              child: Text(
-                  'สินทรัพย์ดิจิทัลสัดส่วน ${ctrl.digitatAssetInvestmentRatios ?? '  '}'));
-          const fatcaSubjectText = FittedBox(child: Text('กรอกข้อมูล FATCA'));
-          const fatcaPrefixText =
-              FittedBox(child: Text('''ข้าพเจ้ามีข้อใดข้อหนึ่งดังนี้
-- มีสัญชาติอเมริกัน / เกิดที่อเมริกา /มีที่อยู่ในอเมริกาสำหรับพักอาศัยและติดต่อ
-- โอนเงินเป็นประจำไปบัญชีที่อเมริกา
-              '''));
-          const fatcaPostfixText = FittedBox(
-              child: Text(
-                  'ข้าพเจ้าเข้าใจว่าเมื่อข้อมูลข้างต้นเปลี่ยนแปลง ข้าพเจ้าจะแจ้งบริษัทฯทันที'));
+              FittedBox(child: Text(ctrl.investerType ?? ''));
+          final assetInvestmentType =
+              FWidgets().text(data: 'assetInvestmentType'.tr);
+          final bondInvestment = FWidgets().text(data: 'bondInvestment'.tr);
+          final equityInvestment = FWidgets().text(data: 'equityInvestment'.tr);
+          final derivativeInvestment =
+              FWidgets().text(data: 'derivativeInvestment'.tr);
+          final riskLevelInvestment =
+              FWidgets().text(data: 'riskLevelInvestment'.tr);
+          final digitalAssetRatio = Row(
+            children: [
+              FWidgets().text(data: 'digitalAssetRatio'.tr),
+              FWidgets()
+                  .text(data: ' ${ctrl.digitatAssetInvestmentRatios ?? ''}'),
+            ],
+          );
+
+          // final digitalAssetRatio = FittedBox(
+          //     child: Text(
+          //         'สินทรัพย์ดิจิทัลสัดส่วน ${ctrl.digitatAssetInvestmentRatios ?? ''}'));
+          final fatcaSubjectText = FWidgets().subject(data: 'fatcaSubject'.tr);
+          final fatcaPrefixText = FWidgets().text(data: 'fatcaPrefix'.tr);
+          final fatcaPostfixText = FWidgets().text(data: 'fatcaPostfix'.tr);
           final fatcaYesListTile = ListTile(
               contentPadding: EdgeInsets.zero,
-              title: const FittedBox(
-                child: Text(
-                  'ใช่',
-                ),
-              ),
+              title: FWidgets().text(data: 'yes'.tr),
               leading: Radio<FatcaEnum>(
                   visualDensity:
                       const VisualDensity(horizontal: -4, vertical: 0),
@@ -1013,11 +1007,7 @@ class TestView extends StatelessWidget {
                   onChanged: (FatcaEnum? value) => ctrl.setfatca(value)));
           final fatcaNoListTile = ListTile(
               contentPadding: EdgeInsets.zero,
-              title: const FittedBox(
-                child: Text(
-                  'ไม่ใช่',
-                ),
-              ),
+              title: FWidgets().text(data: 'no'.tr),
               leading: Radio<FatcaEnum>(
                   visualDensity:
                       const VisualDensity(horizontal: -4, vertical: 0),
@@ -1033,7 +1023,7 @@ class TestView extends StatelessWidget {
               checkColor: Colors.white,
               activeColor: Colors.green,
               side: const BorderSide(color: Colors.grey),
-              title: const Text('เป็นพลเมืองอเมริกา'),
+              title: FWidgets().text(data: 'american'.tr),
               controlAffinity: ListTileControlAffinity.leading,
               value: ctrl.americanChecklist,
               onChanged: (value) => ctrl.checkamericanCheckList(value));
@@ -1045,7 +1035,7 @@ class TestView extends StatelessWidget {
               checkColor: Colors.white,
               activeColor: Colors.green,
               side: const BorderSide(color: Colors.grey),
-              title: const Text('มีกรีนการ์ดหรือบัตรผู้มีที่อยู่ถาวรในอเมริกา'),
+              title: FWidgets().text(data: 'greenCard'.tr),
               controlAffinity: ListTileControlAffinity.leading,
               value: ctrl.greenCardCheckList,
               onChanged: (value) => ctrl.checkgreenCardCheckList(value));
@@ -1057,7 +1047,7 @@ class TestView extends StatelessWidget {
               checkColor: Colors.white,
               activeColor: Colors.green,
               side: const BorderSide(color: Colors.grey),
-              title: const Text('มีที่อยู่ในอเมริกาเพื่อวัตถุประสงค์ทางภาษี'),
+              title: FWidgets().text(data: 'addressInAmerica'.tr),
               controlAffinity: ListTileControlAffinity.leading,
               value: ctrl.addressInAmericaCheckList,
               onChanged: (value) => ctrl.checkaddressInAmericaCheckList(value));
@@ -1069,7 +1059,7 @@ class TestView extends StatelessWidget {
               checkColor: Colors.white,
               activeColor: Colors.green,
               side: const BorderSide(color: Colors.grey),
-              title: const Text('เกิดในอเมริกาแต่ละสถานะพลเมืองแล้ว'),
+              title: FWidgets().text(data: 'bornInAmerica'.tr),
               controlAffinity: ListTileControlAffinity.leading,
               value: ctrl.bornInAmericaCheckList,
               onChanged: (value) => ctrl.checkbornInAmericaCheckList(value));
@@ -1081,8 +1071,7 @@ class TestView extends StatelessWidget {
               checkColor: Colors.white,
               activeColor: Colors.green,
               side: const BorderSide(color: Colors.grey),
-              title: const Text(
-                  'มีที่อยู่ในอเมริกาสำหรับบัญชีที่เปิดกับ ฟินันเซีย ดิจิทัล แอสเซท'),
+              title: FWidgets().text(data: 'addressInAmericaOpenAccount'.tr),
               controlAffinity: ListTileControlAffinity.leading,
               value: ctrl.addressInAmericaOpenAccountCheckList,
               onChanged: (value) =>
@@ -1095,8 +1084,7 @@ class TestView extends StatelessWidget {
               checkColor: Colors.white,
               activeColor: Colors.green,
               side: const BorderSide(color: Colors.grey),
-              title: const Text(
-                  'มีเบอร์โทรอเมริกา (ตนเองหรือผู้เกี่ยวข้อง) เกี่ยวข้องกับบัญชีที่เปิดกับฟินันเซีย ดิจิทัล แอสเซท'),
+              title: FWidgets().text(data: 'americaMobileNumber'.tr),
               controlAffinity: ListTileControlAffinity.leading,
               value: ctrl.americaMobileNumberCheckList,
               onChanged: (value) =>
@@ -1109,8 +1097,7 @@ class TestView extends StatelessWidget {
               checkColor: Colors.white,
               activeColor: Colors.green,
               side: const BorderSide(color: Colors.grey),
-              title: const Text(
-                  'มีการโอนเงินอัตโนมัติจากบัญชีที่เปิดกับฟินันเซีย ดิจิทัล แอสเซท ไปบัญชีอเมริกา'),
+              title: FWidgets().text(data: 'americaBankAccount'.tr),
               controlAffinity: ListTileControlAffinity.leading,
               value: ctrl.americaBankAccountCheckList,
               onChanged: (value) =>
@@ -1123,8 +1110,7 @@ class TestView extends StatelessWidget {
               checkColor: Colors.white,
               activeColor: Colors.green,
               side: const BorderSide(color: Colors.grey),
-              title: const Text(
-                  'ได้รับมอบอำนาจให้บุคคลที่อยู่ในอเมริกาทำธุรกรรมใดๆที่เกี่ยวข้องกับบัญชีที่เปิดกับ ฟินันเซีย ดิจิทัล แอสเซท'),
+              title: FWidgets().text(data: 'authorityInAmerica'.tr),
               controlAffinity: ListTileControlAffinity.leading,
               value: ctrl.authorityInAmericaCheckList,
               onChanged: (value) =>
@@ -1136,20 +1122,13 @@ class TestView extends StatelessWidget {
                   foregroundColor: Colors.green,
                   side: const BorderSide(color: Colors.grey, width: 1),
                   disabledForegroundColor: Colors.transparent),
-              child: const Text(
-                'ตกลง',
-                style: TextStyle(color: Colors.orange),
-              ));
-          const knowledgeTestSubjectText = FittedBox(
-              child: Text('ท่านต้องการทำแบบทดสอบความรู้ Knowledge Test'));
+              child: FWidgets().text(data: 'ok'.tr, color: Colors.orange));
+          final knowledgeTestSubjectText =
+              FWidgets().subject(data: 'knowledgeTestSubject'.tr);
 
           final knowledgeTestNoListTile = ListTile(
               contentPadding: EdgeInsets.zero,
-              title: const FittedBox(
-                child: Text(
-                  'ภายหลัง',
-                ),
-              ),
+              title: FWidgets().text(data: 'later'.tr),
               leading: Radio<KnowledgeTestEnum>(
                   visualDensity:
                       const VisualDensity(horizontal: -4, vertical: 0),
@@ -1160,11 +1139,7 @@ class TestView extends StatelessWidget {
                       ctrl.setknowledgeTest(value)));
           final knowledgeTestYesListTile = ListTile(
               contentPadding: EdgeInsets.zero,
-              title: const FittedBox(
-                child: Text(
-                  'ทำตอนนี้',
-                ),
-              ),
+              title: FWidgets().text(data: 'now'.tr),
               leading: Radio<KnowledgeTestEnum>(
                   visualDensity:
                       const VisualDensity(horizontal: -4, vertical: 0),
@@ -1175,14 +1150,8 @@ class TestView extends StatelessWidget {
                     ctrl.setknowledgeTest(value);
                     ctrl.setdoKnowledgeTestNowListTile();
                   }));
-          final buyAndSaleAgreement = FittedBox(
-              child: RichText(
-            text: const TextSpan(
-                text: 'กรุณาอ่านและทำเครื่องหมายในช่องสี่เหลี่ยม',
-                children: [
-                  TextSpan(text: '*', style: TextStyle(color: Colors.red))
-                ]),
-          ));
+          final buyAndSaleAgreement =
+              FWidgets().richSubject(data1: 'buyAndSaleAgreement'.tr);
           final buyAndSaleCheckbox = CheckboxListTile(
               visualDensity: const VisualDensity(horizontal: 0, vertical: -4),
               materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
@@ -1191,8 +1160,8 @@ class TestView extends StatelessWidget {
               checkColor: Colors.white,
               activeColor: Colors.orange,
               side: const BorderSide(color: Colors.grey),
-              subtitle: const Text(buyAndSaleCheckboxDetail,
-                  maxLines: 5, style: TextStyle(fontSize: 12)),
+              subtitle:
+                  FWidgets().text(data: buyAndSaleCheckboxDetail, maxLines: 5),
               controlAffinity: ListTileControlAffinity.leading,
               value: ctrl.buyAndSaleChecklist,
               onChanged: (value) => ctrl.checkbuyAndSaleCheckList(value));
@@ -1204,15 +1173,14 @@ class TestView extends StatelessWidget {
               surfaceTintColor: MaterialStateProperty.all(Colors.transparent),
             ),
             onPressed: () => ctrl.previousButtonOnPress(),
-            child: const Row(
+            child: Row(
               children: [
-                Icon(
+                const Icon(
                   Icons.keyboard_backspace,
                   size: 30,
                   color: Colors.black,
                 ),
-                Text('ย้อนกลับ',
-                    style: TextStyle(fontSize: 10, color: Colors.black))
+                FWidgets().text(data: 'previous'.tr),
               ],
             ),
           );
@@ -1333,11 +1301,11 @@ class TestView extends StatelessWidget {
                                                 crossAxisAlignment:
                                                     CrossAxisAlignment.start,
                                                 children: [
-                                                  const SizedBox(
+                                                  SizedBox(
                                                       child:
                                                           investmentAnalysisResult),
                                                   const SizedBox(height: 10),
-                                                  const SizedBox(
+                                                  SizedBox(
                                                       child:
                                                           typeOfInvestmentAnalysis),
                                                   const SizedBox(height: 10),
@@ -1537,13 +1505,10 @@ class TestView extends StatelessWidget {
         surfaceTintColor: MaterialStateProperty.all(Colors.transparent),
       ),
       onPressed: () => ctrl.nextButtonOnPress(),
-      child: const Row(
+      child: Row(
         children: [
-          Text(
-            'ถัดไป',
-            style: TextStyle(fontSize: 10, color: Colors.black),
-          ),
-          Icon(
+          FWidgets().text(data: 'next'.tr),
+          const Icon(
             Icons.arrow_circle_right,
             size: 45,
             color: Colors.orange,
