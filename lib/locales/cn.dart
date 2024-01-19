@@ -78,7 +78,9 @@ class CN {
     'greenCard': 'greenCard',
     'american': 'american',
     'fatcaPostfix': 'fatcaPostfix',
-    'fatcaPrefix': 'fatcaPrefix',
+    'fatcaPrefix1': 'fatcaPrefix1',
+    'fatcaPrefix2': 'fatcaPrefix2',
+    'fatcaPrefix3': 'fatcaPrefix3',
     'fatcaSubject': 'fatcaSubject',
     'digitalAssetRatio': 'digitalAssetRatio',
     'riskLevelInvestment': 'riskLevelInvestment',
@@ -90,5 +92,8 @@ class CN {
     'investmentAnalysisResult': 'investmentAnalysisResult',
     'suiteTestResult': 'suiteTestResult',
     'suiteTestEvaluateResult': 'suiteTestEvaluateResult',
+    'selectSuitableTest': 'selectSuitableTest',
+    'investmentRiskLevels': 'investmentRiskLevels',
+    'InvestmentSuitabilityAssessmentForm': 'InvestmentSuitabilityAssessmentForm',
   };
 }

@@ -29,6 +29,7 @@ class FWidgets {
       style: TextStyle(fontWeight: FontWeight.bold, color: color),
       maxLines: maxLines,
       presetFontSizes: presetFontSubjects,
+      overflow: TextOverflow.ellipsis,
     );
   }
 
@@ -43,6 +44,7 @@ class FWidgets {
     color2 ??= Colors.red;
     maxLines ??= 1;
     return AutoSizeText.rich(
+      overflow: TextOverflow.ellipsis,
       TextSpan(text: data1, style: TextStyle(color: color1), children: [
         TextSpan(
           text: data2,
@@ -65,6 +67,7 @@ class FWidgets {
     color2 ??= Colors.red;
     maxLines ??= 1;
     return AutoSizeText.rich(
+      overflow: TextOverflow.ellipsis,
       TextSpan(
           text: data1,
           style: TextStyle(fontWeight: FontWeight.bold, color: color1),

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:openaccountsgetx/app/data/questions/knowledge_test.dart';
 import 'package:openaccountsgetx/app/data/test.dart';
+import 'package:openaccountsgetx/widget/widgets.dart';
 
 import '../controllers/test_controller.dart';
 
@@ -14,6 +15,7 @@ class KnowledgeTestView extends StatelessWidget {
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
     const knowledgeTestQuestions = knowledgeQuestions;
+    final w = FWidgets();
     return GetBuilder<TestController>(
       builder: (ctrl) {
         final firstKnowledgeTestQuestion = Container(
@@ -32,10 +34,11 @@ class KnowledgeTestView extends StatelessWidget {
                       width: 100,
                       child: ListTile(
                           minLeadingWidth: 0,
-                          title: Text(
-                            knowledgeTestQuestions[0].answers[0],
-                            style: const TextStyle(fontSize: 12),
-                          ),
+                          title: w.subject(data: knowledgeTestQuestions[0].answers[0]),
+                          // title: Text(
+                          //   knowledgeTestQuestions[0].answers[0],
+                          //   style: const TextStyle(fontSize: 12),
+                          // ),
                           leading: Radio<KnowledgeAnswerEnum>(
                               visualDensity: const VisualDensity(
                                   horizontal: -4, vertical: 0),
@@ -68,7 +71,10 @@ class KnowledgeTestView extends StatelessWidget {
                                       value)))),
                 ]),
                 (ctrl.hintFirstKnowledgeQuestion)
-                    ? Text(knowledgeTestQuestions[0].hint, style: const TextStyle(color: Colors.red),)
+                    ? Text(
+                        knowledgeTestQuestions[0].hint,
+                        style: const TextStyle(color: Colors.red),
+                      )
                     : const Column(),
               ],
             ));
@@ -124,7 +130,8 @@ class KnowledgeTestView extends StatelessWidget {
                                       value)))),
                 ]),
                 (ctrl.hintFirstKnowledgeQuestion)
-                    ? Text(knowledgeTestQuestions[1].hint, style: const TextStyle(color: Colors.red))
+                    ? Text(knowledgeTestQuestions[1].hint,
+                        style: const TextStyle(color: Colors.red))
                     : const Column(),
               ],
             ));
@@ -180,7 +187,8 @@ class KnowledgeTestView extends StatelessWidget {
                                       value)))),
                 ]),
                 (ctrl.hintFirstKnowledgeQuestion)
-                    ? Text(knowledgeTestQuestions[2].hint, style: const TextStyle(color: Colors.red))
+                    ? Text(knowledgeTestQuestions[2].hint,
+                        style: const TextStyle(color: Colors.red))
                     : const Column(),
               ],
             ));
@@ -236,7 +244,8 @@ class KnowledgeTestView extends StatelessWidget {
                                       value)))),
                 ]),
                 (ctrl.hintFirstKnowledgeQuestion)
-                    ? Text(knowledgeTestQuestions[3].hint, style: const TextStyle(color: Colors.red))
+                    ? Text(knowledgeTestQuestions[3].hint,
+                        style: const TextStyle(color: Colors.red))
                     : const Column(),
               ],
             ));
@@ -292,7 +301,8 @@ class KnowledgeTestView extends StatelessWidget {
                                       value)))),
                 ]),
                 (ctrl.hintFirstKnowledgeQuestion)
-                    ? Text(knowledgeTestQuestions[4].hint, style: const TextStyle(color: Colors.red))
+                    ? Text(knowledgeTestQuestions[4].hint,
+                        style: const TextStyle(color: Colors.red))
                     : const Column(),
               ],
             ));
@@ -348,7 +358,8 @@ class KnowledgeTestView extends StatelessWidget {
                                       value)))),
                 ]),
                 (ctrl.hintFirstKnowledgeQuestion)
-                    ? Text(knowledgeTestQuestions[5].hint, style: const TextStyle(color: Colors.red))
+                    ? Text(knowledgeTestQuestions[5].hint,
+                        style: const TextStyle(color: Colors.red))
                     : const Column(),
               ],
             ));
@@ -404,7 +415,8 @@ class KnowledgeTestView extends StatelessWidget {
                                       value)))),
                 ]),
                 (ctrl.hintFirstKnowledgeQuestion)
-                    ? Text(knowledgeTestQuestions[6].hint, style: const TextStyle(color: Colors.red))
+                    ? Text(knowledgeTestQuestions[6].hint,
+                        style: const TextStyle(color: Colors.red))
                     : const Column(),
               ],
             ));
@@ -460,7 +472,8 @@ class KnowledgeTestView extends StatelessWidget {
                                       value)))),
                 ]),
                 (ctrl.hintFirstKnowledgeQuestion)
-                    ? Text(knowledgeTestQuestions[7].hint, style: const TextStyle(color: Colors.red))
+                    ? Text(knowledgeTestQuestions[7].hint,
+                        style: const TextStyle(color: Colors.red))
                     : const Column(),
               ],
             ));
@@ -516,7 +529,8 @@ class KnowledgeTestView extends StatelessWidget {
                                       value)))),
                 ]),
                 (ctrl.hintFirstKnowledgeQuestion)
-                    ? Text(knowledgeTestQuestions[8].hint, style: const TextStyle(color: Colors.red))
+                    ? Text(knowledgeTestQuestions[8].hint,
+                        style: const TextStyle(color: Colors.red))
                     : const Column(),
               ],
             ));
@@ -572,7 +586,8 @@ class KnowledgeTestView extends StatelessWidget {
                                       value)))),
                 ]),
                 (ctrl.hintFirstKnowledgeQuestion)
-                    ? Text(knowledgeTestQuestions[9].hint, style: const TextStyle(color: Colors.red))
+                    ? Text(knowledgeTestQuestions[9].hint,
+                        style: const TextStyle(color: Colors.red))
                     : const Column(),
               ],
             ));
@@ -628,7 +643,8 @@ class KnowledgeTestView extends StatelessWidget {
                                       value)))),
                 ]),
                 (ctrl.hintFirstKnowledgeQuestion)
-                    ? Text(knowledgeTestQuestions[10].hint, style: const TextStyle(color: Colors.red))
+                    ? Text(knowledgeTestQuestions[10].hint,
+                        style: const TextStyle(color: Colors.red))
                     : const Column(),
               ],
             ));
@@ -684,7 +700,8 @@ class KnowledgeTestView extends StatelessWidget {
                                       value)))),
                 ]),
                 (ctrl.hintFirstKnowledgeQuestion)
-                    ? Text(knowledgeTestQuestions[11].hint, style: const TextStyle(color: Colors.red))
+                    ? Text(knowledgeTestQuestions[11].hint,
+                        style: const TextStyle(color: Colors.red))
                     : const Column(),
               ],
             ));
@@ -740,7 +757,8 @@ class KnowledgeTestView extends StatelessWidget {
                                       value)))),
                 ]),
                 (ctrl.hintFirstKnowledgeQuestion)
-                    ? Text(knowledgeTestQuestions[12].hint, style: const TextStyle(color: Colors.red))
+                    ? Text(knowledgeTestQuestions[12].hint,
+                        style: const TextStyle(color: Colors.red))
                     : const Column(),
               ],
             ));
@@ -796,7 +814,8 @@ class KnowledgeTestView extends StatelessWidget {
                                       value)))),
                 ]),
                 (ctrl.hintFirstKnowledgeQuestion)
-                    ? Text(knowledgeTestQuestions[13].hint, style: const TextStyle(color: Colors.red))
+                    ? Text(knowledgeTestQuestions[13].hint,
+                        style: const TextStyle(color: Colors.red))
                     : const Column(),
               ],
             ));
@@ -852,7 +871,8 @@ class KnowledgeTestView extends StatelessWidget {
                                       value)))),
                 ]),
                 (ctrl.hintFirstKnowledgeQuestion)
-                    ? Text(knowledgeTestQuestions[14].hint, style: const TextStyle(color: Colors.red))
+                    ? Text(knowledgeTestQuestions[14].hint,
+                        style: const TextStyle(color: Colors.red))
                     : const Column(),
               ],
             ));

@@ -16,923 +16,80 @@ class TestView extends StatelessWidget {
     final width = MediaQuery.of(context).size.width;
     final height = MediaQuery.of(context).size.height;
     const suiteTestQuestions = suiteQuestions;
+    final w = FWidgets();
     return Scaffold(
         appBar: AppBar(
-          title: const Text('แบบประเมินความเหมาะสมในการลงทุน'),
+          title: w.subject(data: 'InvestmentSuitabilityAssessmentForm'.tr),
           centerTitle: true,
         ),
         body: GetBuilder<TestController>(builder: (ctrl) {
           final selectSuitableTestDropDown = DropdownButtonFormField(
+              // iconSize: 0,
               menuMaxHeight: height * .5,
               decoration: InputDecoration(
                   errorText: ctrl.selectSuitableTestErrorMessage,
-                  label: RichText(
-                      text: const TextSpan(
-                          text: 'ระดับความเสี่ยงในการลงทุนของท่าน',
-                          children: [
-                        TextSpan(text: '*', style: TextStyle(color: Colors.red))
-                      ]))),
+                  label: w.richText(data1: 'investmentRiskLevels'.tr)),
               value: ctrl.selectSuitableTest,
               onChanged: (value) => ctrl.setselectSuitableTestLists(value),
               items: [
                 for (var data in ctrl.selectSuitableTestItems)
-                  DropdownMenuItem(value: data, child: Text(data))
+                  DropdownMenuItem(value: data, child: w.text(data: data))
               ]);
 
           final selectSuitableTestTextButton = TextButton(
               onPressed: () => ctrl.setselectSuitableTestOnPress(),
-              child: const Text('เลือกประเมินความเสี่ยงการลงทุนของท่าน'));
+              child: w.text(data: 'selectSuitableTest'.tr));
 
-          final firstSuiteTestQuestion = Container(
-              padding: EdgeInsets.fromLTRB(width * .02, 10, width * .02, 15),
-              decoration: BoxDecoration(
-                  color: Colors.white, borderRadius: BorderRadius.circular(10)),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  SizedBox(
-                    child: Text(suiteTestQuestions[0].text),
-                  ),
-                  SizedBox(
-                      height: 30,
-                      child: ListTile(
-                          minLeadingWidth: 0,
-                          title: Text(
-                            suiteTestQuestions[0].answers[0],
-                            style: const TextStyle(fontSize: 12),
-                          ),
-                          leading: Radio<SuiteAnswerEnum>(
-                              visualDensity: const VisualDensity(
-                                  horizontal: -4, vertical: 0),
-                              materialTapTargetSize:
-                                  MaterialTapTargetSize.shrinkWrap,
-                              value: SuiteAnswerEnum.first,
-                              groupValue:
-                                  ctrl.firstSuiteAnswerEnumEnumGroupValue,
-                              onChanged: (value) =>
-                                  ctrl.setfirstSuiteAnswerEnumEnumGroupValue(
-                                      value)))),
-                  SizedBox(
-                      height: 30,
-                      child: ListTile(
-                          minLeadingWidth: 0,
-                          title: Text(
-                            suiteTestQuestions[0].answers[1],
-                            style: const TextStyle(fontSize: 12),
-                          ),
-                          leading: Radio<SuiteAnswerEnum>(
-                              visualDensity: const VisualDensity(
-                                  horizontal: -4, vertical: 0),
-                              materialTapTargetSize:
-                                  MaterialTapTargetSize.shrinkWrap,
-                              value: SuiteAnswerEnum.second,
-                              groupValue:
-                                  ctrl.firstSuiteAnswerEnumEnumGroupValue,
-                              onChanged: (value) =>
-                                  ctrl.setfirstSuiteAnswerEnumEnumGroupValue(
-                                      value)))),
-                  SizedBox(
-                      height: 30,
-                      child: ListTile(
-                          minLeadingWidth: 0,
-                          title: Text(
-                            suiteTestQuestions[0].answers[2],
-                            style: const TextStyle(fontSize: 12),
-                          ),
-                          leading: Radio<SuiteAnswerEnum>(
-                              visualDensity: const VisualDensity(
-                                  horizontal: -4, vertical: 0),
-                              materialTapTargetSize:
-                                  MaterialTapTargetSize.shrinkWrap,
-                              value: SuiteAnswerEnum.third,
-                              groupValue:
-                                  ctrl.firstSuiteAnswerEnumEnumGroupValue,
-                              onChanged: (value) =>
-                                  ctrl.setfirstSuiteAnswerEnumEnumGroupValue(
-                                      value)))),
-                  SizedBox(
-                      height: 30,
-                      child: ListTile(
-                          minLeadingWidth: 0,
-                          title: Text(
-                            suiteTestQuestions[0].answers[3],
-                            style: const TextStyle(fontSize: 12),
-                          ),
-                          leading: Radio<SuiteAnswerEnum>(
-                              visualDensity: const VisualDensity(
-                                  horizontal: -4, vertical: 0),
-                              materialTapTargetSize:
-                                  MaterialTapTargetSize.shrinkWrap,
-                              value: SuiteAnswerEnum.forth,
-                              groupValue:
-                                  ctrl.firstSuiteAnswerEnumEnumGroupValue,
-                              onChanged: (value) =>
-                                  ctrl.setfirstSuiteAnswerEnumEnumGroupValue(
-                                      value))))
-                ],
-              ));
-          final secondSuiteTestQuestion = Container(
-              padding: EdgeInsets.fromLTRB(width * .02, 10, width * .02, 15),
-              decoration: BoxDecoration(
-                  color: Colors.white, borderRadius: BorderRadius.circular(10)),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  SizedBox(
-                    child: Text(suiteTestQuestions[1].text),
-                  ),
-                  SizedBox(
-                      height: 30,
-                      child: ListTile(
-                          minLeadingWidth: 0,
-                          title: Text(
-                            suiteTestQuestions[1].answers[0],
-                            style: const TextStyle(fontSize: 12),
-                          ),
-                          leading: Radio<SuiteAnswerEnum>(
-                              visualDensity: const VisualDensity(
-                                  horizontal: -4, vertical: 0),
-                              materialTapTargetSize:
-                                  MaterialTapTargetSize.shrinkWrap,
-                              value: SuiteAnswerEnum.first,
-                              groupValue:
-                                  ctrl.secondSuiteAnswerEnumEnumGroupValue,
-                              onChanged: (value) =>
-                                  ctrl.setsecondSuiteAnswerEnumEnumGroupValue(
-                                      value)))),
-                  SizedBox(
-                      height: 30,
-                      child: ListTile(
-                          minLeadingWidth: 0,
-                          title: Text(
-                            suiteTestQuestions[1].answers[1],
-                            style: const TextStyle(fontSize: 12),
-                          ),
-                          leading: Radio<SuiteAnswerEnum>(
-                              visualDensity: const VisualDensity(
-                                  horizontal: -4, vertical: 0),
-                              materialTapTargetSize:
-                                  MaterialTapTargetSize.shrinkWrap,
-                              value: SuiteAnswerEnum.second,
-                              groupValue:
-                                  ctrl.secondSuiteAnswerEnumEnumGroupValue,
-                              onChanged: (value) =>
-                                  ctrl.setsecondSuiteAnswerEnumEnumGroupValue(
-                                      value)))),
-                  SizedBox(
-                      height: 30,
-                      child: ListTile(
-                          minLeadingWidth: 0,
-                          title: Text(
-                            suiteTestQuestions[1].answers[2],
-                            style: const TextStyle(fontSize: 12),
-                          ),
-                          leading: Radio<SuiteAnswerEnum>(
-                              visualDensity: const VisualDensity(
-                                  horizontal: -4, vertical: 0),
-                              materialTapTargetSize:
-                                  MaterialTapTargetSize.shrinkWrap,
-                              value: SuiteAnswerEnum.third,
-                              groupValue:
-                                  ctrl.secondSuiteAnswerEnumEnumGroupValue,
-                              onChanged: (value) =>
-                                  ctrl.setsecondSuiteAnswerEnumEnumGroupValue(
-                                      value)))),
-                  SizedBox(
-                      height: 30,
-                      child: ListTile(
-                          minLeadingWidth: 0,
-                          title: Text(
-                            suiteTestQuestions[1].answers[3],
-                            style: const TextStyle(fontSize: 12),
-                          ),
-                          leading: Radio<SuiteAnswerEnum>(
-                              visualDensity: const VisualDensity(
-                                  horizontal: -4, vertical: 0),
-                              materialTapTargetSize:
-                                  MaterialTapTargetSize.shrinkWrap,
-                              value: SuiteAnswerEnum.forth,
-                              groupValue:
-                                  ctrl.secondSuiteAnswerEnumEnumGroupValue,
-                              onChanged: (value) =>
-                                  ctrl.setsecondSuiteAnswerEnumEnumGroupValue(
-                                      value))))
-                ],
-              ));
-          final thirdSuiteTestQuestion = Container(
-              padding: EdgeInsets.fromLTRB(width * .02, 10, width * .02, 15),
-              decoration: BoxDecoration(
-                  color: Colors.white, borderRadius: BorderRadius.circular(10)),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  SizedBox(
-                    child: Text(suiteTestQuestions[2].text),
-                  ),
-                  SizedBox(
-                      height: 30,
-                      child: ListTile(
-                          minLeadingWidth: 0,
-                          title: Text(
-                            suiteTestQuestions[2].answers[0],
-                            style: const TextStyle(fontSize: 12),
-                          ),
-                          leading: Radio<SuiteAnswerEnum>(
-                              visualDensity: const VisualDensity(
-                                  horizontal: -4, vertical: 0),
-                              materialTapTargetSize:
-                                  MaterialTapTargetSize.shrinkWrap,
-                              value: SuiteAnswerEnum.first,
-                              groupValue:
-                                  ctrl.thirdSuiteAnswerEnumEnumGroupValue,
-                              onChanged: (value) =>
-                                  ctrl.setthirdSuiteAnswerEnumEnumGroupValue(
-                                      value)))),
-                  SizedBox(
-                      height: 30,
-                      child: ListTile(
-                          minLeadingWidth: 0,
-                          title: Text(
-                            suiteTestQuestions[2].answers[1],
-                            style: const TextStyle(fontSize: 12),
-                          ),
-                          leading: Radio<SuiteAnswerEnum>(
-                              visualDensity: const VisualDensity(
-                                  horizontal: -4, vertical: 0),
-                              materialTapTargetSize:
-                                  MaterialTapTargetSize.shrinkWrap,
-                              value: SuiteAnswerEnum.second,
-                              groupValue:
-                                  ctrl.thirdSuiteAnswerEnumEnumGroupValue,
-                              onChanged: (value) =>
-                                  ctrl.setthirdSuiteAnswerEnumEnumGroupValue(
-                                      value)))),
-                  SizedBox(
-                      height: 30,
-                      child: ListTile(
-                          minLeadingWidth: 0,
-                          title: Text(
-                            suiteTestQuestions[2].answers[2],
-                            style: const TextStyle(fontSize: 12),
-                          ),
-                          leading: Radio<SuiteAnswerEnum>(
-                              visualDensity: const VisualDensity(
-                                  horizontal: -4, vertical: 0),
-                              materialTapTargetSize:
-                                  MaterialTapTargetSize.shrinkWrap,
-                              value: SuiteAnswerEnum.third,
-                              groupValue:
-                                  ctrl.thirdSuiteAnswerEnumEnumGroupValue,
-                              onChanged: (value) =>
-                                  ctrl.setthirdSuiteAnswerEnumEnumGroupValue(
-                                      value)))),
-                  SizedBox(
-                      height: 30,
-                      child: ListTile(
-                          minLeadingWidth: 0,
-                          title: Text(
-                            suiteTestQuestions[2].answers[3],
-                            style: const TextStyle(fontSize: 12),
-                          ),
-                          leading: Radio<SuiteAnswerEnum>(
-                              visualDensity: const VisualDensity(
-                                  horizontal: -4, vertical: 0),
-                              materialTapTargetSize:
-                                  MaterialTapTargetSize.shrinkWrap,
-                              value: SuiteAnswerEnum.forth,
-                              groupValue:
-                                  ctrl.thirdSuiteAnswerEnumEnumGroupValue,
-                              onChanged: (value) =>
-                                  ctrl.setthirdSuiteAnswerEnumEnumGroupValue(
-                                      value))))
-                ],
-              ));
-          final forthSuiteTestQuestion = Container(
-              padding: EdgeInsets.fromLTRB(width * .02, 10, width * .02, 15),
-              decoration: BoxDecoration(
-                  color: Colors.white, borderRadius: BorderRadius.circular(10)),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  SizedBox(
-                    child: Text(suiteTestQuestions[3].text),
-                  ),
-                  SizedBox(
-                      height: 30,
-                      child: ListTile(
-                          minLeadingWidth: 0,
-                          title: Text(
-                            suiteTestQuestions[3].answers[0],
-                            style: const TextStyle(fontSize: 12),
-                          ),
-                          leading: Radio<SuiteAnswerEnum>(
-                              visualDensity: const VisualDensity(
-                                  horizontal: -4, vertical: 0),
-                              materialTapTargetSize:
-                                  MaterialTapTargetSize.shrinkWrap,
-                              value: SuiteAnswerEnum.first,
-                              groupValue:
-                                  ctrl.forthSuiteAnswerEnumEnumGroupValue,
-                              onChanged: (value) =>
-                                  ctrl.setforthSuiteAnswerEnumEnumGroupValue(
-                                      value)))),
-                  SizedBox(
-                      height: 30,
-                      child: ListTile(
-                          minLeadingWidth: 0,
-                          title: Text(
-                            suiteTestQuestions[3].answers[1],
-                            style: const TextStyle(fontSize: 12),
-                          ),
-                          leading: Radio<SuiteAnswerEnum>(
-                              visualDensity: const VisualDensity(
-                                  horizontal: -4, vertical: 0),
-                              materialTapTargetSize:
-                                  MaterialTapTargetSize.shrinkWrap,
-                              value: SuiteAnswerEnum.second,
-                              groupValue:
-                                  ctrl.forthSuiteAnswerEnumEnumGroupValue,
-                              onChanged: (value) =>
-                                  ctrl.setforthSuiteAnswerEnumEnumGroupValue(
-                                      value)))),
-                  SizedBox(
-                      height: 30,
-                      child: ListTile(
-                          minLeadingWidth: 0,
-                          title: Text(
-                            suiteTestQuestions[3].answers[2],
-                            style: const TextStyle(fontSize: 12),
-                          ),
-                          leading: Radio<SuiteAnswerEnum>(
-                              visualDensity: const VisualDensity(
-                                  horizontal: -4, vertical: 0),
-                              materialTapTargetSize:
-                                  MaterialTapTargetSize.shrinkWrap,
-                              value: SuiteAnswerEnum.third,
-                              groupValue:
-                                  ctrl.forthSuiteAnswerEnumEnumGroupValue,
-                              onChanged: (value) =>
-                                  ctrl.setforthSuiteAnswerEnumEnumGroupValue(
-                                      value)))),
-                  SizedBox(
-                      height: 30,
-                      child: ListTile(
-                          minLeadingWidth: 0,
-                          title: Text(
-                            suiteTestQuestions[3].answers[3],
-                            style: const TextStyle(fontSize: 12),
-                          ),
-                          leading: Radio<SuiteAnswerEnum>(
-                              visualDensity: const VisualDensity(
-                                  horizontal: -4, vertical: 0),
-                              materialTapTargetSize:
-                                  MaterialTapTargetSize.shrinkWrap,
-                              value: SuiteAnswerEnum.forth,
-                              groupValue:
-                                  ctrl.forthSuiteAnswerEnumEnumGroupValue,
-                              onChanged: (value) =>
-                                  ctrl.setforthSuiteAnswerEnumEnumGroupValue(
-                                      value))))
-                ],
-              ));
-          final fifthSuiteTestQuestion = Container(
-              padding: EdgeInsets.fromLTRB(width * .02, 10, width * .02, 15),
-              decoration: BoxDecoration(
-                  color: Colors.white, borderRadius: BorderRadius.circular(10)),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  SizedBox(
-                    child: Text(suiteTestQuestions[4].text),
-                  ),
-                  SizedBox(
-                      height: 30,
-                      child: ListTile(
-                          minLeadingWidth: 0,
-                          title: Text(
-                            suiteTestQuestions[4].answers[0],
-                            style: const TextStyle(fontSize: 12),
-                          ),
-                          leading: Radio<SuiteAnswerEnum>(
-                              visualDensity: const VisualDensity(
-                                  horizontal: -4, vertical: 0),
-                              materialTapTargetSize:
-                                  MaterialTapTargetSize.shrinkWrap,
-                              value: SuiteAnswerEnum.first,
-                              groupValue:
-                                  ctrl.fifthSuiteAnswerEnumEnumGroupValue,
-                              onChanged: (value) =>
-                                  ctrl.setfifthSuiteAnswerEnumEnumGroupValue(
-                                      value)))),
-                  SizedBox(
-                      height: 30,
-                      child: ListTile(
-                          minLeadingWidth: 0,
-                          title: Text(
-                            suiteTestQuestions[4].answers[1],
-                            style: const TextStyle(fontSize: 12),
-                          ),
-                          leading: Radio<SuiteAnswerEnum>(
-                              visualDensity: const VisualDensity(
-                                  horizontal: -4, vertical: 0),
-                              materialTapTargetSize:
-                                  MaterialTapTargetSize.shrinkWrap,
-                              value: SuiteAnswerEnum.second,
-                              groupValue:
-                                  ctrl.fifthSuiteAnswerEnumEnumGroupValue,
-                              onChanged: (value) =>
-                                  ctrl.setfifthSuiteAnswerEnumEnumGroupValue(
-                                      value)))),
-                  SizedBox(
-                      height: 30,
-                      child: ListTile(
-                          minLeadingWidth: 0,
-                          title: Text(
-                            suiteTestQuestions[4].answers[2],
-                            style: const TextStyle(fontSize: 12),
-                          ),
-                          leading: Radio<SuiteAnswerEnum>(
-                              visualDensity: const VisualDensity(
-                                  horizontal: -4, vertical: 0),
-                              materialTapTargetSize:
-                                  MaterialTapTargetSize.shrinkWrap,
-                              value: SuiteAnswerEnum.third,
-                              groupValue:
-                                  ctrl.fifthSuiteAnswerEnumEnumGroupValue,
-                              onChanged: (value) =>
-                                  ctrl.setfifthSuiteAnswerEnumEnumGroupValue(
-                                      value)))),
-                  SizedBox(
-                      height: 30,
-                      child: ListTile(
-                          minLeadingWidth: 0,
-                          title: Text(
-                            suiteTestQuestions[4].answers[3],
-                            style: const TextStyle(fontSize: 12),
-                          ),
-                          leading: Radio<SuiteAnswerEnum>(
-                              visualDensity: const VisualDensity(
-                                  horizontal: -4, vertical: 0),
-                              materialTapTargetSize:
-                                  MaterialTapTargetSize.shrinkWrap,
-                              value: SuiteAnswerEnum.forth,
-                              groupValue:
-                                  ctrl.fifthSuiteAnswerEnumEnumGroupValue,
-                              onChanged: (value) =>
-                                  ctrl.setfifthSuiteAnswerEnumEnumGroupValue(
-                                      value))))
-                ],
-              ));
-          final sixthSuiteTestQuestion = Container(
-              padding: EdgeInsets.fromLTRB(width * .02, 10, width * .02, 15),
-              decoration: BoxDecoration(
-                  color: Colors.white, borderRadius: BorderRadius.circular(10)),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  SizedBox(
-                    child: Text(suiteTestQuestions[5].text),
-                  ),
-                  SizedBox(
-                      height: 30,
-                      child: ListTile(
-                          minLeadingWidth: 0,
-                          title: Text(
-                            suiteTestQuestions[5].answers[0],
-                            style: const TextStyle(fontSize: 12),
-                          ),
-                          leading: Radio<SuiteAnswerEnum>(
-                              visualDensity: const VisualDensity(
-                                  horizontal: -4, vertical: 0),
-                              materialTapTargetSize:
-                                  MaterialTapTargetSize.shrinkWrap,
-                              value: SuiteAnswerEnum.first,
-                              groupValue:
-                                  ctrl.sixthSuiteAnswerEnumEnumGroupValue,
-                              onChanged: (value) =>
-                                  ctrl.setsixthSuiteAnswerEnumEnumGroupValue(
-                                      value)))),
-                  SizedBox(
-                      height: 30,
-                      child: ListTile(
-                          minLeadingWidth: 0,
-                          title: Text(
-                            suiteTestQuestions[5].answers[1],
-                            style: const TextStyle(fontSize: 12),
-                          ),
-                          leading: Radio<SuiteAnswerEnum>(
-                              visualDensity: const VisualDensity(
-                                  horizontal: -4, vertical: 0),
-                              materialTapTargetSize:
-                                  MaterialTapTargetSize.shrinkWrap,
-                              value: SuiteAnswerEnum.second,
-                              groupValue:
-                                  ctrl.sixthSuiteAnswerEnumEnumGroupValue,
-                              onChanged: (value) =>
-                                  ctrl.setsixthSuiteAnswerEnumEnumGroupValue(
-                                      value)))),
-                  SizedBox(
-                      height: 30,
-                      child: ListTile(
-                          minLeadingWidth: 0,
-                          title: Text(
-                            suiteTestQuestions[5].answers[2],
-                            style: const TextStyle(fontSize: 12),
-                          ),
-                          leading: Radio<SuiteAnswerEnum>(
-                              visualDensity: const VisualDensity(
-                                  horizontal: -4, vertical: 0),
-                              materialTapTargetSize:
-                                  MaterialTapTargetSize.shrinkWrap,
-                              value: SuiteAnswerEnum.third,
-                              groupValue:
-                                  ctrl.sixthSuiteAnswerEnumEnumGroupValue,
-                              onChanged: (value) =>
-                                  ctrl.setsixthSuiteAnswerEnumEnumGroupValue(
-                                      value)))),
-                  SizedBox(
-                      height: 30,
-                      child: ListTile(
-                          minLeadingWidth: 0,
-                          title: Text(
-                            suiteTestQuestions[5].answers[3],
-                            style: const TextStyle(fontSize: 12),
-                          ),
-                          leading: Radio<SuiteAnswerEnum>(
-                              visualDensity: const VisualDensity(
-                                  horizontal: -4, vertical: 0),
-                              materialTapTargetSize:
-                                  MaterialTapTargetSize.shrinkWrap,
-                              value: SuiteAnswerEnum.forth,
-                              groupValue:
-                                  ctrl.sixthSuiteAnswerEnumEnumGroupValue,
-                              onChanged: (value) =>
-                                  ctrl.setsixthSuiteAnswerEnumEnumGroupValue(
-                                      value))))
-                ],
-              ));
-          final seventhSuiteTestQuestion = Container(
-              padding: EdgeInsets.fromLTRB(width * .02, 10, width * .02, 15),
-              decoration: BoxDecoration(
-                  color: Colors.white, borderRadius: BorderRadius.circular(10)),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  SizedBox(
-                    child: Text(suiteTestQuestions[6].text),
-                  ),
-                  SizedBox(
-                      height: 30,
-                      child: ListTile(
-                          minLeadingWidth: 0,
-                          title: Text(
-                            suiteTestQuestions[6].answers[0],
-                            style: const TextStyle(fontSize: 12),
-                          ),
-                          leading: Radio<SuiteAnswerEnum>(
-                              visualDensity: const VisualDensity(
-                                  horizontal: -4, vertical: 0),
-                              materialTapTargetSize:
-                                  MaterialTapTargetSize.shrinkWrap,
-                              value: SuiteAnswerEnum.first,
-                              groupValue:
-                                  ctrl.seventhSuiteAnswerEnumEnumGroupValue,
-                              onChanged: (value) =>
-                                  ctrl.setseventhSuiteAnswerEnumEnumGroupValue(
-                                      value)))),
-                  SizedBox(
-                      height: 30,
-                      child: ListTile(
-                          minLeadingWidth: 0,
-                          title: Text(
-                            suiteTestQuestions[6].answers[1],
-                            style: const TextStyle(fontSize: 12),
-                          ),
-                          leading: Radio<SuiteAnswerEnum>(
-                              visualDensity: const VisualDensity(
-                                  horizontal: -4, vertical: 0),
-                              materialTapTargetSize:
-                                  MaterialTapTargetSize.shrinkWrap,
-                              value: SuiteAnswerEnum.second,
-                              groupValue:
-                                  ctrl.seventhSuiteAnswerEnumEnumGroupValue,
-                              onChanged: (value) =>
-                                  ctrl.setseventhSuiteAnswerEnumEnumGroupValue(
-                                      value)))),
-                  SizedBox(
-                      height: 30,
-                      child: ListTile(
-                          minLeadingWidth: 0,
-                          title: Text(
-                            suiteTestQuestions[6].answers[2],
-                            style: const TextStyle(fontSize: 12),
-                          ),
-                          leading: Radio<SuiteAnswerEnum>(
-                              visualDensity: const VisualDensity(
-                                  horizontal: -4, vertical: 0),
-                              materialTapTargetSize:
-                                  MaterialTapTargetSize.shrinkWrap,
-                              value: SuiteAnswerEnum.third,
-                              groupValue:
-                                  ctrl.seventhSuiteAnswerEnumEnumGroupValue,
-                              onChanged: (value) =>
-                                  ctrl.setseventhSuiteAnswerEnumEnumGroupValue(
-                                      value)))),
-                  SizedBox(
-                      height: 30,
-                      child: ListTile(
-                          minLeadingWidth: 0,
-                          title: Text(
-                            suiteTestQuestions[6].answers[3],
-                            style: const TextStyle(fontSize: 12),
-                          ),
-                          leading: Radio<SuiteAnswerEnum>(
-                              visualDensity: const VisualDensity(
-                                  horizontal: -4, vertical: 0),
-                              materialTapTargetSize:
-                                  MaterialTapTargetSize.shrinkWrap,
-                              value: SuiteAnswerEnum.forth,
-                              groupValue:
-                                  ctrl.seventhSuiteAnswerEnumEnumGroupValue,
-                              onChanged: (value) =>
-                                  ctrl.setseventhSuiteAnswerEnumEnumGroupValue(
-                                      value))))
-                ],
-              ));
-          final eiththSuiteTestQuestion = Container(
-              padding: EdgeInsets.fromLTRB(width * .02, 10, width * .02, 15),
-              decoration: BoxDecoration(
-                  color: Colors.white, borderRadius: BorderRadius.circular(10)),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  SizedBox(
-                    child: Text(suiteTestQuestions[0].text),
-                  ),
-                  SizedBox(
-                      height: 30,
-                      child: ListTile(
-                          minLeadingWidth: 0,
-                          title: Text(
-                            suiteTestQuestions[0].answers[0],
-                            style: const TextStyle(fontSize: 12),
-                          ),
-                          leading: Radio<SuiteAnswerEnum>(
-                              visualDensity: const VisualDensity(
-                                  horizontal: -4, vertical: 0),
-                              materialTapTargetSize:
-                                  MaterialTapTargetSize.shrinkWrap,
-                              value: SuiteAnswerEnum.first,
-                              groupValue:
-                                  ctrl.eiththSuiteAnswerEnumEnumGroupValue,
-                              onChanged: (value) =>
-                                  ctrl.seteiththSuiteAnswerEnumEnumGroupValue(
-                                      value)))),
-                  SizedBox(
-                      height: 30,
-                      child: ListTile(
-                          minLeadingWidth: 0,
-                          title: Text(
-                            suiteTestQuestions[0].answers[1],
-                            style: const TextStyle(fontSize: 12),
-                          ),
-                          leading: Radio<SuiteAnswerEnum>(
-                              visualDensity: const VisualDensity(
-                                  horizontal: -4, vertical: 0),
-                              materialTapTargetSize:
-                                  MaterialTapTargetSize.shrinkWrap,
-                              value: SuiteAnswerEnum.second,
-                              groupValue:
-                                  ctrl.eiththSuiteAnswerEnumEnumGroupValue,
-                              onChanged: (value) =>
-                                  ctrl.seteiththSuiteAnswerEnumEnumGroupValue(
-                                      value)))),
-                  SizedBox(
-                      height: 30,
-                      child: ListTile(
-                          minLeadingWidth: 0,
-                          title: Text(
-                            suiteTestQuestions[0].answers[2],
-                            style: const TextStyle(fontSize: 12),
-                          ),
-                          leading: Radio<SuiteAnswerEnum>(
-                              visualDensity: const VisualDensity(
-                                  horizontal: -4, vertical: 0),
-                              materialTapTargetSize:
-                                  MaterialTapTargetSize.shrinkWrap,
-                              value: SuiteAnswerEnum.third,
-                              groupValue:
-                                  ctrl.eiththSuiteAnswerEnumEnumGroupValue,
-                              onChanged: (value) =>
-                                  ctrl.seteiththSuiteAnswerEnumEnumGroupValue(
-                                      value)))),
-                  SizedBox(
-                      height: 30,
-                      child: ListTile(
-                          minLeadingWidth: 0,
-                          title: Text(
-                            suiteTestQuestions[0].answers[3],
-                            style: const TextStyle(fontSize: 12),
-                          ),
-                          leading: Radio<SuiteAnswerEnum>(
-                              visualDensity: const VisualDensity(
-                                  horizontal: -4, vertical: 0),
-                              materialTapTargetSize:
-                                  MaterialTapTargetSize.shrinkWrap,
-                              value: SuiteAnswerEnum.forth,
-                              groupValue:
-                                  ctrl.eiththSuiteAnswerEnumEnumGroupValue,
-                              onChanged: (value) =>
-                                  ctrl.seteiththSuiteAnswerEnumEnumGroupValue(
-                                      value))))
-                ],
-              ));
-          final ninthSuiteTestQuestion = Container(
-              padding: EdgeInsets.fromLTRB(width * .02, 10, width * .02, 15),
-              decoration: BoxDecoration(
-                  color: Colors.white, borderRadius: BorderRadius.circular(10)),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  SizedBox(
-                    child: Text(suiteTestQuestions[8].text),
-                  ),
-                  SizedBox(
-                      height: 30,
-                      child: ListTile(
-                          minLeadingWidth: 0,
-                          title: Text(
-                            suiteTestQuestions[8].answers[0],
-                            style: const TextStyle(fontSize: 12),
-                          ),
-                          leading: Radio<SuiteAnswerEnum>(
-                              visualDensity: const VisualDensity(
-                                  horizontal: -4, vertical: 0),
-                              materialTapTargetSize:
-                                  MaterialTapTargetSize.shrinkWrap,
-                              value: SuiteAnswerEnum.first,
-                              groupValue:
-                                  ctrl.ninthSuiteAnswerEnumEnumGroupValue,
-                              onChanged: (value) =>
-                                  ctrl.setninthSuiteAnswerEnumEnumGroupValue(
-                                      value)))),
-                  SizedBox(
-                      height: 30,
-                      child: ListTile(
-                          minLeadingWidth: 0,
-                          title: Text(
-                            suiteTestQuestions[8].answers[1],
-                            style: const TextStyle(fontSize: 12),
-                          ),
-                          leading: Radio<SuiteAnswerEnum>(
-                              visualDensity: const VisualDensity(
-                                  horizontal: -4, vertical: 0),
-                              materialTapTargetSize:
-                                  MaterialTapTargetSize.shrinkWrap,
-                              value: SuiteAnswerEnum.second,
-                              groupValue:
-                                  ctrl.ninthSuiteAnswerEnumEnumGroupValue,
-                              onChanged: (value) =>
-                                  ctrl.setninthSuiteAnswerEnumEnumGroupValue(
-                                      value)))),
-                  SizedBox(
-                      height: 30,
-                      child: ListTile(
-                          minLeadingWidth: 0,
-                          title: Text(
-                            suiteTestQuestions[8].answers[2],
-                            style: const TextStyle(fontSize: 12),
-                          ),
-                          leading: Radio<SuiteAnswerEnum>(
-                              visualDensity: const VisualDensity(
-                                  horizontal: -4, vertical: 0),
-                              materialTapTargetSize:
-                                  MaterialTapTargetSize.shrinkWrap,
-                              value: SuiteAnswerEnum.third,
-                              groupValue:
-                                  ctrl.ninthSuiteAnswerEnumEnumGroupValue,
-                              onChanged: (value) =>
-                                  ctrl.setninthSuiteAnswerEnumEnumGroupValue(
-                                      value)))),
-                  SizedBox(
-                      height: 30,
-                      child: ListTile(
-                          minLeadingWidth: 0,
-                          title: Text(
-                            suiteTestQuestions[8].answers[3],
-                            style: const TextStyle(fontSize: 12),
-                          ),
-                          leading: Radio<SuiteAnswerEnum>(
-                              visualDensity: const VisualDensity(
-                                  horizontal: -4, vertical: 0),
-                              materialTapTargetSize:
-                                  MaterialTapTargetSize.shrinkWrap,
-                              value: SuiteAnswerEnum.forth,
-                              groupValue:
-                                  ctrl.ninthSuiteAnswerEnumEnumGroupValue,
-                              onChanged: (value) =>
-                                  ctrl.setninthSuiteAnswerEnumEnumGroupValue(
-                                      value))))
-                ],
-              ));
-          final tenthSuiteTestQuestion = Container(
-              padding: EdgeInsets.fromLTRB(width * .02, 10, width * .02, 15),
-              decoration: BoxDecoration(
-                  color: Colors.white, borderRadius: BorderRadius.circular(10)),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  SizedBox(
-                    child: Text(suiteTestQuestions[9].text),
-                  ),
-                  SizedBox(
-                      height: 30,
-                      child: ListTile(
-                          minLeadingWidth: 0,
-                          title: Text(
-                            suiteTestQuestions[9].answers[0],
-                            style: const TextStyle(fontSize: 12),
-                          ),
-                          leading: Radio<SuiteAnswerEnum>(
-                              visualDensity: const VisualDensity(
-                                  horizontal: -4, vertical: 0),
-                              materialTapTargetSize:
-                                  MaterialTapTargetSize.shrinkWrap,
-                              value: SuiteAnswerEnum.first,
-                              groupValue:
-                                  ctrl.tenthSuiteAnswerEnumEnumGroupValue,
-                              onChanged: (value) =>
-                                  ctrl.settenthSuiteAnswerEnumEnumGroupValue(
-                                      value)))),
-                  SizedBox(
-                      height: 30,
-                      child: ListTile(
-                          minLeadingWidth: 0,
-                          title: Text(
-                            suiteTestQuestions[9].answers[1],
-                            style: const TextStyle(fontSize: 12),
-                          ),
-                          leading: Radio<SuiteAnswerEnum>(
-                              visualDensity: const VisualDensity(
-                                  horizontal: -4, vertical: 0),
-                              materialTapTargetSize:
-                                  MaterialTapTargetSize.shrinkWrap,
-                              value: SuiteAnswerEnum.second,
-                              groupValue:
-                                  ctrl.tenthSuiteAnswerEnumEnumGroupValue,
-                              onChanged: (value) =>
-                                  ctrl.settenthSuiteAnswerEnumEnumGroupValue(
-                                      value)))),
-                  SizedBox(
-                      height: 30,
-                      child: ListTile(
-                          minLeadingWidth: 0,
-                          title: Text(
-                            suiteTestQuestions[9].answers[2],
-                            style: const TextStyle(fontSize: 12),
-                          ),
-                          leading: Radio<SuiteAnswerEnum>(
-                              visualDensity: const VisualDensity(
-                                  horizontal: -4, vertical: 0),
-                              materialTapTargetSize:
-                                  MaterialTapTargetSize.shrinkWrap,
-                              value: SuiteAnswerEnum.third,
-                              groupValue:
-                                  ctrl.tenthSuiteAnswerEnumEnumGroupValue,
-                              onChanged: (value) =>
-                                  ctrl.settenthSuiteAnswerEnumEnumGroupValue(
-                                      value)))),
-                  SizedBox(
-                      height: 30,
-                      child: ListTile(
-                          minLeadingWidth: 0,
-                          title: Text(
-                            suiteTestQuestions[9].answers[3],
-                            style: const TextStyle(fontSize: 12),
-                          ),
-                          leading: Radio<SuiteAnswerEnum>(
-                              visualDensity: const VisualDensity(
-                                  horizontal: -4, vertical: 0),
-                              materialTapTargetSize:
-                                  MaterialTapTargetSize.shrinkWrap,
-                              value: SuiteAnswerEnum.forth,
-                              groupValue:
-                                  ctrl.tenthSuiteAnswerEnumEnumGroupValue,
-                              onChanged: (value) =>
-                                  ctrl.settenthSuiteAnswerEnumEnumGroupValue(
-                                      value))))
-                ],
-              ));
+          final firstSuiteTestQuestion = suiteTestQuestionWidget(
+              width,
+              suiteTestQuestions[0],
+              ctrl.firstSuiteAnswerEnumEnumGroupValue,
+              ctrl.setfirstSuiteAnswerEnumEnumGroupValue);
+          final secondSuiteTestQuestion = suiteTestQuestionWidget(
+              width,
+              suiteTestQuestions[1],
+              ctrl.secondSuiteAnswerEnumEnumGroupValue,
+              ctrl.setsecondSuiteAnswerEnumEnumGroupValue);
+          final thirdSuiteTestQuestion = suiteTestQuestionWidget(
+              width,
+              suiteTestQuestions[2],
+              ctrl.thirdSuiteAnswerEnumEnumGroupValue,
+              ctrl.setthirdSuiteAnswerEnumEnumGroupValue);
+          final forthSuiteTestQuestion = suiteTestQuestionWidget(
+              width,
+              suiteTestQuestions[3],
+              ctrl.forthSuiteAnswerEnumEnumGroupValue,
+              ctrl.setforthSuiteAnswerEnumEnumGroupValue);
+          final fifthSuiteTestQuestion = suiteTestQuestionWidget(
+              width,
+              suiteTestQuestions[4],
+              ctrl.fifthSuiteAnswerEnumEnumGroupValue,
+              ctrl.setfifthSuiteAnswerEnumEnumGroupValue);
+          final sixthSuiteTestQuestion = suiteTestQuestionWidget(
+              width,
+              suiteTestQuestions[5],
+              ctrl.sixthSuiteAnswerEnumEnumGroupValue,
+              ctrl.setsixthSuiteAnswerEnumEnumGroupValue);
+          final seventhSuiteTestQuestion = suiteTestQuestionWidget(
+              width,
+              suiteTestQuestions[6],
+              ctrl.seventhSuiteAnswerEnumEnumGroupValue,
+              ctrl.setseventhSuiteAnswerEnumEnumGroupValue);
+          final eiththSuiteTestQuestion = suiteTestQuestionWidget(
+              width,
+              suiteTestQuestions[7],
+              ctrl.eiththSuiteAnswerEnumEnumGroupValue,
+              ctrl.seteiththSuiteAnswerEnumEnumGroupValue);
+          final ninthSuiteTestQuestion = suiteTestQuestionWidget(
+              width,
+              suiteTestQuestions[8],
+              ctrl.ninthSuiteAnswerEnumEnumGroupValue,
+              ctrl.setninthSuiteAnswerEnumEnumGroupValue);
+          final tenthSuiteTestQuestion = suiteTestQuestionWidget(
+              width,
+              suiteTestQuestions[9],
+              ctrl.tenthSuiteAnswerEnumEnumGroupValue,
+              ctrl.settenthSuiteAnswerEnumEnumGroupValue);
           final suiteTestElevatedButton = ElevatedButton(
               onPressed: () => ctrl.setsuiteTestTextButtonOnPress(context),
               style: ElevatedButton.styleFrom(
@@ -940,10 +97,11 @@ class TestView extends StatelessWidget {
                   foregroundColor: Colors.green,
                   side: const BorderSide(color: Colors.grey, width: 1),
                   disabledForegroundColor: Colors.transparent),
-              child: FWidgets().text(data: 'ok'.tr, color: Colors.orange));
+              child: w.text(data: 'ok'.tr, color: Colors.orange));
 
-          final suiteTestEvaluateResultText = FWidgets().text(data: 'suiteTestEvaluateResult'.tr);
-          final suiteTestResultText = FWidgets().text(data: 'suiteTestResult'.tr);
+          final suiteTestEvaluateResultText =
+              w.text(data: 'suiteTestEvaluateResult'.tr);
+          final suiteTestResultText = w.text(data: 'suiteTestResult'.tr);
           final suiteTestProgressBar = SimpleCircularProgressBar(
             // notifier = ctrl.suiteSumPoinst;
             progressStrokeWidth: 10,
@@ -968,53 +126,61 @@ class TestView extends StatelessWidget {
             valueNotifier: ValueNotifier(ctrl.suiteSumPoints),
           );
           final investmentAnalysisResult =
-              FWidgets().text(data: 'investmentAnalysisResult'.tr);
+              w.text(data: 'investmentAnalysisResult'.tr);
           final typeOfInvestmentAnalysis =
-              FWidgets().text(data: 'typeOfInvestmentAnalysis'.tr);
+              w.text(data: 'typeOfInvestmentAnalysis'.tr);
           final typeOfInvestmentAnalysisResult =
-              FittedBox(child: Text(ctrl.investerType ?? ''));
-          final assetInvestmentType =
-              FWidgets().text(data: 'assetInvestmentType'.tr);
-          final bondInvestment = FWidgets().text(data: 'bondInvestment'.tr);
-          final equityInvestment = FWidgets().text(data: 'equityInvestment'.tr);
-          final derivativeInvestment =
-              FWidgets().text(data: 'derivativeInvestment'.tr);
-          final riskLevelInvestment =
-              FWidgets().text(data: 'riskLevelInvestment'.tr);
+              w.text(data: ctrl.investerType ?? '');
+          final assetInvestmentType = w.text(data: 'assetInvestmentType'.tr);
+          final bondInvestment = w.text(data: 'bondInvestment'.tr);
+          final equityInvestment = w.text(data: 'equityInvestment'.tr);
+          final derivativeInvestment = w.text(data: 'derivativeInvestment'.tr);
+          final riskLevelInvestment = w.text(data: 'riskLevelInvestment'.tr);
           final digitalAssetRatio = Row(
             children: [
-              FWidgets().text(data: 'digitalAssetRatio'.tr),
-              FWidgets()
-                  .text(data: ' ${ctrl.digitatAssetInvestmentRatios ?? ''}'),
+              w.text(data: 'digitalAssetRatio'.tr),
+              w.text(data: ' ${ctrl.digitatAssetInvestmentRatios ?? ''}'),
             ],
           );
 
           // final digitalAssetRatio = FittedBox(
           //     child: Text(
           //         'สินทรัพย์ดิจิทัลสัดส่วน ${ctrl.digitatAssetInvestmentRatios ?? ''}'));
-          final fatcaSubjectText = FWidgets().subject(data: 'fatcaSubject'.tr);
-          final fatcaPrefixText = FWidgets().text(data: 'fatcaPrefix'.tr);
-          final fatcaPostfixText = FWidgets().text(data: 'fatcaPostfix'.tr);
-          final fatcaYesListTile = ListTile(
-              contentPadding: EdgeInsets.zero,
-              title: FWidgets().text(data: 'yes'.tr),
-              leading: Radio<FatcaEnum>(
-                  visualDensity:
-                      const VisualDensity(horizontal: -4, vertical: 0),
-                  materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                  value: FatcaEnum.yes,
-                  groupValue: ctrl.fatcaEnumGroupValue,
-                  onChanged: (FatcaEnum? value) => ctrl.setfatca(value)));
-          final fatcaNoListTile = ListTile(
-              contentPadding: EdgeInsets.zero,
-              title: FWidgets().text(data: 'no'.tr),
-              leading: Radio<FatcaEnum>(
-                  visualDensity:
-                      const VisualDensity(horizontal: -4, vertical: 0),
-                  materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                  value: FatcaEnum.no,
-                  groupValue: ctrl.fatcaEnumGroupValue,
-                  onChanged: (FatcaEnum? value) => ctrl.setfatca(value)));
+          final fatcaSubjectText = w.subject(data: 'fatcaSubject'.tr);
+          final fatcaPrefixText1 = w.text(data: 'fatcaPrefix1'.tr);
+          final fatcaPrefixText2 = Padding(
+              padding: const EdgeInsets.only(left: 10),
+              child: w.text(data: 'fatcaPrefix2'.tr));
+          final fatcaPrefixText3 = Padding(
+              padding: const EdgeInsets.only(left: 10),
+              child: w.text(data: 'fatcaPrefix3'.tr));
+          final fatcaPostfixText = w.text(data: 'fatcaPostfix'.tr);
+          final fatcaYesListTile = SizedBox(
+            width: width / 10,
+            child: ListTile(
+                contentPadding: EdgeInsets.zero,
+                title: w.text(data: 'yes'.tr),
+                leading: Radio<FatcaEnum>(
+                    visualDensity:
+                        const VisualDensity(horizontal: -4, vertical: 0),
+                    materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                    value: FatcaEnum.yes,
+                    groupValue: ctrl.fatcaEnumGroupValue,
+                    onChanged: (FatcaEnum? value) => ctrl.setfatca(value))),
+          );
+          final fatcaNoListTile = SizedBox(
+            width: width / 10,
+            child: ListTile(
+                contentPadding: EdgeInsets.zero,
+                title: w.text(data: 'no'.tr),
+                leading: Radio<FatcaEnum>(
+                    visualDensity:
+                        const VisualDensity(horizontal: -4, vertical: 0),
+                    materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                    value: FatcaEnum.no,
+                    groupValue: ctrl.fatcaEnumGroupValue,
+                    onChanged: (FatcaEnum? value) => ctrl.setfatca(value))),
+          );
           final americanChecklist = CheckboxListTile(
               visualDensity: const VisualDensity(horizontal: -4, vertical: -4),
               materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
@@ -1023,7 +189,7 @@ class TestView extends StatelessWidget {
               checkColor: Colors.white,
               activeColor: Colors.green,
               side: const BorderSide(color: Colors.grey),
-              title: FWidgets().text(data: 'american'.tr),
+              title: w.text(data: 'american'.tr),
               controlAffinity: ListTileControlAffinity.leading,
               value: ctrl.americanChecklist,
               onChanged: (value) => ctrl.checkamericanCheckList(value));
@@ -1035,7 +201,7 @@ class TestView extends StatelessWidget {
               checkColor: Colors.white,
               activeColor: Colors.green,
               side: const BorderSide(color: Colors.grey),
-              title: FWidgets().text(data: 'greenCard'.tr),
+              title: w.text(data: 'greenCard'.tr),
               controlAffinity: ListTileControlAffinity.leading,
               value: ctrl.greenCardCheckList,
               onChanged: (value) => ctrl.checkgreenCardCheckList(value));
@@ -1047,7 +213,7 @@ class TestView extends StatelessWidget {
               checkColor: Colors.white,
               activeColor: Colors.green,
               side: const BorderSide(color: Colors.grey),
-              title: FWidgets().text(data: 'addressInAmerica'.tr),
+              title: w.text(data: 'addressInAmerica'.tr),
               controlAffinity: ListTileControlAffinity.leading,
               value: ctrl.addressInAmericaCheckList,
               onChanged: (value) => ctrl.checkaddressInAmericaCheckList(value));
@@ -1059,7 +225,7 @@ class TestView extends StatelessWidget {
               checkColor: Colors.white,
               activeColor: Colors.green,
               side: const BorderSide(color: Colors.grey),
-              title: FWidgets().text(data: 'bornInAmerica'.tr),
+              title: w.text(data: 'bornInAmerica'.tr),
               controlAffinity: ListTileControlAffinity.leading,
               value: ctrl.bornInAmericaCheckList,
               onChanged: (value) => ctrl.checkbornInAmericaCheckList(value));
@@ -1071,7 +237,7 @@ class TestView extends StatelessWidget {
               checkColor: Colors.white,
               activeColor: Colors.green,
               side: const BorderSide(color: Colors.grey),
-              title: FWidgets().text(data: 'addressInAmericaOpenAccount'.tr),
+              title: w.text(data: 'addressInAmericaOpenAccount'.tr),
               controlAffinity: ListTileControlAffinity.leading,
               value: ctrl.addressInAmericaOpenAccountCheckList,
               onChanged: (value) =>
@@ -1084,7 +250,7 @@ class TestView extends StatelessWidget {
               checkColor: Colors.white,
               activeColor: Colors.green,
               side: const BorderSide(color: Colors.grey),
-              title: FWidgets().text(data: 'americaMobileNumber'.tr),
+              title: w.text(data: 'americaMobileNumber'.tr),
               controlAffinity: ListTileControlAffinity.leading,
               value: ctrl.americaMobileNumberCheckList,
               onChanged: (value) =>
@@ -1097,7 +263,7 @@ class TestView extends StatelessWidget {
               checkColor: Colors.white,
               activeColor: Colors.green,
               side: const BorderSide(color: Colors.grey),
-              title: FWidgets().text(data: 'americaBankAccount'.tr),
+              title: w.text(data: 'americaBankAccount'.tr),
               controlAffinity: ListTileControlAffinity.leading,
               value: ctrl.americaBankAccountCheckList,
               onChanged: (value) =>
@@ -1110,7 +276,7 @@ class TestView extends StatelessWidget {
               checkColor: Colors.white,
               activeColor: Colors.green,
               side: const BorderSide(color: Colors.grey),
-              title: FWidgets().text(data: 'authorityInAmerica'.tr),
+              title: w.text(data: 'authorityInAmerica'.tr),
               controlAffinity: ListTileControlAffinity.leading,
               value: ctrl.authorityInAmericaCheckList,
               onChanged: (value) =>
@@ -1122,13 +288,13 @@ class TestView extends StatelessWidget {
                   foregroundColor: Colors.green,
                   side: const BorderSide(color: Colors.grey, width: 1),
                   disabledForegroundColor: Colors.transparent),
-              child: FWidgets().text(data: 'ok'.tr, color: Colors.orange));
+              child: w.text(data: 'ok'.tr, color: Colors.orange));
           final knowledgeTestSubjectText =
-              FWidgets().subject(data: 'knowledgeTestSubject'.tr);
+              w.subject(data: 'knowledgeTestSubject'.tr);
 
           final knowledgeTestNoListTile = ListTile(
               contentPadding: EdgeInsets.zero,
-              title: FWidgets().text(data: 'later'.tr),
+              title: w.text(data: 'later'.tr),
               leading: Radio<KnowledgeTestEnum>(
                   visualDensity:
                       const VisualDensity(horizontal: -4, vertical: 0),
@@ -1139,7 +305,7 @@ class TestView extends StatelessWidget {
                       ctrl.setknowledgeTest(value)));
           final knowledgeTestYesListTile = ListTile(
               contentPadding: EdgeInsets.zero,
-              title: FWidgets().text(data: 'now'.tr),
+              title: w.text(data: 'now'.tr),
               leading: Radio<KnowledgeTestEnum>(
                   visualDensity:
                       const VisualDensity(horizontal: -4, vertical: 0),
@@ -1151,7 +317,7 @@ class TestView extends StatelessWidget {
                     ctrl.setdoKnowledgeTestNowListTile();
                   }));
           final buyAndSaleAgreement =
-              FWidgets().richSubject(data1: 'buyAndSaleAgreement'.tr);
+              w.richSubject(data1: 'buyAndSaleAgreement'.tr);
           final buyAndSaleCheckbox = CheckboxListTile(
               visualDensity: const VisualDensity(horizontal: 0, vertical: -4),
               materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
@@ -1160,8 +326,7 @@ class TestView extends StatelessWidget {
               checkColor: Colors.white,
               activeColor: Colors.orange,
               side: const BorderSide(color: Colors.grey),
-              subtitle:
-                  FWidgets().text(data: buyAndSaleCheckboxDetail, maxLines: 5),
+              subtitle: w.text(data: buyAndSaleCheckboxDetail, maxLines: 5),
               controlAffinity: ListTileControlAffinity.leading,
               value: ctrl.buyAndSaleChecklist,
               onChanged: (value) => ctrl.checkbuyAndSaleCheckList(value));
@@ -1180,7 +345,7 @@ class TestView extends StatelessWidget {
                   size: 30,
                   color: Colors.black,
                 ),
-                FWidgets().text(data: 'previous'.tr),
+                w.text(data: 'previous'.tr),
               ],
             ),
           );
@@ -1206,27 +371,23 @@ class TestView extends StatelessWidget {
                           child: Column(
                             children: [
                               Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
                                   SizedBox(
-                                      width: width * .3,
+                                      width: width /4,
                                       child: selectSuitableTestDropDown),
-                                  SizedBox(
-                                    width: width * .02,
-                                  ),
-                                  SizedBox(
-                                      width: width * .3,
-                                      child: selectSuitableTestTextButton)
+                                  selectSuitableTestTextButton
                                 ],
                               ),
-                              // (ctrl.suiteSumPoints == 0.0)
-                              //     ? Row(
-                              //         children: [
-                              //           Text(
-                              //               ctrl.selectSuitableTestErrorMessage ??
-                              //                   '')
-                              //         ],
-                              //       )
-                              //     : const SizedBox.shrink(),
+                              (ctrl.suiteSumPoints == 0.0)
+                                  ? Row(
+                                      children: [
+                                        Text(
+                                            ctrl.selectSuitableTestErrorMessage ??
+                                                '')
+                                      ],
+                                    )
+                                  : const SizedBox.shrink(),
                             ],
                           ),
                         ),
@@ -1301,13 +462,9 @@ class TestView extends StatelessWidget {
                                                 crossAxisAlignment:
                                                     CrossAxisAlignment.start,
                                                 children: [
-                                                  SizedBox(
-                                                      child:
-                                                          investmentAnalysisResult),
+                                                  investmentAnalysisResult,
                                                   const SizedBox(height: 10),
-                                                  SizedBox(
-                                                      child:
-                                                          typeOfInvestmentAnalysis),
+                                                  typeOfInvestmentAnalysis,
                                                   const SizedBox(height: 10),
                                                   const SizedBox(height: 10),
                                                   SizedBox(
@@ -1350,19 +507,11 @@ class TestView extends StatelessWidget {
                               children: [
                                 fatcaSubjectText,
                                 const SizedBox(height: 10),
-                                fatcaPrefixText,
+                                fatcaPrefixText1,
+                                fatcaPrefixText2,
+                                fatcaPrefixText3,
                                 Row(
-                                  children: [
-                                    SizedBox(
-                                        width: width * .0655,
-                                        child: fatcaYesListTile),
-                                    SizedBox(
-                                      width: width * .03,
-                                    ),
-                                    SizedBox(
-                                        width: width * .08,
-                                        child: fatcaNoListTile)
-                                  ],
+                                  children: [fatcaYesListTile, fatcaNoListTile],
                                 ),
                                 (ctrl.fatcaEnumGroupValueErrorMessage == null)
                                     ? const SizedBox.shrink()
@@ -1485,11 +634,9 @@ class TestView extends StatelessWidget {
                             )),
                         const SizedBox(height: 10),
                         const SizedBox(height: 10),
-                        Row(children: [
-                          previousButton,
-                          SizedBox(width: width * .5),
-                          nextButton
-                        ]),
+                        Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [previousButton, nextButton]),
                         const SizedBox(height: 10),
                         const SizedBox(height: 10),
                       ])));
@@ -1497,6 +644,7 @@ class TestView extends StatelessWidget {
   }
 
   ElevatedButton nextButtonInformation(TestController ctrl) {
+    final w = FWidgets();
     return ElevatedButton(
       style: ButtonStyle(
         overlayColor: MaterialStateProperty.all(Colors.transparent),
@@ -1507,7 +655,7 @@ class TestView extends StatelessWidget {
       onPressed: () => ctrl.nextButtonOnPress(),
       child: Row(
         children: [
-          FWidgets().text(data: 'next'.tr),
+          w.text(data: 'next'.tr),
           const Icon(
             Icons.arrow_circle_right,
             size: 45,
@@ -1516,5 +664,51 @@ class TestView extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  Container suiteTestQuestionWidget(
+      double width,
+      SuitQuestion suiteTestQuestion,
+      SuiteAnswerEnum? suiteGroupValue,
+      void Function(dynamic)? suiteFunc) {
+    final w = FWidgets();
+    return Container(
+        padding: EdgeInsets.fromLTRB(width * .02, 10, width * .02, 15),
+        decoration: BoxDecoration(
+            color: Colors.white, borderRadius: BorderRadius.circular(10)),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            w.text(data: suiteTestQuestion.text),
+            suiteTestAnswerWidget(suiteTestQuestion.answers[0], suiteGroupValue,
+                SuiteAnswerEnum.first, suiteFunc),
+            suiteTestAnswerWidget(suiteTestQuestion.answers[1], suiteGroupValue,
+                SuiteAnswerEnum.second, suiteFunc),
+            suiteTestAnswerWidget(suiteTestQuestion.answers[2], suiteGroupValue,
+                SuiteAnswerEnum.third, suiteFunc),
+            suiteTestAnswerWidget(suiteTestQuestion.answers[3], suiteGroupValue,
+                SuiteAnswerEnum.forth, suiteFunc),
+          ],
+        ));
+  }
+
+  SizedBox suiteTestAnswerWidget(
+      String answer,
+      SuiteAnswerEnum? suiteGroupValue,
+      SuiteAnswerEnum value,
+      void Function(dynamic)? suiteFunc) {
+    final w = FWidgets();
+    return SizedBox(
+        height: 30,
+        child: ListTile(
+            minLeadingWidth: 0,
+            title: w.text(data: answer),
+            leading: Radio<SuiteAnswerEnum>(
+                visualDensity: const VisualDensity(horizontal: -4, vertical: 0),
+                materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                value: value,
+                groupValue: suiteGroupValue,
+                onChanged: (value) => suiteFunc!(value))));
   }
 }
