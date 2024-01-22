@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flag/flag.dart';
 import 'package:flutter/material.dart';
@@ -106,27 +104,39 @@ class FWidgets {
   Widget dropdownLanguages() {
     var country = {'en': 'US', 'cn': 'CN', 'th': 'TH'};
     return DropdownButton(
-      value: Get.locale?.languageCode,
-      items: [
-        DropdownMenuItem(
-            value: 'en',
-            child: ClipOval(
-                child: Flag.fromCode(FlagsCode.GB, height: 30, width: 30))),
-        DropdownMenuItem(
-            value: 'th',
-            child: ClipOval(
-                child: Flag.fromCode(FlagsCode.TH, height: 30, width: 30))),
-        DropdownMenuItem(
-            value: 'cn',
-            child: ClipOval(
-                child: Flag.fromCode(FlagsCode.CN, height: 30, width: 30))),
-      ],
-      onChanged: (String? newLang) {
-        var newLocale =
-            Locale(newLang!, country[newLang]); // US is just a placeholder
-        log(newLocale.toString());
-        Get.updateLocale(newLocale);
-      },
-    );
+        value: Get.locale?.languageCode,
+        items: [languageItem('en'), languageItem('th'), languageItem('cn')],
+        onChanged: (String? lang) =>
+            Get.updateLocale(Locale(lang!, country[lang])));
+  }
+
+  DropdownMenuItem<String> languageItem(String language) {
+    return DropdownMenuItem(
+        value: language,
+        child: ClipOval(
+            child: Flag.fromCode(FlagsCode.GB, height: 30, width: 30)));
+  }
+
+  double getTextSize(double width) {
+    if (width >= 1000) {
+      return 14;
+    } else if (width >= 750) {
+      return 12;
+    } else if (width >= 500) {
+      return 10;
+    } else {
+      return 8;
+    }
+  }
+  double getSubjectSize(double width) {
+    if (width >= 1000) {
+      return 16;
+    } else if (width >= 750) {
+      return 14;
+    } else if (width >= 500) {
+      return 12;
+    } else {
+      return 10;
+    }
   }
 }

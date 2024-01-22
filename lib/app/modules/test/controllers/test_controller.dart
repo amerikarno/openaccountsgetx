@@ -77,20 +77,50 @@ class TestController extends GetxController {
   bool dofifteenthknowledgeAnswerEnumEnumGroupValue = false;
 
   bool hintFirstKnowledgeQuestion = false;
+  bool hintFirstKnowledgeQuestionYes = false;
+  bool hintFirstKnowledgeQuestionNo = false;
   bool hintSecondKnowledgeQuestion = false;
+  bool hintSecondKnowledgeQuestionYes = false;
+  bool hintSecondKnowledgeQuestionNo = false;
   bool hintThirdKnowledgeQuestion = false;
+  bool hintThirdKnowledgeQuestionYes = false;
+  bool hintThirdKnowledgeQuestionNo = false;
   bool hintForthKnowledgeQuestion = false;
+  bool hintForthKnowledgeQuestionYes = false;
+  bool hintForthKnowledgeQuestionNo = false;
   bool hintFifthKnowledgeQuestion = false;
+  bool hintFifthKnowledgeQuestionYes = false;
+  bool hintFifthKnowledgeQuestionNo = false;
   bool hintSixthKnowledgeQuestion = false;
+  bool hintSixthKnowledgeQuestionYes = false;
+  bool hintSixthKnowledgeQuestionNo = false;
   bool hintSeventhKnowledgeQuestion = false;
+  bool hintSeventhKnowledgeQuestionYes = false;
+  bool hintSeventhKnowledgeQuestionNo = false;
   bool hintEighthKnowledgeQuestion = false;
+  bool hintEighthKnowledgeQuestionYes = false;
+  bool hintEighthKnowledgeQuestionNo = false;
   bool hintNinthKnowledgeQuestion = false;
+  bool hintNinthKnowledgeQuestionYes = false;
+  bool hintNinthKnowledgeQuestionNo = false;
   bool hintTenthKnowledgeQuestion = false;
+  bool hintTenthKnowledgeQuestionYes = false;
+  bool hintTenthKnowledgeQuestionNo = false;
   bool hintEleventhKnowledgeQuestion = false;
+  bool hintEleventhKnowledgeQuestionYes = false;
+  bool hintEleventhKnowledgeQuestionNo = false;
   bool hintTwelthKnowledgeQuestion = false;
+  bool hintTwelthKnowledgeQuestionYes = false;
+  bool hintTwelthKnowledgeQuestionNo = false;
   bool hintThirteenthKnowledgeQuestion = false;
+  bool hintThirteenthKnowledgeQuestionYes = false;
+  bool hintThirteenthKnowledgeQuestionNo = false;
   bool hintForteenthKnowledgeQuestion = false;
+  bool hintForteenthKnowledgeQuestionYes = false;
+  bool hintForteenthKnowledgeQuestionNo = false;
   bool hintFifteenthKnowledgeQuestion = false;
+  bool hintFifteenthKnowledgeQuestionYes = false;
+  bool hintFifteenthKnowledgeQuestionNo = false;
 
   bool buyAndSaleChecklist = false;
   String? buyAndSaleChecklistErrorMessage;
@@ -587,80 +617,95 @@ $forteenthknowledgeAnswerEnumEnumGroupValue,
         hintFirstKnowledgeQuestion = false;
       } else {
         hintFirstKnowledgeQuestion = true;
+        hintFirstKnowledgeQuestionNo = true;
       }
       if (secondknowledgeAnswerEnumEnumGroupValue == KnowledgeAnswerEnum.yes) {
         hintSecondKnowledgeQuestion = false;
       } else {
+        hintSecondKnowledgeQuestionYes = true;
         hintSecondKnowledgeQuestion = true;
       }
       if (thirdknowledgeAnswerEnumEnumGroupValue == KnowledgeAnswerEnum.yes) {
-        hintSecondKnowledgeQuestion = false;
+        hintThirdKnowledgeQuestion = false;
       } else {
-        hintSecondKnowledgeQuestion = true;
+        hintThirdKnowledgeQuestionYes = true;
+        hintThirdKnowledgeQuestion = true;
       }
       if (forthknowledgeAnswerEnumEnumGroupValue == KnowledgeAnswerEnum.yes) {
-        hintSecondKnowledgeQuestion = false;
+        hintForthKnowledgeQuestion = false;
       } else {
-        hintSecondKnowledgeQuestion = true;
+        hintForthKnowledgeQuestionYes = true;
+        hintForthKnowledgeQuestion = true;
       }
       if (fifthknowledgeAnswerEnumEnumGroupValue == KnowledgeAnswerEnum.no) {
-        hintSecondKnowledgeQuestion = false;
+        hintFifthKnowledgeQuestion = false;
       } else {
-        hintSecondKnowledgeQuestion = true;
+        hintFifthKnowledgeQuestionNo = true;
+        hintFifthKnowledgeQuestion = true;
       }
       if (sixthknowledgeAnswerEnumEnumGroupValue == KnowledgeAnswerEnum.no) {
-        hintSecondKnowledgeQuestion = false;
+        hintSixthKnowledgeQuestion = false;
       } else {
-        hintSecondKnowledgeQuestion = true;
+        hintSixthKnowledgeQuestionNo = true;
+        hintSixthKnowledgeQuestion = true;
       }
       if (seventhknowledgeAnswerEnumEnumGroupValue == KnowledgeAnswerEnum.no) {
-        hintSecondKnowledgeQuestion = false;
+        hintSeventhKnowledgeQuestion = false;
       } else {
-        hintSecondKnowledgeQuestion = true;
+        hintSeventhKnowledgeQuestionNo = true;
+        hintSeventhKnowledgeQuestion = true;
       }
       if (eigththknowledgeAnswerEnumEnumGroupValue == KnowledgeAnswerEnum.yes) {
-        hintSecondKnowledgeQuestion = false;
+        hintEighthKnowledgeQuestion = false;
       } else {
-        hintSecondKnowledgeQuestion = true;
+        hintEighthKnowledgeQuestionYes = true;
+        hintEighthKnowledgeQuestion = true;
       }
       if (ninthknowledgeAnswerEnumEnumGroupValue == KnowledgeAnswerEnum.yes) {
-        hintSecondKnowledgeQuestion = false;
+        hintNinthKnowledgeQuestion = false;
       } else {
-        hintSecondKnowledgeQuestion = true;
+        hintNinthKnowledgeQuestionYes = true;
+        hintNinthKnowledgeQuestion = true;
       }
       if (tenthknowledgeAnswerEnumEnumGroupValue == KnowledgeAnswerEnum.yes) {
-        hintSecondKnowledgeQuestion = false;
+        hintTenthKnowledgeQuestion = false;
       } else {
-        hintSecondKnowledgeQuestion = true;
+        hintTenthKnowledgeQuestionYes = true;
+        hintTenthKnowledgeQuestion = true;
       }
       if (eleventhknowledgeAnswerEnumEnumGroupValue ==
           KnowledgeAnswerEnum.yes) {
-        hintSecondKnowledgeQuestion = false;
+        hintEleventhKnowledgeQuestion = false;
       } else {
-        hintSecondKnowledgeQuestion = true;
+        hintEleventhKnowledgeQuestionYes = true;
+        hintEleventhKnowledgeQuestion = true;
       }
       if (twelthknowledgeAnswerEnumEnumGroupValue == KnowledgeAnswerEnum.yes) {
-        hintSecondKnowledgeQuestion = false;
+        hintTwelthKnowledgeQuestion = false;
       } else {
-        hintSecondKnowledgeQuestion = true;
+        hintTwelthKnowledgeQuestionYes = true;
+        hintTwelthKnowledgeQuestion = true;
       }
       if (thirteenthknowledgeAnswerEnumEnumGroupValue ==
           KnowledgeAnswerEnum.no) {
-        hintSecondKnowledgeQuestion = false;
+        hintThirteenthKnowledgeQuestion = false;
       } else {
-        hintSecondKnowledgeQuestion = true;
+        hintThirteenthKnowledgeQuestionNo = true;
+        hintThirteenthKnowledgeQuestion = true;
       }
       if (forteenthknowledgeAnswerEnumEnumGroupValue ==
           KnowledgeAnswerEnum.yes) {
-        hintSecondKnowledgeQuestion = false;
+        hintForteenthKnowledgeQuestion = false;
       } else {
-        hintSecondKnowledgeQuestion = true;
+        hintForteenthKnowledgeQuestionYes = true;
+        hintForteenthKnowledgeQuestion = true;
       }
       if (fifteenthknowledgeAnswerEnumEnumGroupValue ==
           KnowledgeAnswerEnum.no) {
-        hintSecondKnowledgeQuestion = false;
+        hintFifteenthKnowledgeQuestion = false;
       } else {
-        hintSecondKnowledgeQuestion = true;
+        hintFifteenthKnowledgeQuestionNo = true;
+        hintFifteenthKnowledgeQuestion = true;
       }
       log('hint1: $hintFirstKnowledgeQuestion');
       log('hint2: $hintSecondKnowledgeQuestion');
@@ -747,15 +792,16 @@ $forteenthknowledgeAnswerEnumEnumGroupValue,
         fatcaEnumGroupValueErrorMessage == null &&
         knowledgeTestEnumGroupValueErrorMessage == null &&
         buyAndSaleChecklistErrorMessage == null) {
-      GetStorage()
-          .write('id', '8f3d0afe-4ef2-4c78-9379-1d541c18b887'); // for testing
+      // GetStorage()
+      //     .write('id', '8f3d0afe-4ef2-4c78-9379-1d541c18b887'); // for testing
       final id = GetStorage().read('id');
       String? knowledgeTestResult;
       String? fatcaInfo;
 
       String getFatCa() {
         String result;
-        result = '$americanChecklist|$greenCardCheckList|$addressInAmericaCheckList|$bornInAmericaCheckList|$addressInAmericaOpenAccountCheckList|$americaMobileNumberCheckList|$americaBankAccountCheckList|$authorityInAmericaCheckList';
+        result =
+            '$americanChecklist|$greenCardCheckList|$addressInAmericaCheckList|$bornInAmericaCheckList|$addressInAmericaOpenAccountCheckList|$americaMobileNumberCheckList|$americaBankAccountCheckList|$authorityInAmericaCheckList';
         return result;
       }
 

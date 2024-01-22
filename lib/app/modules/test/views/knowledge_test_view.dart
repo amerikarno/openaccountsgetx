@@ -27,55 +27,26 @@ class KnowledgeTestView extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SizedBox(
-                  child: Text(knowledgeQuestions[0].text),
+                  child: w.text(data: knowledgeQuestions[0].text, maxLines: 2),
                 ),
                 Row(children: [
-                  SizedBox(
-                      width: 100,
-                      child: ListTile(
-                          minLeadingWidth: 0,
-                          title: w.subject(data: knowledgeTestQuestions[0].answers[0]),
-                          // title: Text(
-                          //   knowledgeTestQuestions[0].answers[0],
-                          //   style: const TextStyle(fontSize: 12),
-                          // ),
-                          leading: Radio<KnowledgeAnswerEnum>(
-                              visualDensity: const VisualDensity(
-                                  horizontal: -4, vertical: 0),
-                              materialTapTargetSize:
-                                  MaterialTapTargetSize.shrinkWrap,
-                              value: KnowledgeAnswerEnum.yes,
-                              groupValue:
-                                  ctrl.firstknowledgeAnswerEnumEnumGroupValue,
-                              onChanged: (value) => ctrl
-                                  .setfirstknowledgeAnswerEnumEnumGroupValue(
-                                      value)))),
-                  SizedBox(
-                      width: 100,
-                      child: ListTile(
-                          minLeadingWidth: 0,
-                          title: Text(
-                            knowledgeTestQuestions[0].answers[1],
-                            style: const TextStyle(fontSize: 12),
-                          ),
-                          leading: Radio<KnowledgeAnswerEnum>(
-                              visualDensity: const VisualDensity(
-                                  horizontal: -4, vertical: 0),
-                              materialTapTargetSize:
-                                  MaterialTapTargetSize.shrinkWrap,
-                              value: KnowledgeAnswerEnum.no,
-                              groupValue:
-                                  ctrl.firstknowledgeAnswerEnumEnumGroupValue,
-                              onChanged: (value) => ctrl
-                                  .setfirstknowledgeAnswerEnumEnumGroupValue(
-                                      value)))),
+                  knowledgeTestAnswer(
+                      knowledgeTestQuestions[0].answers[0],
+                      ctrl.hintFirstKnowledgeQuestionYes,
+                      KnowledgeAnswerEnum.yes,
+                      ctrl.firstknowledgeAnswerEnumEnumGroupValue,
+                      ctrl.setfirstknowledgeAnswerEnumEnumGroupValue),
+                  knowledgeTestAnswer(
+                      knowledgeTestQuestions[0].answers[1],
+                      ctrl.hintFirstKnowledgeQuestionNo,
+                      KnowledgeAnswerEnum.no,
+                      ctrl.firstknowledgeAnswerEnumEnumGroupValue,
+                      ctrl.setfirstknowledgeAnswerEnumEnumGroupValue),
                 ]),
                 (ctrl.hintFirstKnowledgeQuestion)
-                    ? Text(
-                        knowledgeTestQuestions[0].hint,
-                        style: const TextStyle(color: Colors.red),
-                      )
-                    : const Column(),
+                    ? w.text(
+                        data: knowledgeTestQuestions[0].hint, color: Colors.red)
+                    : const SizedBox.shrink(),
               ],
             ));
         final secondKnowledgeTestQuestion = Container(
@@ -87,51 +58,26 @@ class KnowledgeTestView extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SizedBox(
-                  child: Text(knowledgeTestQuestions[1].text),
+                  child:
+                      w.text(data: knowledgeTestQuestions[1].text, maxLines: 2),
                 ),
                 Row(children: [
-                  SizedBox(
-                      width: 100,
-                      child: ListTile(
-                          minLeadingWidth: 0,
-                          title: Text(
-                            knowledgeTestQuestions[1].answers[0],
-                            style: const TextStyle(fontSize: 12),
-                          ),
-                          leading: Radio<KnowledgeAnswerEnum>(
-                              visualDensity: const VisualDensity(
-                                  horizontal: -4, vertical: 0),
-                              materialTapTargetSize:
-                                  MaterialTapTargetSize.shrinkWrap,
-                              value: KnowledgeAnswerEnum.yes,
-                              groupValue:
-                                  ctrl.secondknowledgeAnswerEnumEnumGroupValue,
-                              onChanged: (value) => ctrl
-                                  .setsecondknowledgeAnswerEnumEnumGroupValue(
-                                      value)))),
-                  SizedBox(
-                      width: 100,
-                      child: ListTile(
-                          minLeadingWidth: 0,
-                          title: Text(
-                            knowledgeTestQuestions[1].answers[1],
-                            style: const TextStyle(fontSize: 12),
-                          ),
-                          leading: Radio<KnowledgeAnswerEnum>(
-                              visualDensity: const VisualDensity(
-                                  horizontal: -4, vertical: 0),
-                              materialTapTargetSize:
-                                  MaterialTapTargetSize.shrinkWrap,
-                              value: KnowledgeAnswerEnum.no,
-                              groupValue:
-                                  ctrl.secondknowledgeAnswerEnumEnumGroupValue,
-                              onChanged: (value) => ctrl
-                                  .setsecondknowledgeAnswerEnumEnumGroupValue(
-                                      value)))),
+                  knowledgeTestAnswer(
+                      knowledgeTestQuestions[1].answers[0],
+                      ctrl.hintSecondKnowledgeQuestionYes,
+                      KnowledgeAnswerEnum.yes,
+                      ctrl.secondknowledgeAnswerEnumEnumGroupValue,
+                      ctrl.setsecondknowledgeAnswerEnumEnumGroupValue),
+                  knowledgeTestAnswer(
+                      knowledgeTestQuestions[1].answers[1],
+                      ctrl.hintSecondKnowledgeQuestionNo,
+                      KnowledgeAnswerEnum.no,
+                      ctrl.secondknowledgeAnswerEnumEnumGroupValue,
+                      ctrl.setsecondknowledgeAnswerEnumEnumGroupValue),
                 ]),
-                (ctrl.hintFirstKnowledgeQuestion)
-                    ? Text(knowledgeTestQuestions[1].hint,
-                        style: const TextStyle(color: Colors.red))
+                (ctrl.hintSecondKnowledgeQuestion)
+                    ? w.text(
+                        data: knowledgeTestQuestions[1].hint, color: Colors.red)
                     : const Column(),
               ],
             ));
@@ -144,51 +90,26 @@ class KnowledgeTestView extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SizedBox(
-                  child: Text(knowledgeTestQuestions[2].text),
+                  child:
+                      w.text(data: knowledgeTestQuestions[2].text, maxLines: 2),
                 ),
                 Row(children: [
-                  SizedBox(
-                      width: 100,
-                      child: ListTile(
-                          minLeadingWidth: 0,
-                          title: Text(
-                            knowledgeTestQuestions[2].answers[0],
-                            style: const TextStyle(fontSize: 12),
-                          ),
-                          leading: Radio<KnowledgeAnswerEnum>(
-                              visualDensity: const VisualDensity(
-                                  horizontal: -4, vertical: 0),
-                              materialTapTargetSize:
-                                  MaterialTapTargetSize.shrinkWrap,
-                              value: KnowledgeAnswerEnum.yes,
-                              groupValue:
-                                  ctrl.thirdknowledgeAnswerEnumEnumGroupValue,
-                              onChanged: (value) => ctrl
-                                  .setthirdknowledgeAnswerEnumEnumGroupValue(
-                                      value)))),
-                  SizedBox(
-                      width: 100,
-                      child: ListTile(
-                          minLeadingWidth: 0,
-                          title: Text(
-                            knowledgeTestQuestions[2].answers[1],
-                            style: const TextStyle(fontSize: 12),
-                          ),
-                          leading: Radio<KnowledgeAnswerEnum>(
-                              visualDensity: const VisualDensity(
-                                  horizontal: -4, vertical: 0),
-                              materialTapTargetSize:
-                                  MaterialTapTargetSize.shrinkWrap,
-                              value: KnowledgeAnswerEnum.no,
-                              groupValue:
-                                  ctrl.thirdknowledgeAnswerEnumEnumGroupValue,
-                              onChanged: (value) => ctrl
-                                  .setthirdknowledgeAnswerEnumEnumGroupValue(
-                                      value)))),
+                  knowledgeTestAnswer(
+                      knowledgeTestQuestions[2].answers[0],
+                      ctrl.hintThirdKnowledgeQuestionYes,
+                      KnowledgeAnswerEnum.yes,
+                      ctrl.thirdknowledgeAnswerEnumEnumGroupValue,
+                      ctrl.setthirdknowledgeAnswerEnumEnumGroupValue),
+                  knowledgeTestAnswer(
+                      knowledgeTestQuestions[2].answers[1],
+                      ctrl.hintThirdKnowledgeQuestionNo,
+                      KnowledgeAnswerEnum.no,
+                      ctrl.thirdknowledgeAnswerEnumEnumGroupValue,
+                      ctrl.setthirdknowledgeAnswerEnumEnumGroupValue),
                 ]),
-                (ctrl.hintFirstKnowledgeQuestion)
-                    ? Text(knowledgeTestQuestions[2].hint,
-                        style: const TextStyle(color: Colors.red))
+                (ctrl.hintThirdKnowledgeQuestion)
+                    ? w.text(
+                        data: knowledgeTestQuestions[2].hint, color: Colors.red)
                     : const Column(),
               ],
             ));
@@ -201,51 +122,26 @@ class KnowledgeTestView extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SizedBox(
-                  child: Text(knowledgeTestQuestions[3].text),
+                  child:
+                      w.text(data: knowledgeTestQuestions[3].text, maxLines: 2),
                 ),
                 Row(children: [
-                  SizedBox(
-                      width: 100,
-                      child: ListTile(
-                          minLeadingWidth: 0,
-                          title: Text(
-                            knowledgeTestQuestions[3].answers[0],
-                            style: const TextStyle(fontSize: 12),
-                          ),
-                          leading: Radio<KnowledgeAnswerEnum>(
-                              visualDensity: const VisualDensity(
-                                  horizontal: -4, vertical: 0),
-                              materialTapTargetSize:
-                                  MaterialTapTargetSize.shrinkWrap,
-                              value: KnowledgeAnswerEnum.yes,
-                              groupValue:
-                                  ctrl.forthknowledgeAnswerEnumEnumGroupValue,
-                              onChanged: (value) => ctrl
-                                  .setforthknowledgeAnswerEnumEnumGroupValue(
-                                      value)))),
-                  SizedBox(
-                      width: 100,
-                      child: ListTile(
-                          minLeadingWidth: 0,
-                          title: Text(
-                            knowledgeTestQuestions[3].answers[1],
-                            style: const TextStyle(fontSize: 12),
-                          ),
-                          leading: Radio<KnowledgeAnswerEnum>(
-                              visualDensity: const VisualDensity(
-                                  horizontal: -4, vertical: 0),
-                              materialTapTargetSize:
-                                  MaterialTapTargetSize.shrinkWrap,
-                              value: KnowledgeAnswerEnum.no,
-                              groupValue:
-                                  ctrl.forthknowledgeAnswerEnumEnumGroupValue,
-                              onChanged: (value) => ctrl
-                                  .setforthknowledgeAnswerEnumEnumGroupValue(
-                                      value)))),
+                  knowledgeTestAnswer(
+                      knowledgeTestQuestions[3].answers[0],
+                      ctrl.hintForthKnowledgeQuestionYes,
+                      KnowledgeAnswerEnum.yes,
+                      ctrl.forthknowledgeAnswerEnumEnumGroupValue,
+                      ctrl.setforthknowledgeAnswerEnumEnumGroupValue),
+                  knowledgeTestAnswer(
+                      knowledgeTestQuestions[3].answers[1],
+                      ctrl.hintForthKnowledgeQuestionNo,
+                      KnowledgeAnswerEnum.no,
+                      ctrl.forthknowledgeAnswerEnumEnumGroupValue,
+                      ctrl.setforthknowledgeAnswerEnumEnumGroupValue),
                 ]),
-                (ctrl.hintFirstKnowledgeQuestion)
-                    ? Text(knowledgeTestQuestions[3].hint,
-                        style: const TextStyle(color: Colors.red))
+                (ctrl.hintForthKnowledgeQuestion)
+                    ? w.text(
+                        data: knowledgeTestQuestions[3].hint, color: Colors.red)
                     : const Column(),
               ],
             ));
@@ -258,51 +154,26 @@ class KnowledgeTestView extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SizedBox(
-                  child: Text(knowledgeTestQuestions[4].text),
+                  child:
+                      w.text(data: knowledgeTestQuestions[4].text, maxLines: 2),
                 ),
                 Row(children: [
-                  SizedBox(
-                      width: 100,
-                      child: ListTile(
-                          minLeadingWidth: 0,
-                          title: Text(
-                            knowledgeTestQuestions[4].answers[0],
-                            style: const TextStyle(fontSize: 12),
-                          ),
-                          leading: Radio<KnowledgeAnswerEnum>(
-                              visualDensity: const VisualDensity(
-                                  horizontal: -4, vertical: 0),
-                              materialTapTargetSize:
-                                  MaterialTapTargetSize.shrinkWrap,
-                              value: KnowledgeAnswerEnum.yes,
-                              groupValue:
-                                  ctrl.fifthknowledgeAnswerEnumEnumGroupValue,
-                              onChanged: (value) => ctrl
-                                  .setfifthknowledgeAnswerEnumEnumGroupValue(
-                                      value)))),
-                  SizedBox(
-                      width: 100,
-                      child: ListTile(
-                          minLeadingWidth: 0,
-                          title: Text(
-                            knowledgeTestQuestions[4].answers[1],
-                            style: const TextStyle(fontSize: 12),
-                          ),
-                          leading: Radio<KnowledgeAnswerEnum>(
-                              visualDensity: const VisualDensity(
-                                  horizontal: -4, vertical: 0),
-                              materialTapTargetSize:
-                                  MaterialTapTargetSize.shrinkWrap,
-                              value: KnowledgeAnswerEnum.no,
-                              groupValue:
-                                  ctrl.fifthknowledgeAnswerEnumEnumGroupValue,
-                              onChanged: (value) => ctrl
-                                  .setfifthknowledgeAnswerEnumEnumGroupValue(
-                                      value)))),
+                  knowledgeTestAnswer(
+                      knowledgeTestQuestions[4].answers[0],
+                      ctrl.hintFifthKnowledgeQuestionYes,
+                      KnowledgeAnswerEnum.yes,
+                      ctrl.fifthknowledgeAnswerEnumEnumGroupValue,
+                      ctrl.setfifthknowledgeAnswerEnumEnumGroupValue),
+                  knowledgeTestAnswer(
+                      knowledgeTestQuestions[4].answers[1],
+                      ctrl.hintFifthKnowledgeQuestionNo,
+                      KnowledgeAnswerEnum.no,
+                      ctrl.fifthknowledgeAnswerEnumEnumGroupValue,
+                      ctrl.setfifthknowledgeAnswerEnumEnumGroupValue),
                 ]),
-                (ctrl.hintFirstKnowledgeQuestion)
-                    ? Text(knowledgeTestQuestions[4].hint,
-                        style: const TextStyle(color: Colors.red))
+                (ctrl.hintFifthKnowledgeQuestion)
+                    ? w.text(
+                        data: knowledgeTestQuestions[4].hint, color: Colors.red)
                     : const Column(),
               ],
             ));
@@ -315,51 +186,26 @@ class KnowledgeTestView extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SizedBox(
-                  child: Text(knowledgeTestQuestions[5].text),
+                  child:
+                      w.text(data: knowledgeTestQuestions[5].text, maxLines: 2),
                 ),
                 Row(children: [
-                  SizedBox(
-                      width: 100,
-                      child: ListTile(
-                          minLeadingWidth: 0,
-                          title: Text(
-                            knowledgeTestQuestions[5].answers[0],
-                            style: const TextStyle(fontSize: 12),
-                          ),
-                          leading: Radio<KnowledgeAnswerEnum>(
-                              visualDensity: const VisualDensity(
-                                  horizontal: -4, vertical: 0),
-                              materialTapTargetSize:
-                                  MaterialTapTargetSize.shrinkWrap,
-                              value: KnowledgeAnswerEnum.yes,
-                              groupValue:
-                                  ctrl.sixthknowledgeAnswerEnumEnumGroupValue,
-                              onChanged: (value) => ctrl
-                                  .setsixthknowledgeAnswerEnumEnumGroupValue(
-                                      value)))),
-                  SizedBox(
-                      width: 100,
-                      child: ListTile(
-                          minLeadingWidth: 0,
-                          title: Text(
-                            knowledgeTestQuestions[5].answers[1],
-                            style: const TextStyle(fontSize: 12),
-                          ),
-                          leading: Radio<KnowledgeAnswerEnum>(
-                              visualDensity: const VisualDensity(
-                                  horizontal: -4, vertical: 0),
-                              materialTapTargetSize:
-                                  MaterialTapTargetSize.shrinkWrap,
-                              value: KnowledgeAnswerEnum.no,
-                              groupValue:
-                                  ctrl.sixthknowledgeAnswerEnumEnumGroupValue,
-                              onChanged: (value) => ctrl
-                                  .setsixthknowledgeAnswerEnumEnumGroupValue(
-                                      value)))),
+                  knowledgeTestAnswer(
+                      knowledgeTestQuestions[5].answers[0],
+                      ctrl.hintSixthKnowledgeQuestionYes,
+                      KnowledgeAnswerEnum.yes,
+                      ctrl.sixthknowledgeAnswerEnumEnumGroupValue,
+                      ctrl.setsixthknowledgeAnswerEnumEnumGroupValue),
+                  knowledgeTestAnswer(
+                      knowledgeTestQuestions[5].answers[1],
+                      ctrl.hintSixthKnowledgeQuestionNo,
+                      KnowledgeAnswerEnum.no,
+                      ctrl.sixthknowledgeAnswerEnumEnumGroupValue,
+                      ctrl.setsixthknowledgeAnswerEnumEnumGroupValue),
                 ]),
-                (ctrl.hintFirstKnowledgeQuestion)
-                    ? Text(knowledgeTestQuestions[5].hint,
-                        style: const TextStyle(color: Colors.red))
+                (ctrl.hintSixthKnowledgeQuestion)
+                    ? w.text(
+                        data: knowledgeTestQuestions[5].hint, color: Colors.red)
                     : const Column(),
               ],
             ));
@@ -372,51 +218,26 @@ class KnowledgeTestView extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SizedBox(
-                  child: Text(knowledgeTestQuestions[6].text),
+                  child:
+                      w.text(data: knowledgeTestQuestions[6].text, maxLines: 2),
                 ),
                 Row(children: [
-                  SizedBox(
-                      width: 100,
-                      child: ListTile(
-                          minLeadingWidth: 0,
-                          title: Text(
-                            knowledgeTestQuestions[6].answers[0],
-                            style: const TextStyle(fontSize: 12),
-                          ),
-                          leading: Radio<KnowledgeAnswerEnum>(
-                              visualDensity: const VisualDensity(
-                                  horizontal: -4, vertical: 0),
-                              materialTapTargetSize:
-                                  MaterialTapTargetSize.shrinkWrap,
-                              value: KnowledgeAnswerEnum.yes,
-                              groupValue:
-                                  ctrl.seventhknowledgeAnswerEnumEnumGroupValue,
-                              onChanged: (value) => ctrl
-                                  .setseventhknowledgeAnswerEnumEnumGroupValue(
-                                      value)))),
-                  SizedBox(
-                      width: 100,
-                      child: ListTile(
-                          minLeadingWidth: 0,
-                          title: Text(
-                            knowledgeTestQuestions[6].answers[1],
-                            style: const TextStyle(fontSize: 12),
-                          ),
-                          leading: Radio<KnowledgeAnswerEnum>(
-                              visualDensity: const VisualDensity(
-                                  horizontal: -4, vertical: 0),
-                              materialTapTargetSize:
-                                  MaterialTapTargetSize.shrinkWrap,
-                              value: KnowledgeAnswerEnum.no,
-                              groupValue:
-                                  ctrl.seventhknowledgeAnswerEnumEnumGroupValue,
-                              onChanged: (value) => ctrl
-                                  .setseventhknowledgeAnswerEnumEnumGroupValue(
-                                      value)))),
+                  knowledgeTestAnswer(
+                      knowledgeTestQuestions[6].answers[0],
+                      ctrl.hintSeventhKnowledgeQuestionYes,
+                      KnowledgeAnswerEnum.yes,
+                      ctrl.seventhknowledgeAnswerEnumEnumGroupValue,
+                      ctrl.setseventhknowledgeAnswerEnumEnumGroupValue),
+                  knowledgeTestAnswer(
+                      knowledgeTestQuestions[6].answers[1],
+                      ctrl.hintSeventhKnowledgeQuestionNo,
+                      KnowledgeAnswerEnum.no,
+                      ctrl.seventhknowledgeAnswerEnumEnumGroupValue,
+                      ctrl.setseventhknowledgeAnswerEnumEnumGroupValue),
                 ]),
-                (ctrl.hintFirstKnowledgeQuestion)
-                    ? Text(knowledgeTestQuestions[6].hint,
-                        style: const TextStyle(color: Colors.red))
+                (ctrl.hintSeventhKnowledgeQuestion)
+                    ? w.text(
+                        data: knowledgeTestQuestions[6].hint, color: Colors.red)
                     : const Column(),
               ],
             ));
@@ -429,51 +250,26 @@ class KnowledgeTestView extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SizedBox(
-                  child: Text(knowledgeTestQuestions[7].text),
+                  child:
+                      w.text(data: knowledgeTestQuestions[7].text, maxLines: 2),
                 ),
                 Row(children: [
-                  SizedBox(
-                      width: 100,
-                      child: ListTile(
-                          minLeadingWidth: 0,
-                          title: Text(
-                            knowledgeTestQuestions[7].answers[0],
-                            style: const TextStyle(fontSize: 12),
-                          ),
-                          leading: Radio<KnowledgeAnswerEnum>(
-                              visualDensity: const VisualDensity(
-                                  horizontal: -4, vertical: 0),
-                              materialTapTargetSize:
-                                  MaterialTapTargetSize.shrinkWrap,
-                              value: KnowledgeAnswerEnum.yes,
-                              groupValue:
-                                  ctrl.eigththknowledgeAnswerEnumEnumGroupValue,
-                              onChanged: (value) => ctrl
-                                  .seteigththknowledgeAnswerEnumEnumGroupValue(
-                                      value)))),
-                  SizedBox(
-                      width: 100,
-                      child: ListTile(
-                          minLeadingWidth: 0,
-                          title: Text(
-                            knowledgeTestQuestions[7].answers[1],
-                            style: const TextStyle(fontSize: 12),
-                          ),
-                          leading: Radio<KnowledgeAnswerEnum>(
-                              visualDensity: const VisualDensity(
-                                  horizontal: -4, vertical: 0),
-                              materialTapTargetSize:
-                                  MaterialTapTargetSize.shrinkWrap,
-                              value: KnowledgeAnswerEnum.no,
-                              groupValue:
-                                  ctrl.eigththknowledgeAnswerEnumEnumGroupValue,
-                              onChanged: (value) => ctrl
-                                  .seteigththknowledgeAnswerEnumEnumGroupValue(
-                                      value)))),
+                  knowledgeTestAnswer(
+                      knowledgeTestQuestions[7].answers[0],
+                      ctrl.hintEighthKnowledgeQuestionYes,
+                      KnowledgeAnswerEnum.yes,
+                      ctrl.eigththknowledgeAnswerEnumEnumGroupValue,
+                      ctrl.seteigththknowledgeAnswerEnumEnumGroupValue),
+                  knowledgeTestAnswer(
+                      knowledgeTestQuestions[7].answers[1],
+                      ctrl.hintEighthKnowledgeQuestionNo,
+                      KnowledgeAnswerEnum.no,
+                      ctrl.eigththknowledgeAnswerEnumEnumGroupValue,
+                      ctrl.seteigththknowledgeAnswerEnumEnumGroupValue),
                 ]),
-                (ctrl.hintFirstKnowledgeQuestion)
-                    ? Text(knowledgeTestQuestions[7].hint,
-                        style: const TextStyle(color: Colors.red))
+                (ctrl.hintEighthKnowledgeQuestion)
+                    ? w.text(
+                        data: knowledgeTestQuestions[7].hint, color: Colors.red)
                     : const Column(),
               ],
             ));
@@ -486,51 +282,26 @@ class KnowledgeTestView extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SizedBox(
-                  child: Text(knowledgeTestQuestions[8].text),
+                  child:
+                      w.text(data: knowledgeTestQuestions[8].text, maxLines: 2),
                 ),
                 Row(children: [
-                  SizedBox(
-                      width: 100,
-                      child: ListTile(
-                          minLeadingWidth: 0,
-                          title: Text(
-                            knowledgeTestQuestions[8].answers[0],
-                            style: const TextStyle(fontSize: 12),
-                          ),
-                          leading: Radio<KnowledgeAnswerEnum>(
-                              visualDensity: const VisualDensity(
-                                  horizontal: -4, vertical: 0),
-                              materialTapTargetSize:
-                                  MaterialTapTargetSize.shrinkWrap,
-                              value: KnowledgeAnswerEnum.yes,
-                              groupValue:
-                                  ctrl.ninthknowledgeAnswerEnumEnumGroupValue,
-                              onChanged: (value) => ctrl
-                                  .setninthknowledgeAnswerEnumEnumGroupValue(
-                                      value)))),
-                  SizedBox(
-                      width: 100,
-                      child: ListTile(
-                          minLeadingWidth: 0,
-                          title: Text(
-                            knowledgeTestQuestions[8].answers[1],
-                            style: const TextStyle(fontSize: 12),
-                          ),
-                          leading: Radio<KnowledgeAnswerEnum>(
-                              visualDensity: const VisualDensity(
-                                  horizontal: -4, vertical: 0),
-                              materialTapTargetSize:
-                                  MaterialTapTargetSize.shrinkWrap,
-                              value: KnowledgeAnswerEnum.no,
-                              groupValue:
-                                  ctrl.ninthknowledgeAnswerEnumEnumGroupValue,
-                              onChanged: (value) => ctrl
-                                  .setninthknowledgeAnswerEnumEnumGroupValue(
-                                      value)))),
+                  knowledgeTestAnswer(
+                      knowledgeTestQuestions[8].answers[0],
+                      ctrl.hintNinthKnowledgeQuestionYes,
+                      KnowledgeAnswerEnum.yes,
+                      ctrl.ninthknowledgeAnswerEnumEnumGroupValue,
+                      ctrl.setninthknowledgeAnswerEnumEnumGroupValue),
+                  knowledgeTestAnswer(
+                      knowledgeTestQuestions[8].answers[1],
+                      ctrl.hintNinthKnowledgeQuestionNo,
+                      KnowledgeAnswerEnum.no,
+                      ctrl.ninthknowledgeAnswerEnumEnumGroupValue,
+                      ctrl.setninthknowledgeAnswerEnumEnumGroupValue),
                 ]),
-                (ctrl.hintFirstKnowledgeQuestion)
-                    ? Text(knowledgeTestQuestions[8].hint,
-                        style: const TextStyle(color: Colors.red))
+                (ctrl.hintNinthKnowledgeQuestion)
+                    ? w.text(
+                        data: knowledgeTestQuestions[8].hint, color: Colors.red)
                     : const Column(),
               ],
             ));
@@ -543,51 +314,26 @@ class KnowledgeTestView extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SizedBox(
-                  child: Text(knowledgeTestQuestions[9].text),
+                  child:
+                      w.text(data: knowledgeTestQuestions[9].text, maxLines: 2),
                 ),
                 Row(children: [
-                  SizedBox(
-                      width: 100,
-                      child: ListTile(
-                          minLeadingWidth: 0,
-                          title: Text(
-                            knowledgeTestQuestions[9].answers[0],
-                            style: const TextStyle(fontSize: 12),
-                          ),
-                          leading: Radio<KnowledgeAnswerEnum>(
-                              visualDensity: const VisualDensity(
-                                  horizontal: -4, vertical: 0),
-                              materialTapTargetSize:
-                                  MaterialTapTargetSize.shrinkWrap,
-                              value: KnowledgeAnswerEnum.yes,
-                              groupValue:
-                                  ctrl.tenthknowledgeAnswerEnumEnumGroupValue,
-                              onChanged: (value) => ctrl
-                                  .settenthknowledgeAnswerEnumEnumGroupValue(
-                                      value)))),
-                  SizedBox(
-                      width: 100,
-                      child: ListTile(
-                          minLeadingWidth: 0,
-                          title: Text(
-                            knowledgeTestQuestions[9].answers[1],
-                            style: const TextStyle(fontSize: 12),
-                          ),
-                          leading: Radio<KnowledgeAnswerEnum>(
-                              visualDensity: const VisualDensity(
-                                  horizontal: -4, vertical: 0),
-                              materialTapTargetSize:
-                                  MaterialTapTargetSize.shrinkWrap,
-                              value: KnowledgeAnswerEnum.no,
-                              groupValue:
-                                  ctrl.tenthknowledgeAnswerEnumEnumGroupValue,
-                              onChanged: (value) => ctrl
-                                  .settenthknowledgeAnswerEnumEnumGroupValue(
-                                      value)))),
+                  knowledgeTestAnswer(
+                      knowledgeTestQuestions[9].answers[0],
+                      ctrl.hintTenthKnowledgeQuestionYes,
+                      KnowledgeAnswerEnum.yes,
+                      ctrl.tenthknowledgeAnswerEnumEnumGroupValue,
+                      ctrl.settenthknowledgeAnswerEnumEnumGroupValue),
+                  knowledgeTestAnswer(
+                      knowledgeTestQuestions[9].answers[1],
+                      ctrl.hintTenthKnowledgeQuestionNo,
+                      KnowledgeAnswerEnum.no,
+                      ctrl.tenthknowledgeAnswerEnumEnumGroupValue,
+                      ctrl.settenthknowledgeAnswerEnumEnumGroupValue),
                 ]),
-                (ctrl.hintFirstKnowledgeQuestion)
-                    ? Text(knowledgeTestQuestions[9].hint,
-                        style: const TextStyle(color: Colors.red))
+                (ctrl.hintTenthKnowledgeQuestion)
+                    ? w.text(
+                        data: knowledgeTestQuestions[9].hint, color: Colors.red)
                     : const Column(),
               ],
             ));
@@ -600,51 +346,27 @@ class KnowledgeTestView extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SizedBox(
-                  child: Text(knowledgeTestQuestions[10].text),
+                  child: w.text(
+                      data: knowledgeTestQuestions[10].text, maxLines: 2),
                 ),
                 Row(children: [
-                  SizedBox(
-                      width: 100,
-                      child: ListTile(
-                          minLeadingWidth: 0,
-                          title: Text(
-                            knowledgeTestQuestions[10].answers[0],
-                            style: const TextStyle(fontSize: 12),
-                          ),
-                          leading: Radio<KnowledgeAnswerEnum>(
-                              visualDensity: const VisualDensity(
-                                  horizontal: -4, vertical: 0),
-                              materialTapTargetSize:
-                                  MaterialTapTargetSize.shrinkWrap,
-                              value: KnowledgeAnswerEnum.yes,
-                              groupValue: ctrl
-                                  .eleventhknowledgeAnswerEnumEnumGroupValue,
-                              onChanged: (value) => ctrl
-                                  .seteleventhknowledgeAnswerEnumEnumGroupValue(
-                                      value)))),
-                  SizedBox(
-                      width: 100,
-                      child: ListTile(
-                          minLeadingWidth: 0,
-                          title: Text(
-                            knowledgeTestQuestions[10].answers[1],
-                            style: const TextStyle(fontSize: 12),
-                          ),
-                          leading: Radio<KnowledgeAnswerEnum>(
-                              visualDensity: const VisualDensity(
-                                  horizontal: -4, vertical: 0),
-                              materialTapTargetSize:
-                                  MaterialTapTargetSize.shrinkWrap,
-                              value: KnowledgeAnswerEnum.no,
-                              groupValue: ctrl
-                                  .eleventhknowledgeAnswerEnumEnumGroupValue,
-                              onChanged: (value) => ctrl
-                                  .seteleventhknowledgeAnswerEnumEnumGroupValue(
-                                      value)))),
+                  knowledgeTestAnswer(
+                      knowledgeTestQuestions[10].answers[0],
+                      ctrl.hintEleventhKnowledgeQuestionYes,
+                      KnowledgeAnswerEnum.yes,
+                      ctrl.eleventhknowledgeAnswerEnumEnumGroupValue,
+                      ctrl.seteleventhknowledgeAnswerEnumEnumGroupValue),
+                  knowledgeTestAnswer(
+                      knowledgeTestQuestions[10].answers[1],
+                      ctrl.hintEleventhKnowledgeQuestionNo,
+                      KnowledgeAnswerEnum.no,
+                      ctrl.eleventhknowledgeAnswerEnumEnumGroupValue,
+                      ctrl.seteleventhknowledgeAnswerEnumEnumGroupValue),
                 ]),
-                (ctrl.hintFirstKnowledgeQuestion)
-                    ? Text(knowledgeTestQuestions[10].hint,
-                        style: const TextStyle(color: Colors.red))
+                (ctrl.hintEleventhKnowledgeQuestion)
+                    ? w.text(
+                        data: knowledgeTestQuestions[10].hint,
+                        color: Colors.red)
                     : const Column(),
               ],
             ));
@@ -657,51 +379,27 @@ class KnowledgeTestView extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SizedBox(
-                  child: Text(knowledgeTestQuestions[11].text),
+                  child: w.text(
+                      data: knowledgeTestQuestions[11].text, maxLines: 2),
                 ),
                 Row(children: [
-                  SizedBox(
-                      width: 100,
-                      child: ListTile(
-                          minLeadingWidth: 0,
-                          title: Text(
-                            knowledgeTestQuestions[11].answers[0],
-                            style: const TextStyle(fontSize: 12),
-                          ),
-                          leading: Radio<KnowledgeAnswerEnum>(
-                              visualDensity: const VisualDensity(
-                                  horizontal: -4, vertical: 0),
-                              materialTapTargetSize:
-                                  MaterialTapTargetSize.shrinkWrap,
-                              value: KnowledgeAnswerEnum.yes,
-                              groupValue:
-                                  ctrl.twelthknowledgeAnswerEnumEnumGroupValue,
-                              onChanged: (value) => ctrl
-                                  .settwelthknowledgeAnswerEnumEnumGroupValue(
-                                      value)))),
-                  SizedBox(
-                      width: 100,
-                      child: ListTile(
-                          minLeadingWidth: 0,
-                          title: Text(
-                            knowledgeTestQuestions[11].answers[1],
-                            style: const TextStyle(fontSize: 12),
-                          ),
-                          leading: Radio<KnowledgeAnswerEnum>(
-                              visualDensity: const VisualDensity(
-                                  horizontal: -4, vertical: 0),
-                              materialTapTargetSize:
-                                  MaterialTapTargetSize.shrinkWrap,
-                              value: KnowledgeAnswerEnum.no,
-                              groupValue:
-                                  ctrl.twelthknowledgeAnswerEnumEnumGroupValue,
-                              onChanged: (value) => ctrl
-                                  .settwelthknowledgeAnswerEnumEnumGroupValue(
-                                      value)))),
+                  knowledgeTestAnswer(
+                      knowledgeTestQuestions[11].answers[0],
+                      ctrl.hintTwelthKnowledgeQuestionYes,
+                      KnowledgeAnswerEnum.yes,
+                      ctrl.twelthknowledgeAnswerEnumEnumGroupValue,
+                      ctrl.settwelthknowledgeAnswerEnumEnumGroupValue),
+                  knowledgeTestAnswer(
+                      knowledgeTestQuestions[11].answers[1],
+                      ctrl.hintTwelthKnowledgeQuestionNo,
+                      KnowledgeAnswerEnum.no,
+                      ctrl.twelthknowledgeAnswerEnumEnumGroupValue,
+                      ctrl.settwelthknowledgeAnswerEnumEnumGroupValue),
                 ]),
-                (ctrl.hintFirstKnowledgeQuestion)
-                    ? Text(knowledgeTestQuestions[11].hint,
-                        style: const TextStyle(color: Colors.red))
+                (ctrl.hintTwelthKnowledgeQuestion)
+                    ? w.text(
+                        data: knowledgeTestQuestions[11].hint,
+                        color: Colors.red)
                     : const Column(),
               ],
             ));
@@ -714,51 +412,27 @@ class KnowledgeTestView extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SizedBox(
-                  child: Text(knowledgeTestQuestions[12].text),
+                  child: w.text(
+                      data: knowledgeTestQuestions[12].text, maxLines: 2),
                 ),
                 Row(children: [
-                  SizedBox(
-                      width: 100,
-                      child: ListTile(
-                          minLeadingWidth: 0,
-                          title: Text(
-                            knowledgeTestQuestions[12].answers[0],
-                            style: const TextStyle(fontSize: 12),
-                          ),
-                          leading: Radio<KnowledgeAnswerEnum>(
-                              visualDensity: const VisualDensity(
-                                  horizontal: -4, vertical: 0),
-                              materialTapTargetSize:
-                                  MaterialTapTargetSize.shrinkWrap,
-                              value: KnowledgeAnswerEnum.yes,
-                              groupValue: ctrl
-                                  .thirteenthknowledgeAnswerEnumEnumGroupValue,
-                              onChanged: (value) => ctrl
-                                  .setthirteenthknowledgeAnswerEnumEnumGroupValue(
-                                      value)))),
-                  SizedBox(
-                      width: 100,
-                      child: ListTile(
-                          minLeadingWidth: 0,
-                          title: Text(
-                            knowledgeTestQuestions[12].answers[1],
-                            style: const TextStyle(fontSize: 12),
-                          ),
-                          leading: Radio<KnowledgeAnswerEnum>(
-                              visualDensity: const VisualDensity(
-                                  horizontal: -4, vertical: 0),
-                              materialTapTargetSize:
-                                  MaterialTapTargetSize.shrinkWrap,
-                              value: KnowledgeAnswerEnum.no,
-                              groupValue: ctrl
-                                  .thirteenthknowledgeAnswerEnumEnumGroupValue,
-                              onChanged: (value) => ctrl
-                                  .setthirteenthknowledgeAnswerEnumEnumGroupValue(
-                                      value)))),
+                  knowledgeTestAnswer(
+                      knowledgeTestQuestions[12].answers[0],
+                      ctrl.hintThirteenthKnowledgeQuestionYes,
+                      KnowledgeAnswerEnum.yes,
+                      ctrl.thirteenthknowledgeAnswerEnumEnumGroupValue,
+                      ctrl.setthirteenthknowledgeAnswerEnumEnumGroupValue),
+                  knowledgeTestAnswer(
+                      knowledgeTestQuestions[12].answers[1],
+                      ctrl.hintThirteenthKnowledgeQuestionNo,
+                      KnowledgeAnswerEnum.no,
+                      ctrl.thirteenthknowledgeAnswerEnumEnumGroupValue,
+                      ctrl.setthirteenthknowledgeAnswerEnumEnumGroupValue),
                 ]),
-                (ctrl.hintFirstKnowledgeQuestion)
-                    ? Text(knowledgeTestQuestions[12].hint,
-                        style: const TextStyle(color: Colors.red))
+                (ctrl.hintThirteenthKnowledgeQuestion)
+                    ? w.text(
+                        data: knowledgeTestQuestions[12].hint,
+                        color: Colors.red)
                     : const Column(),
               ],
             ));
@@ -771,51 +445,27 @@ class KnowledgeTestView extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SizedBox(
-                  child: Text(knowledgeTestQuestions[13].text),
+                  child: w.text(
+                      data: knowledgeTestQuestions[13].text, maxLines: 2),
                 ),
                 Row(children: [
-                  SizedBox(
-                      width: 100,
-                      child: ListTile(
-                          minLeadingWidth: 0,
-                          title: Text(
-                            knowledgeTestQuestions[13].answers[0],
-                            style: const TextStyle(fontSize: 12),
-                          ),
-                          leading: Radio<KnowledgeAnswerEnum>(
-                              visualDensity: const VisualDensity(
-                                  horizontal: -4, vertical: 0),
-                              materialTapTargetSize:
-                                  MaterialTapTargetSize.shrinkWrap,
-                              value: KnowledgeAnswerEnum.yes,
-                              groupValue: ctrl
-                                  .forteenthknowledgeAnswerEnumEnumGroupValue,
-                              onChanged: (value) => ctrl
-                                  .setforteenthknowledgeAnswerEnumEnumGroupValue(
-                                      value)))),
-                  SizedBox(
-                      width: 100,
-                      child: ListTile(
-                          minLeadingWidth: 0,
-                          title: Text(
-                            knowledgeTestQuestions[13].answers[1],
-                            style: const TextStyle(fontSize: 12),
-                          ),
-                          leading: Radio<KnowledgeAnswerEnum>(
-                              visualDensity: const VisualDensity(
-                                  horizontal: -4, vertical: 0),
-                              materialTapTargetSize:
-                                  MaterialTapTargetSize.shrinkWrap,
-                              value: KnowledgeAnswerEnum.no,
-                              groupValue: ctrl
-                                  .forteenthknowledgeAnswerEnumEnumGroupValue,
-                              onChanged: (value) => ctrl
-                                  .setforteenthknowledgeAnswerEnumEnumGroupValue(
-                                      value)))),
+                  knowledgeTestAnswer(
+                      knowledgeTestQuestions[13].answers[0],
+                      ctrl.hintForteenthKnowledgeQuestionYes,
+                      KnowledgeAnswerEnum.yes,
+                      ctrl.forteenthknowledgeAnswerEnumEnumGroupValue,
+                      ctrl.setforteenthknowledgeAnswerEnumEnumGroupValue),
+                  knowledgeTestAnswer(
+                      knowledgeTestQuestions[13].answers[1],
+                      ctrl.hintForteenthKnowledgeQuestionNo,
+                      KnowledgeAnswerEnum.no,
+                      ctrl.forteenthknowledgeAnswerEnumEnumGroupValue,
+                      ctrl.setforteenthknowledgeAnswerEnumEnumGroupValue),
                 ]),
-                (ctrl.hintFirstKnowledgeQuestion)
-                    ? Text(knowledgeTestQuestions[13].hint,
-                        style: const TextStyle(color: Colors.red))
+                (ctrl.hintForteenthKnowledgeQuestion)
+                    ? w.text(
+                        data: knowledgeTestQuestions[13].hint,
+                        color: Colors.red)
                     : const Column(),
               ],
             ));
@@ -828,107 +478,123 @@ class KnowledgeTestView extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SizedBox(
-                  child: Text(knowledgeTestQuestions[14].text),
+                  child: w.text(
+                      data: knowledgeTestQuestions[14].text, maxLines: 2),
                 ),
                 Row(children: [
-                  SizedBox(
-                      width: 100,
-                      child: ListTile(
-                          minLeadingWidth: 0,
-                          title: Text(
-                            knowledgeTestQuestions[14].answers[0],
-                            style: const TextStyle(fontSize: 12),
-                          ),
-                          leading: Radio<KnowledgeAnswerEnum>(
-                              visualDensity: const VisualDensity(
-                                  horizontal: -4, vertical: 0),
-                              materialTapTargetSize:
-                                  MaterialTapTargetSize.shrinkWrap,
-                              value: KnowledgeAnswerEnum.yes,
-                              groupValue: ctrl
-                                  .fifteenthknowledgeAnswerEnumEnumGroupValue,
-                              onChanged: (value) => ctrl
-                                  .setfifteenthknowledgeAnswerEnumEnumGroupValue(
-                                      value)))),
-                  SizedBox(
-                      width: 100,
-                      child: ListTile(
-                          minLeadingWidth: 0,
-                          title: Text(
-                            knowledgeTestQuestions[14].answers[1],
-                            style: const TextStyle(fontSize: 12),
-                          ),
-                          leading: Radio<KnowledgeAnswerEnum>(
-                              visualDensity: const VisualDensity(
-                                  horizontal: -4, vertical: 0),
-                              materialTapTargetSize:
-                                  MaterialTapTargetSize.shrinkWrap,
-                              value: KnowledgeAnswerEnum.no,
-                              groupValue: ctrl
-                                  .fifteenthknowledgeAnswerEnumEnumGroupValue,
-                              onChanged: (value) => ctrl
-                                  .setfifteenthknowledgeAnswerEnumEnumGroupValue(
-                                      value)))),
+                  knowledgeTestAnswer(
+                      knowledgeTestQuestions[14].answers[0],
+                      ctrl.hintFifteenthKnowledgeQuestionYes,
+                      KnowledgeAnswerEnum.yes,
+                      ctrl.fifteenthknowledgeAnswerEnumEnumGroupValue,
+                      ctrl.setfifteenthknowledgeAnswerEnumEnumGroupValue),
+                  knowledgeTestAnswer(
+                      knowledgeTestQuestions[14].answers[1],
+                      ctrl.hintFifteenthKnowledgeQuestionNo,
+                      KnowledgeAnswerEnum.no,
+                      ctrl.fifteenthknowledgeAnswerEnumEnumGroupValue,
+                      ctrl.setfifteenthknowledgeAnswerEnumEnumGroupValue),
                 ]),
-                (ctrl.hintFirstKnowledgeQuestion)
-                    ? Text(knowledgeTestQuestions[14].hint,
-                        style: const TextStyle(color: Colors.red))
+                (ctrl.hintFifteenthKnowledgeQuestion)
+                    ? w.text(
+                        data: knowledgeTestQuestions[14].hint,
+                        color: Colors.red)
                     : const Column(),
               ],
             ));
         final selectKnowledgeTestTextButton = ElevatedButton(
-            onPressed: () => ctrl.setknowledgeTestTextButtonOnPress(context),
+            onPressed: () {
+              ctrl.setknowledgeTestTextButtonOnPress(context);
+              if (!ctrl.hintFirstKnowledgeQuestion &&
+                  !ctrl.hintSecondKnowledgeQuestion &&
+                  !ctrl.hintThirdKnowledgeQuestion &&
+                  !ctrl.hintForthKnowledgeQuestion &&
+                  !ctrl.hintFifthKnowledgeQuestion &&
+                  !ctrl.hintSixthKnowledgeQuestion &&
+                  !ctrl.hintSeventhKnowledgeQuestion &&
+                  !ctrl.hintEighthKnowledgeQuestion &&
+                  !ctrl.hintNinthKnowledgeQuestion &&
+                  !ctrl.hintTenthKnowledgeQuestion &&
+                  !ctrl.hintEleventhKnowledgeQuestion &&
+                  !ctrl.hintTwelthKnowledgeQuestion &&
+                  !ctrl.hintThirteenthKnowledgeQuestion &&
+                  !ctrl.hintForteenthKnowledgeQuestion &&
+                  !ctrl.hintFifteenthKnowledgeQuestion) {
+                Navigator.of(context).pop();
+              }
+            },
             style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.white,
                 foregroundColor: Colors.green,
                 side: const BorderSide(color: Colors.grey, width: 1),
                 disabledForegroundColor: Colors.transparent),
-            child: const Text(
-              'ตกลง',
-              style: TextStyle(color: Colors.orange),
-            ));
+            child: w.text(data: 'ok'.tr, color: Colors.orange));
 
         return Container(
             padding: EdgeInsets.fromLTRB(width * .02, 10, width * .02, 15),
             decoration: BoxDecoration(
                 color: Colors.white, borderRadius: BorderRadius.circular(10)),
-            child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  firstKnowledgeTestQuestion,
-                  const SizedBox(height: 10),
-                  secondKnowledgeTestQuestion,
-                  const SizedBox(height: 10),
-                  thirdKnowledgeTestQuestion,
-                  const SizedBox(height: 10),
-                  forthKnowledgeTestQuestion,
-                  const SizedBox(height: 10),
-                  fifthKnowledgeTestQuestion,
-                  const SizedBox(height: 10),
-                  sixthKnowledgeTestQuestion,
-                  const SizedBox(height: 10),
-                  seventhKnowledgeTestQuestion,
-                  const SizedBox(height: 10),
-                  eighthKnowledgeTestQuestion,
-                  const SizedBox(height: 10),
-                  ninthKnowledgeTestQuestion,
-                  const SizedBox(height: 10),
-                  tenthKnowledgeTestQuestion,
-                  const SizedBox(height: 10),
-                  eleventhKnowledgeTestQuestion,
-                  const SizedBox(height: 10),
-                  twelthKnowledgeTestQuestion,
-                  const SizedBox(height: 10),
-                  thirteenthKnowledgeTestQuestion,
-                  const SizedBox(height: 10),
-                  forteenthKnowledgeTestQuestion,
-                  const SizedBox(height: 10),
-                  fifteenthKnowledgeTestQuestion,
-                  const SizedBox(height: 10),
-                  selectKnowledgeTestTextButton,
-                ]));
+            child: SingleChildScrollView(
+              // controller: ,
+              child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    firstKnowledgeTestQuestion,
+                    const SizedBox(height: 10),
+                    secondKnowledgeTestQuestion,
+                    const SizedBox(height: 10),
+                    thirdKnowledgeTestQuestion,
+                    const SizedBox(height: 10),
+                    forthKnowledgeTestQuestion,
+                    const SizedBox(height: 10),
+                    fifthKnowledgeTestQuestion,
+                    const SizedBox(height: 10),
+                    sixthKnowledgeTestQuestion,
+                    const SizedBox(height: 10),
+                    seventhKnowledgeTestQuestion,
+                    const SizedBox(height: 10),
+                    eighthKnowledgeTestQuestion,
+                    const SizedBox(height: 10),
+                    ninthKnowledgeTestQuestion,
+                    const SizedBox(height: 10),
+                    tenthKnowledgeTestQuestion,
+                    const SizedBox(height: 10),
+                    eleventhKnowledgeTestQuestion,
+                    const SizedBox(height: 10),
+                    twelthKnowledgeTestQuestion,
+                    const SizedBox(height: 10),
+                    thirteenthKnowledgeTestQuestion,
+                    const SizedBox(height: 10),
+                    forteenthKnowledgeTestQuestion,
+                    const SizedBox(height: 10),
+                    fifteenthKnowledgeTestQuestion,
+                    const SizedBox(height: 10),
+                    selectKnowledgeTestTextButton,
+                  ]),
+            ));
       },
     );
+  }
+
+  SizedBox knowledgeTestAnswer(
+      String answer,
+      bool ctrlColor,
+      KnowledgeAnswerEnum value,
+      KnowledgeAnswerEnum? groupValue,
+      void Function(dynamic)? onchange) {
+    final w = FWidgets();
+    return SizedBox(
+        width: 100,
+        child: ListTile(
+            minLeadingWidth: 0,
+            title: w.text(
+                data: answer, color: (ctrlColor) ? Colors.green : Colors.black),
+            leading: Radio<KnowledgeAnswerEnum>(
+                visualDensity: const VisualDensity(horizontal: -4, vertical: 0),
+                materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                value: value,
+                groupValue: groupValue,
+                onChanged: (v) => onchange!(v))));
   }
 }

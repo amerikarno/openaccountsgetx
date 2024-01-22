@@ -872,8 +872,8 @@ class InformationController extends GetxController {
             longTermInvestment ||
             taxesReduceInvestment ||
             retirementInvestment)) {
-      GetStorage()
-          .write('id', '8f3d0afe-4ef2-4c78-9379-1d541c18b887'); // for testing
+      // GetStorage()
+      //     .write('id', '8f3d0afe-4ef2-4c78-9379-1d541c18b887'); // for testing
       final id = GetStorage().read('id');
       final registeredAddress = AddressModel(
           homeNumber: registeredHouseNumber ?? '',
