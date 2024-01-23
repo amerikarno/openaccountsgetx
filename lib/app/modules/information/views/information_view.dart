@@ -593,6 +593,22 @@ class InformationView extends StatelessWidget {
 
           final secondBookBankAccount =
               FWidgets().richText(data1: 'second_bank_account'.tr);
+          final secondBankNameDropDown = FWidgets()
+              .autocomplete('bank', 'bank_name'.tr, ctrl.setsecondBankName);
+          final secondBankBranchDropDown = FWidgets().autocomplete(
+              ctrl.secondBankBranchList ?? '',
+              'bank_branch'.tr,
+              ctrl.setsecondBankBranch);
+          final secondBankAccountTextField = FWidgets().textfield(
+              label: 'account_no'.tr,
+              errorText: ctrl.secondBankAccountErrorMessage,
+              onChanged: ctrl.secondBankAccountOnChange,
+              onTap: ctrl.secondBankAccountOnTap,
+              textInputFormatter:
+                  FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z0-9ก-๛]')));
+
+          // final secondBookBankAccount =
+          //     FWidgets().richText(data1: 'second_bank_account'.tr);
           final useSecondBankAccountListTile = ListTile(
               contentPadding: EdgeInsets.zero,
               title: FWidgets().text(data: 'yes'.tr),
@@ -615,38 +631,38 @@ class InformationView extends StatelessWidget {
                   groupValue: ctrl.secondBookBankAddressEnumGroupValue,
                   onChanged: (SecondBookBankAddressEnum? value) =>
                       ctrl.setUseSecondBookBank(value)));
-          final secondBankNameDropDown = DropdownButtonFormField(
-              menuMaxHeight: height * .5,
-              decoration: InputDecoration(
-                  errorText: ctrl.secondBankNameErrorMessage,
-                  label: FWidgets().richText(data1: 'bank_name'.tr)),
-              value: ctrl.secondBankName,
-              onChanged: (value) => ctrl.setsecondBankName(value),
-              items: [
-                for (var data in ctrl.secondBankNameItems)
-                  DropdownMenuItem(value: data, child: Text(data))
-              ]);
-          final secondBankBranchDropDown = DropdownButtonFormField(
-              menuMaxHeight: height * .5,
-              decoration: InputDecoration(
-                  errorText: ctrl.secondBankBranchErrorMessage,
-                  label: FWidgets().richText(data1: 'bank_branch'.tr)),
-              value: ctrl.secondBankBranch,
-              onChanged: (value) => ctrl.setsecondBankBranch(value),
-              items: [
-                for (var data in ctrl.secondBankNameItems)
-                  DropdownMenuItem(value: data, child: Text(data))
-              ]);
-          final secondBankAccountTextField = TextField(
-              decoration: InputDecoration(
-                  contentPadding: const EdgeInsets.symmetric(vertical: 0),
-                  errorText: ctrl.secondBankAccountErrorMessage,
-                  label: FWidgets().richText(data1: 'account_no'.tr)),
-              onChanged: (value) => ctrl.secondBankAccountOnChange(value),
-              onTap: () => ctrl.secondBankAccountOnTap(),
-              inputFormatters: [
-                FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z0-9ก-๛]'))
-              ]);
+          // final secondBankNameDropDown = DropdownButtonFormField(
+          //     menuMaxHeight: height * .5,
+          //     decoration: InputDecoration(
+          //         errorText: ctrl.secondBankNameErrorMessage,
+          //         label: FWidgets().richText(data1: 'bank_name'.tr)),
+          //     value: ctrl.secondBankName,
+          //     onChanged: (value) => ctrl.setsecondBankName(value),
+          //     items: [
+          //       for (var data in ctrl.secondBankNameItems)
+          //         DropdownMenuItem(value: data, child: Text(data))
+          //     ]);
+          // final secondBankBranchDropDown = DropdownButtonFormField(
+          //     menuMaxHeight: height * .5,
+          //     decoration: InputDecoration(
+          //         errorText: ctrl.secondBankBranchErrorMessage,
+          //         label: FWidgets().richText(data1: 'bank_branch'.tr)),
+          //     value: ctrl.secondBankBranch,
+          //     onChanged: (value) => ctrl.setsecondBankBranch(value),
+          //     items: [
+          //       for (var data in ctrl.secondBankNameItems)
+          //         DropdownMenuItem(value: data, child: Text(data))
+          //     ]);
+          // final secondBankAccountTextField = TextField(
+          //     decoration: InputDecoration(
+          //         contentPadding: const EdgeInsets.symmetric(vertical: 0),
+          //         errorText: ctrl.secondBankAccountErrorMessage,
+          //         label: FWidgets().richText(data1: 'account_no'.tr)),
+          //     onChanged: (value) => ctrl.secondBankAccountOnChange(value),
+          //     onTap: () => ctrl.secondBankAccountOnTap(),
+          //     inputFormatters: [
+          //       FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z0-9ก-๛]'))
+          //     ]);
           final previousButton = ElevatedButton(
             style: ButtonStyle(
               overlayColor: MaterialStateProperty.all(Colors.transparent),

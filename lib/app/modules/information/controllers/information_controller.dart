@@ -148,6 +148,7 @@ class InformationController extends GetxController {
   List<String> secondBankNameItems = bankNameLists;
 
   String? secondBankBranch;
+  String? secondBankBranchList;
   String? secondBankBranchErrorMessage;
   List<String> secondBankBranchItems = bankBranchLists;
 
@@ -626,7 +627,7 @@ class InformationController extends GetxController {
       firstBankNameErrorMessage = 'กรุณาเลือกธนาคาร';
     } else {
       firstBankName = value;
-      firstBankBranchList = getBankBranch();
+      firstBankBranchList = getBankBranch(value);
       firstBankNameErrorMessage = null;
     }
     debugPrint('selected: $firstBankName');
@@ -634,8 +635,8 @@ class InformationController extends GetxController {
     update();
   }
 
-  String getBankBranch() {
-    switch (firstBankName) {
+  String getBankBranch(value) {
+    switch (value) {
       case 'ธนาคารกรุงเทพ จำกัด (มหาชน)':
         return 'bbl';
       case 'ธนาคารกสิกรไทย จำกัด (มหาชน)':
@@ -757,6 +758,7 @@ class InformationController extends GetxController {
       secondBankNameErrorMessage = 'กรุณาเลือกธนาคาร';
     } else {
       secondBankName = value;
+      secondBankBranchList = getBankBranch(value);
       secondBankNameErrorMessage = null;
     }
     update();
