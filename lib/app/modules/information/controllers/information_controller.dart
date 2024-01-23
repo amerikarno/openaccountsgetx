@@ -133,6 +133,7 @@ class InformationController extends GetxController {
   List<String> firstBankNameItems = bankNameLists;
 
   String? firstBankBranch;
+  String? firstBankBranchList;
   String? firstBankBranchErrorMessage;
   List<String> firstBankBranchItems = bankBranchLists;
 
@@ -625,9 +626,89 @@ class InformationController extends GetxController {
       firstBankNameErrorMessage = 'กรุณาเลือกธนาคาร';
     } else {
       firstBankName = value;
+      firstBankBranchList = getBankBranch();
       firstBankNameErrorMessage = null;
     }
+    debugPrint('selected: $firstBankName');
+    debugPrint('bank branch list: $firstBankBranchList');
     update();
+  }
+
+  String getBankBranch() {
+    switch (firstBankName) {
+      case 'ธนาคารกรุงเทพ จำกัด (มหาชน)':
+        return 'bbl';
+      case 'ธนาคารกสิกรไทย จำกัด (มหาชน)':
+        return 'kbank';
+      case 'ธนาคารกรุงไทย จำกัด (มหาชน)':
+        return 'ktb';
+      case 'ธนาคารเจพีมอร์แกน เชส':
+        return 'jpmorgan';
+      case 'ธนาคารโอเวอร์ซี-ไชนีสแบงกิ้งคอร์ปอเรชั่น จำกัด':
+        return 'ocbc';
+      case 'ธนาคารทหารไทยธนชาต จำกัด (มหาชน)':
+        return 'tmb';
+      case 'ธนาคารไทยพาณิชย์ จำกัด (มหาชน)':
+        return 'scb';
+      case 'ธนาคารซิตี้แบงก์ เอ็น.เอ.':
+        return 'citi';
+      case 'ธนาคารซูมิโตโม มิตซุย แบงกิ้ง คอร์ปอเรชั่น':
+        return 'sumitomo';
+      case 'ธนาคารสแตนดาร์ดชาร์เตอร์ด (ไทย) จำกัด (มหาชน)':
+        return 'standard';
+      case 'ธนาคารซีไอเอ็มบี ไทย จำกัด (มหาชน)':
+        return 'cimb';
+      case 'ธนาคารอาร์ เอช บี จำกัด':
+        return 'rhb';
+      case 'ธนาคารยูโอบี จำกัด (มหาชน)':
+        return 'uob';
+      case 'ธนาคารกรุงศรีอยุธยา จำกัด (มหาชน)':
+        return 'bay';
+      case 'ธนาคารเมกะ สากลพาณิชย์ จำกัด (มหาชน)':
+        return 'mega';
+      case 'ธนาคารแห่งอเมริกาเนชั่นแนลแอสโซซิเอชั่น':
+        return 'boa';
+      case 'ธนาคารอินเดียนโอเวอร์ซีส์':
+        return 'indian';
+      case 'ธนาคารออมสิน':
+        return 'saving';
+      case 'ธนาคารฮ่องกงและเซี่ยงไฮ้แบงกิ้งคอร์ปอเรชั่น จำกัด':
+        return 'hsbc';
+      case 'ธนาคารดอยซ์แบงก์':
+        return 'deutsche';
+      case 'ธนาคารอาคารสงเคราะห์':
+        return 'housing';
+      case 'ธนาคารเพื่อการเกษตรและสหกรณ์การเกษตร':
+        return 'argiculture';
+      case 'ธนาคารเพื่อการส่งออกและนำเข้าแห่งประเทศไทย':
+        return 'exim';
+      case 'ธนาคารมิซูโฮ จำกัด สาขากรุงเทพฯ':
+        return 'mizuho';
+      case 'ธนาคารบีเอ็นพี พารีบาส์':
+        return 'bnp';
+      case 'ธนาคารแห่งประเทศจีน (ไทย) จำกัด (มหาชน)':
+        return 'china';
+      case 'ธนาคารอิสลามแห่งประเทศไทย':
+        return 'islamic';
+      case 'ธนาคารทิสโก้ จำกัด (มหาชน)':
+        return 'tisco';
+      case 'ธนาคารเกียรตินาคินภัทร จำกัด (มหาชน)':
+        return 'kkp';
+      case 'ธนาคารไอซีบีซี (ไทย) จำกัด (มหาชน)':
+        return 'icbc';
+      case 'ธนาคารไทยเครดิต เพื่อรายย่อย จำกัด (มหาชน)':
+        return 'thcredit';
+      case 'ธนาคารแลนด์ แอนด์ เฮ้าส์ จำกัด (มหาชน)':
+        return 'lh';
+      case 'ธนาคารเอเอ็นแซด (ไทย) จำกัด (มหาชน)':
+        return 'anz';
+      case 'ธนาคารซูมิโตโม มิตซุย ทรัสต์ (ไทย) จำกัด (มหาชน)':
+        return 'mitsuitrust';
+      case 'ธนาคารพัฒนาวิสาหกิจขนาดกลางและขนาดย่อมแห่งประเทศไทย':
+        return 'sme';
+      default:
+        return 'bbl';
+    }
   }
 
   void setFirstBankBranch(value) {

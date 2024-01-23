@@ -1,9 +1,46 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flag/flag.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:openaccountsgetx/app/data/bank/banks.dart';
+import 'package:openaccountsgetx/app/data/bank/branch/anz.dart';
+import 'package:openaccountsgetx/app/data/bank/branch/bay.dart';
+import 'package:openaccountsgetx/app/data/bank/branch/bbl.dart';
+import 'package:openaccountsgetx/app/data/bank/branch/bnp.dart';
+import 'package:openaccountsgetx/app/data/bank/branch/boa.dart';
+import 'package:openaccountsgetx/app/data/bank/branch/china.dart';
+import 'package:openaccountsgetx/app/data/bank/branch/cimb.dart';
+import 'package:openaccountsgetx/app/data/bank/branch/citi.dart';
+import 'package:openaccountsgetx/app/data/bank/branch/deutsche.dart';
+import 'package:openaccountsgetx/app/data/bank/branch/exim.dart';
+import 'package:openaccountsgetx/app/data/bank/branch/housing.dart';
+import 'package:openaccountsgetx/app/data/bank/branch/hsbc.dart';
+import 'package:openaccountsgetx/app/data/bank/branch/icbc.dart';
+import 'package:openaccountsgetx/app/data/bank/branch/indian.dart';
+import 'package:openaccountsgetx/app/data/bank/branch/islamic.dart';
+import 'package:openaccountsgetx/app/data/bank/branch/jpmorgan.dart';
+import 'package:openaccountsgetx/app/data/bank/branch/kbank.dart';
+import 'package:openaccountsgetx/app/data/bank/branch/kkp.dart';
+import 'package:openaccountsgetx/app/data/bank/branch/ktb.dart';
+import 'package:openaccountsgetx/app/data/bank/branch/lh.dart';
+import 'package:openaccountsgetx/app/data/bank/branch/mega.dart';
+import 'package:openaccountsgetx/app/data/bank/branch/mitsuitrust.dart';
+import 'package:openaccountsgetx/app/data/bank/branch/mizuho.dart';
+import 'package:openaccountsgetx/app/data/bank/branch/ocbc.dart';
+import 'package:openaccountsgetx/app/data/bank/branch/rhb.dart';
+import 'package:openaccountsgetx/app/data/bank/branch/saving.dart';
+import 'package:openaccountsgetx/app/data/bank/branch/scb.dart';
+import 'package:openaccountsgetx/app/data/bank/branch/sme.dart';
+import 'package:openaccountsgetx/app/data/bank/branch/standard.dart';
+import 'package:openaccountsgetx/app/data/bank/branch/sumitomo.dart';
+import 'package:openaccountsgetx/app/data/bank/branch/thcredit.dart';
+import 'package:openaccountsgetx/app/data/bank/branch/tisco.dart';
+import 'package:openaccountsgetx/app/data/bank/branch/tmb.dart';
+import 'package:openaccountsgetx/app/data/bank/branch/uob.dart';
 
 class FWidgets {
+  double width = 0;
   List<double> presetFontTexts = [14, 12, 10, 8, 6];
   List<double> presetFontSubjects = [22, 18, 14, 10];
 
@@ -128,6 +165,7 @@ class FWidgets {
       return 8;
     }
   }
+
   double getSubjectSize(double width) {
     if (width >= 1000) {
       return 16;
@@ -138,5 +176,157 @@ class FWidgets {
     } else {
       return 10;
     }
+  }
+
+  Widget textfield({
+    String? errorText,
+    String? label,
+    required void Function(dynamic) onChanged,
+    required void Function() onTap,
+    required TextInputFormatter textInputFormatter,
+  }) {
+    final w = FWidgets();
+    return Stack(children: [
+      w.richText(data1: label),
+      TextField(
+          style: const TextStyle(fontSize: 14),
+          decoration: InputDecoration(
+              contentPadding: const EdgeInsets.symmetric(vertical: 0),
+              errorText: errorText),
+          onChanged: (value) => onChanged(value),
+          onTap: () => onTap(),
+          inputFormatters: [textInputFormatter]),
+    ]);
+  }
+
+  Widget autocomplete(
+      String branch, String subject, void Function(dynamic) onSelected) {
+    final w = FWidgets();
+    List<String> list;
+    switch (branch) {
+      case 'bank':
+        list = bankName;
+        break;
+      case 'anz':
+        list = anzBranchs;
+        break;
+      case 'bay':
+        list = bayBranchs;
+        break;
+      case 'bbl':
+        list = bblBranchs;
+        break;
+      case 'bnp':
+        list = bnpBranchs;
+        break;
+      case 'boa':
+        list = boaBranchs;
+        break;
+      case 'china':
+        list = chinaBranchs;
+        break;
+      case 'cimb':
+        list = cimbBranchs;
+        break;
+      case 'citi':
+        list = citiBranchs;
+        break;
+      case 'deutsche':
+        list = deutscheBranchs;
+        break;
+      case 'exim':
+        list = eximBranchs;
+        break;
+      case 'housing':
+        list = housingBranchs;
+        break;
+      case 'hsbc':
+        list = hsbcBranchs;
+        break;
+      case 'icbc':
+        list = icbcBranchs;
+        break;
+      case 'indian':
+        list = indianBranchs;
+        break;
+      case 'islamic':
+        list = islamicBranchs;
+        break;
+      case 'jpmorgan':
+        list = jpmorganBranchs;
+        break;
+      case 'kbank':
+        list = kbankBranchs;
+        break;
+      case 'kkp':
+        list = kkpBranchs;
+        break;
+      case 'ktb':
+        list = ktbBranchs;
+        break;
+      case 'lh':
+        list = lhBranchs;
+        break;
+      case 'mega':
+        list = megaBranchs;
+        break;
+      case 'mitsuitrust':
+        list = mitsuitrustBranchs;
+        break;
+      case 'mizuho':
+        list = mizuhoBranchs;
+        break;
+      case 'ocbc':
+        list = ocbcBranchs;
+        break;
+      case 'rhb':
+        list = rhbBranchs;
+        break;
+      case 'saving':
+        list = savingBranchs;
+        break;
+      case 'scb':
+        list = scbBranchs;
+        break;
+      case 'sme':
+        list = smeBranchs;
+        break;
+      case 'standard':
+        list = standardBranchs;
+        break;
+      case 'sumitomo':
+        list = sumitomoBranchs;
+        break;
+      case 'thcredit':
+        list = thcreditBranchs;
+        break;
+      case 'tisco':
+        list = tiscoBranchs;
+        break;
+      case 'tmb':
+        list = tmbBranchs;
+        break;
+      case 'uob':
+        list = uobBranchs;
+        break;
+      default:
+        list = bankName;
+        break;
+    }
+
+    return Stack(children: [
+      w.richText(data1: subject),
+      Autocomplete<String>(
+        optionsBuilder: (TextEditingValue textEditingValue) {
+          if (textEditingValue.text == '') {
+            return const Iterable<String>.empty();
+          }
+          return list.where((String option) {
+            return option.contains(textEditingValue.text.toLowerCase());
+          });
+        },
+        onSelected: (String selection) => onSelected(selection),
+      ),
+    ]);
   }
 }

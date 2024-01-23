@@ -267,13 +267,8 @@ class IdcardView extends StatelessWidget {
                         const SizedBox(height: 10),
                         const SizedBox(height: 10),
                         Row(
-                          children: [
-                            previousButton,
-                            SizedBox(
-                              width: width * .45,
-                            ),
-                            nextButton
-                          ],
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [previousButton, nextButton],
                         )
                       ])));
         }));

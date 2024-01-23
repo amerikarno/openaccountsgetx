@@ -577,38 +577,19 @@ class InformationView extends StatelessWidget {
 
           final firstBookBankAccount =
               FWidgets().richText(data1: 'first_bank_account'.tr);
-          final firstBankNameDropDown = DropdownButtonFormField(
-              menuMaxHeight: height * .5,
-              decoration: InputDecoration(
-                  errorText: ctrl.firstBankNameErrorMessage,
-                  label: FWidgets().richText(data1: 'bank_name'.tr)),
-              value: ctrl.firstBankName,
-              onChanged: (value) => ctrl.setFirstBankName(value),
-              items: [
-                for (var data in ctrl.firstBankNameItems)
-                  DropdownMenuItem(value: data, child: Text(data))
-              ]);
-          final firstBankBranchDropDown = DropdownButtonFormField(
-              menuMaxHeight: height * .5,
-              decoration: InputDecoration(
-                  errorText: ctrl.firstBankBranchErrorMessage,
-                  label: FWidgets().richText(data1: 'bank_branch'.tr)),
-              value: ctrl.firstBankBranch,
-              onChanged: (value) => ctrl.setFirstBankBranch(value),
-              items: [
-                for (var data in ctrl.firstBankNameItems)
-                  DropdownMenuItem(value: data, child: Text(data))
-              ]);
-          final firstBankAccountTextField = TextField(
-              decoration: InputDecoration(
-                  contentPadding: const EdgeInsets.symmetric(vertical: 0),
-                  errorText: ctrl.firstBankAccountErrorMessage,
-                  label: FWidgets().richText(data1: 'account_no'.tr)),
-              onChanged: (value) => ctrl.firstBankAccountOnChange(value),
-              onTap: () => ctrl.firstBankAccountOnTap(),
-              inputFormatters: [
-                FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z0-9ก-๛]'))
-              ]);
+          final firstBankNameDropDown = FWidgets()
+              .autocomplete('bank', 'bank_name'.tr, ctrl.setFirstBankName);
+          final firstBankBranchDropDown = FWidgets().autocomplete(
+              ctrl.firstBankBranchList ?? '',
+              'bank_branch'.tr,
+              ctrl.setFirstBankBranch);
+          final firstBankAccountTextField = FWidgets().textfield(
+              label: 'account_no'.tr,
+              errorText: ctrl.firstBankAccountErrorMessage,
+              onChanged: ctrl.firstBankAccountOnChange,
+              onTap: ctrl.firstBankAccountOnTap,
+              textInputFormatter:
+                  FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z0-9ก-๛]')));
 
           final secondBookBankAccount =
               FWidgets().richText(data1: 'second_bank_account'.tr);
@@ -711,7 +692,8 @@ class InformationView extends StatelessWidget {
                               children: [
                                 SizedBox(
                                     width: width * .2,
-                                    child: FWidgets().richText(data1: 'registered_address'.tr)),
+                                    child: FWidgets().richText(
+                                        data1: 'registered_address'.tr)),
                                 const SizedBox(height: 10),
                                 regisAddress,
                               ]),
@@ -732,7 +714,8 @@ class InformationView extends StatelessWidget {
                                   children: [
                                     SizedBox(
                                         width: width * .1,
-                                        child: FWidgets().richText(data1: 'current_address'.tr)),
+                                        child: FWidgets().richText(
+                                            data1: 'current_address'.tr)),
                                     SizedBox(
                                       width: width * .33,
                                     ),
@@ -1003,11 +986,9 @@ class InformationView extends StatelessWidget {
                             )),
                         const SizedBox(height: 10),
                         const SizedBox(height: 10),
-                        Row(children: [
-                          previousButton,
-                          SizedBox(width: width * .5),
-                          nextButton
-                        ]),
+                        Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [previousButton, nextButton]),
                         const SizedBox(height: 10),
                         const SizedBox(height: 10),
                       ])));
