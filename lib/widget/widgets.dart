@@ -188,14 +188,23 @@ class FWidgets {
     final w = FWidgets();
     return Stack(children: [
       w.richText(data1: label),
-      TextField(
-          style: const TextStyle(fontSize: 14),
-          decoration: InputDecoration(
-              contentPadding: const EdgeInsets.symmetric(vertical: 0),
-              errorText: errorText),
-          onChanged: (value) => onChanged(value),
-          onTap: () => onTap(),
-          inputFormatters: [textInputFormatter]),
+      TextFormField(
+        style: const TextStyle(fontSize: 12),
+        textAlign: TextAlign.start,
+        textAlignVertical: TextAlignVertical.bottom,
+        decoration: InputDecoration(errorText: errorText),
+        onChanged: (value) => onChanged(value),
+      ),
+      // TextFormField(
+      //     textAlign: TextAlign.start,
+      //     textAlignVertical: TextAlignVertical.center,
+      //     style: const TextStyle(fontSize: 14),
+      //     decoration: InputDecoration(
+      //         contentPadding: const EdgeInsets.symmetric(vertical: 0),
+      //         errorText: errorText),
+      //     onChanged: (value) => onChanged(value),
+      //     onTap: () => onTap(),
+      //     inputFormatters: [textInputFormatter]),
     ]);
   }
 
@@ -326,6 +335,183 @@ class FWidgets {
           });
         },
         onSelected: (String selection) => onSelected(selection),
+      ),
+    ]);
+  }
+
+  Widget rawautocomplete(
+      String branch, String subject, void Function(dynamic) onSelected) {
+    List<String> list;
+
+    switch (branch) {
+      case 'bank':
+        list = bankName;
+        break;
+      case 'anz':
+        list = anzBranchs;
+        break;
+      case 'bay':
+        list = bayBranchs;
+        break;
+      case 'bbl':
+        list = bblBranchs;
+        break;
+      case 'bnp':
+        list = bnpBranchs;
+        break;
+      case 'boa':
+        list = boaBranchs;
+        break;
+      case 'china':
+        list = chinaBranchs;
+        break;
+      case 'cimb':
+        list = cimbBranchs;
+        break;
+      case 'citi':
+        list = citiBranchs;
+        break;
+      case 'deutsche':
+        list = deutscheBranchs;
+        break;
+      case 'exim':
+        list = eximBranchs;
+        break;
+      case 'housing':
+        list = housingBranchs;
+        break;
+      case 'hsbc':
+        list = hsbcBranchs;
+        break;
+      case 'icbc':
+        list = icbcBranchs;
+        break;
+      case 'indian':
+        list = indianBranchs;
+        break;
+      case 'islamic':
+        list = islamicBranchs;
+        break;
+      case 'jpmorgan':
+        list = jpmorganBranchs;
+        break;
+      case 'kbank':
+        list = kbankBranchs;
+        break;
+      case 'kkp':
+        list = kkpBranchs;
+        break;
+      case 'ktb':
+        list = ktbBranchs;
+        break;
+      case 'lh':
+        list = lhBranchs;
+        break;
+      case 'mega':
+        list = megaBranchs;
+        break;
+      case 'mitsuitrust':
+        list = mitsuitrustBranchs;
+        break;
+      case 'mizuho':
+        list = mizuhoBranchs;
+        break;
+      case 'ocbc':
+        list = ocbcBranchs;
+        break;
+      case 'rhb':
+        list = rhbBranchs;
+        break;
+      case 'saving':
+        list = savingBranchs;
+        break;
+      case 'scb':
+        list = scbBranchs;
+        break;
+      case 'sme':
+        list = smeBranchs;
+        break;
+      case 'standard':
+        list = standardBranchs;
+        break;
+      case 'sumitomo':
+        list = sumitomoBranchs;
+        break;
+      case 'thcredit':
+        list = thcreditBranchs;
+        break;
+      case 'tisco':
+        list = tiscoBranchs;
+        break;
+      case 'tmb':
+        list = tmbBranchs;
+        break;
+      case 'uob':
+        list = uobBranchs;
+        break;
+      default:
+        list = [];
+        break;
+    }
+    return Stack(children: [
+      FWidgets().richText(data1: subject),
+      RawAutocomplete<String>(
+        optionsBuilder: (TextEditingValue textEditingValue) {
+          return list.where((String option) {
+            return option.contains(textEditingValue.text.toLowerCase());
+          });
+        },
+        onSelected: onSelected,
+        fieldViewBuilder: (
+          BuildContext context,
+          TextEditingController textEditingController,
+          FocusNode focusNode,
+          VoidCallback onFieldSubmitted,
+        ) {
+          return TextFormField(
+            style: const TextStyle(fontSize: 12),
+            textAlign: TextAlign.start,
+            textAlignVertical: TextAlignVertical.bottom,
+            controller: textEditingController,
+            focusNode: focusNode,
+            onFieldSubmitted: (String value) {
+              onFieldSubmitted();
+            },
+          );
+        },
+        optionsViewBuilder: (
+          BuildContext context,
+          AutocompleteOnSelected<String> onSelected,
+          Iterable<String> options,
+        ) {
+          return Align(
+            alignment: Alignment.topLeft,
+            child: Material(
+              elevation: 4.0,
+              child: SizedBox(
+                height: 200.0,
+                child: ListView.builder(
+                  padding: const EdgeInsets.all(8.0),
+                  itemCount: options.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    final String option = options.elementAt(index);
+                    return GestureDetector(
+                      onTap: () {
+                        onSelected(option);
+                      },
+                      child: ListTile(
+                        title: Text(
+                          option,
+                          style: const TextStyle(fontSize: 12),
+                        ),
+                      ),
+                    );
+                  },
+                ),
+              ),
+            ),
+          );
+        },
       ),
     ]);
   }

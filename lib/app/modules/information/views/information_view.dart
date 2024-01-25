@@ -578,8 +578,8 @@ class InformationView extends StatelessWidget {
           final firstBookBankAccount =
               FWidgets().richText(data1: 'first_bank_account'.tr);
           final firstBankNameDropDown = FWidgets()
-              .autocomplete('bank', 'bank_name'.tr, ctrl.setFirstBankName);
-          final firstBankBranchDropDown = FWidgets().autocomplete(
+              .rawautocomplete('bank', 'bank_name'.tr, ctrl.setFirstBankName);
+          final firstBankBranchDropDown = FWidgets().rawautocomplete(
               ctrl.firstBankBranchList ?? '',
               'bank_branch'.tr,
               ctrl.setFirstBankBranch);
@@ -594,8 +594,8 @@ class InformationView extends StatelessWidget {
           final secondBookBankAccount =
               FWidgets().richText(data1: 'second_bank_account'.tr);
           final secondBankNameDropDown = FWidgets()
-              .autocomplete('bank', 'bank_name'.tr, ctrl.setsecondBankName);
-          final secondBankBranchDropDown = FWidgets().autocomplete(
+              .rawautocomplete('bank', 'bank_name'.tr, ctrl.setsecondBankName);
+          final secondBankBranchDropDown = FWidgets().rawautocomplete(
               ctrl.secondBankBranchList ?? '',
               'bank_branch'.tr,
               ctrl.setsecondBankBranch);
